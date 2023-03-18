@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/03/18 22:20:57 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/03/18 22:24:06 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int main(int argc, char *argv[])
 	}
 	for (size_t i = OFFSET_ARG; argv[i]; i++)
 	{
-		if (i != OFFSET_ARG)
-			std::cout << CHR_DELIM;
 		str = argv[i];
 		len = str.length();
 		for (size_t j = 0; j < len; j++)
