@@ -3,35 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/03/07 07:12:38 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/03/18 22:20:57 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cctype>
-#include <string>
+#include <cstring>
+//#include <cctype>
+//#include <string>
+//#include <ctype.h>
 
-using std::cout; using std::string;
-using std::endl; using std::cin;
-using std::transform; using std::toupper;
-using namespace std;
+# define OFFSET_ARG		1
+# define CHR_DELIM		' '
+# define DEFAULT_SOUND	"* LOUD AND UNBEARABLE FEEDBACK NOISE *"
 
 int main(int argc, char *argv[])
 {
-    if (argc < 2)
-    {
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-    }
-    else
-    {
-        std::string s(argv[1]);
-        for (int x = 0; x < s.length(); x++)
-            putchar((char)s.toupper());
-//        icu::UnicodeString unicodeString(s.c_str());
-//        std::cout << s.toUpper() << std::endl;
-    }
-    return (0);
+	std::string	str;
+	size_t		len;
+
+	if (argc <= OFFSET_ARG)
+	{
+		std::cout << DEFAULT_SOUND << std::endl;
+		return (0);
+	}
+	for (size_t i = OFFSET_ARG; argv[i]; i++)
+	{
+		if (i != OFFSET_ARG)
+			std::cout << CHR_DELIM;
+		str = argv[i];
+		len = str.length();
+		for (size_t j = 0; j < len; j++)
+			std::cout << (char)toupper(str[j]);
+	}
+	std::cout << std::endl;
+	return (0);
 }
+
+//using std::cout; using std::string;
+//using std::endl; using std::cin;
+//using std::transform; using std::toupper;
+//using namespace std;
+/*
+class Megaphone
+{
+public:
+	Megaphone::Megaphone(std::string s);
+	// ここにメンバ変数、メンバ関数を定義する
+	int id;
+};
+*/
+//		icu::UnicodeString unicodeString(s.c_str());
+//		std::cout << s.toUpper() << std::endl;

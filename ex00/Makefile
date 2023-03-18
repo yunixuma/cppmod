@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/03/07 04:19:29 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/03/18 21:57:21 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CPP				= c++
 RM				= rm
 
 # Command options (flags)
-//CPPFLAGS			= -Wall -Wextra -Werror -std=c++98
+CPPFLAGS			= -Wall -Wextra -Werror -std=c++98
 DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer -fsanitize=thread
 ifneq ($(OS), Darwin)
 	DEBUGCFLAGS	+= -fstack-usage
