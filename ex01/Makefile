@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
+#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/03/19 11:18:47 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/03/20 02:27:07 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME			= phonebook
 
 # Enumeration of files
-SRC				= main.c PhoneBook.cpp Contact.cpp
+SRC				= main.cpp PhoneBook.cpp Contact.cpp
 
 # Defination of macro constants
 
@@ -46,16 +46,18 @@ OS				= $(shell uname)
 
 # Macros to replace and/or integrate
 SRCS			= $(addprefix $(SRCDIR)/, $(SRC))
-OBJS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
-DEPS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.d)))
+OBJS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.o)))
+DEPS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.d)))
 
 # ********************* Section for targets and commands ********************* #
 # Phonies
-.PHONY: all fclean re
+.PHONY: all clean fclean re
 
 # Mandatory targets
 all: $(NAME)
-fclean:
+clean:
+	-$(RM) $(RMFLAGS) $(OBJDIR)
+fclean: clean
 	-$(RM) $(RMFLAGS) $(NAME)
 re: fclean all
 
@@ -67,7 +69,7 @@ $(NAME): $(OBJS)
 
 $(OBJDIR):
 	@mkdir -p $@
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CC) $(CFLAGS) $(DEF) $(INCLUDES) -o $@ -c $<
 
 # Including and ignore .dep files when they are not found
