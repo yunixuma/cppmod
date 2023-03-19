@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/03/18 22:24:06 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/03/20 02:12:35 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 int main(int argc, char *argv[])
 {
-	std::string	str;
 	size_t		len;
 
 	if (argc <= OFFSET_ARG)
@@ -32,7 +31,7 @@ int main(int argc, char *argv[])
 	}
 	for (size_t i = OFFSET_ARG; argv[i]; i++)
 	{
-		str = argv[i];
+		std::string	str(argv[i]);
 		len = str.length();
 		for (size_t j = 0; j < len; j++)
 			std::cout << (char)toupper(str[j]);
