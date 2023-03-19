@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/03/18 21:57:21 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/03/19 11:14:40 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ NAME			= megaphone
 SRC				= $(NAME).cpp
 
 # Defination of macro constants
-DEF				= -DN_RESOURCE=2
 
 # Enumeration of directories
 SRCDIR			= ./src
@@ -31,14 +30,12 @@ CPP				= c++
 RM				= rm
 
 # Command options (flags)
-CPPFLAGS			= -Wall -Wextra -Werror -std=c++98
+CPPFLAGS		= -Wall -Wextra -Werror -std=c++98
 DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer -fsanitize=thread
 ifneq ($(OS), Darwin)
 	DEBUGCFLAGS	+= -fstack-usage
 endif
 #DEBUGLDFLAGS	= -fsanitize=address
-OPTCFLAGS		= -O3 -march=native
-OPTCFLAGS_FAST	= -Ofast -march=native
 INCLUDES		= -I$(INCDIR)
 RMFLAGS			= -r
 

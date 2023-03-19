@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/03/07 10:24:30 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/03/19 11:18:47 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,9 @@
 NAME			= phonebook
 
 # Enumeration of files
-SRC				= phonebook.cpp contact.cpp
+SRC				= main.c PhoneBook.cpp Contact.cpp
 
 # Defination of macro constants
-DEF				= -DN_RESOURCE=2
 
 # Enumeration of directories
 SRCDIR			= ./src
@@ -31,14 +30,12 @@ CPP				= c++
 RM				= rm
 
 # Command options (flags)
-//CPPFLAGS			= -Wall -Wextra -Werror -std=c++98
+CPPFLAGS		= -Wall -Wextra -Werror -std=c++98
 DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer -fsanitize=thread
 ifneq ($(OS), Darwin)
 	DEBUGCFLAGS	+= -fstack-usage
 endif
 #DEBUGLDFLAGS	= -fsanitize=address
-OPTCFLAGS		= -O3 -march=native
-OPTCFLAGS_FAST	= -Ofast -march=native
 INCLUDES		= -I$(INCDIR)
 RMFLAGS			= -r
 
@@ -48,6 +45,9 @@ OS				= $(shell uname)
 # Redefination when the specific target
 
 # Macros to replace and/or integrate
+SRCS			= $(addprefix $(SRCDIR)/, $(SRC))
+OBJS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
+DEPS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.d)))
 
 # ********************* Section for targets and commands ********************* #
 # Phonies
@@ -62,8 +62,13 @@ re: fclean all
 # Additional targets
 
 # Recipes
-$(NAME):
-	$(CPP) $(CPPFLAGS) $(SRC) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJDIR):
+	@mkdir -p $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+	$(CC) $(CFLAGS) $(DEF) $(INCLUDES) -o $@ -c $<
 
 # Including and ignore .dep files when they are not found
 -include $(DEPS)
