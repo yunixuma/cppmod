@@ -6,11 +6,11 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/03/23 05:11:12 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/04/05 19:23:27 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "phonebook.h"
 
 int main(void)
 {
@@ -23,7 +23,7 @@ int main(void)
 		{
 			return (1);
 		}
-		PhoneBook.command(cmd);
+		PhoneBook command(cmd);
 	}
 	return (0);
 }
