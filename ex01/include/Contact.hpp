@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/04/05 19:08:14 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/04/06 20:37:02 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@
 class Contact
 {
 private:
-	
+	int			index;
+	std::string	first_name;
+	std::string	last_name;
+	std::string	nick_name;
+	std::string	phone_number;
+	std::string	darkest_secret;
 public:
 	Contact();
 	~Contact();

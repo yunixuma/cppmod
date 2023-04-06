@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/04/05 19:08:23 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/04/06 20:40:21 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ private:
 public:
 	PhoneBook();
 	~PhoneBook();
+	add_contact();
+	display_contacts();
 };
 
 #endif
