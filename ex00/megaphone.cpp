@@ -15,6 +15,7 @@
 //#include <cctype>
 //#include <string>
 //#include <ctype.h>
+//#include <locale.h>
 
 # define OFFSET_ARG		1
 # define CHR_DELIM		' '
@@ -32,9 +33,10 @@ int main(int argc, char *argv[])
 	for (size_t i = OFFSET_ARG; argv[i]; i++)
 	{
 		std::string	str(argv[i]);
+		std::locale l = std::locale::classic();
 		len = str.length();
 		for (size_t j = 0; j < len; j++)
-			std::cout << (char)toupper(str[j]);
+			std::cout << std::toupper(str[j], l);
 	}
 	std::cout << std::endl;
 	return (0);
