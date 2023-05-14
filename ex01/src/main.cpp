@@ -15,6 +15,7 @@
 int main(void)
 {
 	std::string cmd;
+	PhoneBook phonebook;
 
 	while (true)
 	{
@@ -23,7 +24,7 @@ int main(void)
 		{
 			return (1);
 		}
-		PhoneBook command(cmd);
+		PhoneBook.command(cmd);
 	}
 	return (0);
 }

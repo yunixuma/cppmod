@@ -12,8 +12,9 @@
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(std::string cmd) {
-	
+PhoneBook::PhoneBook(void) {
+    Contact contact[8];
+    n_reged = 0;
 }
 
 PhoneBook::~PhoneBook(void) {

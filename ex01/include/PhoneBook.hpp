@@ -25,8 +25,8 @@ private:
 public:
 	PhoneBook();
 	~PhoneBook();
-	add_contact();
-	display_contacts();
+	PhoneBook::add_contacts();
+	PhoneBook::display_contacts();
 };
 
 #endif
