@@ -16,6 +16,7 @@
 # include <iostream>
 # include <cctype>
 # include <string>
+# include "Contact.hpp"
 
 class PhoneBook
 {
@@ -27,6 +28,7 @@ public:
 	~PhoneBook();
 	int		add_contact();
 	int		search_contact();
+	Contact	get_contact(size_t count);
 	size_t	get_count();
 	int		set_count(size_t count);
 };

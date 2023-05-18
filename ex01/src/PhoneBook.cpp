@@ -13,8 +13,8 @@
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void) {
-    Contact contact[8];
-    n_reged = 0;
+	Contact contacts[8];
+	this->count = 0;
 }
 
 PhoneBook::~PhoneBook(void) {

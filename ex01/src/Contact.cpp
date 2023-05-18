@@ -13,24 +13,29 @@
 #include "Contact.hpp"
 
 Contact::Contact() {
-	id = 0;
-	first_name = "";
-	last_name = "";
-	nick_name = "";
-	phone_number = "";
-	darkest_secret = "";
+	this->id = 0;
+	this->first_name = "";
+	this->last_name = "";
+	this->nickname = "";
+	this->phone_number = "";
+	this->darkest_secret = "";
 }
 
 Contact::~Contact(void) {
 	
 }
 
-int	Contact::set_contact(Contact::contact contact) {
-	std::cin >> this.id;
-	std::cin >> this.first_name;
-	std::cin >> this.last_name;
-	std::cin >> this.nick_name;
-	std::cin >> this.phone_number;
-	std::cin >> this.darkest_secret;
+int	Contact::set_values(size_t count) {
+	std::cin >> this->id;
+	std::cin >> this->first_name;
+	std::cin >> this->last_name;
+	std::cin >> this->nickname;
+	std::cin >> this->phone_number;
+	std::cin >> this->darkest_secret;
 	return (0);
+}
+
+int	display_contact() {
+	std::cout << "display" << std::endl;
+	return (1);
 }
