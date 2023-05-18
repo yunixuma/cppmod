@@ -21,12 +21,14 @@ class PhoneBook
 {
 private:
 	Contact	contacts[8];
-	int		n_reged;
+	size_t	count;
 public:
 	PhoneBook();
 	~PhoneBook();
-	PhoneBook::add_contacts();
-	PhoneBook::display_contacts();
+	int		add_contact();
+	int		search_contact();
+	size_t	get_count();
+	int		set_count(size_t count);
 };
 
 #endif

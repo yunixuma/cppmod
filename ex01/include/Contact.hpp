@@ -19,7 +19,7 @@
 
 class Contact {
 private:
-	int			index;
+	size_t		id;
 	std::string	first_name;
 	std::string	last_name;
 	std::string	nick_name;
@@ -28,14 +28,8 @@ private:
 public:
 	Contact();
 	~Contact();
-	Contact::set_contact(
-		int			new_index,
-		std::string	new_first_name,
-		std::string	new_last_name,
-		std::string	new_nick_name,
-		std::string	new_phone_number,
-		std::string	new_darkest_secret
-	);
+	int	set_values(size_t count);
+	int	display_contact();
 };
 
 #endif
