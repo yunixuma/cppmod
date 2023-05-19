@@ -39,12 +39,12 @@ int main(void)
 
 	while (true)
 	{
+		std::cout << "Enter the command: ";
 		std::cin >> cmd;
 		if (std::cin.eof())
-		{
 			return (1);
-		}
-		command(&pb, cmd);
+		if (command(&pb, cmd))
+			break ;
 	}
 	return (0);
 }

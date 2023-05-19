@@ -26,11 +26,15 @@ Contact::~Contact(void) {
 }
 
 int	Contact::set_values(size_t count) {
-	std::cin >> this->id;
+	std::cout << "Enter the first name: ";
 	std::cin >> this->first_name;
+	std::cout << "Enter the last name: ";
 	std::cin >> this->last_name;
+	std::cout << "Enter the nickname: ";
 	std::cin >> this->nickname;
+	std::cout << "Enter the phone number: ";
 	std::cin >> this->phone_number;
+	std::cout << "Enter the darkest secret: ";
 	std::cin >> this->darkest_secret;
 	return (0);
 }
