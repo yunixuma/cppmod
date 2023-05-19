@@ -13,12 +13,13 @@
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void) {
+	std::cout << "\033[2;3mInitiating the PhoneBook.\033[m" << std::endl;
 	Contact contacts[8];
 	this->count = 0;
 }
 
 PhoneBook::~PhoneBook(void) {
-	std::cout << "The destructor called." << std::endl;
+	std::cout << "\033[2;3mDestroying the PhoneBook.\033[m" << std::endl;
 }
 
 int	PhoneBook::add_contact() {

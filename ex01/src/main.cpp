@@ -28,6 +28,8 @@ static int	 command(PhoneBook *pb, std::string cmd) {
 	else if (cmd == "SEARCH")
 		pb->search_contact();
 	else if (cmd == "EXIT")
+		return (9);
+	else
 		return (1);
 	return (0);
 }
@@ -36,15 +38,21 @@ int main(void)
 {
 	std::string	cmd;
 	PhoneBook	pb;
+	int			status;
 
 	while (true)
 	{
-		std::cout << "Enter the command: ";
-		std::cin >> cmd;
+		std::cout << "\033[33m* Available commands: ADD / SEARCH / EXIT *\033[m" << std::endl;
+		std::cout << "\033[32mEnter the command: \033[m\033[36m";
+		std::getline(std::cin, cmd);
 		if (std::cin.eof())
 			return (1);
-		if (command(&pb, cmd))
+		std::cout << "\033[m";
+		status = command(&pb, cmd);
+		if (status == 9)
 			break ;
+		else if (status == 1)
+			std::cerr << "\033[31mWrong command. Please try again.\033[m" << std::endl;
 	}
 	return (0);
 }
