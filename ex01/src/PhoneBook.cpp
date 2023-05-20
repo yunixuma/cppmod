@@ -35,15 +35,22 @@ int	PhoneBook::search_contact() {
 	std::string			input;
 	std::stringstream	ss;
 
+	if (this->count == 0)
+	{
+		std::cerr << "\033[31mNo contacts exists.\033[m" << std::endl;
+		return (1);
+	}
 	if (this->count < 8)
 		index = 0;
 	else
 		index = this->count - 8;
+	std::cout << "Index| First name | Last name  | Nickname   |" << std::endl;
 	for (size_t i = 0; i < 8; i++)
 		this->get_contact(index + i)->output_digest();
-	std::cout << "To show the content of the contact, " << std::endl;
-	std::cout << "Enter the index: ";
+	std::cout << "\033[32mTo show the content of the contact, " << std::endl;
+	std::cout << "Enter the index: \033[36m";
 	std::getline(std::cin, input);
+	std::cout << "\033[m";
 	ss << input;
 	ss >> index;
 	if (this->get_contact(index - 1)->output_detail(index))

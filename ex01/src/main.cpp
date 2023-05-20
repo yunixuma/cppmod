@@ -21,15 +21,21 @@ static int	 command(PhoneBook *pb, std::string cmd) {
 	if (cmd == "ADD")
 	{
 		if (contact->set_values(count + 1))
+		{
 			pb->set_count(count + 1);
+			return (0);
+		}
 	}
 	else if (cmd == "SEARCH")
-		pb->search_contact();
+	{
+		if (pb->search_contact())
+			return (0);
+	}
 	else if (cmd == "EXIT")
 		return (9);
 	else
 		return (2);
-	return (0);
+	return (1);
 }
 
 int main(void)
