@@ -31,7 +31,7 @@ public:
 	~Contact();
 	int	set_values(size_t count);
 	int	output_digest();
-	int	output_detail();
+	int	output_detail(size_t index);
 };
 
 #endif

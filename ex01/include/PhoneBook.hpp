@@ -27,9 +27,8 @@ private:
 public:
 	PhoneBook();
 	~PhoneBook();
-	int		add_contact();
 	int		search_contact();
-	Contact	get_contact(size_t count);
+	Contact	*get_contact(size_t count);
 	size_t	get_count();
 	int		set_count(size_t count);
 };

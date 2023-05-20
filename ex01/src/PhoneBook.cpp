@@ -26,18 +26,13 @@ size_t	PhoneBook::get_count() {
 	return (this->count);
 }
 
-int	PhoneBook::add_contact() {
-	
-	return (1);
-}
-
-Contact	PhoneBook::get_contact(size_t count) {
-	return (this->contacts[count % 8]);
+Contact	*PhoneBook::get_contact(size_t count) {
+	return (&this->contacts[count % 8]);
 }
 
 int	PhoneBook::search_contact() {
-	size_t			index;
-	std::string		input;
+	size_t				index;
+	std::string			input;
 	std::stringstream	ss;
 
 	if (this->count < 8)
@@ -45,14 +40,18 @@ int	PhoneBook::search_contact() {
 	else
 		index = this->count - 8;
 	for (size_t i = 0; i < 8; i++)
-		this->get_contact(index).output_digest();
-	std::cout << "To show the content of the contact" << std::endl;
+		this->get_contact(index + i)->output_digest();
+	std::cout << "To show the content of the contact, " << std::endl;
 	std::cout << "Enter the index: ";
 	std::getline(std::cin, input);
 	ss << input;
 	ss >> index;
-	this->get_contact(index).output_detail();
-	return (1);
+	if (this->get_contact(index - 1)->output_detail(index))
+	{
+		std::cerr << "\033[31mIndex " << index << " does not exist.\033[m" << std::endl;
+		return (1);
+	}
+	return (0);
 }
 
 int	PhoneBook::set_count(size_t count) {

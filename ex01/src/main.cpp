@@ -13,15 +13,15 @@
 #include "phonebook.h"
 
 static int	 command(PhoneBook *pb, std::string cmd) {
-	Contact	contact; 	
+	Contact	*contact;
 	size_t	count;
 
 	count = pb->get_count();
 	contact = pb->get_contact(count);
 	if (cmd == "ADD")
 	{
-		if (contact.set_values(count))
-			pb->set_count(count);
+		if (contact->set_values(count + 1))
+			pb->set_count(count + 1);
 	}
 	else if (cmd == "SEARCH")
 		pb->search_contact();
