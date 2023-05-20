@@ -14,6 +14,7 @@
 # define CONTACT_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <cctype>
 # include <string>
 
@@ -29,7 +30,8 @@ public:
 	Contact();
 	~Contact();
 	int	set_values(size_t count);
-	int	display_contact();
+	int	output_digest();
+	int	output_detail();
 };
 
 #endif

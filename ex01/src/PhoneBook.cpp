@@ -22,25 +22,37 @@ PhoneBook::~PhoneBook(void) {
 	std::cout << "\033[2;3mDestroying the PhoneBook.\033[m" << std::endl;
 }
 
+size_t	PhoneBook::get_count() {
+	return (this->count);
+}
+
 int	PhoneBook::add_contact() {
 	
 	return (1);
 }
 
-int	PhoneBook::search_contact() {
-	for (size_t i = 0; i < 8; i++)
-	{
-		std::cout << i << std::endl;
-	}
-	return (1);
-}
-
 Contact	PhoneBook::get_contact(size_t count) {
-	return (contacts[count % 8]);
+	return (this->contacts[count % 8]);
 }
 
-size_t	PhoneBook::get_count() {
-	return (this->count);
+int	PhoneBook::search_contact() {
+	size_t			index;
+	std::string		input;
+	std::stringstream	ss;
+
+	if (this->count < 8)
+		index = 0;
+	else
+		index = this->count - 8;
+	for (size_t i = 0; i < 8; i++)
+		this->get_contact(index).output_digest();
+	std::cout << "To show the content of the contact" << std::endl;
+	std::cout << "Enter the index: ";
+	std::getline(std::cin, input);
+	ss << input;
+	ss >> index;
+	this->get_contact(index).output_detail();
+	return (1);
 }
 
 int	PhoneBook::set_count(size_t count) {

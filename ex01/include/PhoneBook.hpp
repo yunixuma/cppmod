@@ -16,6 +16,7 @@
 # include <iostream>
 # include <cctype>
 # include <string>
+# include <sstream>
 # include "Contact.hpp"
 
 class PhoneBook

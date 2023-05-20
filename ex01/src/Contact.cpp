@@ -26,20 +26,35 @@ Contact::~Contact(void) {
 }
 
 int	Contact::set_values(size_t count) {
+	this->id = count;
 	std::cout << "Enter the first name: ";
-	std::cin >> this->first_name;
+	std::getline(std::cin, this->first_name);
 	std::cout << "Enter the last name: ";
-	std::cin >> this->last_name;
+	std::getline(std::cin, this->last_name);
 	std::cout << "Enter the nickname: ";
-	std::cin >> this->nickname;
+	std::getline(std::cin, this->nickname);
 	std::cout << "Enter the phone number: ";
-	std::cin >> this->phone_number;
+	std::getline(std::cin, this->phone_number);
 	std::cout << "Enter the darkest secret: ";
-	std::cin >> this->darkest_secret;
+	std::getline(std::cin, this->darkest_secret);
 	return (0);
 }
 
-int	display_contact() {
-	std::cout << "display" << std::endl;
+int	Contact::output_digest() {
+	std::cout << std::setw(4) << this->id << " | ";
+	std::cout << std::setw(10) << this->first_name << " | ";
+	std::cout << std::setw(10) << this->last_name << " | ";
+	std::cout << std::setw(10) << this->nickname << " | ";
+	std::cout << std::endl;
+	return (1);
+}
+
+int	Contact::output_detail() {
+	std::cout << "index: " << this->id << std::endl;
+	std::cout << "First name: " << this->first_name << std::endl;
+	std::cout << "Last name: " << this->last_name << std::endl;
+	std::cout << "Nickname: " << this->nickname << std::endl;
+	std::cout << "Phone number: " << this->phone_number << std::endl;
+	std::cout << "Darkest secret: " << this->darkest_secret << std::endl;
 	return (1);
 }

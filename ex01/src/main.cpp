@@ -21,16 +21,14 @@ static int	 command(PhoneBook *pb, std::string cmd) {
 	if (cmd == "ADD")
 	{
 		if (contact.set_values(count))
-		{
 			pb->set_count(count);
-		}
 	}
 	else if (cmd == "SEARCH")
 		pb->search_contact();
 	else if (cmd == "EXIT")
 		return (9);
 	else
-		return (1);
+		return (2);
 	return (0);
 }
 
@@ -42,16 +40,20 @@ int main(void)
 
 	while (true)
 	{
+//		cmd.clear();
+		std::cout << "\033[32m=== My Awesome PhoneBook (";
+		std::cout << (pb.get_count() > 8 ? 8 : pb.get_count());
+		std::cout << " records) ===\033[m" << std::endl;
 		std::cout << "\033[33m* Available commands: ADD / SEARCH / EXIT *\033[m" << std::endl;
 		std::cout << "\033[32mEnter the command: \033[m\033[36m";
 		std::getline(std::cin, cmd);
-		if (std::cin.eof())
-			return (1);
 		std::cout << "\033[m";
+		if (std::cin.eof() || cmd.length() == 0)
+			continue ;
 		status = command(&pb, cmd);
 		if (status == 9)
 			break ;
-		else if (status == 1)
+		else if (status == 2)
 			std::cerr << "\033[31mWrong command. Please try again.\033[m" << std::endl;
 	}
 	return (0);
