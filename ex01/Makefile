@@ -65,12 +65,12 @@ re: fclean all
 
 # Recipes
 $(NAME): $(OBJS)
-	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	$(CPP) $(OBJS) -o $(NAME)
 
 $(OBJDIR):
 	@mkdir -p $@
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
-	$(CC) $(CFLAGS) $(DEF) $(INCLUDES) -o $@ -c $<
+	$(CPP) $(CPPFLAGS) $(DEF) $(INCLUDES) -o $@ -c $<
 
 # Including and ignore .dep files when they are not found
 -include $(DEPS)

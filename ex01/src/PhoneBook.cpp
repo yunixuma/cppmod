@@ -30,6 +30,20 @@ Contact	*PhoneBook::get_contact(size_t count) {
 	return (&this->contacts[count % 8]);
 }
 
+int	PhoneBook::add_contact() {
+	Contact	*contact;
+	Contact	tmp;
+	size_t	count;
+
+	count = this->get_count();
+	contact = this->get_contact(count);
+	if (tmp.input_values(count + 1))
+		return (1);
+	contact->copy_values(&tmp);
+	this->set_count(count + 1);
+	return (0);
+}
+
 int	PhoneBook::search_contact() {
 	size_t				index;
 	std::string			input;
@@ -40,19 +54,31 @@ int	PhoneBook::search_contact() {
 		std::cerr << "\033[31mNo contacts exists.\033[m" << std::endl;
 		return (1);
 	}
+
 	if (this->count < 8)
 		index = 0;
 	else
 		index = this->count - 8;
+
+	std::cout << std::endl;
 	std::cout << "Index| First name | Last name  | Nickname   |" << std::endl;
 	for (size_t i = 0; i < 8; i++)
 		this->get_contact(index + i)->output_digest();
-	std::cout << "\033[32mTo show the content of the contact, " << std::endl;
-	std::cout << "Enter the index: \033[36m";
-	std::getline(std::cin, input);
-	std::cout << "\033[m";
-	ss << input;
-	ss >> index;
+	std::cout << std::endl;
+
+	std::cout << "\033[32mTo show the content of the contact, \033[m" << std::endl;
+	try {
+		std::cout << "Enter the index: \033[36m";
+		std::getline(std::cin, input);
+		std::cout << "\033[m";
+		ss << input;
+		ss >> index;
+	}
+	catch (...) {
+		std::cout << "数字以外が入力された" << std::endl;
+		return -1;
+	}
+
 	if (this->get_contact(index - 1)->output_detail(index))
 	{
 		std::cerr << "\033[31mIndex " << index << " does not exist.\033[m" << std::endl;

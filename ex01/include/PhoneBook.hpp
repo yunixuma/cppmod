@@ -31,6 +31,8 @@ public:
 	Contact	*get_contact(size_t count);
 	size_t	get_count();
 	int		set_count(size_t count);
+	int		add_contact();
+	int		copy_count(Contact tmp);
 };
 
 #endif

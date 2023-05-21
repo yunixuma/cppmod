@@ -29,7 +29,8 @@ private:
 public:
 	Contact();
 	~Contact();
-	int	set_values(size_t count);
+	int	input_values(size_t count);
+	int	copy_values(Contact *src);
 	int	output_digest();
 	int	output_detail(size_t index);
 };
