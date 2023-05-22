@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/21 23:28:20 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/22 19:58:46 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	PhoneBook::add_contact() {
 
 	count = this->get_count();
 	contact = this->get_contact(count);
+	std::cout << std::endl << "\033[33mAdding No." << count + 1 << " contact\033[m" << std::endl;
 	if (tmp.input_values(count + 1))
 		return (1);
 	contact->copy_values(&tmp);
@@ -51,7 +52,7 @@ int	PhoneBook::search_contact() {
 
 	if (this->count == 0)
 	{
-		std::cerr << "\033[31mNo contacts exists.\033[m" << std::endl;
+		std::cerr << "\033[31m!!! No contacts exists. !!!\033[m" << std::endl;
 		return (1);
 	}
 
@@ -66,22 +67,24 @@ int	PhoneBook::search_contact() {
 		this->get_contact(index + i)->output_digest();
 	std::cout << std::endl;
 
-	std::cout << "\033[32mTo show the content of the contact, \033[m" << std::endl;
+	std::cout << "\033[33mTo show the content of the contact, \033[m" << std::endl;
 	try {
 		std::cout << "Enter the index: \033[36m";
 		std::getline(std::cin, input);
 		std::cout << "\033[m";
 		ss << input;
 		ss >> index;
+		if(ss.fail())
+			throw (std::exception());
 	}
-	catch (...) {
-		std::cout << "数字以外が入力された" << std::endl;
-		return -1;
+	catch (const std::exception& e) {
+		std::cerr << "\033[31m!!! Index must be a integral number. !!!\033[m" << std::endl;
+		return (6);
 	}
 
 	if (this->get_contact(index - 1)->output_detail(index))
 	{
-		std::cerr << "\033[31mIndex " << index << " does not exist.\033[m" << std::endl;
+		std::cerr << "\033[31m!!! Index " << index << " does not exist. !!!\033[m" << std::endl;
 		return (1);
 	}
 	return (0);
