@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/21 23:28:12 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/22 20:05:44 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define PHONEBOOK_HPP
 
 # include <iostream>
-# include <cctype>
-# include <string>
 # include <sstream>
 # include "Contact.hpp"
 
@@ -32,7 +30,6 @@ public:
 	size_t	get_count();
 	int		set_count(size_t count);
 	int		add_contact();
-	int		copy_count(Contact tmp);
 };
 
 #endif

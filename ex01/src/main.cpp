@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/22 19:51:12 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/22 20:16:15 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 static int	 command(PhoneBook *pb, std::string cmd) {
 	if (cmd == "ADD")
-	{
-		if (pb->add_contact())
-			return (4);
-	}
+		return (pb->add_contact());
 	else if (cmd == "SEARCH")
-	{
-		if (pb->search_contact())
-			return (3);
-	}
+		return (pb->search_contact());
 	else if (cmd == "EXIT")
 		return (9);
 	else
@@ -50,9 +44,10 @@ int main(void)
 		std::getline(std::cin, cmd);
 
 		std::cout << "\033[m";
-		if (cmd.length() == 0)
-			continue ;
-		status = command(&pb, cmd);
+		if (!std::cin.eof() && cmd.length() > 0)
+			status = command(&pb, cmd);
+		else
+			status = 0;
 		if (status == 9)
 			break ;
 		else if (status == 7)

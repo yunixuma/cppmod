@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/22 19:58:46 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/22 20:14:19 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	PhoneBook::search_contact() {
 	try {
 		std::cout << "Enter the index: \033[36m";
 		std::getline(std::cin, input);
+		if (std::cin.eof() || input.length() == 0)
+			return (4);
 		std::cout << "\033[m";
 		ss << input;
 		ss >> index;
