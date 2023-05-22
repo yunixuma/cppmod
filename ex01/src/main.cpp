@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/04/05 19:23:27 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/22 17:05:12 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,29 @@ int main(void)
 
 	while (true)
 	{
-//		cmd.clear();
-//		std::cin.clear();
 		std::cout << std::endl;
 		std::cout << "\033[32m=== My Awesome PhoneBook (";
 		std::cout << (pb.get_count() > 8 ? 8 : pb.get_count());
 		std::cout << " records) ===\033[m" << std::endl;
 		std::cout << "\033[33m* Available commands: ADD / SEARCH / EXIT *\033[m" << std::endl;
 		std::cout << "Enter the command: \033[36m";
+
+		clearerr(stdin);
+		rewind(stdin);
+		cmd.clear();
+		std::cin.clear();
 		std::getline(std::cin, cmd);
+
 		std::cout << "\033[m";
-		if (std::cin.eof())
-			break ;
-		else if (cmd.length() == 0)
+		if (cmd.length() == 0)
 			continue ;
 		status = command(&pb, cmd);
 		if (status == 9)
-			return (0);
+			break ;
 		else if (status == 7)
 			std::cerr << "\033[31mWrong command. Please try again.\033[m" << std::endl;
 		else if (status == 4)
-			break ;
+			std::cerr << "\033[31mOperation aborted.\033[m" << std::endl;
 	}
-	std::cout << std::endl;
-	std::cerr << "\033[31mOperation aborted.\033[m" << std::endl;
-	return (4);
+	return (0);
 }
