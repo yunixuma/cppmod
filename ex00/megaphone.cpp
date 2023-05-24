@@ -6,16 +6,12 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/21 23:28:29 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/24 16:28:51 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cstring>
-//#include <cctype>
-//#include <string>
-//#include <ctype.h>
-//#include <locale.h>
 
 # define OFFSET_ARG		1
 # define CHR_DELIM		' '
@@ -41,19 +37,3 @@ int main(int argc, char *argv[])
 	std::cout << std::endl;
 	return (0);
 }
-
-//using std::cout; using std::string;
-//using std::endl; using std::cin;
-//using std::transform; using std::toupper;
-//using namespace std;
-/*
-class Megaphone
-{
-public:
-	Megaphone::Megaphone(std::string s);
-	// ここにメンバ変数、メンバ関数を定義する
-	int id;
-};
-*/
-//		icu::UnicodeString unicodeString(s.c_str());
-//		std::cout << s.toUpper() << std::endl;
