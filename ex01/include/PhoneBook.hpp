@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/22 20:05:44 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/24 05:45:38 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 class PhoneBook
 {
 private:
-	Contact	contacts[8];
-	size_t	count;
+	Contact	contacts_[8];
+	size_t	count_;
+	Contact	*get_contact(size_t count);
+	int		set_count(size_t count);
 public:
 	PhoneBook();
 	~PhoneBook();
-	int		search_contact();
-	Contact	*get_contact(size_t count);
 	size_t	get_count();
-	int		set_count(size_t count);
+	int		search_contact();
 	int		add_contact();
 };
 

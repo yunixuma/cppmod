@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/22 20:14:19 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/24 05:49:42 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 PhoneBook::PhoneBook(void) {
 	std::cout << "\033[2;3mInitiating the PhoneBook.\033[m" << std::endl;
-	Contact contacts[8];
-	this->count = 0;
+	Contact contacts_[8];
+	this->count_ = 0;
 }
 
 PhoneBook::~PhoneBook(void) {
@@ -23,11 +23,11 @@ PhoneBook::~PhoneBook(void) {
 }
 
 size_t	PhoneBook::get_count() {
-	return (this->count);
+	return (this->count_);
 }
 
 Contact	*PhoneBook::get_contact(size_t count) {
-	return (&this->contacts[count % 8]);
+	return (&this->contacts_[count % 8]);
 }
 
 int	PhoneBook::add_contact() {
@@ -50,16 +50,16 @@ int	PhoneBook::search_contact() {
 	std::string			input;
 	std::stringstream	ss;
 
-	if (this->count == 0)
+	if (this->count_ == 0)
 	{
 		std::cerr << "\033[31m!!! No contacts exists. !!!\033[m" << std::endl;
 		return (1);
 	}
 
-	if (this->count < 8)
+	if (this->count_ < 8)
 		index = 0;
 	else
-		index = this->count - 8;
+		index = this->count_ - 8;
 
 	std::cout << std::endl;
 	std::cout << "Index| First name | Last name  | Nickname   |" << std::endl;
@@ -93,6 +93,6 @@ int	PhoneBook::search_contact() {
 }
 
 int	PhoneBook::set_count(size_t count) {
-	this->count = count;
+	this->count_ = count;
 	return (1);
 }
