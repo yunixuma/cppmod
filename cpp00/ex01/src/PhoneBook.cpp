@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/25 17:48:48 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/27 13:54:48 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	PhoneBook::add_contact() {
 	contact = this->get_contact(count);
 	std::cout << std::endl << "\033[33mAdding No." << count + 1 << " contact\033[m" << std::endl;
 	if (tmp.input_values(count + 1))
-		return (1);
+		return (4);
 	contact->copy_values(&tmp);
 	this->set_count(count + 1);
 	return (0);
@@ -77,6 +77,9 @@ int	PhoneBook::search_contact() {
 		ss << input;
 		ss >> index;
 		if(ss.fail())
+			throw (std::exception());
+		ss << index;
+		if (ss.str() != input)
 			throw (std::exception());
 	}
 	catch (const std::exception& e) {

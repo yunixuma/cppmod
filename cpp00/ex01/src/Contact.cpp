@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/24 05:50:53 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/27 13:39:42 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,17 @@ int	Contact::copy_values(Contact *src) {
 int	Contact::output_digest() {
 	if (this->id_ == 0)
 		return (2);
-	std::cout << std::setw(4) << std::right << this->id_ << std::left << " | ";
-	std::cout << std::setw(10) << this->first_name_.substr(0,10) << " | ";
-	std::cout << std::setw(10) << this->last_name_.substr(0,10) << " | ";
-	std::cout << std::setw(10) << this->nickname_.substr(0,10) << " | ";
-	std::cout << std::endl;
+	std::cout << "|" << std::setw(10) << std::right << this->id_;
+	std::cout << "|" << std::setw(10) << this->first_name_.substr(0,10);
+	if (this->first_name_.length() > 10)
+		std::cout << "\033[1D\033[2;3m.\033[m";
+	std::cout << "|" << std::setw(10) << this->last_name_.substr(0,10);
+	if (this->last_name_.length() > 10)
+		std::cout << "\033[1D\033[2;3m.\033[m";
+	std::cout << "|" << std::setw(10) << this->nickname_.substr(0,10);
+	if (this->nickname_.length() > 10)
+		std::cout << "\033[1D\033[2;3m.\033[m";
+	std::cout << "|" << std::endl;
 	return (0);
 }
 
