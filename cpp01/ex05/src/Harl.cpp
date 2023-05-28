@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 00:39:21 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 02:15:31 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ void	Harl::complain( std::string level ) {
 		}
 		i++;
 	}
-	std::cerr << "\033[2;3m" << this->levels_[i] << "\033[m" << std::endl;
+	std::cerr << "\033[2m" << this->levels_[i] << "\033[m" << std::endl;
 }
