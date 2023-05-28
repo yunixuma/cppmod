@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/24 22:12:01 by ykosaka          ###   ########.fr       */
+/*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
+/*   Updated: 2023/05/28 23:04:54 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ private:
 public:
 	HumanB(std::string name);
 	~HumanB();
-	std::string	getName(void);
+	std::string	getName(void) const;
 	void 		setName(std::string name = "John");
-	Weapon*		getWeapon(void);
+	Weapon*		getWeapon(void) const;
 	void 		setWeapon(Weapon& weapon);
-	void		attack();
+	void		attack() const;
 };
 
 #endif

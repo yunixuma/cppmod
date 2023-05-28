@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/24 22:19:36 by ykosaka          ###   ########.fr       */
+/*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
+/*   Updated: 2023/05/28 23:05:59 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ HumanB::~HumanB(void) {
 	std::cout << this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
-std::string	HumanB::getName(void) {
+std::string	HumanB::getName(void) const {
 	return (this->name_);
 }
 
@@ -34,7 +34,7 @@ void	HumanB::setName(std::string name) {
 	this->name_ = name;
 }
 
-Weapon*	HumanB::getWeapon() {
+Weapon*	HumanB::getWeapon() const {
 	return (this->weapon_);
 }
 
@@ -49,7 +49,7 @@ void	HumanB::setWeapon(Weapon& weapon) {
 	this->weapon_ = &weapon;
 }
 
-void	HumanB::attack(void) {
+void	HumanB::attack(void) const {
 	std::cout << "\033[33m" << this->name_ << " attacks with their ";
 	std::cout << this->weapon_->getType() << "\033[m" << std::endl;
 }

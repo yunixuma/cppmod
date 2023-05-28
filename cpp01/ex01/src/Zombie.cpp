@@ -5,17 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 15:58:51 by ykosaka          ###   ########.fr       */
+/*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
+/*   Updated: 2023/05/28 23:00:44 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-/*
-Zombie::Zombie() {
-	std::cout << "\033[36;2;3m" << "Creating a zombie\033[m" << std::endl;
-}
-*/
+
 Zombie::Zombie(std::string name) {
 	this->name_ = name;
 	std::cout << "\033[36;2;3m" << "Creating a zombie (";
@@ -27,7 +23,7 @@ Zombie::~Zombie(void) {
 	std::cout << this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
-const std::string&	Zombie::get_name(void) {
+const std::string&	Zombie::get_name(void) const {
 	return (this->name_);
 }
 
@@ -37,7 +33,7 @@ void	Zombie::set_name(std::string name) {
 	this->name_ = name;
 }
 
-void	Zombie::announce(void) {
+void	Zombie::announce(void) const {
 	std::cout << "\033[33m" << this->name_ << ": BraiiiiiiinnnzzzZ...\033[m" << std::endl;
 }
 
