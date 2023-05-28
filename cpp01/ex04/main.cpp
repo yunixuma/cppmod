@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 16:31:00 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/28 17:04:50 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ std::string sed_line(std::string buf_line, std::string s_search, std::string s_r
 
 int main(int argc, char *argv[])
 {
-	if (argc < 4)
+	if (argc != 4)
 	{
 		std::cerr << "\033[33mUsage: ./sed <source file> <search string> <replacement string> \033[m" << std::endl;
 		return (EINVAL);

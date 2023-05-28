@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/24 08:02:23 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/05/28 16:49:06 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ endif
 
 # ********************* Section for targets and commands ********************* #
 # Phonies
-.PHONY: all fclean re
+.PHONY: all fclean re debug
 
 # Mandatory targets
 all: $(NAME)
