@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 15:16:06 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/28 15:24:43 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ std::string sed_line(std::string buf_line, std::string s_search, std::string s_r
 {
 	std::string	buf_line_new;
 	size_t		len_line = buf_line.length();
-	size_t		len_search = s_replace.length();
+	size_t		len_search = s_search.length();
 	size_t 	pos = 0;
 	size_t 	pos2;
 
@@ -30,7 +30,6 @@ std::string sed_line(std::string buf_line, std::string s_search, std::string s_r
 			break ;
 		buf_line_new += buf_line.substr(pos, pos2 - pos);
 		buf_line_new += s_replace;
-		std::cerr << pos << "," << pos2 << std::endl;
 		pos = pos2 + len_search;
 	}
 	buf_line_new += buf_line.substr(pos, len_line - pos);
@@ -53,9 +52,10 @@ int main(int argc, char *argv[])
 		return (ESPIPE);
 	}
 
-	std::ifstream ifs;
+	std::ifstream 	ifs;
+	std::string		filepath_in = argv[1];
 	try {
-		ifs.open(argv[1], std::ios::in | std::ios::binary);
+		ifs.open(filepath_in.c_str(), std::ios::in | std::ios::binary);
 //		std::ifstream ifs(filename, std::ios::in);
 		if (ifs.fail())
 			throw (std::exception());
@@ -65,9 +65,10 @@ int main(int argc, char *argv[])
 		return (ENOENT);
 	}
 
-	std::ofstream ofs;
+	std::ofstream	ofs;
+	std::string		filepath_out = filepath_in + ".replace";
 	try {
-		ofs.open(argv[2], std::ios::out | std::ios::binary);
+		ofs.open(filepath_out.c_str(), std::ios::out | std::ios::binary);
 		if (ofs.fail())
 			throw (std::exception());
 	}
