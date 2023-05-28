@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 15:24:43 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/28 16:31:00 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ int main(int argc, char *argv[])
 	std::string buf_file;
 	while (std::getline (ifs, buf_line)) {
 		buf_line = sed_line(buf_line, s_search, s_replace);
-	    buf_file += buf_line + "\n";
+    	buf_file += buf_line;
+		if (!ifs.rdstate())
+	    	buf_file += "\n";
 	}
 
 	ofs << buf_file;

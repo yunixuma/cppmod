@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/24 21:54:31 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/28 15:45:10 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Weapon::~Weapon(void) {
 	std::cout << this << ": " << this->type_ << ")\033[m" << std::endl;
 }
 
-std::string	Weapon::getType(void) {
+const std::string&	Weapon::getType(void) {
 	return (this->type_);
 }
 

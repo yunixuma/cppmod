@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/24 21:51:26 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/28 15:58:51 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-
+/*
+Zombie::Zombie() {
+	std::cout << "\033[36;2;3m" << "Creating a zombie\033[m" << std::endl;
+}
+*/
 Zombie::Zombie(std::string name) {
 	this->name_ = name;
 	std::cout << "\033[36;2;3m" << "Creating a zombie (";
@@ -23,7 +27,7 @@ Zombie::~Zombie(void) {
 	std::cout << this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
-std::string	Zombie::get_name(void) {
+const std::string&	Zombie::get_name(void) {
 	return (this->name_);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/24 21:51:19 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/28 15:46:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Zombie::~Zombie(void) {
 	std::cout << this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
-std::string	Zombie::get_name(void) {
+const std::string&	Zombie::get_name(void) {
 	return (this->name_);
 }
 

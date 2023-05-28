@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/24 11:46:11 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/28 15:45:21 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ private:
 public:
 	Weapon(std::string type = "bare hands");
 	~Weapon();
-	std::string	getType(void);
-	void 		setType(std::string type = "bare hands");
+	const std::string&	getType(void);
+	void 				setType(std::string type = "bare hands");
 };
 
 #endif
