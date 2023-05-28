@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 17:04:50 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/28 17:25:45 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int main(int argc, char *argv[])
 	try {
 		ifs.open(filepath_in.c_str(), std::ios::in | std::ios::binary);
 //		std::ifstream ifs(filename, std::ios::in);
+		ifs.peek();
 		if (ifs.fail())
 			throw (std::exception());
 	}
