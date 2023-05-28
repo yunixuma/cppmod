@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/28 17:29:54 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/05/28 18:22:26 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME			= sed
 
 # Enumeration of files
-SRC				= main.cpp
+SRC				= main.cpp sed.cpp
 
 # Check the platform
 OS				= $(shell uname)
