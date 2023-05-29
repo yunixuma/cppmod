@@ -157,11 +157,6 @@ Fixed	Fixed::operator--(void) {
 	return (*this);
 }
 
-/*
-const Fixed&	Fixed::max(const Fixed& fixed1, const Fixed& fixed2) const {
-	return (fixed1 < fixed2 ? fixed2 : fixed1);
-}
-*/
 std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed) {
 	stream << fixed.toFloat();
 	return (stream);
