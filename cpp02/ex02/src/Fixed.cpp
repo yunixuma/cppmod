@@ -90,7 +90,7 @@ bool	Fixed::operator!=(const Fixed& rhs) const {
 	return (*this == rhs ? false : true);
 }
 
-Fixed	Fixed::operator+(Fixed& roperand) {
+Fixed	Fixed::operator+(const Fixed& roperand) const {
 	Fixed	ret;
 	double	dbl;
 
@@ -99,7 +99,7 @@ Fixed	Fixed::operator+(Fixed& roperand) {
 	return (ret);
 }
 
-Fixed	Fixed::operator-(const Fixed& roperand) {
+Fixed	Fixed::operator-(const Fixed& roperand) const {
 	Fixed	ret;
 	double	dbl;
 
@@ -108,7 +108,7 @@ Fixed	Fixed::operator-(const Fixed& roperand) {
 	return (ret);
 }
 
-Fixed	Fixed::operator*(const Fixed& roperand) {
+Fixed	Fixed::operator*(const Fixed& roperand) const {
 	Fixed	ret;
 	double	dbl;
 
@@ -117,7 +117,7 @@ Fixed	Fixed::operator*(const Fixed& roperand) {
 	return (ret);
 }
 
-Fixed	Fixed::operator/(const Fixed& roperand) {
+Fixed	Fixed::operator/(const Fixed& roperand) const {
 	Fixed	ret;
 	double	dbl;
 

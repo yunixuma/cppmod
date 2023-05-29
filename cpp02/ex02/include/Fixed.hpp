@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 16:50:30 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/30 00:00:18 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ public:
 	bool	operator<=(const Fixed& rhs) const;
 	bool	operator==(const Fixed& rhs) const;
 	bool	operator!=(const Fixed& rhs) const;
-//	Fixed	operator+(const Fixed& roperand);
-	Fixed	operator+(Fixed& roperand);
-	Fixed	operator-(const Fixed& roperand);
-	Fixed	operator*(const Fixed& roperand);
+	Fixed	operator+(const Fixed& roperand) const;
+//	Fixed	operator+(Fixed& roperand);
+	Fixed	operator-(const Fixed& roperand) const;
+	Fixed	operator*(const Fixed& roperand) const;
 //	Fixed	operator/(Fixed& roperand);
-	Fixed	operator/(const Fixed& roperand);
+	Fixed	operator/(const Fixed& roperand) const;
 	Fixed	operator++(int);
 	Fixed	operator++(void);
 	Fixed	operator--(int);

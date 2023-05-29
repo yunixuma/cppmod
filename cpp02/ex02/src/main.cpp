@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 17:21:27 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 23:59:55 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ int main( void ) {
 	std::cout << std::endl;
 
 	std::cout << "\033[33mArithmetic operators\033[m" << std::endl;
-	puts_arithmetic(4.5f, "+", 3.7f, 4.5f + 3.7f);
-//	puts_arithmetic(b, "+", c, b + c);
-//	puts_arithmetic(b, "-", c, b - c);
-//	puts_arithmetic(b, "/", c, b / c);
+	puts_arithmetic(c, "+", b, c + b);
+	puts_arithmetic(b, "-", c, b - c);
+	puts_arithmetic(b, "*", b, b * b);
+	puts_arithmetic(c, "/", a, c / a);
 
 	std::cout << "\033[33mIncrement/decrement operators\033[m" << std::endl;
 	puts_increment(a++, a, "var++");
