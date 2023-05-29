@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 00:00:18 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/30 03:36:44 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FIXED_HPP
 
 # include <iostream>
+# include <cmath>
 
 class Fixed
 {
@@ -24,7 +25,7 @@ public:
 	Fixed();
 	Fixed(const int d);
 	Fixed(const float f);
-	Fixed(const Fixed& fixed);
+	Fixed(const Fixed& src);
 	Fixed&	operator=(const Fixed& rhs);
 	~Fixed();
 	int		getRawBits( void ) const;
@@ -38,10 +39,8 @@ public:
 	bool	operator==(const Fixed& rhs) const;
 	bool	operator!=(const Fixed& rhs) const;
 	Fixed	operator+(const Fixed& roperand) const;
-//	Fixed	operator+(Fixed& roperand);
 	Fixed	operator-(const Fixed& roperand) const;
 	Fixed	operator*(const Fixed& roperand) const;
-//	Fixed	operator/(Fixed& roperand);
 	Fixed	operator/(const Fixed& roperand) const;
 	Fixed	operator++(int);
 	Fixed	operator++(void);

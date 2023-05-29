@@ -28,9 +28,9 @@ Fixed::Fixed(const float f) {
 	this->fixedRawBits_ = f * (1 << this->fractionalBits_);
 }
 
-Fixed::Fixed(const Fixed& fixed) {
+Fixed::Fixed(const Fixed& src) {
 	std::cout << "\033[36;2m" << "Copy constructor called\033[m" << std::endl;
-	this->fixedRawBits_ = fixed.fixedRawBits_;
+	this->fixedRawBits_ = src.fixedRawBits_;
 }
 
 Fixed&	Fixed::operator=(const Fixed& rhs) {
@@ -54,7 +54,8 @@ void	Fixed::setRawBits( int const raw ) {
 }
 
 int	Fixed::toInt( void ) const {
-	return (this->fixedRawBits_ >> this->fractionalBits_);
+	float	f = this->fixedRawBits_;
+	return (roundf(f / (1 << this->fractionalBits_)));
 }
 
 float	Fixed::toFloat( void ) const {

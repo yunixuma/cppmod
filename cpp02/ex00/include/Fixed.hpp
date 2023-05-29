@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 11:16:26 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/30 00:35:18 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ private:
 	static const int	fractionalBits_ = 8;
 public:
 	Fixed();
-	Fixed(const Fixed& fixed);
-	Fixed&	operator=(const Fixed& fixed);
+	Fixed(const Fixed& src);
+	Fixed&	operator=(const Fixed& rhs);
 	~Fixed();
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
