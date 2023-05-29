@@ -18,23 +18,23 @@ Fixed::Fixed() {
 }
 
 Fixed::Fixed(const int d) {
-	std::cout << "\033[36;2m" << "Constructor with taking integer called\033[m" << std::endl;
+	std::cout << "\033[36;2m" << "Int constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = d << this->fractionalBits_;
 }
 
 Fixed::Fixed(const float f) {
-	std::cout << "\033[36;2m" << "Constructor with taking floating-point called\033[m" << std::endl;
+	std::cout << "\033[36;2m" << "Float constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = f * (1 << this->fractionalBits_);
 }
 
 Fixed::Fixed(const Fixed& fixed) {
 	std::cout << "\033[36;2m" << "Copy constructor called\033[m" << std::endl;
-	this->fixedRawBits_ = fixed.getRawBits();
+	this->fixedRawBits_ = fixed.fixedRawBits_;
 }
 
 Fixed&	Fixed::operator=(const Fixed& fixed) {
 	std::cout << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
-	this->fixedRawBits_ = fixed.getRawBits();
+	this->fixedRawBits_ = fixed.fixedRawBits_;
 	return (*this);
 }
 

@@ -12,7 +12,6 @@
 
 #include "Fixed.hpp"
 
-
 Fixed::Fixed() {
 	std::cout << "\033[36;2m" << "Default constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = 0;
