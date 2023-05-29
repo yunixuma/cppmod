@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 23:05:59 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 22:08:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	HumanB::setWeapon(Weapon& weapon) {
 }
 
 void	HumanB::attack(void) const {
-	std::cout << "\033[33m" << this->name_ << " attacks with their ";
-	std::cout << this->weapon_->getType() << "\033[m" << std::endl;
+	std::cout << "\033[33m" << this->name_;
+	if (this->weapon_)
+		std::cout << " attacks with their " << this->weapon_->getType() << "\033[m" << std::endl;
+	else
+		std::cout << " cannot attack" << "\033[m" << std::endl;
 }
