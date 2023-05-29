@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 02:24:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 16:00:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	Harl::error( void ) {
 
 void	Harl::complainAbove( std::string level ) {
 	int	i = 0;
-	while (i < 4)
-	{
+	while (i < 4) {
 		if (this->levels_[i] == level)
 			break ;
 		i++;

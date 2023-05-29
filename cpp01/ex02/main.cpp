@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 18:37:10 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 15:58:56 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	test_unit(void) {
 	std::cout << "Before renamed" << std::endl;
 }
 
-int main(void)
-{
+int main(void) {
 	std::string string = "HI THIS IS BRAIN";
 	std::string* stringPTR = &string;
 	std::string& stringREF = string;

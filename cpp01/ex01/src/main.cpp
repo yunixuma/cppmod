@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 23:02:54 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 15:58:36 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ Zombie*	test_array(void) {
 	return (ar_2);
 }
 
-int main(void)
-{
+int main(void) {
 	test_unit();
 
 	std::cout << " ---- ---- ---- ---- ---- ---- ---- ----" << std::endl;

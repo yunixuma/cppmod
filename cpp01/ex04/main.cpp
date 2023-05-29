@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 18:37:10 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 17:10:55 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 int main(int argc, char *argv[])
 {
-	if (argc != 4)
-	{
+	if (argc != 4) {
 		std::cerr << "\033[33mUsage: ./sed <source file> <search string> <replacement string> \033[m" << std::endl;
 		return (EINVAL);
 	}
 
 	std::string s_search = argv[2];
 	std::string s_replace = argv[3];
-	if (s_search.length() == 0)
-	{
+	if (s_search.length() == 0) {
 		std::cerr << "\033[31mError: The search string is empty.\033[m" << std::endl;
 		return (ESPIPE);
 	}
@@ -32,9 +30,14 @@ int main(int argc, char *argv[])
 	std::string		filepath_in = argv[1];
 	try {
 		ifs.open(filepath_in.c_str(), std::ios::in | std::ios::binary);
-		ifs.peek();
-		if (ifs.fail())
+		if (ifs) {
+			char	c;
+			ifs.read(&c, 1);
+			ifs.seekg(0, ifs.beg);
+		}
+		if (ifs.fail()) {
 			throw (std::exception());
+		}
 	}
 	catch (const std::exception& e) {
 		std::cerr << "\033[31m!!! Error opening the src. file. !!!\033[m" << std::endl;
@@ -56,11 +59,11 @@ int main(int argc, char *argv[])
 	std::string buf_line;
 	std::string buf_file;
 	while (std::getline (ifs, buf_line)) {
-		buf_line = sed_line(buf_line, s_search, s_replace);
-    	buf_file += buf_line;
+		buf_file += buf_line;
 		if (!ifs.rdstate())
-	    	buf_file += "\n";
+			buf_file += "\n";
 	}
+	buf_file = sed_line(buf_file, s_search, s_replace);
 
 	ofs << buf_file;
 	ifs.close();

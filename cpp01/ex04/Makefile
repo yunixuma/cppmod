@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/28 18:37:10 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/05/29 17:21:28 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,21 +57,21 @@ debug: fclean all
 test: re test_regular test_abnormal
 test_regular:
 	@echo "\n\033[32mRegular tests\033[m"
-	@echo "\033[33mCASE search & replace a single character\033[m"
+	@echo "\033[42mCASE: search & replace a single character\033[m"
 	./$(NAME) Makefile p @
-	@echo "\n\033[33mCASE search & replace a string\033[m"
+	@echo "\n\033[42mCASE: search & replace a string\033[m"
 	./$(NAME) main.cpp std NAMESPACE
-	@echo "\n\033[33mCASE replace to repeated characters\033[m"
+	@echo "\n\033[42mCASE: replace to repeated characters\033[m"
 	./$(NAME) main.cpp.replace : ::
 test_abnormal:
-	@echo "\n\033[32mAbnormal tests\033[m"
-	@echo "\033[33mCASE too few arguments\033[m"
+	@echo "\n\033[31mAbnormal tests\033[m"
+	@echo "\033[41mCASE: too few arguments\033[m"
 	-./$(NAME) Makefile p
-	@echo "\n\033[33mCASE too many arguments\033[m"
+	@echo "\n\033[41mCASE: too many arguments\033[m"
 	-./$(NAME) main.cpp std NAME SPACE 
-	@echo "\n\033[33mCASE no such a file\033[m"
+	@echo "\n\033[41mCASE: no such a file\033[m"
 	-./$(NAME) no_exists " " "[SPACE]"
-	@echo "\n\033[33mCASE determine a directory\033[m"
+	@echo "\n\033[41mCASE: determine a directory\033[m"
 	-./$(NAME) ./ " " "[SPACE]"
 
 # Recipes
