@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
+#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/29 17:24:13 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/05/29 15:44:39 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ DEPS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.d)))
 # ********************* Section for targets and commands ********************* #
 # Phonies
 .PHONY: all clean fclean re debug \
-	test test_noarg test_toomany test_undefined test_error test_warning test_info test_debug
+	test test_noarg test_toomany test_undefined \
+	test_log test_log_ERROR test_log_WARNING test_log_INFO test_log_DEBUG
 
 # Mandatory targets
 all: $(NAME)
@@ -71,7 +72,8 @@ re: fclean all
 
 # Additional targets
 debug: fclean all
-test: re test_noarg test_toomany test_undefined test_error test_warning test_info test_debug
+test: re test_noarg test_toomany test_undefined \
+	test_log_ERROR test_log_WARNING test_log_INFO test_log_DEBUG
 test_noarg:
 	@echo "\033[41mTest case: No arguments\033[m"
 	-./$(NAME)
@@ -81,18 +83,17 @@ test_toomany:
 test_undefined:
 	@echo "\033[41mTest case: Undefined log level\033[m"
 	-./$(NAME) "Undefined"
-test_error:
-	@echo "\033[42mTest case: ERROR level\033[m"
-	-./$(NAME) "ERROR"
-test_warning:
-	@echo "\033[42mTest case: WARNING level\033[m"
-	-./$(NAME) "WARNING"
-test_info:
-	@echo "\033[42mTest case: INFO level\033[m"
-	-./$(NAME) "INFO"
-test_debug:
-	@echo "\033[42mTest case: DEBUG level\033[m"
-	-./$(NAME) "DEBUG"
+test_log:
+	@echo "\033[42mTest case: $(case) level\033[m"
+	-./$(NAME) $(case)
+test_log_ERROR:
+	$(MAKE) -s case=$(subst test_log_,,$(MAKECMDGOALS)) test_log
+test_log_WARNING:
+	$(MAKE) -s case=$(subst test_log_,,$(MAKECMDGOALS)) test_log
+test_log_INFO:
+	$(MAKE) -s case=$(subst test_log_,,$(MAKECMDGOALS)) test_log
+test_log_DEBUG:
+	@$(MAKE) -s case=$(subst test_log_,,$(MAKECMDGOALS)) test_log
 
 # Recipes
 $(NAME): $(OBJS)
