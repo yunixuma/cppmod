@@ -12,6 +12,7 @@
 
 #include "Fixed.hpp"
 
+// Constructors and destructor
 Fixed::Fixed() {
 	std::cout << "\033[36;2m" << "Default constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = 0;
@@ -42,6 +43,7 @@ Fixed::~Fixed(void) {
 	std::cout << "\033[31;2m" << "Destructor called\033[m" << std::endl;
 }
 
+// Member functions
 int	Fixed::getRawBits( void ) const {
 	std::cout << "\033[33;2m" << "getRawBits member function called\033[m" << std::endl;
 	return (this->fixedRawBits_);
@@ -60,6 +62,7 @@ float	Fixed::toFloat( void ) const {
 	return (f / (1 << this->fractionalBits_));
 }
 
+// Operator overload for stream
 std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed) {
 	stream << fixed.toFloat();
 	return (stream);

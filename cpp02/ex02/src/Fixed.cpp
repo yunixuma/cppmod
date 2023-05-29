@@ -12,6 +12,7 @@
 
 #include "Fixed.hpp"
 
+// Constructors and destructor
 Fixed::Fixed() {
 	std::cout << "\033[36;2m" << "Default constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = 0;
@@ -32,9 +33,9 @@ Fixed::Fixed(const Fixed& fixed) {
 	this->fixedRawBits_ = fixed.fixedRawBits_;
 }
 
-Fixed&	Fixed::operator=(const Fixed& fixed) {
+Fixed&	Fixed::operator=(const Fixed& rhs) {
 	std::cout << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
-	this->fixedRawBits_ = fixed.fixedRawBits_;
+	this->fixedRawBits_ = rhs.fixedRawBits_;
 	return (*this);
 }
 
@@ -42,6 +43,7 @@ Fixed::~Fixed(void) {
 	std::cout << "\033[31;2m" << "Destructor called\033[m" << std::endl;
 }
 
+// Member functions
 int	Fixed::getRawBits( void ) const {
 	std::cout << "\033[33;2m" << "getRawBits member function called\033[m" << std::endl;
 	return (this->fixedRawBits_);
@@ -60,6 +62,7 @@ float	Fixed::toFloat( void ) const {
 	return (f / (1 << this->fractionalBits_));
 }
 
+// Operator overload for comparison
 bool	Fixed::operator>(const Fixed& rhs) const {
 	if (this->toFloat() > rhs.toFloat())
 		return (true);
@@ -90,6 +93,7 @@ bool	Fixed::operator!=(const Fixed& rhs) const {
 	return (*this == rhs ? false : true);
 }
 
+// Operator overload for arithmetic
 Fixed	Fixed::operator+(const Fixed& roperand) const {
 	Fixed	ret;
 	double	dbl;
@@ -125,18 +129,8 @@ Fixed	Fixed::operator/(const Fixed& roperand) const {
 	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
 	return (ret);
 }
-/*
-Fixed	Fixed::operator/(const Fixed& roperand) {
-//	return (this / const_cast<Fixed&>(roperand));
-	Fixed	ret;
-	double	dbl;
 
-	dbl = this->toFloat() / roperand.toFloat();
-	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
-	return (ret);
-}
-*/
-
+// Operator overload for increment and decrement
 Fixed	Fixed::operator++(int) {
 	Fixed	ret = *this;
 	this->fixedRawBits_++;
@@ -157,6 +151,7 @@ Fixed	Fixed::operator--(void) {
 	return (*this);
 }
 
+// Operator overload for stream
 std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed) {
 	stream << fixed.toFloat();
 	return (stream);
