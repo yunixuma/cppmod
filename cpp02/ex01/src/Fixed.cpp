@@ -32,9 +32,9 @@ Fixed::Fixed(const Fixed& fixed) {
 	this->fixedRawBits_ = fixed.fixedRawBits_;
 }
 
-Fixed&	Fixed::operator=(const Fixed& fixed) {
-	std::cout << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
-	this->fixedRawBits_ = fixed.fixedRawBits_;
+Fixed&	Fixed::operator=(const Fixed& rhs) {
+	std::cout << "\033[36;2m" << "Copy assignment operatorcalled\033[m" << std::endl;
+	this->fixedRawBits_ = rhs.fixedRawBits_;
 	return (*this);
 }
 

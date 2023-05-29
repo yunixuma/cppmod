@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 11:41:09 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 19:19:07 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	Fixed(const int d);
 	Fixed(const float f);
 	Fixed(const Fixed& fixed);
-	Fixed&	operator=(const Fixed& fixed);
+	Fixed&	operator=(const Fixed& rhs);
 	~Fixed();
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );

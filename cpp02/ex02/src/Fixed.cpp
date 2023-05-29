@@ -60,22 +60,33 @@ float	Fixed::toFloat( void ) const {
 	return (f / (1 << this->fractionalBits_));
 }
 
-bool	Fixed::operator>(const Fixed& target) {
-	if (this->toFloat() > target.toFloat())
+bool	Fixed::operator>(const Fixed& rhs) const {
+	if (this->toFloat() > rhs.toFloat())
 		return (true);
 	return (false);
 }
 
-bool	Fixed::operator<(const Fixed& target) {
-	if (this->toFloat() < target.toFloat())
+bool	Fixed::operator<(const Fixed& rhs) const {
+	if (this->toFloat() < rhs.toFloat())
 		return (true);
 	return (false);
 }
 
+Fixed	Fixed::operator*(const Fixed& roperand) {
+	Fixed	ret;
+	double	dbl;
+
+	dbl = this->toFloat() * roperand.toFloat();
+	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
+		return (true);
+	return (false);
+}
+
+/*
 const Fixed&	Fixed::max(const Fixed& fixed1, const Fixed& fixed2) const {
 	return (fixed1 < fixed2 ? fixed2 : fixed1);
 }
-
+*/
 std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed) {
 	stream << fixed.toFloat();
 	return (stream);
