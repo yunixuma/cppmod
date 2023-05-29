@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 02:24:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/30 05:05:44 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ Fixed::Fixed(const Fixed& src) {
 
 Fixed&	Fixed::operator=(const Fixed& rhs) {
 	std::cout << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
-	this->fixedRawBits_ = rhs.getRawBits();
+	if (this != &rhs)
+		this->fixedRawBits_ = rhs.getRawBits();
 	return (*this);
 }
 

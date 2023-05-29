@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 03:36:44 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/30 04:58:14 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ public:
 	bool	operator!=(const Fixed& rhs) const;
 	Fixed	operator+(const Fixed& roperand) const;
 	Fixed	operator-(const Fixed& roperand) const;
+	Fixed	operator-(Fixed& roperand);
 	Fixed	operator*(const Fixed& roperand) const;
 	Fixed	operator/(const Fixed& roperand) const;
 	Fixed	operator++(int);

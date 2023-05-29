@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 01:30:02 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/30 04:12:48 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ public:
 	Point(const Point& point);
 	Point&	operator=(const Point& rhs);
 	~Point();
-	Fixed&	getX(void);
-	Fixed&	getY(void);
+	const Fixed&	getX(void) const;
+	const Fixed&	getY(void) const;
 };
 
 std::ostream&	operator<<(std::ostream& stream, const Point& point);

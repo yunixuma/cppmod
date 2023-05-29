@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 02:24:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/30 05:20:54 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,39 @@
 
 // Constructors and destructor
 Fixed::Fixed() {
-	std::cout << "\033[36;2m" << "Default constructor called\033[m" << std::endl;
+	std::cerr << "\033[36;2m" << "Default constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = 0;
 }
 
 Fixed::Fixed(const int d) {
-	std::cout << "\033[36;2m" << "Int constructor called\033[m" << std::endl;
+	std::cerr << "\033[36;2m" << "Int constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = d << this->fractionalBits_;
 }
 
 Fixed::Fixed(const float f) {
-	std::cout << "\033[36;2m" << "Float constructor called\033[m" << std::endl;
+	std::cerr << "\033[36;2m" << "Float constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = f * (1 << this->fractionalBits_);
 }
 
 Fixed::Fixed(const Fixed& src) {
-	std::cout << "\033[36;2m" << "Copy constructor called\033[m" << std::endl;
+	std::cerr << "\033[36;2m" << "Copy constructor called\033[m" << std::endl;
 	this->fixedRawBits_ = src.fixedRawBits_;
 }
 
 Fixed&	Fixed::operator=(const Fixed& rhs) {
-	std::cout << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
-	this->fixedRawBits_ = rhs.fixedRawBits_;
+	std::cerr << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
+	if (this != &rhs)
+		this->fixedRawBits_ = rhs.fixedRawBits_;
 	return (*this);
 }
 
 Fixed::~Fixed(void) {
-	std::cout << "\033[31;2m" << "Destructor called\033[m" << std::endl;
+	std::cerr << "\033[31;2m" << "Destructor called\033[m" << std::endl;
 }
 
 // Member functions
 int	Fixed::getRawBits( void ) const {
-	std::cout << "\033[33;2m" << "getRawBits member function called\033[m" << std::endl;
+	std::cerr << "\033[33;2m" << "getRawBits member function called\033[m" << std::endl;
 	return (this->fixedRawBits_);
 }
 
@@ -65,33 +66,27 @@ float	Fixed::toFloat( void ) const {
 
 // Operator overload for comparison
 bool	Fixed::operator>(const Fixed& rhs) const {
-	if (this->toFloat() > rhs.toFloat())
-		return (true);
-	return (false);
+	return (this->toFloat() > rhs.toFloat());
 }
 
 bool	Fixed::operator<(const Fixed& rhs) const {
-	if (this->toFloat() < rhs.toFloat())
-		return (true);
-	return (false);
+	return (this->toFloat() < rhs.toFloat());
 }
 
 bool	Fixed::operator>=(const Fixed& rhs) const {
-	return (*this < rhs ? false : true);
+	return !(*this < rhs);
 }
 
 bool	Fixed::operator<=(const Fixed& rhs) const {
-	return (*this > rhs ? false : true);
+	return !(*this > rhs);
 }
 
 bool	Fixed::operator==(const Fixed& rhs) const {
-	if (this->toFloat() == rhs.toFloat())
-		return (true);
-	return (false);
+	return (this->toFloat() == rhs.toFloat());
 }
 
 bool	Fixed::operator!=(const Fixed& rhs) const {
-	return (*this == rhs ? false : true);
+	return !(*this == rhs);
 }
 
 // Operator overload for arithmetic
@@ -105,6 +100,15 @@ Fixed	Fixed::operator+(const Fixed& roperand) const {
 }
 
 Fixed	Fixed::operator-(const Fixed& roperand) const {
+	Fixed	ret;
+	double	dbl;
+
+	dbl = this->toFloat() - roperand.toFloat();
+	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
+	return (ret);
+}
+
+Fixed	Fixed::operator-(Fixed& roperand) {
 	Fixed	ret;
 	double	dbl;
 

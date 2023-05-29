@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/30 01:15:44 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/05/30 04:15:13 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME			= bsp
 
 # Enumeration of files
-SRC				= main.cpp Fixed.cpp Point.cpp
+SRC				= main.cpp Fixed.cpp Point.cpp bsp.cpp
 
 # Check the platform
 OS				= $(shell uname)

@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 01:07:47 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/30 05:31:34 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	test_bsp( \
 	Point c(cx, cy);
 	Point point(px, py);
 
-	std::cout << "The point " << point << " is " \
-		<< (bsp(a, b, c, point) ? "inside" : "outside") \
-		<< " of the triangle {" \
+	std::cout << "The point " << point << " is " << std::endl \
+		<< (bsp(a, b, c, point) ? "truely" : "NOT") \
+		<< " inside of the triangle {" \
 		<< "a" << a << ", " << "b" << b << ", " << "c" << c \
 		<< "}" << std::endl;
 }
 
 int main( void ) {
-	test_bsp(0, 0, 0, 4, 4, 0, 4, 4);
+	test_bsp(0, 0, 0, 4, 4, 0, 1, 1);
 
 	return 0;
 }

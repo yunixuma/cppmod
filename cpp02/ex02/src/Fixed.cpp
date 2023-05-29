@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 02:24:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/30 05:07:56 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ Fixed::Fixed(const Fixed& src) {
 
 Fixed&	Fixed::operator=(const Fixed& rhs) {
 	std::cout << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
-	this->fixedRawBits_ = rhs.fixedRawBits_;
+	if (this != &rhs)
+		this->fixedRawBits_ = rhs.fixedRawBits_;
 	return (*this);
 }
 
@@ -65,15 +66,11 @@ float	Fixed::toFloat( void ) const {
 
 // Operator overload for comparison
 bool	Fixed::operator>(const Fixed& rhs) const {
-	if (this->toFloat() > rhs.toFloat())
-		return (true);
-	return (false);
+	return (this->toFloat() > rhs.toFloat())
 }
 
 bool	Fixed::operator<(const Fixed& rhs) const {
-	if (this->toFloat() < rhs.toFloat())
-		return (true);
-	return (false);
+	return (this->toFloat() < rhs.toFloat())
 }
 
 bool	Fixed::operator>=(const Fixed& rhs) const {
@@ -81,17 +78,15 @@ bool	Fixed::operator>=(const Fixed& rhs) const {
 }
 
 bool	Fixed::operator<=(const Fixed& rhs) const {
-	return (*this > rhs ? false : true);
+	return !(*this > rhs);
 }
 
 bool	Fixed::operator==(const Fixed& rhs) const {
-	if (this->toFloat() == rhs.toFloat())
-		return (true);
-	return (false);
+	return (this->toFloat() == rhs.toFloat())
 }
 
 bool	Fixed::operator!=(const Fixed& rhs) const {
-	return (*this == rhs ? false : true);
+	return !(*this == rhs);
 }
 
 // Operator overload for arithmetic
@@ -105,6 +100,15 @@ Fixed	Fixed::operator+(const Fixed& roperand) const {
 }
 
 Fixed	Fixed::operator-(const Fixed& roperand) const {
+	Fixed	ret;
+	double	dbl;
+
+	dbl = this->toFloat() - roperand.toFloat();
+	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
+	return (ret);
+}
+
+Fixed	Fixed::operator-(Fixed& roperand) {
 	Fixed	ret;
 	double	dbl;
 
