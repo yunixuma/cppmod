@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 22:37:20 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/29 23:56:53 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main()
 		club.setType("some other type of club");
 		jim.attack();
 	}
+
 	std::cout << "\033[35;43mAdditional test\033[m" << std::endl;
 	{
 		Weapon sword = Weapon("Nichirin sword");

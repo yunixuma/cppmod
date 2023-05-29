@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 19:23:02 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/30 00:24:20 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ public:
 	Fixed	operator+(const Fixed& roperand);
 	Fixed	operator-(const Fixed& roperand);
 	Fixed	operator*(const Fixed& roperand);
+	Fixed	operator/(Fixed& roperand);
 	Fixed	operator/(const Fixed& roperand);
 	void	operator++(int n);
 	Fixed	operator++(void);
