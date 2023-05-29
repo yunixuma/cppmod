@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 00:24:20 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/30 04:11:45 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ public:
 	Fixed(const float f);
 	Fixed(const Fixed& fixed);
 	Fixed&	operator=(const Fixed& rhs);
+	~Fixed();
+	int		getRawBits( void ) const;
+	void	setRawBits( int const raw );
+	float	toFloat( void ) const;
+	int		toInt( void ) const;
 	bool	operator>(const Fixed& rhs) const;
 	bool	operator<(const Fixed& rhs) const;
 	bool	operator>=(const Fixed& rhs) const;
@@ -35,17 +40,12 @@ public:
 	Fixed	operator+(const Fixed& roperand);
 	Fixed	operator-(const Fixed& roperand);
 	Fixed	operator*(const Fixed& roperand);
-	Fixed	operator/(Fixed& roperand);
+//	Fixed	operator/(Fixed& roperand);
 	Fixed	operator/(const Fixed& roperand);
-	void	operator++(int n);
+	Fixed	operator++(int);
 	Fixed	operator++(void);
-	void	operator--(int n);
+	Fixed	operator--(int);
 	Fixed	operator--(void);
-	~Fixed();
-	int		getRawBits( void ) const;
-	void	setRawBits( int const raw );
-	float	toFloat( void ) const;
-	int		toInt( void ) const;
 	const Fixed&	max(const Fixed& fixed1, const Fixed& fixed2) const;
 	const Fixed&	min(const Fixed& fixed1, const Fixed& fixed2) const;
 };

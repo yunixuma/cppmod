@@ -72,6 +72,24 @@ bool	Fixed::operator<(const Fixed& rhs) const {
 	return (false);
 }
 
+bool	Fixed::operator>=(const Fixed& rhs) const {
+	return (*this < rhs ? false : true);
+}
+
+bool	Fixed::operator<=(const Fixed& rhs) const {
+	return (*this > rhs ? false : true);
+}
+
+bool	Fixed::operator==(const Fixed& rhs) const {
+	if (this->toFloat() == rhs.toFloat())
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator!=(const Fixed& rhs) const {
+	return (*this == rhs ? false : true);
+}
+
 Fixed	Fixed::operator+(const Fixed& roperand) {
 	Fixed	ret;
 	double	dbl;
@@ -90,7 +108,7 @@ Fixed	Fixed::operator-(const Fixed& roperand) {
 	return (ret);
 }
 
-Fixed	Fixed::operator*(Fixed& roperand) {
+Fixed	Fixed::operator*(const Fixed& roperand) {
 	Fixed	ret;
 	double	dbl;
 
@@ -99,7 +117,7 @@ Fixed	Fixed::operator*(Fixed& roperand) {
 	return (ret);
 }
 
-Fixed	Fixed::operator/(Fixed& roperand) {
+Fixed	Fixed::operator/(const Fixed& roperand) {
 	Fixed	ret;
 	double	dbl;
 
@@ -107,9 +125,36 @@ Fixed	Fixed::operator/(Fixed& roperand) {
 	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
 	return (ret);
 }
-
+/*
 Fixed	Fixed::operator/(const Fixed& roperand) {
-	return (this / const_cast<Fixed> roperand);
+//	return (this / const_cast<Fixed&>(roperand));
+	Fixed	ret;
+	double	dbl;
+
+	dbl = this->toFloat() / roperand.toFloat();
+	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
+	return (ret);
+}
+*/
+
+Fixed	Fixed::operator++(int) {
+	Fixed	ret = *this;
+	this->fixedRawBits_++;
+	return (ret);
+}
+Fixed	Fixed::operator++(void) {
+	this->fixedRawBits_++;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int) {
+	Fixed	ret = *this;
+	this->fixedRawBits_--;
+	return (ret);
+}
+Fixed	Fixed::operator--(void) {
+	this->fixedRawBits_--;
+	return (*this);
 }
 
 /*
