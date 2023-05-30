@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 05:31:34 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/30 13:49:00 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ void	test_bsp( \
 }
 
 int main( void ) {
+	std::cout << "\033[35;43mTest cases: Inside\033[m" << std::endl;
 	test_bsp(0, 0, 0, 4, 4, 0, 1, 1);
+	std::cout << "\033[35;43mTest cases: Outside\033[m" << std::endl;
+	test_bsp(4, 1, 5, 3, 9, 9, 2, 2);
+	std::cout << "\033[35;43mTest cases: On the edge\033[m" << std::endl;
+	test_bsp(5, 1, 1, 1, 1, 9, 3, 5);
 
 	return 0;
 }
