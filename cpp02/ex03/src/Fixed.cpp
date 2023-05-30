@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/31 19:12:00 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/31 06:05:04 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ Fixed	Fixed::operator+(const Fixed& roperand) const {
 	return (ret);
 }
 
+//Fixed	operator-(const Fixed& loperand, const Fixed& roperand) {
 Fixed	Fixed::operator-(const Fixed& roperand) const {
 	Fixed	ret;
 	int		shift;
@@ -152,10 +153,10 @@ Fixed	Fixed::operator-(const Fixed& roperand) const {
 }
 
 Fixed	Fixed::operator*(const Fixed& roperand) const {
-	Fixed		ret;
-	long long	res;
-	int			shift;
-std::cout << "frac: " << ret.fractionalBits_ << std::endl;
+	Fixed	ret;
+	int		res;
+	int		shift;
+//std::cout << "frac: " << ret.fractionalBits_ << std::endl;
 	res = this->fixedRawBits_ * roperand.fixedRawBits_;
 	shift = ret.fractionalBits_ \
 		- this->fractionalBits_ - roperand.fractionalBits_;
@@ -174,11 +175,11 @@ Fixed	Fixed::operator/(const Fixed& roperand) const {
 	if (roperand.fixedRawBits_ == 0)
 	{
 		throw std::runtime_error("Divided by zero");
-		if (this->fixedRawBits_ > 0)
-			ret.fixedRawBits_ = std::numeric_limits<int>::max();
-		else
-			ret.fixedRawBits_ = std::numeric_limits<int>::min();
-		return (ret);
+		// if (this->fixedRawBits_ > 0)
+		// 	ret.fixedRawBits_ = std::numeric_limits<int>::max();
+		// else
+		// 	ret.fixedRawBits_ = std::numeric_limits<int>::min();
+		// return (ret);
 	}
 
 	ret.fixedRawBits_ = this->fixedRawBits_ * roperand.fixedRawBits_;
