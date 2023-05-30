@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 05:20:54 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/30 08:28:17 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,22 @@ float	Fixed::toFloat( void ) const {
 
 // Operator overload for comparison
 bool	Fixed::operator>(const Fixed& rhs) const {
-	return (this->toFloat() > rhs.toFloat());
+	if (this->fractionalBits_ == rhs.fractionalBits_)
+		return (this->fixedRawBits_ > rhs.fixedRawBits_);
+	else if (this->fixedRawBits_ == rhs.fixedRawBits_)
+		return (this->fractionalBits_ < rhs.fractionalBits_);
+	int shift = this->fractionalBits_ - rhs.fractionalBits_;
+	if (this->fixedRawBits_ < rhs.fixedRawBits_)
+		return (this->fixedRawBits_ > (rhs.fixedRawBits_ >> shift));
+	return ((this->fixedRawBits_ >> -shift) > rhs.fixedRawBits_);
 }
 
 bool	Fixed::operator<(const Fixed& rhs) const {
-	return (this->toFloat() < rhs.toFloat());
+	return (!(*this > rhs) && !(*this == rhs));
 }
 
 bool	Fixed::operator>=(const Fixed& rhs) const {
-	return !(*this < rhs);
+	return (*this > rhs || *this == rhs);
 }
 
 bool	Fixed::operator<=(const Fixed& rhs) const {
@@ -82,7 +89,12 @@ bool	Fixed::operator<=(const Fixed& rhs) const {
 }
 
 bool	Fixed::operator==(const Fixed& rhs) const {
-	return (this->toFloat() == rhs.toFloat());
+	if (this->fractionalBits_ == rhs.fractionalBits_)
+		return (this->fixedRawBits_ == rhs.fixedRawBits_);
+	int shift = this->fractionalBits_ - rhs.fractionalBits_;
+	if (this->fixedRawBits_ < rhs.fixedRawBits_)
+		return (this->fixedRawBits_ == (rhs.fixedRawBits_ >> shift));
+	return ((this->fixedRawBits_ >> -shift) == rhs.fixedRawBits_);
 }
 
 bool	Fixed::operator!=(const Fixed& rhs) const {
@@ -92,46 +104,89 @@ bool	Fixed::operator!=(const Fixed& rhs) const {
 // Operator overload for arithmetic
 Fixed	Fixed::operator+(const Fixed& roperand) const {
 	Fixed	ret;
-	double	dbl;
+	int		shift;
 
-	dbl = this->toFloat() + roperand.toFloat();
-	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
+	if (ret.fractionalBits_ == this->fractionalBits_ \
+		&& ret.fractionalBits_ == roperand.fractionalBits_)
+	{
+		ret.fixedRawBits_ = this->fixedRawBits_ + roperand.fixedRawBits_;
+		return (ret);
+	}
+
+	shift = ret.fractionalBits_ - this->fractionalBits_;
+	if (shift > 0)
+		ret.fixedRawBits_ = (this->fixedRawBits_ << shift);
+	else
+		ret.fixedRawBits_ = (this->fixedRawBits_ >> -shift);
+	shift = ret.fractionalBits_ - roperand.fractionalBits_;
+	if (shift > 0)
+		ret.fixedRawBits_ += (roperand.fixedRawBits_ << shift);
+	else
+		ret.fixedRawBits_ += (roperand.fixedRawBits_ >> -shift);
 	return (ret);
 }
 
 Fixed	Fixed::operator-(const Fixed& roperand) const {
 	Fixed	ret;
-	double	dbl;
+	int		shift;
 
-	dbl = this->toFloat() - roperand.toFloat();
-	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
-	return (ret);
-}
+	if (ret.fractionalBits_ == this->fractionalBits_ \
+		&& ret.fractionalBits_ == roperand.fractionalBits_)
+	{
+		ret.fixedRawBits_ = this->fixedRawBits_ - roperand.fixedRawBits_;
+		return (ret);
+	}
 
-Fixed	Fixed::operator-(Fixed& roperand) {
-	Fixed	ret;
-	double	dbl;
-
-	dbl = this->toFloat() - roperand.toFloat();
-	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
+	shift = ret.fractionalBits_ - this->fractionalBits_;
+	if (shift > 0)
+		ret.fixedRawBits_ = (this->fixedRawBits_ << shift);
+	else
+		ret.fixedRawBits_ = (this->fixedRawBits_ >> -shift);
+	shift = ret.fractionalBits_ - roperand.fractionalBits_;
+	if (shift > 0)
+		ret.fixedRawBits_ -= (roperand.fixedRawBits_ << shift);
+	else
+		ret.fixedRawBits_ -= (roperand.fixedRawBits_ >> -shift);
 	return (ret);
 }
 
 Fixed	Fixed::operator*(const Fixed& roperand) const {
-	Fixed	ret;
-	double	dbl;
-
-	dbl = this->toFloat() * roperand.toFloat();
-	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
+	Fixed		ret;
+	long long	res;
+	int			shift;
+std::cout << "frac: " << ret.fractionalBits_ << std::endl;
+	res = this->fixedRawBits_ * roperand.fixedRawBits_;
+	shift = ret.fractionalBits_ \
+		- this->fractionalBits_ - roperand.fractionalBits_;
+	if (shift > 0)
+		res <<= shift;
+	else
+		res >>= -shift;
+	ret.fixedRawBits_ = res;
 	return (ret);
 }
 
 Fixed	Fixed::operator/(const Fixed& roperand) const {
 	Fixed	ret;
-	double	dbl;
+	int		shift;
 
-	dbl = this->toFloat() / roperand.toFloat();
-	ret.fixedRawBits_ = dbl * (1 << ret.fractionalBits_);
+	if (roperand.fixedRawBits_ == 0)
+	{
+		throw std::runtime_error("Divided by zero");
+		if (this->fixedRawBits_ > 0)
+			ret.fixedRawBits_ = std::numeric_limits<int>::max();
+		else
+			ret.fixedRawBits_ = std::numeric_limits<int>::min();
+		return (ret);
+	}
+
+	ret.fixedRawBits_ = this->fixedRawBits_ * roperand.fixedRawBits_;
+	shift = ret.fractionalBits_ \
+		- this->fractionalBits_ - roperand.fractionalBits_;
+	if (shift > 0)
+		ret.fixedRawBits_ <<= shift;
+	else
+		ret.fixedRawBits_ >>= -shift;
 	return (ret);
 }
 
