@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 15:45:30 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/05/30 15:53:28 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main( void ) {
 		std::cout << "c is " << c << std::endl;
 		std::cout << "d is " << d << std::endl;
 
-		std::cout << "\033[33mEvaluating the precision\033[m" << std::endl;
+		std::cout << "\033[33mEvaluate the precision\033[m" << std::endl;
 		a.setRawBits(1000000 * 256);
 		b.setRawBits(1000000 * 256 + 9);
 		c.setRawBits(-1000000 * 256);

@@ -90,7 +90,7 @@ bool	Fixed::operator!=(const Fixed& rhs) const {
 	return (*this == rhs ? false : true);
 }
 
-Fixed	Fixed::operator+(const Fixed& roperand) {
+Fixed	Fixed::operator+(Fixed& roperand) {
 	Fixed	ret;
 	double	dbl;
 
