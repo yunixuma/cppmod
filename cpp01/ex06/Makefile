@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/30 13:42:12 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/05/30 14:14:32 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,8 +59,7 @@ DEPS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.d)))
 # ********************* Section for targets and commands ********************* #
 # Phonies
 .PHONY: all clean fclean re debug \
-	test test_noarg test_toomany test_undefined 
-	test_level test_levels
+	test test_abnormal test_level test_levels
 
 # Mandatory targets
 all: $(NAME)
@@ -72,25 +71,30 @@ re: fclean all
 
 # Additional targets
 debug: fclean all
-test: re test_noarg test_toomany test_undefined \
-	test_levels
-test_noarg:
+test: re test_abnormal test_levels
+test_abnormal:
+	@echo "\n\033[31;3mAbnormal tests\033[m"
+	@echo "To continue, hit the [Enter] key"
+	-@read _
 	@echo "\033[41mTest case: No arguments\033[m"
 	-./$(NAME)
-test_toomany:
 	@echo "\033[41mTest case: Too many arguments\033[m"
 	-./$(NAME) "DEBUG" "WARNING"
-test_undefined:
 	@echo "\033[41mTest case: Undefined log level\033[m"
 	-./$(NAME) "Undefined"
+	@echo "\033[2;3mAbnormal tests finished\033[m"
 test_level:
 	@echo "\033[42mTest case: $(case) level\033[m"
 	-./$(NAME) $(case)
 test_levels:
+	@echo "\n\033[32;3mRegular tests\033[m"
+	@echo "To continue, hit the [Enter] key"
+	-@read _
 	-@$(MAKE) -s case=ERROR		test_level
 	-@$(MAKE) -s case=WARNING	test_level
 	-@$(MAKE) -s case=INFO		test_level
 	-@$(MAKE) -s case=DEBUG		test_level
+	@echo "\033[2;3mRegular tests finished\033[m"
 
 # Recipes
 $(NAME): $(OBJS)

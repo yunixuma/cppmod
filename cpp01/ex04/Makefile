@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/30 13:43:52 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/05/30 14:14:48 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,16 +56,20 @@ re: fclean all
 debug: fclean all
 test: re test_regular test_abnormal
 test_regular:
-	@echo "\n\033[32mRegular tests\033[m"
+	@echo "\n\033[32;3mRegular tests\033[m"
+	@echo "To continue, hit the [Enter] key"
+	-@read _
 	@echo "\033[42mCASE: search & replace a single character\033[m"
 	./$(NAME) Makefile p @
 	@echo "\n\033[42mCASE: search & replace a string\033[m"
 	./$(NAME) main.cpp std NAMESPACE
 	@echo "\n\033[42mCASE: replace to repeated characters\033[m"
 	./$(NAME) main.cpp.replace : ::
+	@echo "\033[2;3mRegular tests finished\033[m"
 test_abnormal:
-	@echo "\n\033[31mAbnormal tests\033[m"
-	@echo "\033[41mCASE: too few arguments\033[m"
+	@echo "\n\033[31;3mAbnormal tests\033[m"
+	@echo "To continue, hit the [Enter] key"
+	-@read _
 	-./$(NAME) Makefile p
 	@echo "\n\033[41mCASE: too many arguments\033[m"
 	-./$(NAME) main.cpp std NAME SPACE 
@@ -73,6 +77,7 @@ test_abnormal:
 	-./$(NAME) no_exists " " "[SPACE]"
 	@echo "\n\033[41mCASE: determine a directory\033[m"
 	-./$(NAME) ./ " " "[SPACE]"
+	@echo "\033[2;3mAbnormal tests finished\033[m"
 
 # Recipes
 $(NAME):
