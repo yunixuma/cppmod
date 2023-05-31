@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/29 10:23:59 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/05/31 17:37:57 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CPP				= c++
 RM				= rm
 
 # Command options (flags)
-//CPPFLAGS		= -Wall -Wextra -Werror -std=c++98
+CPPFLAGS		= -Wall -Wextra -Werror -std=c++98
 INCLUDES		= -I$(INCDIR)
 RMFLAGS			= -r
 DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer

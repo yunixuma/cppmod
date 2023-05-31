@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 08:28:17 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/31 19:12:00 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ Fixed::Fixed(const Fixed& src) {
 	this->fixedRawBits_ = src.fixedRawBits_;
 }
 
+//const Fixed&	Fixed::operator=(const Fixed& rhs) const {
 Fixed&	Fixed::operator=(const Fixed& rhs) {
 	std::cerr << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
 	if (this != &rhs)
@@ -55,12 +56,12 @@ void	Fixed::setRawBits( int const raw ) {
 }
 
 int	Fixed::toInt( void ) const {
-	float	f = this->fixedRawBits_;
+	float	f = static_cast<float>(this->fixedRawBits_);
 	return (roundf(f / (1 << this->fractionalBits_)));
 }
 
 float	Fixed::toFloat( void ) const {
-	float	f = this->fixedRawBits_;
+	float	f = static_cast<float>(this->fixedRawBits_);
 	return (f / (1 << this->fractionalBits_));
 }
 

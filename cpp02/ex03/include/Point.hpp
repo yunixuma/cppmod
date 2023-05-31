@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 04:12:48 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/31 19:34:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
 class Point
 {
 private:
-	const Fixed	x_;
-	const Fixed	y_;
+//	static Fixed const	x_;
+//	static Fixed const	y_;
+	Fixed	x_;
+	Fixed	y_;
 public:
 	Point();
 	Point(const float x, const float y);
 	Point(const Point& point);
-	Point&	operator=(const Point& rhs);
+	Point&	operator=(const Point rhs);
 	~Point();
 	const Fixed&	getX(void) const;
 	const Fixed&	getY(void) const;

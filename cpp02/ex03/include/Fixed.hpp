@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 07:41:54 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/31 19:46:06 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@
 class Fixed
 {
 private:
+public:
 	int					fixedRawBits_;
 	static const int	fractionalBits_ = 8;
-public:
 	Fixed();
 	Fixed(const int d);
 	Fixed(const float f);
 	Fixed(const Fixed& src);
 	Fixed&	operator=(const Fixed& rhs);
+//	const Fixed&	operator=(const Fixed& rhs) const;
 	~Fixed();
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
@@ -40,8 +41,9 @@ public:
 	bool	operator==(const Fixed& rhs) const;
 	bool	operator!=(const Fixed& rhs) const;
 	Fixed	operator+(const Fixed& roperand) const;
-	Fixed	operator-(const Fixed& roperand) const;
-	Fixed	operator-(Fixed& roperand);
+	static Fixed	operator-(const Fixed& loperand, const Fixed& roperand);
+//	Fixed	operator-(const Fixed& roperand) const;
+//	Fixed	operator-(Fixed& roperand);
 	Fixed	operator*(const Fixed& roperand) const;
 	Fixed	operator/(const Fixed& roperand) const;
 	Fixed	operator++(int);

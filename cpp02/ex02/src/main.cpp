@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 23:59:55 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/05/31 20:16:33 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,28 @@ int main( void ) {
 	std::cout << std::endl;
 
 	std::cout << "\033[33mArithmetic operators\033[m" << std::endl;
+	// puts_arithmetic(b, "+", b, b + b);
+	// puts_arithmetic(c, "+", c, c + c);
 	puts_arithmetic(c, "+", b, c + b);
+	// puts_arithmetic(b, "+", c, b + c);
+	// puts_arithmetic(a, "-", a, a - a);
+	// puts_arithmetic(b, "-", b, b - b);
+	// puts_arithmetic(c, "-", c, c - c);
+	// puts_arithmetic(a, "-", b, a - b);
+	// puts_arithmetic(b, "-", a, b - a);
 	puts_arithmetic(b, "-", c, b - c);
+	// puts_arithmetic(c, "-", b, c - b);
+	// puts_arithmetic(a, "-", c, a - c);
+	// puts_arithmetic(c, "-", a, c - a);
+	// puts_arithmetic(b, "-", c, b - const_cast<const Fixed&>(c));
 	puts_arithmetic(b, "*", b, b * b);
+	// puts_arithmetic(b, "*", c, b * c);
+	// puts_arithmetic(c, "*", b, c * b);
+	// puts_arithmetic(c, "*", c, c * c);
 	puts_arithmetic(c, "/", a, c / a);
+	// puts_arithmetic(c, "/", b, c / b);
+	// puts_arithmetic(b, "/", a, b / a);
+//	puts_arithmetic(c, "/", Fixed(0), c / Fixed(0));
 
 	std::cout << "\033[33mIncrement/decrement operators\033[m" << std::endl;
 	puts_increment(a++, a, "var++");
