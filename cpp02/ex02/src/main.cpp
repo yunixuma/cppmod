@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/01 21:26:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/01 22:08:51 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	puts_max(const Fixed& arg1, const Fixed& arg2, std::string op, const
 
 int main( void ) {
 	Fixed a;
-	Fixed const b( Fixed( -5.68f ) * Fixed( 21 ) );
+	Fixed const b( Fixed( -5.78f ) * Fixed( 21 ) );
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
 	std::cout << a << std::endl;
@@ -48,7 +48,7 @@ int main( void ) {
 	std::cout << "\033[35;43mAdditional tests\033[m" << std::endl;
 	std::cout << "\033[33mSet precision to 10 digits\033[m" << std::endl;
 	std::cout << std::setprecision(10);
-	Fixed c = 42;
+	Fixed c = -42;
 	std::cout << "a is " << a << std::endl;
 	std::cout << "b is " << b << std::endl;
 	std::cout << "c is " << c << std::endl;
