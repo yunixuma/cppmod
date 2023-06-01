@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/31 20:05:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/01 22:16:01 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <iostream>
 # include <cmath>
-//# include <limits>
 
 class Fixed
 {
@@ -28,7 +27,6 @@ public:
 	Fixed(const float f);
 	Fixed(const Fixed& src);
 	Fixed&	operator=(const Fixed& rhs);
-//	const Fixed&	operator=(const Fixed& rhs) const;
 	~Fixed();
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
@@ -41,9 +39,7 @@ public:
 	bool	operator==(const Fixed& rhs) const;
 	bool	operator!=(const Fixed& rhs) const;
 	Fixed	operator+(const Fixed& roperand) const;
-//	Fixed	operator-(const Fixed& loperand, const Fixed& roperand);
 	Fixed	operator-(const Fixed& roperand) const;
-//	Fixed	operator-(Fixed& roperand);
 	Fixed	operator*(const Fixed& roperand) const;
 	Fixed	operator/(const Fixed& roperand) const;
 	Fixed	operator++(int);

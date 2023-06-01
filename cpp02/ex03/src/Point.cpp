@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/31 06:03:28 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/01 22:17:40 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,8 @@ Point&	Point::operator=(const Point rhs) {
 	{
 		const_cast<Fixed&>(this->x_) = rhs.x_;
 		const_cast<Fixed&>(this->y_) = rhs.y_;
-		// this->x_ = rhs.x_;
-		// this->y_ = rhs.y_;
 	}
-//	&x_.reset(new Point(*rhs.x_));
 	return (*this);
-	(void)rhs;
 }
 
 Point::~Point(void) {

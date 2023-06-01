@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/31 19:34:41 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/01 22:17:05 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@
 class Point
 {
 private:
-//	static Fixed const	x_;
-//	static Fixed const	y_;
-	Fixed	x_;
-	Fixed	y_;
+	Fixed const	x_;
+	Fixed const	y_;
 public:
 	Point();
 	Point(const float x, const float y);
