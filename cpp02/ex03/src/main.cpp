@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/31 18:14:44 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/01 21:55:17 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	test_bsp( \
 
 int main( void ) {
 	std::cout << "\033[35;43mTest cases: Inside\033[m" << std::endl;
-	test_bsp(4, 1, 5, 3, 9, 9, 6, 7);
+	test_bsp(4, 1, 3, 5, 9, 9, 7, 6);
 	std::cout << "\033[35;43mTest cases: Outside\033[m" << std::endl;
-	test_bsp(4, 1, 5, 3, 9, 9, 2, 2);
+	test_bsp(4, 1, 3, 5, 9, 9, 2, 2);
 	std::cout << "\033[35;43mTest cases: On the edge\033[m" << std::endl;
 	test_bsp(5, 1, 1, 1, 1, 9, 3, 5);
 	std::cout << "\033[35;43mTest cases: Overlap the vertex\033[m" << std::endl;

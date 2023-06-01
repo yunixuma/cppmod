@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bsp.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 05:29:35 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/01 21:55:58 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Fixed	area_tri(Point const a, Point const b, Point const c) {
 	s = (bx - cx) * (ay - cy) - (by - cy) * (ax - cx);
 	std::cerr << "\033[2;3mThe area of the triangle {" \
 		<< "a" << a << ", " << "b" << b << ", " << "c" << c \
-		<< "} is "<< s << "\033[m" << std::endl;
+		<< "} is "<< s / 2 << "\033[m" << std::endl;
 	if (s < 0)
 		s = -s;
 	return (Fixed(s));
