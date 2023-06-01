@@ -6,13 +6,11 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/01 17:53:37 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/01 21:28:45 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
-#include <iomanip>
 
 // Constructors and destructor
 Fixed::Fixed() {
@@ -27,7 +25,7 @@ Fixed::Fixed(const int d) {
 
 Fixed::Fixed(const float f) {
 	std::cerr << "\033[36;2m" << "Float constructor called\033[m" << std::endl;
-	this->fixedRawBits_ = f * (1 << this->fractionalBits_);
+	this->fixedRawBits_ = roundf(f * (1 << this->fractionalBits_));
 }
 
 Fixed::Fixed(const Fixed& src) {
@@ -155,6 +153,97 @@ Fixed	Fixed::operator-(const Fixed& roperand) const {
 }
 
 Fixed	Fixed::operator*(const Fixed& roperand) const {
+	Fixed	ret;
+	long	res;
+	long	right;
+	int		shift;
+
+	if (this->fixedRawBits_ > 0)
+		res = this->fixedRawBits_;
+	else
+		res = -this->fixedRawBits_;
+	if (roperand.fixedRawBits_ > 0)
+		right = roperand.fixedRawBits_;
+	else
+		right = -roperand.fixedRawBits_;
+
+	res *= right;
+
+	shift = ret.fractionalBits_ \
+		- this->fractionalBits_ - roperand.fractionalBits_;
+	if (shift > 0)
+		ret.fixedRawBits_ = (res << shift);
+	else
+		ret.fixedRawBits_ = (res >> -shift);
+	if ((this->fixedRawBits_ > 0 && roperand.fixedRawBits_ < 0) \
+		|| (this->fixedRawBits_ < 0 && roperand.fixedRawBits_ > 0))
+		ret.fixedRawBits_ = -ret.fixedRawBits_;
+	return (ret);
+}
+
+Fixed	Fixed::operator/(const Fixed& roperand) const {
+	Fixed	ret;
+	float	res;
+	long	left;
+	long	right;
+	int		shift;
+
+	if (roperand.fixedRawBits_ == 0)
+		throw std::runtime_error("Divided by zero");
+
+	if (this->fixedRawBits_ > 0)
+		left = this->fixedRawBits_;
+	else
+		left = -this->fixedRawBits_;
+	left <<= 16;
+	if (roperand.fixedRawBits_ > 0)
+		right = roperand.fixedRawBits_;
+	else
+		right = -roperand.fixedRawBits_;
+
+	res = left / right;
+
+	shift = 16 + ret.fractionalBits_ \
+		- this->fractionalBits_ - roperand.fractionalBits_;
+	if (shift > 0)
+		ret.fixedRawBits_ = roundf(res / (1 << shift));
+	else
+		ret.fixedRawBits_ = res  * (1 << -shift);
+
+	if ((this->fixedRawBits_ > 0 && roperand.fixedRawBits_ < 0) \
+		|| (this->fixedRawBits_ < 0 && roperand.fixedRawBits_ > 0))
+		ret.fixedRawBits_ = -ret.fixedRawBits_;
+	return (ret);
+}
+
+// Operator overload for increment and decrement
+Fixed	Fixed::operator++(int) {
+	Fixed	ret = *this;
+	this->fixedRawBits_++;
+	return (ret);
+}
+Fixed	Fixed::operator++(void) {
+	this->fixedRawBits_++;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int) {
+	Fixed	ret = *this;
+	this->fixedRawBits_--;
+	return (ret);
+}
+Fixed	Fixed::operator--(void) {
+	this->fixedRawBits_--;
+	return (*this);
+}
+
+// Operator overload for stream
+std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed) {
+	stream << fixed.toFloat();
+	return (stream);
+}
+/*
+Fixed	Fixed::operator*(const Fixed& roperand) const {
 	Fixed		ret;
 	unsigned	left_lo;
 	unsigned	left_hi;
@@ -203,54 +292,4 @@ std::cerr << std::setw(10) << std::right << "\033[2;3m" \
 		ret.fixedRawBits_ = -res_hihi - res_hilo - res_lohi - res_lolo;
 	return (ret);
 }
-
-Fixed	Fixed::operator/(const Fixed& roperand) const {
-	Fixed	ret;
-	int		shift;
-
-	if (roperand.fixedRawBits_ == 0)
-	{
-		throw std::runtime_error("Divided by zero");
-		// if (this->fixedRawBits_ > 0)
-		// 	ret.fixedRawBits_ = std::numeric_limits<int>::max();
-		// else
-		// 	ret.fixedRawBits_ = std::numeric_limits<int>::min();
-		// return (ret);
-	}
-
-	ret.fixedRawBits_ = this->fixedRawBits_ * roperand.fixedRawBits_;
-	shift = ret.fractionalBits_ \
-		- this->fractionalBits_ - roperand.fractionalBits_;
-	if (shift > 0)
-		ret.fixedRawBits_ <<= shift;
-	else
-		ret.fixedRawBits_ >>= -shift;
-	return (ret);
-}
-
-// Operator overload for increment and decrement
-Fixed	Fixed::operator++(int) {
-	Fixed	ret = *this;
-	this->fixedRawBits_++;
-	return (ret);
-}
-Fixed	Fixed::operator++(void) {
-	this->fixedRawBits_++;
-	return (*this);
-}
-
-Fixed	Fixed::operator--(int) {
-	Fixed	ret = *this;
-	this->fixedRawBits_--;
-	return (ret);
-}
-Fixed	Fixed::operator--(void) {
-	this->fixedRawBits_--;
-	return (*this);
-}
-
-// Operator overload for stream
-std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed) {
-	stream << fixed.toFloat();
-	return (stream);
-}
+*/

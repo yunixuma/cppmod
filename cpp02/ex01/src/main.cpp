@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 15:53:28 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/01 19:25:24 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main( void ) {
 		std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 		std::cout << "a is " << a << std::endl;
 		std::cout << "b is " << b << std::endl;
-		std::cout << "\033[33mSet precision to 12 digits\033[m" << std::endl;
+		std::cout << "\033[33mSet precision to 10 digits\033[m" << std::endl;
 		std::cout << std::setprecision(10);
 		std::cout << "c is " << c << std::endl;
 		std::cout << "d is " << d << std::endl;

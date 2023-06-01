@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/01 16:34:05 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/01 21:28:45 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Fixed::Fixed(const int d) {
 
 Fixed::Fixed(const float f) {
 	std::cerr << "\033[36;2m" << "Float constructor called\033[m" << std::endl;
-	this->fixedRawBits_ = f * (1 << this->fractionalBits_);
+	this->fixedRawBits_ = roundf(f * (1 << this->fractionalBits_));
 }
 
 Fixed::Fixed(const Fixed& src) {
@@ -153,66 +153,66 @@ Fixed	Fixed::operator-(const Fixed& roperand) const {
 }
 
 Fixed	Fixed::operator*(const Fixed& roperand) const {
-	Fixed		ret;
-	unsigned	left_lo;
-	unsigned	left_hi;
-	unsigned	right_lo;
-	unsigned	right_hi;
-	unsigned	res_hihi;
-	unsigned	res_hilo;
-	unsigned	res_lohi;
-	unsigned	res_lolo;
-	int			shift;
-//std::cout << "frac: " << ret.fractionalBits_ << std::endl;
-	if (this->fixedRawBits_ < 0)
-		left_hi = this->fixedRawBits_;
-	else
-		left_hi = -this->fixedRawBits_;
-	left_lo = left_hi & ((1 << 16) - 1);
-	left_hi >>= 16;
+	Fixed	ret;
+	long	res;
+	long	right;
+	int		shift;
 
-	if (roperand.fixedRawBits_ < 0)
-		right_hi = roperand.fixedRawBits_;
+	if (this->fixedRawBits_ > 0)
+		res = this->fixedRawBits_;
 	else
-		right_hi = -roperand.fixedRawBits_;
-	right_lo = right_hi & ((1 << 16) - 1);
-	right_hi >>= 16;
-
-	shift = ret.fractionalBits_ * 2 - this->fractionalBits_ -  roperand.fractionalBits_;
-	res_hihi = (left_hi * right_hi) << (32 - shift);
-	res_hilo = left_hi * right_lo << (16 - shift);
-	res_lohi = left_lo * right_hi << (16 - shift);
-	res_lolo = left_lo * right_lo << (-shift);
-
-	if ((this->fixedRawBits_ < 0 && roperand.fixedRawBits_ < 0) \
-		|| (this->fixedRawBits_ > 0 && roperand.fixedRawBits_ > 0))
-		ret.fixedRawBits_ = res_hihi + res_hilo + res_lohi + res_lolo;
+		res = -this->fixedRawBits_;
+	if (roperand.fixedRawBits_ > 0)
+		right = roperand.fixedRawBits_;
 	else
-		ret.fixedRawBits_ = -res_hihi - res_hilo - res_lohi - res_lolo;
+		right = -roperand.fixedRawBits_;
+
+	res *= right;
+
+	shift = ret.fractionalBits_ \
+		- this->fractionalBits_ - roperand.fractionalBits_;
+	if (shift > 0)
+		ret.fixedRawBits_ = (res << shift);
+	else
+		ret.fixedRawBits_ = (res >> -shift);
+	if ((this->fixedRawBits_ > 0 && roperand.fixedRawBits_ < 0) \
+		|| (this->fixedRawBits_ < 0 && roperand.fixedRawBits_ > 0))
+		ret.fixedRawBits_ = -ret.fixedRawBits_;
 	return (ret);
 }
 
 Fixed	Fixed::operator/(const Fixed& roperand) const {
 	Fixed	ret;
+	float	res;
+	long	left;
+	long	right;
 	int		shift;
 
 	if (roperand.fixedRawBits_ == 0)
-	{
 		throw std::runtime_error("Divided by zero");
-		// if (this->fixedRawBits_ > 0)
-		// 	ret.fixedRawBits_ = std::numeric_limits<int>::max();
-		// else
-		// 	ret.fixedRawBits_ = std::numeric_limits<int>::min();
-		// return (ret);
-	}
 
-	ret.fixedRawBits_ = this->fixedRawBits_ * roperand.fixedRawBits_;
-	shift = ret.fractionalBits_ \
+	if (this->fixedRawBits_ > 0)
+		left = this->fixedRawBits_;
+	else
+		left = -this->fixedRawBits_;
+	left <<= 16;
+	if (roperand.fixedRawBits_ > 0)
+		right = roperand.fixedRawBits_;
+	else
+		right = -roperand.fixedRawBits_;
+
+	res = left / right;
+
+	shift = 16 + ret.fractionalBits_ \
 		- this->fractionalBits_ - roperand.fractionalBits_;
 	if (shift > 0)
-		ret.fixedRawBits_ <<= shift;
+		ret.fixedRawBits_ = roundf(res / (1 << shift));
 	else
-		ret.fixedRawBits_ >>= -shift;
+		ret.fixedRawBits_ = res  * (1 << -shift);
+
+	if ((this->fixedRawBits_ > 0 && roperand.fixedRawBits_ < 0) \
+		|| (this->fixedRawBits_ < 0 && roperand.fixedRawBits_ > 0))
+		ret.fixedRawBits_ = -ret.fixedRawBits_;
 	return (ret);
 }
 
@@ -242,3 +242,54 @@ std::ostream&	operator<<(std::ostream& stream, const Fixed& fixed) {
 	stream << fixed.toFloat();
 	return (stream);
 }
+/*
+Fixed	Fixed::operator*(const Fixed& roperand) const {
+	Fixed		ret;
+	unsigned	left_lo;
+	unsigned	left_hi;
+	unsigned	right_lo;
+	unsigned	right_hi;
+	unsigned	res_hihi;
+	unsigned	res_hilo;
+	unsigned	res_lohi;
+	unsigned	res_lolo;
+	int			shift;
+std::cerr << std::setw(10) << std::right << "\033[2;3m" \
+	<< " frac: " << ret.fractionalBits_ << std::endl;
+	if (this->fixedRawBits_ < 0)
+		left_hi = -this->fixedRawBits_;
+	else
+		left_hi = this->fixedRawBits_;
+	left_lo = left_hi & ((1 << 16) - 1);
+	left_hi >>= 16;
+std::cerr << std::setw(10) << std::right << "\033[2;3m" \
+	<< " left: " << this->fixedRawBits_ \
+	<< " : " << left_hi << " " << left_lo << std::endl;
+	if (roperand.fixedRawBits_ < 0)
+		right_hi = -roperand.fixedRawBits_;
+	else
+		right_hi = roperand.fixedRawBits_;
+	right_lo = right_hi & ((1 << 16) - 1);
+	right_hi >>= 16;
+std::cerr << std::setw(10) << std::right << "\033[2;3m" \
+	<< "right: " << roperand.fixedRawBits_ \
+	<< " : " << right_hi << " " << right_lo << std::endl;
+
+	shift = this->fractionalBits_ + roperand.fractionalBits_ - ret.fractionalBits_;
+	shift = 0;
+	res_hihi = (left_hi * right_hi) << (32 - shift);
+	res_hilo = (left_hi * right_lo) << (16 - shift);
+	res_lohi = (left_lo * right_hi) << (16 - shift);
+	res_lolo = (left_lo * right_lo) << -shift;
+std::cerr << std::setw(10) << std::right << "\033[2;3m" \
+	<< "  res: " << res_hihi << "  " << res_hilo \
+	<< " " << res_lohi << "  " << res_lolo << "\033[m" << std::endl;
+
+	if ((this->fixedRawBits_ < 0 && roperand.fixedRawBits_ < 0) \
+		|| (this->fixedRawBits_ > 0 && roperand.fixedRawBits_ > 0))
+		ret.fixedRawBits_ = res_hihi + res_hilo + res_lohi + res_lolo;
+	else
+		ret.fixedRawBits_ = -res_hihi - res_hilo - res_lohi - res_lolo;
+	return (ret);
+}
+*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/30 05:06:02 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/01 20:43:20 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Fixed::Fixed(const int d) {
 
 Fixed::Fixed(const float f) {
 	std::cout << "\033[36;2m" << "Float constructor called\033[m" << std::endl;
-	this->fixedRawBits_ = f * (1 << this->fractionalBits_);
+	this->fixedRawBits_ = roundf(f * (1 << this->fractionalBits_));
 }
 
 Fixed::Fixed(const Fixed& src) {
