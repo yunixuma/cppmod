@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/31 20:16:33 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/01 18:02:44 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	puts_max(const Fixed& arg1, const Fixed& arg2, std::string op, const
 
 int main( void ) {
 	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+//	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Fixed const b( Fixed( 32 ) * Fixed( 32 ) );
 	std::cout << a << std::endl;
 	std::cout << ++a << std::endl;
 	std::cout << a << std::endl;
@@ -90,9 +91,9 @@ int main( void ) {
 	// puts_arithmetic(c, "-", a, c - a);
 	// puts_arithmetic(b, "-", c, b - const_cast<const Fixed&>(c));
 	puts_arithmetic(b, "*", b, b * b);
-	// puts_arithmetic(b, "*", c, b * c);
-	// puts_arithmetic(c, "*", b, c * b);
-	// puts_arithmetic(c, "*", c, c * c);
+	puts_arithmetic(b, "*", c, b * c);
+	puts_arithmetic(c, "*", b, c * b);
+	puts_arithmetic(c, "*", c, c * c);
 	puts_arithmetic(c, "/", a, c / a);
 	// puts_arithmetic(c, "/", b, c / b);
 	// puts_arithmetic(b, "/", a, b / a);
