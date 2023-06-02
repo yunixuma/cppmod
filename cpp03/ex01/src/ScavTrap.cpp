@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 16:59:26 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/02 14:21:02 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap(std::string name) {
-	this->name_ = name;
-	this->hitPoint_ = 100;
-	this->energyPoint_ = 50;
-	this->attackDamage_ = 20;
+	ClapTrap::setName(name);
+	ClapTrap::setHitPoint(100);
+	ClapTrap::setEnergyPoint(50);
+	ClapTrap::setAttackDamage(20);
 	std::cout << "\033[36;2;3m" << "Creating a ScavTrap (" \
-		<< this << ": " << this->name_ << ")\033[m" << std::endl;
+		<< this << ": " << name << ")\033[m" << std::endl;
 }
-
+/*
 ScavTrap::ScavTrap(const ScavTrap& src) {
 	std::cerr << "\033[36;2m" << "Copy constructor called\033[m" << std::endl;
 	this->name_ = src.name_;
@@ -40,86 +40,70 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs) {
 	}
 	return (*this);
 }
-
+*/
 ScavTrap::~ScavTrap(void) {
 	std::cout << "\033[31;2;3m" << "Destroying the ScavTrap (" \
-		<< this << ": " << this->name_ << ")\033[m" << std::endl;
+		<< this << ": " << ClapTrap::getName() << ")\033[m" << std::endl;
 }
 
 void	ScavTrap::attack(const std::string& target) {
-	if (this->hitPoint_ == 0)
+	unsigned int	energyPoint = ClapTrap::getEnergyPoint();
+	if (ClapTrap::getHitPoint() == 0)
 	{
-		std::cout << "\033[32m" << "ScavTrap " << this->name_ \
+		std::cout << "\033[32m" << "ScavTrap " << ClapTrap::getName() \
 			<< " cannot attack," \
 			<< " because no hit points left\033[m" << std::endl;
 		return ;
 	}
-	else if (this->energyPoint_ == 0)
+	else if (energyPoint == 0)
 	{
-		std::cout << "\033[32m" << "ScavTrap " << this->name_ \
+		std::cout << "\033[32m" << "ScavTrap " << ClapTrap::getName() \
 			<< " cannot attack," \
 			<< " because no energy points left\033[m" << std::endl;
 		return ;
 	}
-	this->energyPoint_ -= 1;
-	std::cout << "\033[32m" << "ScavTrap " << this->name_ \
-		<< " attacks " << target << ", causing " << this->attackDamage_ \
+	ClapTrap::setEnergyPoint(energyPoint - 1);
+	std::cout << "\033[32m" << "ScavTrap " << ClapTrap::getName() \
+		<< " attacks " << target << ", causing " << ClapTrap::getAttackDamage() \
 		<< " points of damage!\033[m" << std::endl;
 }
 
 void	ScavTrap::takeDamage(unsigned int amount) {
-	if (this->hitPoint_ < amount)
-		this->hitPoint_ = 0;
+	unsigned int	hitPoint = ClapTrap::getHitPoint();
+	if (hitPoint < amount)
+		ClapTrap::setHitPoint(0);
 	else
-		this->hitPoint_ -= amount;
-	std::cout << "\033[32m" << "ScavTrap " << this->name_ \
+		ClapTrap::setHitPoint(hitPoint - amount);
+	std::cout << "\033[32m" << "ScavTrap " << ClapTrap::getName() \
 		<< " take damage and loses " << amount \
 		<< " hit points!\033[m" << std::endl;
 }
 
 void	ScavTrap::beRepaired(unsigned int amount) {
-	if (this->hitPoint_ == 0)
+	unsigned int	hitPoint = ClapTrap::getHitPoint();
+	unsigned int	energyPoint = ClapTrap::getEnergyPoint();
+	if (hitPoint == 0)
 	{
-		std::cout << "\033[32m" << "ScavTrap " << this->name_ \
+		std::cout << "\033[32m" << "ScavTrap " << ClapTrap::getName() \
 			<< " cannot be repaired," \
 			<< " because no hit points left\033[m" << std::endl;
 		return ;
 	}
-	else if (this->energyPoint_ == 0)
+	else if (energyPoint == 0)
 	{
-		std::cout << "\033[32m" << "ScavTrap " << this->name_ \
+		std::cout << "\033[32m" << "ScavTrap " << ClapTrap::getName() \
 			<< " cannot be repaired," \
 			<< " because no energy points left\033[m" << std::endl;
 		return ;
 	}
-	this->hitPoint_ += amount;
-	this->energyPoint_ -= 1;
-	std::cout << "\033[32m" << "ScavTrap " << this->name_ \
+	ClapTrap::setHitPoint(hitPoint + amount);
+	ClapTrap::setEnergyPoint(energyPoint - 1);
+	std::cout << "\033[32m" << "ScavTrap " << ClapTrap::getName() \
 		<< " is repaired and gets " << amount \
 		<< " hit points!\033[m" << std::endl;
 }
 
-const std::string&	ScavTrap::getName(void) const {
-//	std::cerr << "\033[2;3m" << "getName member function called\033[m" << std::endl;
-	return (this->name_);
-}
-
-unsigned int	ScavTrap::getHitPoint(void) const {
-//	std::cerr << "\033[2;3m" << "getHitPoint member function called\033[m" << std::endl;
-	return (this->hitPoint_);
-}
-
-unsigned int	ScavTrap::getEnergyPoint(void) const {
-//	std::cerr << "\033[2;3m" << "getEnergyPoint member function called\033[m" << std::endl;
-	return (this->energyPoint_);
-}
-
-unsigned int	ScavTrap::getAttackDamage(void) const {
-//	std::cerr << "\033[2;3m" << "getAttackDamage member function called\033[m" << std::endl;
-	return (this->attackDamage_);
-}
-
 void	ScavTrap::guardGate() const {
-	std::cout << "\033[36m" << "ScavTrap " << this->name_ \
+	std::cout << "\033[36m" << "ScavTrap " << ClapTrap::getName() \
 		<< " is now in Gatekeeper mode\033[m" << std::endl;
 }

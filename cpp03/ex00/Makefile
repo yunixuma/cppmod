@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
+#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/06/02 09:45:15 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/06/02 03:09:09 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # ********************** Section for Macros (Variables) ********************** #
 # Product file
-NAME			= claptrap
+NAME			= borderlands
 
 # Enumeration of files
 SRC				= main.cpp ClapTrap.cpp
