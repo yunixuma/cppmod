@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 16:57:55 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/02 13:29:29 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,24 @@ unsigned int	ClapTrap::getEnergyPoint(void) const {
 unsigned int	ClapTrap::getAttackDamage(void) const {
 //	std::cerr << "\033[2;3m" << "getAttackDamage member function called\033[m" << std::endl;
 	return (this->attackDamage_);
+}
+
+void	ClapTrap::setName(const std::string& name) {
+//	std::cerr << "\033[2;3m" << "setHitPoint member function called\033[m" << std::endl;
+	this->name_ = name;
+}
+
+void	ClapTrap::setHitPoint(unsigned int hitPoint) {
+//	std::cerr << "\033[2;3m" << "setHitPoint member function called\033[m" << std::endl;
+	this->hitPoint_ = hitPoint;
+}
+
+void	ClapTrap::setEnergyPoint(unsigned int energyPoint) {
+//	std::cerr << "\033[2;3m" << "setEnergyPoint member function called\033[m" << std::endl;
+	this->energyPoint_ = energyPoint;
+}
+
+void	ClapTrap::setAttackDamage(unsigned int attackDamage) {
+//	std::cerr << "\033[2;3m" << "setAttackDamage member function called\033[m" << std::endl;
+	this->attackDamage_ = attackDamage;
 }
