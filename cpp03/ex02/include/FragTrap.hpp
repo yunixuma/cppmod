@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 15:01:47 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/02 16:01:59 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 class FragTrap : public ClapTrap
 {
 private:
-	// std::string	name_;
-	// unsigned int	hitPoint_;
-	// unsigned int	energyPoint_;
-	// unsigned int	attackDamage_;
 public:
 	FragTrap(std::string name = "FL4K");
 	FragTrap(const FragTrap& src);

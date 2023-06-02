@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 15:04:57 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/02 16:02:13 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,27 @@ FragTrap::FragTrap(std::string name) {
 	std::cout << "\033[36;2;3m" << "Creating a FragTrap (" \
 		<< this << ": " << name << ")\033[m" << std::endl;
 }
-/*
-FragTrap::FragTrap(const FragTrap& src) {
+
+ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src) {
 	std::cerr << "\033[36;2m" << "Copy constructor called\033[m" << std::endl;
-	this->name_ = src.name_;
-	this->hitPoint_ = src.hitPoint_;
-	this->energyPoint_ = src.energyPoint_;
-	this->attackDamage_ = src.attackDamage_;
+	ClapTrap::setName(src.getName());
+	ClapTrap::setHitPoint(src.getHitPoint());
+	ClapTrap::setEnergyPoint(src.getEnergyPoint());
+	ClapTrap::setAttackDamage(src.getAttackDamage());
 }
 
-FragTrap&	FragTrap::operator=(const FragTrap& rhs) {
+ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs) {
 	std::cerr << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		this->name_ = rhs.name_;
-		this->hitPoint_ = rhs.hitPoint_;
-		this->energyPoint_ = rhs.energyPoint_;
-		this->attackDamage_ = rhs.attackDamage_;
+		ClapTrap::setName(rhs.getName());
+		ClapTrap::setHitPoint(rhs.getHitPoint());
+		ClapTrap::setEnergyPoint(rhs.getEnergyPoint());
+		ClapTrap::setAttackDamage(rhs.getAttackDamage());
 	}
 	return (*this);
 }
-*/
+
 FragTrap::~FragTrap(void) {
 	std::cout << "\033[31;2;3m" << "Destroying the FragTrap (" \
 		<< this << ": " << ClapTrap::getName() << ")\033[m" << std::endl;
