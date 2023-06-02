@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 14:21:02 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/02 15:03:24 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ScavTrap::beRepaired(unsigned int amount) {
 		<< " hit points!\033[m" << std::endl;
 }
 
-void	ScavTrap::guardGate() const {
+void	ScavTrap::guardGate(void) const {
 	std::cout << "\033[36m" << "ScavTrap " << ClapTrap::getName() \
 		<< " is now in Gatekeeper mode\033[m" << std::endl;
 }

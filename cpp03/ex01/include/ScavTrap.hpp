@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 14:13:40 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/02 15:02:07 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ public:
 	ScavTrap(const ScavTrap& src);
 	ScavTrap&	operator=(const ScavTrap& rhs);
 	~ScavTrap();
-	void	attack(const std::string& target = "Clawler");
+	void	attack(const std::string& target = "monster");
 	void	takeDamage(unsigned int amount = 1);
 	void	beRepaired(unsigned int amount = 1);
-	void			guardGate() const;
+	void	guardGate(void) const;
 };
 
 #endif

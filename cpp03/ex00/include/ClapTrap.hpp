@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 14:12:28 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/02 14:56:44 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public:
 	ClapTrap(const ClapTrap& src);
 	ClapTrap&	operator=(const ClapTrap& rhs);
 	~ClapTrap();
-	void	attack(const std::string& target = "monster");
+	void	attack(const std::string& target = "enemy");
 	void	takeDamage(unsigned int amount = 1);
 	void	beRepaired(unsigned int amount = 1);
 	const std::string&	getName(void) const;
