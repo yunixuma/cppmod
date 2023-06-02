@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 04:29:52 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/02 10:55:42 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ class ClapTrap
 {
 private:
 	std::string	name_;
-	int			hitPoint_;
-	int			energyPoint_;
-	int			attackDamage_;
-
+	unsigned int	hitPoint_;
+	unsigned int	energyPoint_;
+	unsigned int	attackDamage_;
 public:
-	ClapTrap(std::string name, Weapon& weapon);
+	ClapTrap(std::string name = "You");
+	ClapTrap(const ClapTrap& src);
+	ClapTrap&	operator=(const ClapTrap& rhs);
 	~ClapTrap();
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
-	// std::string	getName(void) const;
-	// void 		setName(std::string name = "John");
-	// Weapon&		getWeapon(void) const;
-	// void		setWeapon(Weapon& weapon);
-	// void		attack() const;
+	void	attack(const std::string& target = "something enemy");
+	void	takeDamage(unsigned int amount = 1);
+	void	beRepaired(unsigned int amount = 1);
+	const std::string&	getName(void) const;
+	unsigned int	getHitPoint(void) const;
+	unsigned int	getEnergyPoint(void) const;
+	unsigned int	getAttackDamage(void) const;
 };
 
 #endif

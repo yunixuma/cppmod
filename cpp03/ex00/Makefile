@@ -6,14 +6,14 @@
 #    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/06/02 04:31:28 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/06/02 09:45:15 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # ********************** Section for Macros (Variables) ********************** #
 # Product file
-NAME			= attack
+NAME			= claptrap
 
 # Enumeration of files
 SRC				= main.cpp ClapTrap.cpp
