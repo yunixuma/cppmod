@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 14:56:44 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/03 18:59:20 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,6 @@ public:
 	unsigned int	getHitPoint(void) const;
 	unsigned int	getEnergyPoint(void) const;
 	unsigned int	getAttackDamage(void) const;
-	void	setName(const std::string& name);
-	void	setHitPoint(unsigned int hitPoint);
-	void	setEnergyPoint(unsigned int energyPoint);
-	void	setAttackDamage(unsigned int attackDamage);
 };
 
 #endif

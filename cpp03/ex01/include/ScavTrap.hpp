@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 16:02:42 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/03 19:43:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ public:
 	ScavTrap&	operator=(const ScavTrap& rhs);
 	~ScavTrap();
 	void	attack(const std::string& target = "monster");
-	void	takeDamage(unsigned int amount = 1);
-	void	beRepaired(unsigned int amount = 1);
 	void	guardGate(void) const;
+	// void	takeDamage(unsigned int amount = 1);
+	// void	beRepaired(unsigned int amount = 1);
 };
 
 #endif

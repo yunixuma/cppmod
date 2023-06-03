@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 15:12:29 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/03 19:53:03 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(std::string name) {
+ClapTrap::ClapTrap(std::string name) \
+	: hitPoint_(10), energyPoint_(10), attackDamage_(0) {
 	this->name_ = name;
-	this->hitPoint_ = 10;
-	this->energyPoint_ = 10;
-	this->attackDamage_ = 0;
 	std::cout << "\033[36;2;3mCreating a ClapTrap (" \
 		<< this << ": " << this->name_ << ")\033[m" << std::endl;
 }
@@ -121,6 +119,7 @@ unsigned int	ClapTrap::getAttackDamage(void) const {
 	return (this->attackDamage_);
 }
 
+/*
 void	ClapTrap::setName(const std::string& name) {
 //	std::cerr << "\033[2;3msetHitPoint member function called\033[m" << std::endl;
 	this->name_ = name;
@@ -140,3 +139,4 @@ void	ClapTrap::setAttackDamage(unsigned int attackDamage) {
 //	std::cerr << "\033[2;3msetAttackDamage member function called\033[m" << std::endl;
 	this->attackDamage_ = attackDamage;
 }
+*/

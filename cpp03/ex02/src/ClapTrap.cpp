@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 15:12:29 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/03 20:06:47 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 ClapTrap::ClapTrap(std::string name) {
 	this->name_ = name;
-	this->hitPoint_ = 10;
-	this->energyPoint_ = 10;
-	this->attackDamage_ = 0;
 	std::cout << "\033[36;2;3mCreating a ClapTrap (" \
 		<< this << ": " << this->name_ << ")\033[m" << std::endl;
 }
@@ -48,12 +45,12 @@ ClapTrap::~ClapTrap(void) {
 		<< this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
-void	ClapTrap::attack(const std::string& target) {
+void	ClapTrap::attack_common(const std::string& target) {
+	std::cout << this->name_;
 	if (this->hitPoint_ == 0)
 	{
-		std::cout << "\033[32mClapTrap " << this->name_ \
-			<< " cannot attack," \
-			<< " because no hit points left\033[m" << std::endl;
+		std::cout << " cannot attack," \
+		<< " because no hit points left\033[m" << std::endl;
 		return ;
 	}
 	else if (this->energyPoint_ == 0)
@@ -64,9 +61,13 @@ void	ClapTrap::attack(const std::string& target) {
 		return ;
 	}
 	this->energyPoint_ -= 1;
-	std::cout << "\033[32mClapTrap " << this->name_ \
-		<< " attacks " << target << ", causing " << this->attackDamage_ \
-		<< " points of damage!\033[m" << std::endl;
+	std::cout << " attacks " << target << ", causing " \
+		<< this->attackDamage_ << " points of damage!\033[m" << std::endl;
+}
+
+void	ClapTrap::attack(const std::string& target) {
+	std::cout << "\033[32mClapTrap ";
+	this->attack_common(target);
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
@@ -74,7 +75,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 		this->hitPoint_ = 0;
 	else
 		this->hitPoint_ -= amount;
-	std::cout << "\033[32mClapTrap " << this->name_ \
+	std::cout << "\033[32m" << this->name_ \
 		<< " take damage and loses " << amount \
 		<< " hit points!\033[m" << std::endl;
 }
@@ -82,7 +83,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 void	ClapTrap::beRepaired(unsigned int amount) {
 	if (this->hitPoint_ == 0)
 	{
-		std::cout << "\033[32mClapTrap " << this->name_ \
+		std::cout << "\033[32m" << this->name_ \
 			<< " cannot be repaired," \
 			<< " because no hit points left\033[m" << std::endl;
 		return ;
@@ -121,6 +122,7 @@ unsigned int	ClapTrap::getAttackDamage(void) const {
 	return (this->attackDamage_);
 }
 
+/*
 void	ClapTrap::setName(const std::string& name) {
 //	std::cerr << "\033[2;3msetHitPoint member function called\033[m" << std::endl;
 	this->name_ = name;
@@ -140,3 +142,4 @@ void	ClapTrap::setAttackDamage(unsigned int attackDamage) {
 //	std::cerr << "\033[2;3msetAttackDamage member function called\033[m" << std::endl;
 	this->attackDamage_ = attackDamage;
 }
+*/
