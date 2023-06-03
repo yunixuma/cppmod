@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 14:28:25 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/03 20:16:58 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	main()
 		ft2.beRepaired(30);
 		showStatus(ft2);
 		ft2.attack("Jack");
-		ft2.highFivesGuys();
 		showStatus(ft2);
+		ft2.highFivesGuys();
 	}	
 	{
 		FragTrap	*ft3 = new FragTrap;
@@ -70,6 +70,7 @@ int	main()
 		ft3->beRepaired();
 		showStatus(*ft3);
 		ft3->attack();
+		showStatus(*ft3);
 		ft3->highFivesGuys();
 		delete ft3;
 	}
