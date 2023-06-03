@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 14:28:33 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/03 14:14:29 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,48 +21,55 @@ void	showStatus(const ClapTrap& ct) {
 
 int	main()
 {
-	ClapTrap	ct1("Roland");
-	showStatus(ct1);
-	ct1.attack("Destroyer");
-	showStatus(ct1);
-	ct1.beRepaired(1);
-	showStatus(ct1);
-	ct1.attack("Destroyer");
-	showStatus(ct1);
-	ct1.attack("Destroyer");
-	showStatus(ct1);
-	ct1.beRepaired(2);
-	showStatus(ct1);
-	ct1.attack("Destroyer");
-	showStatus(ct1);
-	ct1.beRepaired(1);
-	showStatus(ct1);
-	ct1.beRepaired(3);
-	showStatus(ct1);
-	ct1.attack("Destroyer");
-	showStatus(ct1);
-	ct1.beRepaired(1);
-	showStatus(ct1);
-	ct1.beRepaired(3);
-	showStatus(ct1);
-	ct1.attack("Destroyer");
-	showStatus(ct1);
-
-	ClapTrap	*ct2 = new ClapTrap;
-	showStatus(*ct2);
-	ct2->attack();
-	showStatus(*ct2);
-	ct2->takeDamage();
-	showStatus(*ct2);
-	ct2->takeDamage(3);
-	showStatus(*ct2);
-	ct2->takeDamage(5);
-	showStatus(*ct2);
-	ct2->takeDamage(4);
-	showStatus(*ct2);
-	ct2->beRepaired();
-	showStatus(*ct2);
-	ct2->attack();
-	delete ct2;
+	{
+		std::cout << "\033[35;43mTest for copy constuctor and copy assignment operator (w/ param)\033[m" << std::endl;
+		ClapTrap	ct0 = ClapTrap("Roland");
+		ClapTrap	ct1(ct0);
+		ClapTrap	ct2;
+		ct2 = ct1;
+		showStatus(ct2);
+		ct2.attack("Destroyer");
+		showStatus(ct2);
+		ct2.beRepaired(1);
+		showStatus(ct2);
+		ct2.attack("Destroyer");
+		showStatus(ct2);
+		ct2.attack("Destroyer");
+		showStatus(ct2);
+		ct2.beRepaired(2);
+		showStatus(ct2);
+		ct2.attack("Destroyer");
+		showStatus(ct2);
+		ct2.beRepaired(1);
+		showStatus(ct2);
+		ct2.beRepaired(3);
+		showStatus(ct2);
+		ct2.attack("Destroyer");
+		showStatus(ct2);
+		ct2.beRepaired(1);
+		showStatus(ct2);
+		ct2.beRepaired(3);
+		showStatus(ct2);
+		ct2.attack("Destroyer");
+		showStatus(ct2);
+	}
+	{
+		std::cout << "\033[35;43mTest for new/delete default constructor (w/o param)\033[m" << std::endl;
+		ClapTrap	*ct3 = new ClapTrap;
+		ct3->attack();
+		showStatus(*ct3);
+		ct3->takeDamage();
+		showStatus(*ct3);
+		ct3->takeDamage(3);
+		showStatus(*ct3);
+		ct3->takeDamage(5);
+		showStatus(*ct3);
+		ct3->takeDamage(4);
+		showStatus(*ct3);
+		ct3->beRepaired();
+		showStatus(*ct3);
+		ct3->attack();
+		delete ct3;
+	}
 	return 0;
 }

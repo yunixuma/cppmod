@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 15:05:59 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/03 14:28:25 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,50 +21,57 @@ void	showStatus(const FragTrap& ft) {
 
 int	main()
 {
-	FragTrap	ft1("Lilith");
-	showStatus(ft1);
-	ft1.attack("Jack");
-	showStatus(ft1);
-	ft1.beRepaired(10);
-	showStatus(ft1);
-	ft1.attack("Jack");
-	showStatus(ft1);
-	ft1.attack("Jack");
-	showStatus(ft1);
-	ft1.beRepaired(20);
-	showStatus(ft1);
-	ft1.attack("Jack");
-	showStatus(ft1);
-	ft1.beRepaired(10);
-	showStatus(ft1);
-	ft1.beRepaired(30);
-	showStatus(ft1);
-	ft1.attack("Jack");
-	showStatus(ft1);
-	ft1.beRepaired(10);
-	showStatus(ft1);
-	ft1.beRepaired(30);
-	showStatus(ft1);
-	ft1.attack("Jack");
-	ft1.highFivesGuys();
-	showStatus(ft1);
-
-	FragTrap	*ft2 = new FragTrap;
-	showStatus(*ft2);
-	ft2->attack();
-	showStatus(*ft2);
-	ft2->takeDamage();
-	showStatus(*ft2);
-	ft2->takeDamage(30);
-	showStatus(*ft2);
-	ft2->takeDamage(50);
-	showStatus(*ft2);
-	ft2->takeDamage(40);
-	showStatus(*ft2);
-	ft2->beRepaired();
-	showStatus(*ft2);
-	ft2->attack();
-	ft2->highFivesGuys();
-	delete ft2;
+	{
+		std::cout << "\033[35;43mTest for copy constuctor and copy assignment operator (w/ param)\033[m" << std::endl;
+		FragTrap	ft0 = FragTrap("Lilith");
+		FragTrap	ft1(ft0);
+		FragTrap	ft2;
+		ft2 = ft1;
+		showStatus(ft2);
+		ft2.attack("Jack");
+		showStatus(ft2);
+		ft2.beRepaired(10);
+		showStatus(ft2);
+		ft2.attack("Jack");
+		showStatus(ft2);
+		ft2.attack("Jack");
+		showStatus(ft2);
+		ft2.beRepaired(20);
+		showStatus(ft2);
+		ft2.attack("Jack");
+		showStatus(ft2);
+		ft2.beRepaired(10);
+		showStatus(ft2);
+		ft2.beRepaired(30);
+		showStatus(ft2);
+		ft2.attack("Jack");
+		showStatus(ft2);
+		ft2.beRepaired(10);
+		showStatus(ft2);
+		ft2.beRepaired(30);
+		showStatus(ft2);
+		ft2.attack("Jack");
+		ft2.highFivesGuys();
+		showStatus(ft2);
+	}	
+	{
+		FragTrap	*ft3 = new FragTrap;
+		showStatus(*ft3);
+		ft3->attack();
+		showStatus(*ft3);
+		ft3->takeDamage();
+		showStatus(*ft3);
+		ft3->takeDamage(30);
+		showStatus(*ft3);
+		ft3->takeDamage(50);
+		showStatus(*ft3);
+		ft3->takeDamage(40);
+		showStatus(*ft3);
+		ft3->beRepaired();
+		showStatus(*ft3);
+		ft3->attack();
+		ft3->highFivesGuys();
+		delete ft3;
+	}
 	return 0;
 }

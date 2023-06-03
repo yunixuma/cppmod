@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/02 16:02:13 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/03 14:29:11 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ FragTrap::FragTrap(std::string name) {
 		<< this << ": " << name << ")\033[m" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src) {
+FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src) {
 	std::cerr << "\033[36;2m" << "Copy constructor called\033[m" << std::endl;
 	ClapTrap::setName(src.getName());
 	ClapTrap::setHitPoint(src.getHitPoint());
@@ -29,7 +29,7 @@ ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src) {
 	ClapTrap::setAttackDamage(src.getAttackDamage());
 }
 
-ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs) {
+FragTrap&	FragTrap::operator=(const FragTrap& rhs) {
 	std::cerr << "\033[36;2m" << "Copy assignment operator called\033[m" << std::endl;
 	if (this != &rhs)
 	{
