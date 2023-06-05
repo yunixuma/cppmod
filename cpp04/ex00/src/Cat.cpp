@@ -37,7 +37,7 @@ Cat::~Cat(void) {
 		<< this << ": " << this->type << ")\033[m" << std::endl;
 }
 
-void	Cat::makeSound(void) {
+void	Cat::makeSound(void) const {
 	std::cout << "\033[32m" << this->type \
-		<< " crys\033[m" << std::endl;
+		<< " crys \"Meooow!\"\033[m" << std::endl;
 }

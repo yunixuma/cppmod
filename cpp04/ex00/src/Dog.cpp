@@ -37,7 +37,7 @@ Dog::~Dog(void) {
 		<< this << ": " << this->type << ")\033[m" << std::endl;
 }
 
-void	Dog::makeSound(void) {
+void	Dog::makeSound(void) const {
 	std::cout << "\033[32m" << this->type \
-		<< " barks\033[m" << std::endl;
+		<< " barks \"Bowwow!\"\033[m" << std::endl;
 }

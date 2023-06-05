@@ -49,5 +49,5 @@ void	Animal::makeSound(void) {
 
 void	Animal::makeSound(void) const {
 	std::cout << "\033[32m" << this->type \
-		<< " growls\033[m" << std::endl;
+		<< " growls \"Grrr...\"\033[m" << std::endl;
 }
