@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-# include "Animal.hpp"
+# include "WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
 public:
-	Cat(void);
-	Cat(const Cat& src);
-	Cat&	operator=(const Cat& rhs);
-	~Cat(void);
+	WrongCat(void);
+	WrongCat(const WrongCat& src);
+	WrongCat&	operator=(const WrongCat& rhs);
+	~WrongCat(void);
 	void	makeSound(void) const;
 };
 

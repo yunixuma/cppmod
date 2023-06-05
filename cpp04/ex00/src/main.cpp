@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/05 21:17:50 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/05 21:50:32 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,42 @@ void	showStatus(const FragTrap& ft) {
 */
 int	main()
 {
-	// Animal* meta = new Animal();
-	// Animal* j = new Dog();
-	// Animal* i = new Cat();
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-	delete meta;
-	delete j;
-	delete i;
+	{
+		const Animal* meta = new Animal();
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
+		// Animal* meta = new Animal();
+		// Animal* j = new Dog();
+		// Animal* i = new Cat();
+
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output the cat sound!
+		j->makeSound();
+		meta->makeSound();
+		delete meta;
+		delete j;
+		delete i;
+	}
+
+	std::cout << "\033[35;43mReplace the Cat by WrongCat class\033[m" << std::endl;
+	{
+		const WrongAnimal* meta = new WrongAnimal();
+		const Animal* j = new Dog();
+		const WrongAnimal* i = new WrongCat();
+		// Animal* meta = new Animal();
+		// Animal* j = new Dog();
+		// Animal* i = new Cat();
+
+		std::cout << j->getType() << " " << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output the cat sound!
+		j->makeSound();
+		meta->makeSound();
+		delete meta;
+		delete j;
+		delete i;
+	}
 	return 0;
 }
 /*	{

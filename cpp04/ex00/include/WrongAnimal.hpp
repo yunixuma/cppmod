@@ -10,24 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 # include <iostream>
 # include <cctype>
 # include <string>
 
-class Animal
+class WrongAnimal
 {
 protected:
 	std::string	type;
 public:
-	Animal(void);
-	Animal(const Animal& src);
-	Animal&	operator=(const Animal& rhs);
-	~Animal(void);
+	WrongAnimal(void);
+	WrongAnimal(const WrongAnimal& src);
+	WrongAnimal&	operator=(const WrongAnimal& rhs);
+	virtual ~WrongAnimal(void);
 	const std::string&	getType(void) const;
-	void				makeSound(void) const;
+	// virtual void		makeSound(void);
+	virtual void		makeSound(void) const;
 };
 
 #endif
