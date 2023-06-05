@@ -22,7 +22,7 @@ public:
 	Dog(const Dog& src);
 	Dog&	operator=(const Dog& rhs);
 	~Dog(void);
-	void	makeSound(void) const;
+	void	makeSound(void);
 };
 
 #endif

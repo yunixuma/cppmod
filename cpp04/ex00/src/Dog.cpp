@@ -32,9 +32,12 @@ Dog&	Dog::operator=(const Dog& rhs) {
 	return (*this);
 }
 
-/*
 Dog::~Dog(void) {
 	std::cout << "\033[31;2;3mDestroying the Dog (" \
 		<< this << ": " << this->type << ")\033[m" << std::endl;
 }
-*/
+
+void	Dog::makeSound(void) {
+	std::cout << "\033[32m" << this->type \
+		<< " barks\033[m" << std::endl;
+}

@@ -40,12 +40,14 @@ const std::string&	Animal::getType(void) const {
 	return (this->type);
 }
 
+/*
+void	Animal::makeSound(void) {
+	std::cout << "\033[32m" << this->type \
+		<< " growls\033[m" << std::endl;
+}
+*/
+
 void	Animal::makeSound(void) const {
-	std::cout << "\033[32m" << this->type << ": ";
-	if (this->type == "Dog")
-		std::cout << "barks\033[m" << std::endl;
-	else if (this->type == "Cat")
-		std::cout << "crys\033[m" << std::endl;
-	else
-		std::cout << "growls\033[m" << std::endl;	
+	std::cout << "\033[32m" << this->type \
+		<< " growls\033[m" << std::endl;
 }

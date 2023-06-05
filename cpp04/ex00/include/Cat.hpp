@@ -22,7 +22,7 @@ public:
 	Cat(const Cat& src);
 	Cat&	operator=(const Cat& rhs);
 	~Cat(void);
-	void	makeSound(void) const;
+	void	makeSound(void);
 };
 
 #endif
