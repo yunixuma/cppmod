@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 11:04:49 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/06 12:07:07 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Brain.hpp"
 
-Dog::Dog(void) {
-	this->type = "Dog";
-	std::cout << "\033[36;2;3mCreating a Dog (" \
-		<< this << ": " << this->type << ")\033[m" << std::endl;
+Brain::Brain(void) {
+
+	std::cout << "\033[36;2;3mCreating a Brain (" \
+		<< ")\033[m" << std::endl;
 }
 
-Dog::Dog(const Dog& src) : Animal(src) {
-	std::cout << "\033[36;2mCopy constructor of Dog called (" \
+Brain::Brain(const Brain& src) {
+	std::cout << "\033[36;2mCopy constructor of Brain called (" \
 		<< &src << " -> " << this << ")\033[m" << std::endl;
-	this->type = src.type;
+	for (size_t i = 0; i < 100; i++)
+		this->ideas[i] = src.ideas[i];
 }
 
-Dog&	Dog::operator=(const Dog& rhs) {
-	std::cout << "\033[36;2mCopy assignment operator of Dog called (" \
+Brain&	Brain::operator=(const Brain& rhs) {
+	std::cout << "\033[36;2mCopy assignment operator of Brain called (" \
 		<< &rhs << " -> " << this << ")\033[m" << std::endl;
 	if (this != &rhs)
-		this->type = rhs.type;
+	{
+		for (size_t i = 0; i < 100; i++)
+			this->ideas[i] = rhs.ideas[i];
+	}
 	return (*this);
 }
 
-Dog::~Dog(void) {
-	std::cout << "\033[31;2;3mDestroying the Dog (" \
-		<< this << ": " << this->type << ")\033[m" << std::endl;
-}
-
-void	Dog::makeSound(void) const {
-	std::cout << "\033[32m" << this->type \
-		<< " barks \"Bowwow!\"\033[m" << std::endl;
+Brain::~Brain(void) {
+	std::cout << "\033[31;2;3mDestroying the Brain (" \
+		<< this << ")\033[m" << std::endl;
 }

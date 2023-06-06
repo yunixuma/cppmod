@@ -1,43 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 11:04:49 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/05 21:51:25 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongAnimal.hpp"
 
-Dog::Dog(void) {
-	this->type = "Dog";
-	std::cout << "\033[36;2;3mCreating a Dog (" \
+WrongAnimal::WrongAnimal(void) : type("UMA"){
+	std::cout << "\033[36;2;3mCreating a WrongAnimal (" \
 		<< this << ": " << this->type << ")\033[m" << std::endl;
 }
 
-Dog::Dog(const Dog& src) : Animal(src) {
-	std::cout << "\033[36;2mCopy constructor of Dog called (" \
+WrongAnimal::WrongAnimal(const WrongAnimal& src) {
+	std::cout << "\033[36;2mCopy constructor of WrongAnimal called (" \
 		<< &src << " -> " << this << ")\033[m" << std::endl;
 	this->type = src.type;
 }
 
-Dog&	Dog::operator=(const Dog& rhs) {
-	std::cout << "\033[36;2mCopy assignment operator of Dog called (" \
+WrongAnimal&	WrongAnimal::operator=(const WrongAnimal& rhs) {
+	std::cout << "\033[36;2mCopy assignment operator of WrongAnimal called (" \
 		<< &rhs << " -> " << this << ")\033[m" << std::endl;
 	if (this != &rhs)
 		this->type = rhs.type;
 	return (*this);
 }
 
-Dog::~Dog(void) {
-	std::cout << "\033[31;2;3mDestroying the Dog (" \
+WrongAnimal::~WrongAnimal(void) {
+	std::cout << "\033[31;2;3mDestroying the WrongAnimal (" \
 		<< this << ": " << this->type << ")\033[m" << std::endl;
 }
 
-void	Dog::makeSound(void) const {
+const std::string&	WrongAnimal::getType(void) const {
+	return (this->type);
+}
+
+/*
+void	WrongAnimal::makeSound(void) {
 	std::cout << "\033[32m" << this->type \
-		<< " barks \"Bowwow!\"\033[m" << std::endl;
+		<< " growls\033[m" << std::endl;
+}
+*/
+
+void	WrongAnimal::makeSound(void) const {
+	std::cout << "\033[32m" << this->type \
+		<< " growls \" =~|`{+*}<>?_ \"\033[m" << std::endl;
 }

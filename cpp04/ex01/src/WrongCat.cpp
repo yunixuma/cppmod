@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 11:04:49 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/05 21:51:30 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
-Dog::Dog(void) {
-	this->type = "Dog";
-	std::cout << "\033[36;2;3mCreating a Dog (" \
+WrongCat::WrongCat(void) {
+	this->type = "WrongCat";
+	std::cout << "\033[36;2;3mCreating a WrongCat (" \
 		<< this << ": " << this->type << ")\033[m" << std::endl;
 }
 
-Dog::Dog(const Dog& src) : Animal(src) {
-	std::cout << "\033[36;2mCopy constructor of Dog called (" \
+WrongCat::WrongCat(const WrongCat& src) : WrongAnimal(src) {
+	std::cout << "\033[36;2mCopy constructor of WrongCat called (" \
 		<< &src << " -> " << this << ")\033[m" << std::endl;
 	this->type = src.type;
 }
 
-Dog&	Dog::operator=(const Dog& rhs) {
-	std::cout << "\033[36;2mCopy assignment operator of Dog called (" \
+WrongCat&	WrongCat::operator=(const WrongCat& rhs) {
+	std::cout << "\033[36;2mCopy assignment operator of WrongCat called (" \
 		<< &rhs << " -> " << this << ")\033[m" << std::endl;
 	if (this != &rhs)
 		this->type = rhs.type;
 	return (*this);
 }
 
-Dog::~Dog(void) {
-	std::cout << "\033[31;2;3mDestroying the Dog (" \
+WrongCat::~WrongCat(void) {
+	std::cout << "\033[31;2;3mDestroying the WrongCat (" \
 		<< this << ": " << this->type << ")\033[m" << std::endl;
 }
 
-void	Dog::makeSound(void) const {
+void	WrongCat::makeSound(void) const {
 	std::cout << "\033[32m" << this->type \
-		<< " barks \"Bowwow!\"\033[m" << std::endl;
+		<< " crys \" !#\"$%&\'() \"\033[m" << std::endl;
 }
