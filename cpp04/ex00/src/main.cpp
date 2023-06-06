@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/05 21:50:32 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/06 12:17:15 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,6 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-/*
-void	showStatus(const FragTrap& ft) {
-	std::cerr << "\033[33;2m" << &ft << ": " << ft.getName() << " (" \
-		<< ft.getHitPoint() << ", " << ft.getEnergyPoint() << ", " \
-		<< ft.getAttackDamage() << ")\033[m" << std::endl;
-}
-*/
 int	main()
 {
 	{

@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 12:01:31 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/06 16:18:34 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ public:
 	Cat(const Cat& src);
 	Cat&	operator=(const Cat& rhs);
 	~Cat(void);
-	void	makeSound(void) const;
+	void				makeSound(void) const;
+	const Brain			*getBrain(void) const;
+	const std::string&	getIdea(size_t idx) const;
 };
 
 #endif

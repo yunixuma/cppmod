@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 12:04:12 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/06 16:22:56 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Cat::Cat(const Cat& src) : Animal(src) {
 	std::cout << "\033[36;2mCopy constructor of Cat called (" \
 		<< &src << " -> " << this << ")\033[m" << std::endl;
 	this->type = src.type;
-	this->brain_ = src.brain_;
+	this->brain_ = new Brain(*(src.getBrain()));
 }
 
 Cat&	Cat::operator=(const Cat& rhs) {
@@ -46,4 +46,14 @@ Cat::~Cat(void) {
 void	Cat::makeSound(void) const {
 	std::cout << "\033[32m" << this->type \
 		<< " crys \"Meooow!\"\033[m" << std::endl;
+}
+
+const Brain	*Cat::getBrain(void) const {
+	return (this->brain_);
+}
+
+const std::string&	Cat::getIdea(size_t idx) const {
+	// if (!this->brain_[idx])
+	// 	return ("(null)");
+	return (this->brain_->getIdea(idx));
 }
