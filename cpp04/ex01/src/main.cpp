@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 16:24:11 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/06 16:47:18 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	showCat(const Cat& animal) {
 
 int	main()
 {
+	std::cout << "\033[35;43mTest for Confirmation of the previous exercise\033[m" << std::endl;
 	{
 		const Animal* meta = new Animal();
 		const Animal* j = new Dog();
@@ -53,6 +54,21 @@ int	main()
 		delete meta;
 		delete j;
 		delete i;
+	}
+	std::cout << "\033[35;43mTest for deletion array of animals\033[m" << std::endl;
+	{
+		Animal*	animals;
+		animals = new Animal[10];
+		for (size_t i = 0; i < 5; i++)
+		{
+			animals[i] = Dog();
+			animals[i + 5] = Cat();
+		}
+
+		for (size_t i = 0; i < 10; i++)
+			showBrain(animals[i]);
+
+		delete[] animals;
 	}
 
 	return 0;
