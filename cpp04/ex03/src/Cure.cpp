@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 02:29:06 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/08 02:38:49 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,11 @@ AMateria*	clone(void) const {
 	std::cerr << "\033[31;2;3m[" << this \
 		<< "]<Cure> clone() called (" << this->type_ << ")\033[m" << std::endl;
 	AMateria*	ret = new Cure;
+	return (ret);
 }
 
 void		use(ICharacter& target) {
 	std::cerr << "\033[31;2;3m[" << this \
-		<< "]<Cure> use() called (" << target->type_ << ")\033[m" << std::endl;
-	std::cout << "* shoots an ice bolt at " << target->name_ << " *" << std::endl;
+		<< "]<Cure> use() called (" << this->type_ << ")\033[m" << std::endl;
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

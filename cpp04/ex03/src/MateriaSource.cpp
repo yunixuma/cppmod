@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IIMateriaSource.cpp                                     :+:      :+:    :+:   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 16:57:24 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/08 03:57:21 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IMateriaSource.hpp"
+#include "MateriaSource.hpp"
 
-IMateriaSource::IMateriaSource(const std::string& name) : name_(name) {
+MateriaSource::MateriaSource(const std::string& name) : name_(name) {
 	std::cerr << "\033[36;2;3m[" << this \
-		<< "]<IMateriaSource> Constructor called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<MateriaSource> Constructor called (" << this->name_ << ")\033[m" << std::endl;
 }
 
-IMateriaSource::IMateriaSource(const IMateriaSource& src) {
+MateriaSource::MateriaSource(const MateriaSource& src) {
 	std::cerr << "\033[36;2;3m[" << this << "<-" << &src \
-		<< "]<IMateriaSource> Copy constructor called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<MateriaSource> Copy constructor called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (src.slot_[i])
@@ -27,9 +27,9 @@ IMateriaSource::IMateriaSource(const IMateriaSource& src) {
 	}
 }
 
-IMateriaSource&	IMateriaSource::operator=(const IMateriaSource& rhs) {
+MateriaSource&	MateriaSource::operator=(const MateriaSource& rhs) {
 	std::cerr << "\033[35;2;3m[" << this << "<-" << &rhs \
-		<< "]<IMateriaSource> Copy assignment operator called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<MateriaSource> Copy assignment operator called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (rhs.slot_[i])
@@ -38,9 +38,9 @@ IMateriaSource&	IMateriaSource::operator=(const IMateriaSource& rhs) {
 	return (*this);
 }
 
-IMateriaSource::~IMateriaSource(void) {
+MateriaSource::~MateriaSource(void) {
 	std::cerr << "\033[31;2;3m[" << this \
-		<< "]<IMateriaSource> Destructor called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<MateriaSource> Destructor called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->slot_[i])

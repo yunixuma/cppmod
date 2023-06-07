@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Character.hpp                                      :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 03:24:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/08 03:58:20 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHARACTER_HPP
-# define CHARACTER_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
-# include "ICharacter.hpp"
+// # include <string>
+// # include <iostream>
+# include "AMateriaSource.hpp"
 
-class Character : public ICharacter
+class MateriaSource : IMateriaSource
 {
-private:
-	std::string	name_;
-	AMateria	*slot_[4];
 public:
-	Character(const std::string& name = "Cait Sith");
-	Character&	operator=(const Character& rhs);
-	~Character(void);
-	std::string const&	getName() const;
-	void				equip(AMateria* m);
-	void				unequip(int idx);
-	void				use(int idx, ICharacter& target);
+	virtual ~IMateriaSource() {}
+	virtual void		learnMateria(AMateria*) = 0;
+	virtual AMateria*	createMateria(std::string const & type) = 0;
 };
 
 #endif
