@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 22:33:15 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/08 00:19:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ int	main()
 	std::cout << std::endl << "\033[35;43mTest for confirmation of the previous exercise\033[m" << std::endl;
 	{
 		// const Animal* meta = new Animal();
-		// const Animal* j = new Dog();
-		// const Animal* i = new Cat();
-		const Dog* j = new Dog();
-		const Cat* i = new Cat();
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
+
+		// meta->makeSound();
+		j->makeSound();
+		i->makeSound();
 
 		// showBrain(*meta);
 		showBrain(*j);
@@ -42,47 +44,24 @@ int	main()
 		delete i;
 	}
 
-	std::cout << std::endl << "\033[35;43mTest for deletion array of animals\033[m" << std::endl;
-	{
-		Animal*	animals;
-		animals = new Animal[10];
-
-		for (size_t i = 0; i < 5; i++)
-		{
-			animals[i] = Dog();
-			animals[i + 5] = Cat();
-		}
-
-		for (size_t i = 0; i < 10; i++)
-			showBrain(animals[i]);
-
-		delete[] animals;
-	}
-
 	std::cout << std::endl << "\033[35;43mTest for looping over an array of animals\033[m" << std::endl;
 	{
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
-
 		const Animal	*animals[10];
 
 		for (size_t k = 0; k < 5; k++)
 		{
-			animals[k] = new Animal(*j);
-			animals[k + 5] = new Animal(*i);
+			animals[k] = new Dog();
+			animals[k + 5] = new Cat();
 		}
-
-		for (size_t i = 0; i < 10; i++)
-			showBrain(*animals[i]);
 
 		for (size_t i = 0; i < 10; i++)
 		{
-			// std::cerr << "\033[2;3m" << i << "\033[m" << std::endl;
-			delete animals[i];
+			animals[i]->makeSound();
+			showBrain(*animals[i]);
 		}
 
-		delete j;//should not create a leak
-		delete i;
+		for (size_t i = 0; i < 10; i++)
+			delete animals[i];
 	}
 
 	std::cout << std::endl << "\033[35;43mTest for copy constuctor and copy assignment operator\033[m" << std::endl;
