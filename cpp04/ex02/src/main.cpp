@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 16:41:59 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 22:16:18 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,20 @@ int	main()
 {
 	std::cout << "\033[35;43mTest for basic behaviors\033[m" << std::endl;
 	{
+// Impossible to use the Animal class due to abstract class
 		// const AAnimal* meta = new AAnimal();
 		// const AAnimal* j = new Dog();
 		// const AAnimal* i = new Cat();
-		// const Dog* j = new Dog();
-		// const Cat* i = new Cat();
-		// const AAnimal meta;
-		const Dog j;
-		const Cat i;
+		const Dog* j = new Dog();
+		const Cat* i = new Cat();
 
 		// showBrain(meta);
-		showBrain(j);
-		showBrain(i);
+		showBrain(*j);
+		showBrain(*i);
 
 		// delete meta;
-		// delete j;
-		// delete i;
+		delete j;
+		delete i;
 	}
 	std::cout << "\033[35;43mTest for deletion array of animals\033[m" << std::endl;
 	{

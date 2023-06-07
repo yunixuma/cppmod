@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ICharacter.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 16:57:24 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 22:02:25 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Character.hpp"
+#include "ICharacter.hpp
 
-Character::Character(void) {
+ICharacter::ICharacter(void) {
 	std::cout << "\033[36;2;3m[" << this \
-		<< "]<Character> Constructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
+		<< "]<ICharacter> Constructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	for (size_t i = 0; i < 100; i++)
 	{
 		this->ideas_[i] = new std::string("(undefined)");
@@ -22,18 +22,18 @@ Character::Character(void) {
 	// std::cerr << this << " alloc [" << 0 << "]{" << this->ideas_[0] << "}" << std::endl;
 }
 
-Character::Character(const Character& src) {
+ICharacter::ICharacter(const ICharacter& src) {
 	std::cout << "\033[36;2;3m[" << this << "<-" << &src \
-		<< "]<Character> Copy constructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
+		<< "]<ICharacter> Copy constructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	// this->ideas_ = new std::string[100];
 	for (size_t i = 0; i < 100; i++)
 		this->ideas_[i] = new std::string(*src.ideas_[i]);
 	// std::cerr << this << " alloc [" << 0 << "]{" << this->ideas_[0] << "}" << std::endl;
 }
 
-Character&	Character::operator=(const Character& rhs) {
+ICharacter&	ICharacter::operator=(const ICharacter& rhs) {
 	std::cout << "\033[35;2;3m[" << this << "<-" << &rhs \
-		<< "]<Character> Copy assignment operator called (" << this->ideas_[0] << ")\033[m" << std::endl;
+		<< "]<ICharacter> Copy assignment operator called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	if (this != &rhs)
 	{
 		for (size_t i = 0; i < 100; i++)
@@ -47,9 +47,9 @@ Character&	Character::operator=(const Character& rhs) {
 	return (*this);
 }
 
-Character::~Character(void) {
+ICharacter::~ICharacter(void) {
 	std::cout << "\033[31;2;3m[" << this \
-		<< "]<Character> Destructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
+		<< "]<ICharacter> Destructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	// std::cerr << this << " free [" << 0 << "]{" << this->ideas_[0] << "}" << std::endl;
 	for (size_t i = 0; i < 100; i++)
 	{
@@ -61,7 +61,7 @@ Character::~Character(void) {
 	}
 }
 
-const std::string*	Character::getIdea(size_t idx) const {
+const std::string*	ICharacter::getIdea(size_t idx) const {
 	// if (!this->brain_[idx])
 	// 	return ("(null)");
 	return (this->ideas_[idx]);

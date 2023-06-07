@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 13:53:23 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 22:33:15 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	showBrain(const Animal& animal) {
 
 int	main()
 {
-	std::cout << "\033[35;43mTest for confirmation of the previous exercise\033[m" << std::endl;
+	std::cout << std::endl << "\033[35;43mTest for confirmation of the previous exercise\033[m" << std::endl;
 	{
 		// const Animal* meta = new Animal();
 		// const Animal* j = new Dog();
@@ -42,7 +42,7 @@ int	main()
 		delete i;
 	}
 
-	std::cout << "\033[35;43mTest for deletion array of animals\033[m" << std::endl;
+	std::cout << std::endl << "\033[35;43mTest for deletion array of animals\033[m" << std::endl;
 	{
 		Animal*	animals;
 		animals = new Animal[10];
@@ -59,7 +59,7 @@ int	main()
 		delete[] animals;
 	}
 
-	std::cout << "\033[35;43mTest for looping over an array of animals\033[m" << std::endl;
+	std::cout << std::endl << "\033[35;43mTest for looping over an array of animals\033[m" << std::endl;
 	{
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
@@ -85,8 +85,9 @@ int	main()
 		delete i;
 	}
 
-	std::cout << "\033[35;43mTest for copy constuctor and copy assignment operator\033[m" << std::endl;
+	std::cout << std::endl << "\033[35;43mTest for copy constuctor and copy assignment operator\033[m" << std::endl;
 	{
+		std::cout << "\033[33mInstantiate Animal from Animal class\033[m" << std::endl;
 		const Animal *meta0 = new Animal();
 		const Animal meta1(*meta0);
 		Animal *meta2 = new Animal();
@@ -99,6 +100,7 @@ int	main()
 		delete meta0;
 		delete meta2;
 
+		std::cout << std::endl << "\033[33mInstantiate Animal from Dog class\033[m" << std::endl;
 		const Animal* j0 = new Dog();
 		const Animal j1(*j0);
 		Animal* j2 = new Dog(); 
@@ -111,6 +113,7 @@ int	main()
 		delete j0;
 		delete j2;
 
+		std::cout << std::endl << "\033[33mInstantiate Dog from Dog class\033[m" << std::endl;
 		const Dog* j3 = new Dog();
 		const Dog j4(*j3);
 		Dog* j5 = new Dog(); 
