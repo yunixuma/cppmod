@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 12:17:15 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 10:36:27 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,58 +55,45 @@ int	main()
 		delete j;
 		delete i;
 	}
+
+	std::cout << "\033[35;43mTest for copy constuctor and copy assignment operator\033[m" << std::endl;
+	{
+		const Animal *meta0 = new Animal();
+		const Animal meta1(*meta0);
+		Animal *meta2 = new Animal();
+		*meta2 = meta1;
+
+		meta0->makeSound();
+		meta1.makeSound();
+		meta2->makeSound();
+
+		delete meta0;
+		delete meta2;
+
+		const Animal* j0 = new Dog();
+		const Animal j1(*j0);
+		Animal* j2 = new Dog(); 
+		*j2 = j1;
+
+		j0->makeSound();
+		j1.makeSound();
+		j2->makeSound();
+
+		delete j0;
+		delete j2;
+
+		const Dog* j3 = new Dog();
+		const Dog j4(*j3);
+		Dog* j5 = new Dog(); 
+		*j5 = j4;
+
+		j3->makeSound();
+		j4.makeSound();
+		j5->makeSound();
+
+		delete j3;
+		delete j5;
+	}
+
 	return 0;
 }
-/*	{
-		std::cout << "\033[35;43mTest for copy constuctor and copy assignment operator (w/ param)\033[m" << std::endl;
-		FragTrap	ft0 = FragTrap("Lilith");
-		FragTrap	ft1(ft0);
-		FragTrap	ft2;
-		ft2 = ft1;
-		showStatus(ft2);
-		ft2.attack("Jack");
-		showStatus(ft2);
-		ft2.beRepaired(10);
-		showStatus(ft2);
-		ft2.attack("Jack");
-		showStatus(ft2);
-		ft2.attack("Jack");
-		showStatus(ft2);
-		ft2.beRepaired(20);
-		showStatus(ft2);
-		ft2.attack("Jack");
-		showStatus(ft2);
-		ft2.beRepaired(10);
-		showStatus(ft2);
-		ft2.beRepaired(30);
-		showStatus(ft2);
-		ft2.attack("Jack");
-		showStatus(ft2);
-		ft2.beRepaired(10);
-		showStatus(ft2);
-		ft2.beRepaired(30);
-		showStatus(ft2);
-		ft2.attack("Jack");
-		showStatus(ft2);
-		ft2.highFivesGuys();
-	}	
-	{
-		FragTrap	*ft3 = new FragTrap;
-		showStatus(*ft3);
-		ft3->attack();
-		showStatus(*ft3);
-		ft3->takeDamage();
-		showStatus(*ft3);
-		ft3->takeDamage(30);
-		showStatus(*ft3);
-		ft3->takeDamage(50);
-		showStatus(*ft3);
-		ft3->takeDamage(40);
-		showStatus(*ft3);
-		ft3->beRepaired();
-		showStatus(*ft3);
-		ft3->attack();
-		showStatus(*ft3);
-		ft3->highFivesGuys();
-		delete ft3;
-	}*/

@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 15:30:54 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 04:22:06 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ protected:
 public:
 	Animal(void);
 	Animal(const Animal& src);
-	Animal&	operator=(const Animal& rhs);
+	virtual Animal&	operator=(const Animal& rhs);
 	virtual ~Animal(void);
 	const std::string&		getType(void) const;
 	// virtual void			makeSound(void);
 	virtual void			makeSound(void) const;
-	virtual const std::string&	getIdea(size_t idx) const;
+	virtual const std::string*	getIdea(size_t idx) const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 15:22:34 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 04:20:47 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 class Brain
 {
 private:
-	std::string	ideas_[100];
+	std::string	*ideas_[100];
 public:
 	Brain(void);
 	Brain(const Brain& src);
 	Brain&	operator=(const Brain& rhs);
 	~Brain(void);
-	const std::string&	getIdea(size_t idx) const;
+	const std::string*	getIdea(size_t idx) const;
 };
 
 #endif
