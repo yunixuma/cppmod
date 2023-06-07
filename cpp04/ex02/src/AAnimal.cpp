@@ -1,46 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 15:56:47 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 15:56:02 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "AAnimal.hpp"
 
-Cat::Cat(void) {
+AAnimal::AAnimal(void) : type("ABeaST"){
 	std::cout << "\033[36;2;3m[" << this \
-		<< "]<Cat> Constructor called (" << this->type << ")\033[m" << std::endl;
-	this->type = "Cat";
+		<< "]<AAnimal> Constructor called (" << this->type << ")\033[m" << std::endl;
 }
 
-Cat::Cat(const Cat& src) : Animal(src) {
+AAnimal::AAnimal(const AAnimal& src) : type(src.type) {
 	std::cout << "\033[36;2;3m[" << this << "<-" << &src \
-		<< "]<Cat> Copy constructor called (" << this->type << ")\033[m" << std::endl;
+		<< "]<AAnimal> Copy constructor called (" << this->type << ")\033[m" << std::endl;
 	// this->type = src.type;
 }
 
-Cat&	Cat::operator=(const Cat& rhs) {
+AAnimal&	AAnimal::operator=(const AAnimal& rhs) {
 	std::cout << "\033[35;2;3m[" << this << "<-" << &rhs \
-		<< "]<Cat> Copy assignment operator called (" << this->type << ")\033[m" << std::endl;
+		<< "]<AAnimal> Copy assignment operator called (" << this->type << ")\033[m" << std::endl;
 	if (this != &rhs)
-	{
-		Animal::operator=(rhs);
-		// this->type = rhs.type;
-	}
+		this->type = rhs.type;
 	return (*this);
 }
 
-Cat::~Cat(void) {
+AAnimal::~AAnimal(void) {
 	std::cout << "\033[31;2;3m[" << this \
-		<< "]<Cat> Destructor called (" << this->type << ")\033[m" << std::endl;
+		<< "]<AAnimal> Destructor called (" << this->type << ")\033[m" << std::endl;
 }
 
-void	Cat::makeSound(void) const {
-	std::cout << "\033[32m[" << this \
-		<< "]<Cat> " << this->type << " crys \"Meooow!\"\033[m" << std::endl;
+const std::string&	AAnimal::getType(void) const {
+	return (this->type);
 }
+
+void	AAnimal::makeSound(void) const {
+	std::cout << "\033[32m[" << this \
+		<< "]<AAnimal> " << this->type << " growls \"Ugrrr...\"\033[m" << std::endl;
+}
+
+// const std::string&	AAnimal::getIdea(size_t idx) const {
+// 	return (this->type);
+// 	static_cast<void>(idx);
+// }

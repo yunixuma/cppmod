@@ -6,16 +6,16 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 13:53:23 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 15:41:13 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-void	showBrain(const Animal& animal) {
+void	showBrain(const AAnimal& animal) {
 	std::cerr << "\033[33;2m" << &animal << ": " << animal.getType() \
 		<< "(" << sizeof(animal) << "bytes)" << std::endl;
 	for (size_t i = 0; i < 5; i++)
@@ -25,27 +25,30 @@ void	showBrain(const Animal& animal) {
 
 int	main()
 {
-	std::cout << "\033[35;43mTest for confirmation of the previous exercise\033[m" << std::endl;
+	std::cout << "\033[35;43mTest for basic behaviors\033[m" << std::endl;
 	{
-		// const Animal* meta = new Animal();
-		// const Animal* j = new Dog();
-		// const Animal* i = new Cat();
-		const Dog* j = new Dog();
-		const Cat* i = new Cat();
+		// const AAnimal* meta = new AAnimal();
+		// const AAnimal* j = new Dog();
+		// const AAnimal* i = new Cat();
+		// const Dog* j = new Dog();
+		// const Cat* i = new Cat();
+		// const AAnimal meta;
+		const Dog j;
+		const Cat i;
 
-		// showBrain(*meta);
-		showBrain(*j);
-		showBrain(*i);
+		// showBrain(meta);
+		showBrain(j);
+		showBrain(i);
 
 		// delete meta;
-		delete j;
-		delete i;
+		// delete j;
+		// delete i;
 	}
-
+/*
 	std::cout << "\033[35;43mTest for deletion array of animals\033[m" << std::endl;
 	{
-		Animal*	animals;
-		animals = new Animal[10];
+		AAnimal*	animals;
+		animals = new AAnimal[10];
 
 		for (size_t i = 0; i < 5; i++)
 		{
@@ -61,15 +64,15 @@ int	main()
 
 	std::cout << "\033[35;43mTest for looping over an array of animals\033[m" << std::endl;
 	{
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+		const AAnimal* j = new Dog();
+		const AAnimal* i = new Cat();
 
-		const Animal	*animals[10];
+		const AAnimal	*animals[10];
 
 		for (size_t k = 0; k < 5; k++)
 		{
-			animals[k] = new Animal(*j);
-			animals[k + 5] = new Animal(*i);
+			animals[k] = new AAnimal(*j);
+			animals[k + 5] = new AAnimal(*i);
 		}
 
 		for (size_t i = 0; i < 10; i++)
@@ -84,12 +87,12 @@ int	main()
 		delete j;//should not create a leak
 		delete i;
 	}
-
+*/
 	std::cout << "\033[35;43mTest for copy constuctor and copy assignment operator\033[m" << std::endl;
 	{
-		const Animal *meta0 = new Animal();
-		const Animal meta1(*meta0);
-		Animal *meta2 = new Animal();
+/*		const AAnimal *meta0 = new AAnimal();
+		const AAnimal meta1(*meta0);
+		AAnimal *meta2 = new AAnimal();
 		*meta2 = meta1;
 
 		meta0->makeSound();
@@ -97,11 +100,12 @@ int	main()
 		meta2->makeSound();
 
 		delete meta0;
+		
 		delete meta2;
 
-		const Animal* j0 = new Dog();
-		const Animal j1(*j0);
-		Animal* j2 = new Dog(); 
+		const AAnimal* j0 = new Dog();
+		const AAnimal j1(*j0);
+		AAnimal* j2 = new Dog(); 
 		*j2 = j1;
 
 		j0->makeSound();
@@ -110,7 +114,7 @@ int	main()
 
 		delete j0;
 		delete j2;
-
+*/
 		const Dog* j3 = new Dog();
 		const Dog j4(*j3);
 		Dog* j5 = new Dog(); 

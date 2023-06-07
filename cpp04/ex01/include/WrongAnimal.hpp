@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 11:03:48 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 13:31:06 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	virtual ~WrongAnimal(void);
 	const std::string&	getType(void) const;
 	// virtual void		makeSound(void);
-	void		makeSound(void) const;
+	void				makeSound(void) const;
 };
 
 #endif

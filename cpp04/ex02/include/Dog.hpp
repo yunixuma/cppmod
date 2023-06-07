@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 13:35:01 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 13:45:17 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 
-# include <iostream>
-# include <cctype>
-# include <string>
+# include "AAnimal.hpp"
+# include "Brain.hpp"
 
-class WrongAnimal
+class Dog : public AAnimal
 {
-protected:
-	std::string	type;
+private:
+	Brain*	brain_;
 public:
-	WrongAnimal(void);
-	WrongAnimal(const WrongAnimal& src);
-	WrongAnimal&	operator=(const WrongAnimal& rhs);
-	virtual ~WrongAnimal(void);
-	const std::string&	getType(void) const;
-	// virtual void		makeSound(void);
+	Dog(void);
+	Dog(const Dog& src);
+	Dog&	operator=(const Dog& rhs);
+	~Dog(void);
 	void				makeSound(void) const;
+	const Brain*		getBrain(void) const;
+	const std::string*	getIdea(size_t idx) const;
 };
 
 #endif

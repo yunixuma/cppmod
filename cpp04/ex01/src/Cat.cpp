@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 05:05:21 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 15:56:28 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Cat::Cat(const Cat& src) : Animal(src) {
 	std::cout << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<Cat> Copy constructor called (" << this->type << ")\033[m" << std::endl;
 	// this->type = src.type;
-	this->brain_ = new Brain(*(src.getBrain()));
+	this->brain_ = new Brain(*src.brain_);
 }
 
 Cat&	Cat::operator=(const Cat& rhs) {
@@ -33,7 +33,7 @@ Cat&	Cat::operator=(const Cat& rhs) {
 	{
 		Animal::operator=(rhs);
 		// this->type = rhs.type;
-		this->brain_ = rhs.brain_;
+		*this->brain_ = *rhs.brain_;
 	}
 	return (*this);
 }
@@ -45,11 +45,11 @@ Cat::~Cat(void) {
 }
 
 void	Cat::makeSound(void) const {
-	std::cout << "\033[32m" << this->type \
-		<< " crys \"Meooow!\"\033[m" << std::endl;
+	std::cout << "\033[32m[" << this \
+		<< "]<Cat> " << this->type << " crys \"Meooow!\"\033[m" << std::endl;
 }
 
-const Brain	*Cat::getBrain(void) const {
+const Brain*	Cat::getBrain(void) const {
 	return (this->brain_);
 }
 

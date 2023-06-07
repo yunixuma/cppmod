@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 04:21:15 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 13:30:06 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	Dog&	operator=(const Dog& rhs);
 	~Dog(void);
 	void				makeSound(void) const;
-	const Brain			*getBrain(void) const;
+	const Brain*		getBrain(void) const;
 	const std::string*	getIdea(size_t idx) const;
 };
 

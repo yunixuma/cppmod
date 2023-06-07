@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 10:45:41 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 15:56:40 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ Dog::~Dog(void) {
 }
 
 void	Dog::makeSound(void) const {
-	std::cout << "\033[32m" << this->type \
-		<< " barks \"Bowwow!\"\033[m" << std::endl;
+	std::cout << "\033[32m[" << this \
+		<< "]<Dog> " << this->type << " barks \"Bowwow!\"\033[m" << std::endl;
 }
