@@ -6,17 +6,18 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/06/07 17:04:34 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/06/07 17:11:04 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # ********************** Section for Macros (Variables) ********************** #
 # Product file
-NAME			= animal
+NAME			= materia
 
 # Enumeration of files
-SRC				= main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+SRC				= main.cpp ICharacter.cpp IMateriaSource.cpp \
+				  AMateria.cpp Ice.cpp Cure.cpp
 
 # Check the platform
 OS				= $(shell uname)

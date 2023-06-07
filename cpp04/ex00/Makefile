@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/06/05 21:40:01 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/06/07 17:04:43 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NAME			= animal
 # Enumeration of files
 SRC				= main.cpp Animal.cpp Dog.cpp Cat.cpp \
 				  WrongAnimal.cpp WrongCat.cpp
+
 # Check the platform
 OS				= $(shell uname)
 
