@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   materia.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 17:01:23 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/08 01:35:59 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,8 @@
 # include "AMateria.hpp"
 # include "Ice.hpp"
 # include "Cure.hpp"
+# include "IMateriaSource.hpp"
+# include "ICharacter.hpp"
+# include "Character.hpp"
 
 #endif

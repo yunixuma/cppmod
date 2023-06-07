@@ -13,7 +13,7 @@
 #include "IMateriaSource.hpp"
 
 IMateriaSource::IMateriaSource(void) {
-	std::cout << "\033[36;2;3m[" << this \
+	std::cerr << "\033[36;2;3m[" << this \
 		<< "]<IMateriaSource> Constructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	for (size_t i = 0; i < 100; i++)
 	{
@@ -23,7 +23,7 @@ IMateriaSource::IMateriaSource(void) {
 }
 
 IMateriaSource::IMateriaSource(const IMateriaSource& src) {
-	std::cout << "\033[36;2;3m[" << this << "<-" << &src \
+	std::cerr << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<IMateriaSource> Copy constructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	// this->ideas_ = new std::string[100];
 	for (size_t i = 0; i < 100; i++)
@@ -32,7 +32,7 @@ IMateriaSource::IMateriaSource(const IMateriaSource& src) {
 }
 
 IMateriaSource&	IMateriaSource::operator=(const IMateriaSource& rhs) {
-	std::cout << "\033[35;2;3m[" << this << "<-" << &rhs \
+	std::cerr << "\033[35;2;3m[" << this << "<-" << &rhs \
 		<< "]<IMateriaSource> Copy assignment operator called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	if (this != &rhs)
 	{
@@ -48,7 +48,7 @@ IMateriaSource&	IMateriaSource::operator=(const IMateriaSource& rhs) {
 }
 
 IMateriaSource::~IMateriaSource(void) {
-	std::cout << "\033[31;2;3m[" << this \
+	std::cerr << "\033[31;2;3m[" << this \
 		<< "]<IMateriaSource> Destructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	// std::cerr << this << " free [" << 0 << "]{" << this->ideas_[0] << "}" << std::endl;
 	for (size_t i = 0; i < 100; i++)

@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 17:02:30 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/08 01:33:34 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ICHARACTER_HPP
 # define ICHARACTER_HPP
 
-# include <string>
-# include <iostream>
+// # include <string>
+// # include <iostream>
 
-class Character
+class ICharacter
 {
-private:
-	std::string	*ideas_[100];
 public:
-	Character(void);
-	Character(const Character& src);
-	Character&	operator=(const Character& rhs);
-	~Character(void);
-	const std::string*	getIdea(size_t idx) const;
+	virtual ~ICharacter() {}
+	virtual std::string const&	getName() const = 0;
+	virtual void	equip(AMateria* m) = 0;
+	virtual void	unequip(int idx) = 0;
+	virtual void	use(int idx, ICharacter& target) = 0;
 };
 
 #endif

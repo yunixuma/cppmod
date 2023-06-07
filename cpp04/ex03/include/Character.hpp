@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.hpp                                            :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 01:13:55 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/08 01:33:21 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICE_HPP
-# define ICE_HPP
+#ifndef CHARACTER_HPP
+# define CHARACTER_HPP
 
-# include "AMateria.hpp"
+# include "ICharacter.hpp"
 
-class Ice : public AMateria
+class Character : public ICharacter
 {
 private:
-
+	std::string	name_;
+	AMateria	*slot_[4];
 public:
-	Ice(void);
-	Ice(const Ice& src);
-	Ice&	operator=(const Ice& rhs);
-	~Ice(void);
-	AMateria*	clone(void) const;
-	void		use(ICharacter& target);
+	Character(const std::string& name = "Cait Sith");
+	Character&	operator=(const Character& rhs);
+	~Character(void);
 };
 
 #endif
