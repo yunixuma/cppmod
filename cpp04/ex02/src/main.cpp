@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 15:41:13 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/07 16:41:59 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	main()
 		// delete j;
 		// delete i;
 	}
-/*
 	std::cout << "\033[35;43mTest for deletion array of animals\033[m" << std::endl;
 	{
+/* Impossible to compile for trying to instantiate the abstract Animal class
 		AAnimal*	animals;
 		animals = new AAnimal[10];
 
@@ -60,8 +60,21 @@ int	main()
 			showBrain(animals[i]);
 
 		delete[] animals;
-	}
+*/
+		Dog*	dogs;
+		dogs = new Dog[5];
 
+		for (size_t i = 0; i < 5; i++)
+		{
+			dogs[i] = Dog();
+		}
+
+		for (size_t i = 0; i < 5; i++)
+			showBrain(dogs[i]);
+
+		delete[] dogs;
+	}
+/* Impossible to compile for trying to instantiate the abstract Animal class
 	std::cout << "\033[35;43mTest for looping over an array of animals\033[m" << std::endl;
 	{
 		const AAnimal* j = new Dog();
@@ -84,13 +97,38 @@ int	main()
 			delete animals[i];
 		}
 
-		delete j;//should not create a leak
+		delete j;
+		delete i;
+*/
+/* Impossible to compile for trying to convert type from Cat to Dog class
+		const Dog* j = new Dog();
+		const Dog* i = new Cat();
+
+		const Dog	*dogs[10];
+
+		for (size_t k = 0; k < 5; k++)
+		{
+			dogs[k] = new Dog(*j);
+			dogs[k + 5] = new Dog(*i);
+		}
+
+		for (size_t i = 0; i < 10; i++)
+			showBrain(*dogs[i]);
+
+		for (size_t i = 0; i < 10; i++)
+		{
+			// std::cerr << "\033[2;3m" << i << "\033[m" << std::endl;
+			delete dogs[i];
+		}
+
+		delete j;
 		delete i;
 	}
 */
 	std::cout << "\033[35;43mTest for copy constuctor and copy assignment operator\033[m" << std::endl;
 	{
-/*		const AAnimal *meta0 = new AAnimal();
+/* Impossible to compile for trying to instantiate the abstract Animal class
+		const AAnimal *meta0 = new AAnimal();
 		const AAnimal meta1(*meta0);
 		AAnimal *meta2 = new AAnimal();
 		*meta2 = meta1;
@@ -100,9 +138,9 @@ int	main()
 		meta2->makeSound();
 
 		delete meta0;
-		
 		delete meta2;
-
+*/
+/* Impossible to compile for trying to instantiate the abstract Animal class
 		const AAnimal* j0 = new Dog();
 		const AAnimal j1(*j0);
 		AAnimal* j2 = new Dog(); 
