@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 14:14:14 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/08 16:58:13 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	showBrain(const Animal& animal) {
 	for (size_t i = 0; i < 5; i++)
 		std::cerr << i << "\t" << animal.getIdea(i) \
 			<< "\t{" << *animal.getIdea(i) << "}" << std::endl;
+	std::cerr << "\033[m";
 }
 
 int	main()
