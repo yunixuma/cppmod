@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 01:33:34 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/08 18:44:23 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 // # include <string>
 // # include <iostream>
+# include "AMateria.hpp"
 
 class ICharacter
 {
 public:
-	virtual ~ICharacter() {}
+	virtual ~ICharacter();
 	virtual std::string const&	getName() const = 0;
 	virtual void	equip(AMateria* m) = 0;
 	virtual void	unequip(int idx) = 0;

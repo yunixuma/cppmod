@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 07:01:58 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/08 18:35:12 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 class MateriaSource : IMateriaSource
 {
 public:
-	virtual ~IMateriaSource() {}
+	virtual ~IMateriaSource();
 	virtual void		learnMateria(AMateria*) = 0;
 	virtual AMateria*	createMateria(std::string const & type) = 0;
 };
