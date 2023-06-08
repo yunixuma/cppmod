@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 22:16:18 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/08 14:16:19 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	main()
 		const Cat* i = new Cat();
 
 		// showBrain(meta);
+		j->makeSound();
 		showBrain(*j);
+		i->makeSound();
 		showBrain(*i);
 
 		// delete meta;
@@ -68,7 +70,10 @@ int	main()
 		}
 
 		for (size_t i = 0; i < 5; i++)
+		{
+			dogs[i].makeSound();
 			showBrain(dogs[i]);
+		}
 
 		delete[] dogs;
 	}
@@ -157,8 +162,11 @@ int	main()
 		*j5 = j4;
 
 		j3->makeSound();
+		showBrain(*j3);
 		j4.makeSound();
+		showBrain(j4);
 		j5->makeSound();
+		showBrain(*j5);
 
 		delete j3;
 		delete j5;

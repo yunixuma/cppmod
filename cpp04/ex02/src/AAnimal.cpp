@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 15:56:02 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/08 13:39:28 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ const std::string&	AAnimal::getType(void) const {
 	return (this->type);
 }
 
+/*
 void	AAnimal::makeSound(void) const {
 	std::cout << "\033[32m[" << this \
 		<< "]<AAnimal> " << this->type << " growls \"Ugrrr...\"\033[m" << std::endl;
 }
 
-// const std::string&	AAnimal::getIdea(size_t idx) const {
-// 	return (this->type);
-// 	static_cast<void>(idx);
-// }
+const std::string&	AAnimal::getIdea(size_t idx) const {
+	return (this->type);
+	static_cast<void>(idx);
+}
+*/

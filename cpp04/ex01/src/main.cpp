@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 00:19:41 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/08 14:14:14 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,15 @@ int	main()
 		const Animal* j0 = new Dog();
 		const Animal j1(*j0);
 		Animal* j2 = new Dog(); 
-		*j2 = j1;
+		*j2 = *j0;
 
 		j0->makeSound();
+		showBrain(*j0);
 		j1.makeSound();
+		showBrain(j1);
 		j2->makeSound();
+		// Copy assignment operator of the base class cannot be virtual
+		showBrain(*j2);
 
 		delete j0;
 		delete j2;
@@ -99,8 +103,11 @@ int	main()
 		*j5 = j4;
 
 		j3->makeSound();
+		showBrain(*j3);
 		j4.makeSound();
+		showBrain(j4);
 		j5->makeSound();
+		showBrain(*j5);
 
 		delete j3;
 		delete j5;

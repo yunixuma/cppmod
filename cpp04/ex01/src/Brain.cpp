@@ -6,18 +6,23 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/07 11:46:53 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/08 14:00:04 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
 Brain::Brain(void) {
+	std::stringstream	ss;
+
 	std::cout << "\033[36;2;3m[" << this \
 		<< "]<Brain> Constructor called (" << this->ideas_[0] << ")\033[m" << std::endl;
 	for (size_t i = 0; i < 100; i++)
 	{
-		this->ideas_[i] = new std::string("(undefined)");
+		this->ideas_[i] = new std::string;
+		ss.clear();
+		ss << this->ideas_[i];
+		ss >> *this->ideas_[i];
 	}
 	// std::cerr << this << " alloc [" << 0 << "]{" << this->ideas_[0] << "}" << std::endl;
 }
