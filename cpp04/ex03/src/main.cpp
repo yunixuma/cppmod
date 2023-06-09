@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/09 23:56:01 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 00:46:53 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 
 int	main()
 {
+	// Change destination of clog/cerr to /dev/null
+	std::streambuf* strbuf;
+	std::ofstream ofstr("/dev/null");
+	strbuf = std::clog.rdbuf(ofstr.rdbuf());
+	strbuf = std::cerr.rdbuf(ofstr.rdbuf());
+	// Restore destination of clog/cerr when debugging
+	if (DEBUG_MODE)
+	{
+		std::clog.rdbuf(strbuf);
+		std::cerr.rdbuf(strbuf);
+	}
+
 	std::cout << "\033[35;43mSample test\033[m" << std::endl;
 	{
 		IMateriaSource* src = new MateriaSource();
@@ -96,5 +108,6 @@ int	main()
 		delete me;
 		delete src;
 	}
+
 	return 0;
 }

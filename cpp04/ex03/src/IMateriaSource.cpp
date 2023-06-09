@@ -13,7 +13,7 @@
 #include "IMateriaSource.hpp"
 /*
 IMateriaSource::IMateriaSource(const IMateriaSource& src) {
-	std::cerr << "\033[36;2;3m[" << this << "<-" << &src \
+	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<IMateriaSource> Copy constructor called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
@@ -23,7 +23,7 @@ IMateriaSource::IMateriaSource(const IMateriaSource& src) {
 }
 
 IMateriaSource&	IMateriaSource::operator=(const IMateriaSource& rhs) {
-	std::cerr << "\033[35;2;3m[" << this << "<-" << &rhs \
+	std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
 		<< "]<IMateriaSource> Copy assignment operator called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
@@ -34,7 +34,7 @@ IMateriaSource&	IMateriaSource::operator=(const IMateriaSource& rhs) {
 }
 *//*
 IMateriaSource::~IMateriaSource(void) {
-	std::cerr << "\033[31;2;3m[" << this \
+	std::clog << "\033[31;2;3m[" << this \
 		<< "]<IMateriaSource> Destructor called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{

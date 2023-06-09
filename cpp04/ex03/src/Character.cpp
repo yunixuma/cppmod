@@ -13,14 +13,14 @@
 #include "Character.hpp"
 
 Character::Character(const std::string& name) : name_(name) {
-	std::cerr << "\033[36;2;3m[" << this \
+	std::clog << "\033[36;2;3m[" << this \
 		<< "]<Character> Constructor called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->slot_[i] = NULL;
 }
 
 Character::Character(const Character& src) {
-	std::cerr << "\033[36;2;3m[" << this << "<-" << &src \
+	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<Character> Copy constructor called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
@@ -32,7 +32,7 @@ Character::Character(const Character& src) {
 }
 
 Character&	Character::operator=(const Character& rhs) {
-	std::cerr << "\033[35;2;3m[" << this << "<-" << &rhs \
+	std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
 		<< "]<Character> Copy assignment operator called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
@@ -45,7 +45,7 @@ Character&	Character::operator=(const Character& rhs) {
 }
 
 Character::~Character(void) {
-	std::cerr << "\033[31;2;3m[" << this \
+	std::clog << "\033[31;2;3m[" << this \
 		<< "]<Character> Destructor called (" << this->name_ << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
@@ -62,7 +62,7 @@ const std::string&	Character::getName(void) const {
 }
 
 void	Character::equip(AMateria* m) {
-	std::cerr << "\033[2;3m[" << this \
+	std::clog << "\033[2;3m[" << this \
 		<< "]<Character> equip(" << m \
 		<< ") called (" << this->name_ << ")\033[m" << std::endl;
 	if (!m)
@@ -79,10 +79,11 @@ void	Character::equip(AMateria* m) {
 		}
 	}
 	std::cerr << "\033[35;3mSlot is full\033[m" << std::endl;
+	delete m;
 }
 
 void	Character::unequip(int idx) {
-	std::cerr << "\033[2;3m[" << this \
+	std::clog << "\033[2;3m[" << this \
 		<< "]<Character> unequip(" << idx \
 		<< ") called (" << this->name_ << ")\033[m" << std::endl;
 	if (0 > idx || idx > 4)
@@ -100,7 +101,7 @@ void	Character::unequip(int idx) {
 }
 
 void	Character::use(int idx, ICharacter& target) {
-	std::cerr << "\033[2;3m[" << this \
+	std::clog << "\033[2;3m[" << this \
 		<< "]<Character> use(" << idx << ", " << &target \
 		<< ") called (" << this->name_ << ")\033[m" << std::endl;
 	if (0 > idx || idx > 4)

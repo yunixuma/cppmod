@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 17:00:26 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/10 00:17:35 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include "Cat.hpp"
 
 void	showBrain(const AAnimal& animal) {
-	std::cerr << "\033[33;2m" << &animal << ": " << animal.getType() \
+	std::clog << "\033[33;2m" << &animal << ": " << animal.getType() \
 		<< "(" << sizeof(animal) << "bytes)" << std::endl;
 	for (size_t i = 0; i < 5; i++)
-		std::cerr << i << "\t" << animal.getIdea(i) \
+		std::clog << i << "\t" << animal.getIdea(i) \
 			<< "\t{" << *animal.getIdea(i) << "}" << std::endl;
-	std::cerr << "\033[m";
+	std::clog << "\033[m";
 }
 
 int	main()
