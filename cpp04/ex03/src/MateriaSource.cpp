@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 03:49:29 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 04:24:45 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ void	MateriaSource::learnMateria(AMateria* src) {
 AMateria*	MateriaSource::createMateria(std::string const & type) {
 	std::clog << "\033[2;3m[" << this \
 		<< "]<MateriaSource> createMateria() called (" << type << ")\033[m" << std::endl;
+	if (type.length() == 0)
+	{
+		std::cerr << "\033[35;3mEmpty type is invalid\033[m" << std::endl;
+		return (NULL);
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->store_[i] && this->store_[i]->getType() == type)
