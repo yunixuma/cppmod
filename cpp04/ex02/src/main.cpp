@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 00:17:35 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 02:24:22 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	main()
 	{
 // Impossible to use the Animal class due to abstract class
 		// const AAnimal* meta = new AAnimal();
-		// const AAnimal* j = new Dog();
-		// const AAnimal* i = new Cat();
-		const Dog* j = new Dog();
-		const Cat* i = new Cat();
+		const AAnimal* j = new Dog();
+		const AAnimal* i = new Cat();
+		// const Dog* j = new Dog();
+		// const Cat* i = new Cat();
 
 		// showBrain(meta);
 		j->makeSound();
@@ -144,19 +144,19 @@ int	main()
 		delete meta0;
 		delete meta2;
 */
-/* Impossible to compile for trying to instantiate the abstract Animal class
+// Impossible to compile for trying to instantiate the abstract Animal class
 		const AAnimal* j0 = new Dog();
-		const AAnimal j1(*j0);
+		// const AAnimal j1(*j0);
 		AAnimal* j2 = new Dog(); 
-		*j2 = j1;
+		*j2 = *j0;
 
 		j0->makeSound();
-		j1.makeSound();
+		// j1.makeSound();
 		j2->makeSound();
 
 		delete j0;
 		delete j2;
-*/
+
 		const Dog* j3 = new Dog();
 		const Dog j4(*j3);
 		Dog* j5 = new Dog(); 
