@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 00:16:22 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 01:23:21 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	MateriaSource::learnMateria(AMateria* src) {
 		<< "]<MateriaSource> learnMateria() called (" << src->getType() << ")\033[m" << std::endl;
 	if (!src)
 	{
-		std::cerr << "\033[35;3mNo new materia learned\033[m" << std::endl;
+		std::cerr << "\033[35;3mNo new Materia learned\033[m" << std::endl;
 		return ;
 	}
 	for (int i = 0; i < 4; i++)

@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 00:46:53 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 01:23:50 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main()
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 
-		std::cout << "\033[33mTrying to copy & equip a materia not learned yet\033[m" << std::endl;
+		std::cout << "\033[33mTrying to copy & equip a Materia not learned yet\033[m" << std::endl;
 		AMateria* tmp;
 		tmp = src->createMateria("cure");
 		me->equip(tmp);
@@ -69,7 +69,7 @@ int	main()
 		src->learnMateria(new Ice());
 		src->learnMateria(new Ice());
 
-		std::cout << "\033[33mStore is now full, so no more materia cannot be learned\033[m" << std::endl;
+		std::cout << "\033[33mStore is now full, so Materia Materias cannot be learned\033[m" << std::endl;
 		src->learnMateria(new Cure());
 
 		std::cout << "\033[33m ---- ---- ---- ----\033[m" << std::endl;
@@ -89,11 +89,11 @@ int	main()
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
 
-		std::cout << "\033[33mSlot is now full, so no more materia cannot be equipped\033[m" << std::endl;
+		std::cout << "\033[33mSlot is now full, so Materia Materias cannot be equipped\033[m" << std::endl;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
 
-		std::cout << "\033[33mUnequip materia\033[m" << std::endl;
+		std::cout << "\033[33mUnequip Materias\033[m" << std::endl;
 		me->unequip(0);
 		me->unequip(1);
 		me->unequip(2);

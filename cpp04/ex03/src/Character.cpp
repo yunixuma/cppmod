@@ -67,7 +67,7 @@ void	Character::equip(AMateria* m) {
 		<< ") called (" << this->name_ << ")\033[m" << std::endl;
 	if (!m)
 	{
-		std::cerr << "\033[35;3mNo new materia equipped\033[m" << std::endl;
+		std::cerr << "\033[35;3mNo new Materia equipped\033[m" << std::endl;
 		return ;
 	}
 	for (int i = 0; i < 4; i++)

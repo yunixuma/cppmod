@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/09 19:58:39 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 01:21:28 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ public:
 	AMateria(const AMateria& src);
 	AMateria&	operator=(const AMateria& rhs);
 	virtual ~AMateria();
-	std::string const&	getType() const; //Returns the materia type
+	std::string const&	getType() const; //Returns the Materia type
 	virtual AMateria*	clone() const = 0;
 	virtual void		use(ICharacter& target);
 };
