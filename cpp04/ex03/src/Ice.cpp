@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 02:39:03 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/09 20:42:38 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::Ice(void) {
+Ice::Ice(const std::string& type) {
+// Ice::Ice(void) {
 	std::cerr << "\033[36;2;3m[" << this \
 		<< "]<Ice> Constructor called (" << this->type_ << ")\033[m" << std::endl;
-	this->type_ = "Ice";
+	this->type_ = type;
 }
 
 Ice::Ice(const Ice& src) : AMateria(src) {
@@ -40,15 +41,15 @@ Ice::~Ice(void) {
 		<< "]<Ice> Destructor called (" << this->type_ << ")\033[m" << std::endl;
 }
 
-AMateria*	clone(void) const {
+AMateria*	Ice::clone(void) const {
 	std::cerr << "\033[31;2;3m[" << this \
 		<< "]<Cure> clone() called (" << this->type_ << ")\033[m" << std::endl;
 	AMateria*	ret = new Ice;
 	return (ret);
 }
 
-void	use(ICharacter& target) {
+void	Ice::use(ICharacter& target) {
 	std::cerr << "\033[31;2;3m[" << this \
 		<< "]<Cure> use() called (" << this->type_ << ")\033[m" << std::endl;
-	std::cout << "* heals " << target.getName() << "'s wounds *"" << std::endl;
+	std::cout << "\033[32m* heals " << target.getName() << "'s wounds *\033[m" << std::endl;
 }

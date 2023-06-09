@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 02:38:49 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/09 20:42:19 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ Cure::~Cure(void) {
 		<< "]<Cure> Destructor called (" << this->type_ << ")\033[m" << std::endl;
 }
 
-AMateria*	clone(void) const {
+AMateria*	Cure::clone(void) const {
 	std::cerr << "\033[31;2;3m[" << this \
 		<< "]<Cure> clone() called (" << this->type_ << ")\033[m" << std::endl;
 	AMateria*	ret = new Cure;
 	return (ret);
 }
 
-void		use(ICharacter& target) {
+void		Cure::use(ICharacter& target) {
 	std::cerr << "\033[31;2;3m[" << this \
 		<< "]<Cure> use() called (" << this->type_ << ")\033[m" << std::endl;
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	std::cout << "\033[32m* shoots an ice bolt at " << target.getName() << " *\033[m" << std::endl;
 }

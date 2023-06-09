@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "IMateriaSource.hpp"
-
+/*
 IMateriaSource::IMateriaSource(const IMateriaSource& src) {
 	std::cerr << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<IMateriaSource> Copy constructor called (" << this->name_ << ")\033[m" << std::endl;
@@ -32,7 +32,7 @@ IMateriaSource&	IMateriaSource::operator=(const IMateriaSource& rhs) {
 	}
 	return (*this);
 }
-
+*//*
 IMateriaSource::~IMateriaSource(void) {
 	std::cerr << "\033[31;2;3m[" << this \
 		<< "]<IMateriaSource> Destructor called (" << this->name_ << ")\033[m" << std::endl;
@@ -45,3 +45,4 @@ IMateriaSource::~IMateriaSource(void) {
 		}
 	}
 }
+*/

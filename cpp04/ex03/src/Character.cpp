@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Character.hpp
+#include "Character.hpp"
 
 Character::Character(const std::string& name) : name_(name) {
 	std::cerr << "\033[36;2;3m[" << this \
@@ -23,7 +23,7 @@ Character::Character(const Character& src) {
 	for (int i = 0; i < 4; i++)
 	{
 		if (src.slot_[i])
-			this->slot_[i] = new AMateria(src.slot_[i]);
+			this->slot_[i] = src.slot_[i]->clone();
 	}
 }
 
@@ -33,7 +33,7 @@ Character&	Character::operator=(const Character& rhs) {
 	for (int i = 0; i < 4; i++)
 	{
 		if (rhs.slot_[i])
-			this->slot_[i] = new AMateria(rhs.slot_[i]);
+			this->slot_[i] = rhs.slot_[i]->clone();
 	}
 	return (*this);
 }
@@ -55,7 +55,7 @@ const std::string&	Character::getName(void) const {
 	return (this->name_);
 }
 
-void	equip(AMateria* m) {
+void	Character::equip(AMateria* m) {
 	if (!m)
 		return ;
 	for (int i = 0; i < 4; i++)
@@ -65,12 +65,12 @@ void	equip(AMateria* m) {
 	}
 }
 
-void	unequip(int idx) {
+void	Character::unequip(int idx) {
 	if (0 <= idx && idx < 4)
 		this->slot_[idx] = NULL;
 }
 
-void	use(int idx, ICharacter& target) {
+void	Character::use(int idx, ICharacter& target) {
 	if (0 < idx || idx >= 4)
 		return ;
 	AMateria*	m = this->slot_[idx];

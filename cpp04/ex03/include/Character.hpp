@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 18:22:40 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/09 19:13:29 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
+# include <string>
+# include <cstddef>
 # include "ICharacter.hpp"
 # include "AMateria.hpp"
 
@@ -23,6 +25,7 @@ private:
 	AMateria	*slot_[4];
 public:
 	Character(const std::string& name = "Cait Sith");
+	Character(const Character& src);
 	Character&	operator=(const Character& rhs);
 	~Character(void);
 	std::string const&	getName() const;

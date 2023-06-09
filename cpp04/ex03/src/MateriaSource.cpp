@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/09 11:35:53 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/09 20:50:07 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,56 @@ MateriaSource::MateriaSource(void) {
 
 MateriaSource::MateriaSource(const MateriaSource& src) {
 	std::cerr << "\033[36;2;3m[" << this << "<-" << &src \
-		<< "]<MateriaSource> Copy constructor called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<MateriaSource> Copy constructor called\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (src.slot_[i])
-			this->slot_[i] = new AMateria(src.slot_[i]);
+		if (src.store_[i])
+			this->store_[i] = src.store_[i]->clone();
+		else
+			this->store_[i] = NULL;
 	}
 }
 
 MateriaSource&	MateriaSource::operator=(const MateriaSource& rhs) {
 	std::cerr << "\033[35;2;3m[" << this << "<-" << &rhs \
-		<< "]<MateriaSource> Copy assignment operator called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<MateriaSource> Copy assignment operator called\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (rhs.slot_[i])
-			this->slot_[i] = new AMateria(rhs.slot_[i]);
+		if (rhs.store_[i])
+			this->store_[i] = rhs.store_[i]->clone();
 	}
 	return (*this);
 }
 
 MateriaSource::~MateriaSource(void) {
 	std::cerr << "\033[31;2;3m[" << this \
-		<< "]<MateriaSource> Destructor called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<MateriaSource> Destructor called\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->slot_[i])
+		if (this->store_[i])
 		{
-			delete this->slot_[i];
-			this->slot_[i] = NULL;
+			delete this->store_[i];
+			this->store_[i] = NULL;
 		}
 	}
+}
+
+void	MateriaSource::learnMateria(AMateria* src) {
+	for (int i = 0; i < 4; i++)
+	{
+		if (!this->store_[i])
+		{
+			this->store_[i] = src->clone();
+			return ;
+		}
+	}
+}
+
+AMateria*	MateriaSource::createMateria(std::string const & type) {
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->store_[i] && this->store_[i]->getType() == type)
+			return (this->store_[i]->clone());
+	}
+	return (NULL);
 }

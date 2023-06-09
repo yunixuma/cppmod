@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 01:13:55 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/09 18:32:42 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ class Ice : public AMateria
 private:
 
 public:
-	Ice(void);
+	// Ice(void);
+	Ice(std::string const & type = "ice");
 	Ice(const Ice& src);
 	Ice&	operator=(const Ice& rhs);
 	~Ice(void);

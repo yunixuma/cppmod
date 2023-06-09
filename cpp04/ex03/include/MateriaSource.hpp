@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/09 11:44:02 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/09 20:04:07 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ private:
 	// void		_init(void);
 public:
 	MateriaSource(void);
+	MateriaSource(const MateriaSource& src);
+	MateriaSource&	operator=(const MateriaSource& rhs);
 	~MateriaSource();
-	void		learnMateria(AMateria*);
-	AMateria*	createMateria(std::string const & type);
+	void			learnMateria(AMateria*);
+	AMateria*		createMateria(std::string const & type);
 };
 
 #endif
