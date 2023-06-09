@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/08 03:57:21 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/09 11:35:53 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource(const std::string& name) : name_(name) {
+MateriaSource::MateriaSource(void) {
 	std::cerr << "\033[36;2;3m[" << this \
-		<< "]<MateriaSource> Constructor called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<MateriaSource> Constructor called\033[m" << std::endl;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& src) {

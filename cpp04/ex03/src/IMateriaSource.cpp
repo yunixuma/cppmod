@@ -12,11 +12,6 @@
 
 #include "IMateriaSource.hpp"
 
-IMateriaSource::IMateriaSource(const std::string& name) : name_(name) {
-	std::cerr << "\033[36;2;3m[" << this \
-		<< "]<IMateriaSource> Constructor called (" << this->name_ << ")\033[m" << std::endl;
-}
-
 IMateriaSource::IMateriaSource(const IMateriaSource& src) {
 	std::cerr << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<IMateriaSource> Copy constructor called (" << this->name_ << ")\033[m" << std::endl;
