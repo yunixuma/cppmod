@@ -22,6 +22,7 @@ Character::Character(const std::string& name) : name_(name) {
 Character::Character(const Character& src) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<Character> Copy constructor called (" << this->name_ << ")\033[m" << std::endl;
+	this->name_ = src.name_;
 	for (int i = 0; i < 4; i++)
 	{
 		if (src.slot_[i])
@@ -33,9 +34,13 @@ Character::Character(const Character& src) {
 
 Character&	Character::operator=(const Character& rhs) {
 	std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
-		<< "]<Character> Copy assignment operator called (" << this->name_ << ")\033[m" << std::endl;
+		<< "]<Character> Copy assignment operator called (" \
+		<< rhs.name_ << " -> " << this->name_ << ")\033[m" << std::endl;
+	this->name_ = rhs.name_;
 	for (int i = 0; i < 4; i++)
 	{
+		if (this->slot_[i])
+			delete this->slot_[i];
 		if (rhs.slot_[i])
 			this->slot_[i] = rhs.slot_[i]->clone();
 		else
@@ -116,4 +121,17 @@ void	Character::use(int idx, ICharacter& target) {
 		return;
 	}
 	m->use(target);
+}
+
+void	Character::showMateria(void) const {
+	std::clog << "\033[33;2;3m[" << this << "] " << this->name_ << "\033[m" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->slot_[i])
+			std::clog << "\033[33;2;3m" << i << " [" << this->slot_[i] << "] " \
+				<< this->slot_[i]->getType() << "\033[m" << std::endl;
+		else
+			std::clog << "\033[33;2;3m" << i << " [" << this->slot_[i] << "] " \
+				<< "\033[m" << std::endl;
+	}
 }

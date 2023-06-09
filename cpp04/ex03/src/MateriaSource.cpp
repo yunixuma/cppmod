@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 01:23:21 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 03:49:29 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& rhs) {
 		<< "]<MateriaSource> Copy assignment operator called\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
+		if (this->store_[i])
+			delete this->store_[i];
 		if (rhs.store_[i])
 			this->store_[i] = rhs.store_[i]->clone();
 		else
@@ -87,4 +89,17 @@ AMateria*	MateriaSource::createMateria(std::string const & type) {
 	}
 	std::cerr << "\033[35;3m" << type << " is unknown\033[m" << std::endl;
 	return (NULL);
+}
+
+void	MateriaSource::showMateria(void) const {
+	std::clog << "\033[33;2;3m[" << this << "]\033[m" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->store_[i])
+			std::clog << "\033[33;2;3m" << i << " [" << this->store_[i] << "] " \
+				<< this->store_[i]->getType() << "\033[m" << std::endl;
+		else
+			std::clog << "\033[33;2;3m" << i << " [" << this->store_[i] << "] " \
+				<< "\033[m" << std::endl;
+	}
 }

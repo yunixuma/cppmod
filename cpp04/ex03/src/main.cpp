@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 01:23:50 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 04:03:06 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,17 @@ int	main()
 		me->equip(tmp);
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
+		tmp = src->createMateria("ice");
+		rival->equip(tmp);
 
 		std::cout << "\033[33mSlot is now full, so Materia Materias cannot be equipped\033[m" << std::endl;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
 
-		std::cout << "\033[33mUnequip Materias\033[m" << std::endl;
+		std::cout << "\033[33m ---- ---- ---- ----\033[m" << std::endl;
 		me->unequip(0);
+
+		std::cout << "\033[33mUnequip Materias\033[m" << std::endl;
 		me->unequip(1);
 		me->unequip(2);
 		me->unequip(3);
@@ -107,6 +111,80 @@ int	main()
 		delete rival;
 		delete me;
 		delete src;
+	}
+
+	std::cout << "\033[35;43mTest for deep copy a Character & a MaterialSource\033[m" << std::endl;
+	{
+		Character* me = new Character("Cloud");
+		Character* rival = new Character("Sephiroth");
+		MateriaSource* src = new MateriaSource();
+		MateriaSource* dst = new MateriaSource();
+		AMateria* tmp;
+
+		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Ice());
+		src->learnMateria(new Cure());
+
+		dst->learnMateria(new Cure());
+		dst->learnMateria(new Cure());
+
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("ice");
+		me->equip(tmp);
+		tmp = src->createMateria("cure");
+		me->equip(tmp);
+		me->unequip(0);
+
+		tmp = src->createMateria("cure");
+		rival->equip(tmp);
+		tmp = src->createMateria("cure");
+		rival->equip(tmp);
+
+		std::cout << std::endl << "\033[33mCharacter\033[m" << std::endl;
+		std::cout << "\033[33mContent of the overridden\033[m" << std::endl;
+		rival->showMateria();
+		std::cout << "\033[33mOperation of copy constructor\033[m" << std::endl;
+		Character*	me2 = new Character(*me);
+		Character	me3(*me);
+		std::cout << "\033[33mOperation of copy assignment operator\033[m" << std::endl;
+		*rival = *me;
+
+		std::cout << "\033[33mContent of the original\033[m" << std::endl;
+		me->showMateria();
+		std::cout << "\033[33mContent of copy constructored\033[m" << std::endl;
+		me2->showMateria();
+		me3.showMateria();
+		std::cout << "\033[33mContent of copy assigned\033[m" << std::endl;
+		rival->showMateria();
+
+		std::cout << std::endl << "\033[33mMateriaSource\033[m" << std::endl;
+		std::cout << "\033[33mContent of the overridden\033[m" << std::endl;
+		dst->showMateria();
+		std::cout << "\033[33mOperation of copy constructor\033[m" << std::endl;
+		MateriaSource*	src2 = new MateriaSource(*src);
+		MateriaSource	src3(*src);
+		std::cout << "\033[33mOperation of copy assignment operator\033[m" << std::endl;
+		*dst = *src;
+
+		std::cout << "\033[33mContent of the original\033[m" << std::endl;
+		src->showMateria();
+		std::cout << "\033[33mContent of copy constructored\033[m" << std::endl;
+		src2->showMateria();
+		src3.showMateria();
+		std::cout << "\033[33mContent of copy assigned\033[m" << std::endl;
+		dst->showMateria();
+
+		std::cout << std::endl << "\033[33m ---- ---- ---- ----\033[m" << std::endl;
+		delete me;
+		delete me2;
+		delete rival;
+		delete src;
+		delete src2;
+		delete dst;
 	}
 
 	return 0;

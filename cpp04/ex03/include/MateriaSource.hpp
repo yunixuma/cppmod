@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/09 20:04:07 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 03:41:41 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ public:
 	~MateriaSource();
 	void			learnMateria(AMateria*);
 	AMateria*		createMateria(std::string const & type);
+	void			showMateria(void) const;
 };
 
 #endif

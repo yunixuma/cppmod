@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
+#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/06/08 18:41:33 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/06/10 02:48:36 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ NAME			= materia
 
 # Enumeration of files
 SRC				= main.cpp AMateria.cpp Ice.cpp Cure.cpp \
-				  ICharacter.cpp Character.cpp \
-				  IMateriaSource.cpp MateriaSource.cpp
+				  Character.cpp MateriaSource.cpp
 
 # Check the platform
 OS				= $(shell uname)
