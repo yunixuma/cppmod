@@ -62,12 +62,12 @@ const std::string&	Character::getName(void) const {
 }
 
 void	Character::equip(AMateria* m) {
-	std::cerr << "\033[33;2;3m[" << this \
+	std::cerr << "\033[2;3m[" << this \
 		<< "]<Character> equip(" << m \
 		<< ") called (" << this->name_ << ")\033[m" << std::endl;
 	if (!m)
 	{
-		std::cerr << "\033[32;2;3mNo new materia equipped\033[m" << std::endl;
+		std::cerr << "\033[35;3mNo new materia equipped\033[m" << std::endl;
 		return ;
 	}
 	for (int i = 0; i < 4; i++)
@@ -78,39 +78,40 @@ void	Character::equip(AMateria* m) {
 			return ;
 		}
 	}
-	std::cerr << "\033[32;2;3mSlot is full\033[m" << std::endl;
+	std::cerr << "\033[35;3mSlot is full\033[m" << std::endl;
 }
 
 void	Character::unequip(int idx) {
-	std::cerr << "\033[33;2;3m[" << this \
+	std::cerr << "\033[2;3m[" << this \
 		<< "]<Character> unequip(" << idx \
 		<< ") called (" << this->name_ << ")\033[m" << std::endl;
 	if (0 > idx || idx > 4)
 	{
-		std::cerr << "\033[32;2;3mSlot number " << idx << " is out of range\033[m" << std::endl;
+		std::cerr << "\033[35;3mSlot number " << idx << " is out of range\033[m" << std::endl;
 		return ;
 	}
 	if (!this->slot_[idx])
 	{
-		std::cerr << "\033[32;2;3mSlot " << idx << " is already empty\033[m" << std::endl;
+		std::cerr << "\033[35;3mSlot " << idx << " is already empty\033[m" << std::endl;
 		return;
 	}
+	delete this->slot_[idx];
 	this->slot_[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter& target) {
-	std::cerr << "\033[33;2;3m[" << this \
+	std::cerr << "\033[2;3m[" << this \
 		<< "]<Character> use(" << idx << ", " << &target \
 		<< ") called (" << this->name_ << ")\033[m" << std::endl;
 	if (0 > idx || idx > 4)
 	{
-		std::cerr << "\033[32;2;3mSlot number " << idx << " is out of range\033[m" << std::endl;
+		std::cerr << "\033[35;3mSlot number " << idx << " is out of range\033[m" << std::endl;
 		return ;
 	}
 	AMateria*	m = this->slot_[idx];
 	if (!m)
 	{
-		std::cerr << "\033[32;2;3mSlot " << idx << " is empty\033[m" << std::endl;
+		std::cerr << "\033[35;3mSlot " << idx << " is empty\033[m" << std::endl;
 		return;
 	}
 	m->use(target);

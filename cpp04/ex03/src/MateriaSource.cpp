@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/09 22:49:54 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/09 23:32:51 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,13 @@ MateriaSource::~MateriaSource(void) {
 }
 
 void	MateriaSource::learnMateria(AMateria* src) {
-	std::cerr << "\033[33;2;3m[" << this \
+	std::cerr << "\033[2;3m[" << this \
 		<< "]<MateriaSource> learnMateria() called (" << src->getType() << ")\033[m" << std::endl;
+	if (!src)
+	{
+		std::cerr << "\033[35;3mNo new materia learned\033[m" << std::endl;
+		return ;
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->store_[i])
@@ -68,15 +73,18 @@ void	MateriaSource::learnMateria(AMateria* src) {
 			return ;
 		}
 	}
+	std::cerr << "\033[35;3mStore is full\033[m" << std::endl;
+	delete src;
 }
 
 AMateria*	MateriaSource::createMateria(std::string const & type) {
-	std::cerr << "\033[33;2;3m[" << this \
+	std::cerr << "\033[2;3m[" << this \
 		<< "]<MateriaSource> createMateria() called (" << type << ")\033[m" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->store_[i] && this->store_[i]->getType() == type)
 			return (this->store_[i]->clone());
 	}
+	std::cerr << "\033[35;3m" << type << " is unknown\033[m" << std::endl;
 	return (NULL);
 }
