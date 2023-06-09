@@ -6,16 +6,16 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/09 20:42:19 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/09 22:04:53 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
-Cure::Cure(void) {
+Cure::Cure(std::string const & type) {
 	std::cerr << "\033[36;2;3m[" << this \
 		<< "]<Cure> Constructor called (" << this->type_ << ")\033[m" << std::endl;
-	this->type_ = "Cure";
+	this->type_ = type;
 }
 
 Cure::Cure(const Cure& src) : AMateria(src) {
@@ -41,14 +41,14 @@ Cure::~Cure(void) {
 }
 
 AMateria*	Cure::clone(void) const {
-	std::cerr << "\033[31;2;3m[" << this \
+	std::cerr << "\033[33;2;3m[" << this \
 		<< "]<Cure> clone() called (" << this->type_ << ")\033[m" << std::endl;
 	AMateria*	ret = new Cure;
 	return (ret);
 }
 
 void		Cure::use(ICharacter& target) {
-	std::cerr << "\033[31;2;3m[" << this \
+	std::cerr << "\033[33;2;3m[" << this \
 		<< "]<Cure> use() called (" << this->type_ << ")\033[m" << std::endl;
 	std::cout << "\033[32m* shoots an ice bolt at " << target.getName() << " *\033[m" << std::endl;
 }

@@ -15,6 +15,8 @@
 Character::Character(const std::string& name) : name_(name) {
 	std::cerr << "\033[36;2;3m[" << this \
 		<< "]<Character> Constructor called (" << this->name_ << ")\033[m" << std::endl;
+	for (int i = 0; i < 4; i++)
+		this->slot_[i] = NULL;
 }
 
 Character::Character(const Character& src) {
@@ -24,6 +26,8 @@ Character::Character(const Character& src) {
 	{
 		if (src.slot_[i])
 			this->slot_[i] = src.slot_[i]->clone();
+		else
+			this->slot_[i] = NULL;
 	}
 }
 
@@ -34,6 +38,8 @@ Character&	Character::operator=(const Character& rhs) {
 	{
 		if (rhs.slot_[i])
 			this->slot_[i] = rhs.slot_[i]->clone();
+		else
+			this->slot_[i] = NULL;
 	}
 	return (*this);
 }
@@ -56,24 +62,56 @@ const std::string&	Character::getName(void) const {
 }
 
 void	Character::equip(AMateria* m) {
+	std::cerr << "\033[33;2;3m[" << this \
+		<< "]<Character> equip(" << m \
+		<< ") called (" << this->name_ << ")\033[m" << std::endl;
 	if (!m)
+	{
+		std::cerr << "\033[32;2;3mNo new materia equipped\033[m" << std::endl;
 		return ;
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->slot_[i])
+		{
 			this->slot_[i] = m;
+			return ;
+		}
 	}
+	std::cerr << "\033[32;2;3mSlot is full\033[m" << std::endl;
 }
 
 void	Character::unequip(int idx) {
-	if (0 <= idx && idx < 4)
-		this->slot_[idx] = NULL;
+	std::cerr << "\033[33;2;3m[" << this \
+		<< "]<Character> unequip(" << idx \
+		<< ") called (" << this->name_ << ")\033[m" << std::endl;
+	if (0 > idx || idx > 4)
+	{
+		std::cerr << "\033[32;2;3mSlot number " << idx << " is out of range\033[m" << std::endl;
+		return ;
+	}
+	if (!this->slot_[idx])
+	{
+		std::cerr << "\033[32;2;3mSlot " << idx << " is already empty\033[m" << std::endl;
+		return;
+	}
+	this->slot_[idx] = NULL;
 }
 
 void	Character::use(int idx, ICharacter& target) {
-	if (0 < idx || idx >= 4)
+	std::cerr << "\033[33;2;3m[" << this \
+		<< "]<Character> use(" << idx << ", " << &target \
+		<< ") called (" << this->name_ << ")\033[m" << std::endl;
+	if (0 > idx || idx > 4)
+	{
+		std::cerr << "\033[32;2;3mSlot number " << idx << " is out of range\033[m" << std::endl;
 		return ;
+	}
 	AMateria*	m = this->slot_[idx];
-	if (m)
-		m->use(target);
+	if (!m)
+	{
+		std::cerr << "\033[32;2;3mSlot " << idx << " is empty\033[m" << std::endl;
+		return;
+	}
+	m->use(target);
 }

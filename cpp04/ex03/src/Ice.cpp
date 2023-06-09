@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/09 20:42:38 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/09 22:08:27 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ Ice::~Ice(void) {
 }
 
 AMateria*	Ice::clone(void) const {
-	std::cerr << "\033[31;2;3m[" << this \
-		<< "]<Cure> clone() called (" << this->type_ << ")\033[m" << std::endl;
+	std::cerr << "\033[33;2;3m[" << this \
+		<< "]<Ice> clone() called (" << this->type_ << ")\033[m" << std::endl;
 	AMateria*	ret = new Ice;
 	return (ret);
 }
 
 void	Ice::use(ICharacter& target) {
-	std::cerr << "\033[31;2;3m[" << this \
-		<< "]<Cure> use() called (" << this->type_ << ")\033[m" << std::endl;
+	std::cerr << "\033[33;2;3m[" << this \
+		<< "]<Ice> use() called (" << this->type_ << ")\033[m" << std::endl;
 	std::cout << "\033[32m* heals " << target.getName() << "'s wounds *\033[m" << std::endl;
 }
