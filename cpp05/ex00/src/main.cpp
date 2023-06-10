@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 18:00:50 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/10 18:42:54 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main()
 		catch (std::exception & e)
 		{
 			/* handle exception */
+			std::cerr << "" << std::endl;
 		}
 		std::clog << "\033[33m ---- ---- ---- ----\033[m" << std::endl;
 

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 18:00:22 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/10 18:19:31 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,19 @@ void	Bureaucrat::decrementGrade(void) {
 		<< "]<Bureaucrat> decrementGrade() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
 	this->grade++;
+}
+
+// When an exception thrown
+void	Bureaucrat::GradeTooHighException(void) {
+	std::clog << "\033[32m[" << this \
+		<< "]<Bureaucrat> GradeTooHighException() called (" \
+		<< this->name_ << ")\033[m" << std::endl;
+}
+
+void	Bureaucrat::GradeTooLowException() {
+	std::clog << "\033[32m[" << this \
+		<< "]<Bureaucrat> GradeTooLowException() called (" \
+		<< this->name_ << ")\033[m" << std::endl;
 }
 
 // Insertion operator overload to print
