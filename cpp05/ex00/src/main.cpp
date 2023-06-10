@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 18:42:54 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/11 01:52:46 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.h"
+#include <iostream>
+#include "Bureaucrat.hpp"
 
 int	main()
 {
 	std::clog << "\033[35;43mSimple test\033[m" << std::endl;
 	{
-		Bureaucrat	bc;
-
+		Bureaucrat	bc("John", 150);
 		try
 		{
 			/* do some stuff with bureaucrats */
+			bc.decrementGrade();
 		}
 		catch (std::exception & e)
 		{
 			/* handle exception */
-			std::cerr << "" << std::endl;
+			std::cerr << "An error caught" << std::endl;
 		}
 		std::clog << "\033[33m ---- ---- ---- ----\033[m" << std::endl;
 
