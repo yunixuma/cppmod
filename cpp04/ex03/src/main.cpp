@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 04:11:44 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 12:38:45 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int	main()
 		rival->equip(tmp);
 
 		std::clog << std::endl << "\033[33mCharacter\033[m" << std::endl;
-		std::clog << "\033[33mContent of the overridden\033[m" << std::endl;
+		std::clog << "\033[33mContent of the overridden later\033[m" << std::endl;
 		rival->showMateria();
 		std::clog << "\033[33mOperation of copy constructor\033[m" << std::endl;
 		Character*	me2 = new Character(*me);
@@ -162,7 +162,7 @@ int	main()
 		rival->showMateria();
 
 		std::clog << std::endl << "\033[33mMateriaSource\033[m" << std::endl;
-		std::clog << "\033[33mContent of the overridden\033[m" << std::endl;
+		std::clog << "\033[33mContent of the overridden later\033[m" << std::endl;
 		dst->showMateria();
 		std::clog << "\033[33mOperation of copy constructor\033[m" << std::endl;
 		MateriaSource*	src2 = new MateriaSource(*src);
