@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/10 00:15:54 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/10 15:42:58 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ AMateria*	Ice::clone(void) const {
 void	Ice::use(ICharacter& target) {
 	std::clog << "\033[2;3m[" << this \
 		<< "]<Ice> use() called (" << this->type_ << ")\033[m" << std::endl;
-	std::cout << "\033[32m* heals " << target.getName() << "'s wounds *\033[m" << std::endl;
+	std::cout << "\033[32m* shoots an ice bolt at " << target.getName() << " *\033[m" << std::endl;
 }
