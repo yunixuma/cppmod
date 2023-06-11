@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/11 01:58:55 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/11 16:01:57 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,13 @@ void	Bureaucrat::incrementGrade(void) {
 		<< this->name_ << ")\033[m" << std::endl;
 	this->grade_--;
 	if (this->grade_ > 150)
-		throw this->GradeTooLowException();
+		throw std::range_error("The grade too low");
 	else if (this->grade_ < 1)
-		throw this->GradeTooHighException();
+		throw std::range_error("The grade too high");
+	// if (this->grade_ > 150)
+	// 	throw this->GradeTooLowException();
+	// else if (this->grade_ < 1)
+	// 	throw this->GradeTooHighException();
 }
 
 void	Bureaucrat::decrementGrade(void) {
@@ -89,9 +93,13 @@ void	Bureaucrat::decrementGrade(void) {
 		<< this->name_ << ")\033[m" << std::endl;
 	this->grade_++;
 	if (this->grade_ > 150)
-		throw this->GradeTooLowException();
+		throw std::range_error("The grade too low");
 	else if (this->grade_ < 1)
-		throw this->GradeTooHighException();
+		throw std::range_error("The grade too high");
+	// if (this->grade_ > 150)
+	// 	throw this->GradeTooLowException();
+	// else if (this->grade_ < 1)
+	// 	throw this->GradeTooHighException();
 }
 
 // When an exception thrown

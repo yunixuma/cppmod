@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/11 01:52:46 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/11 15:56:28 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int	main()
 			bc.decrementGrade();
 		}
 		catch (std::exception & e)
+		{
+			/* handle exception */
+			std::cerr << "An error caught" << std::endl;
+		}
+		catch (Bureaucrat & e)
 		{
 			/* handle exception */
 			std::cerr << "An error caught" << std::endl;
