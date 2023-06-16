@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/11 16:01:57 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/16 12:31:13 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) \
 		<< "]<Bureaucrat> Constructor called (" \
 		<< this->name_ << ")\033[m" << std::endl;
 	if (this->grade_ > 150)
-		throw this->GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (this->grade_ < 1)
-		throw this->GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& src) \
@@ -31,9 +31,9 @@ Bureaucrat::Bureaucrat(const Bureaucrat& src) \
 	// this->name_ = src.name_;
 	// this->grade_ = src.grade_;
 	if (this->grade_ > 150)
-		throw this->GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (this->grade_ < 1)
-		throw this->GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 }
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& rhs) {
@@ -42,13 +42,13 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& rhs) {
 		<< this->name_ << ")\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		this->name_ = rhs.name_;
+		const_cast<std::string&>(this->name_) = rhs.name_;
 		this->grade_ = rhs.grade_;
 	}
 	if (this->grade_ > 150)
-		throw this->GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else if (this->grade_ < 1)
-		throw this->GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	return (*this);
 }
 
@@ -78,13 +78,13 @@ void	Bureaucrat::incrementGrade(void) {
 		<< this->name_ << ")\033[m" << std::endl;
 	this->grade_--;
 	if (this->grade_ > 150)
-		throw std::range_error("The grade too low");
+		throw Bureaucrat::GradeTooLowException();
 	else if (this->grade_ < 1)
-		throw std::range_error("The grade too high");
+		throw Bureaucrat::GradeTooHighException();
 	// if (this->grade_ > 150)
-	// 	throw this->GradeTooLowException();
+	// 	throw std::range_error("The grade too low");
 	// else if (this->grade_ < 1)
-	// 	throw this->GradeTooHighException();
+	// 	throw std::range_error("The grade too high");
 }
 
 void	Bureaucrat::decrementGrade(void) {
@@ -93,28 +93,30 @@ void	Bureaucrat::decrementGrade(void) {
 		<< this->name_ << ")\033[m" << std::endl;
 	this->grade_++;
 	if (this->grade_ > 150)
-		throw std::range_error("The grade too low");
+		throw Bureaucrat::GradeTooLowException();
 	else if (this->grade_ < 1)
-		throw std::range_error("The grade too high");
+		throw Bureaucrat::GradeTooHighException();
 	// if (this->grade_ > 150)
-	// 	throw this->GradeTooLowException();
+	// 	throw std::range_error("The grade too low");
 	// else if (this->grade_ < 1)
-	// 	throw this->GradeTooHighException();
+	// 	throw std::range_error("The grade too high");
 }
 
 // When an exception thrown
-int	Bureaucrat::GradeTooHighException(void) {
+const char*	Bureaucrat::GradeTooHighException::what(void) const throw() {
 	std::clog << "\033[32m[" << this \
-		<< "]<Bureaucrat> GradeTooHighException() called (" \
-		<< this->name_ << ")\033[m" << std::endl;
-	return (1);
+		<< "]<Bureaucrat> () called (" \
+		<< "Bureaucrat::name_" << ")\033[m" << std::endl;
+	return ("The grade too high");
+	// return (1);
 }
 
-int	Bureaucrat::GradeTooLowException() {
+const char*	Bureaucrat::GradeTooLowException::what(void) const throw() {
 	std::clog << "\033[32m[" << this \
 		<< "]<Bureaucrat> GradeTooLowException() called (" \
-		<< this->name_ << ")\033[m" << std::endl;
-	return (2);
+		<< "Bureaucrat::name_" << ")\033[m" << std::endl;
+	return ("The grade too low");
+	// return (2);
 }
 
 // Insertion operator overload to print
