@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/16 12:31:13 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/06/20 00:49:35 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) \
 		throw Bureaucrat::GradeTooLowException();
 	else if (this->grade_ < 1)
 		throw Bureaucrat::GradeTooHighException();
+
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& src) \
@@ -105,16 +106,14 @@ void	Bureaucrat::decrementGrade(void) {
 // When an exception thrown
 const char*	Bureaucrat::GradeTooHighException::what(void) const throw() {
 	std::clog << "\033[32m[" << this \
-		<< "]<Bureaucrat> () called (" \
-		<< "Bureaucrat::name_" << ")\033[m" << std::endl;
+		<< "]<Bureaucrat::GradeTooHighException> what() called\033[m" << std::endl;
 	return ("The grade too high");
 	// return (1);
 }
 
 const char*	Bureaucrat::GradeTooLowException::what(void) const throw() {
 	std::clog << "\033[32m[" << this \
-		<< "]<Bureaucrat> GradeTooLowException() called (" \
-		<< "Bureaucrat::name_" << ")\033[m" << std::endl;
+		<< "]<Bureaucrat::GradeTooLowException> what() called\033[m" << std::endl;
 	return ("The grade too low");
 	// return (2);
 }
