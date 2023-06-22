@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/22 14:38:03 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/22 15:32:53 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ Bureaucrat::Bureaucrat(const std::string& name, int grade) \
 		throw Bureaucrat::GradeTooLowException();
 	else if (this->grade_ < 1)
 		throw Bureaucrat::GradeTooHighException();
-
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& src) \
