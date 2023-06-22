@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/20 01:00:46 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/22 14:49:39 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	case_construct_low() {
 	// 	std::cerr << "An exception caught at Bureaucrat" << std::endl;
 	// }
 	catch (std::exception & e) {
-		std::cerr << "An error caught thrown from std::exception: " << std::endl \
+		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
 			<< e.what() << std::endl;
-		return (1)
+		return (1);
 	}
 	return (0);
 }
@@ -37,9 +37,9 @@ int	case_construct_high() {
 		Bureaucrat	bc("John", 0);
 	}
 	catch (std::exception & e) {
-		std::cerr << "An error caught thrown from std::exception: " << std::endl \
+		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
 			<< e.what() << std::endl;
-		return (1)
+		return (1);
 	}
 	return (0);
 }
@@ -51,29 +51,35 @@ int	case_decrement_low() {
 		bc.decrementGrade();
 	}
 	catch (std::exception & e) {
-		std::cerr << "An error caught thrown from std::exception: " << std::endl \
-		<< e.what() << std::endl;
+		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
+			<< e.what() << std::endl;
+		return (1);
 	}
 	return (0);
 }
 
 int	case_increment_high() {
 	std::clog << "\033[35;43mCASE: Too high w/ increment\033[m" << std::endl;
-	{
-		Bureaucrat	bc("John", 1);
-		try {
-			bc.incrementGrade();
-		}
-		catch (std::exception & e) {
-			std::cerr << "An error caught thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		}
+	Bureaucrat	bc("John", 1);
+	try {
+		bc.incrementGrade();
 	}
-
-	return 0;
+	catch (std::exception & e) {
+		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
+			<< e.what() << std::endl;
+		return (1);
+	}
+	return (0);
 }
 
 int	main() {
-	std << case_construct_high() << ;
-	return 0;
+	if (!case_construct_high())
+		std::cout << "No exception occurred" << std::endl;
+	if (!case_construct_low())
+		std::cout << "No exception occurred" << std::endl;
+	if (!case_increment_high())
+		std::cout << "No exception occurred" << std::endl;
+	if (!case_decrement_low())
+		std::cout << "No exception occurred" << std::endl;
+	return (0);
 }

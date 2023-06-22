@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/20 00:49:35 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/22 14:38:03 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,21 @@ Bureaucrat::~Bureaucrat(void) {
 }
 
 const std::string&	Bureaucrat::getName(void) const {
-	std::clog << "\033[32m[" << this \
+	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Bureaucrat> getName() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
 	return (this->name_);
 }
 
 int	Bureaucrat::getGrade(void) const {
-	std::clog << "\033[32m[" << this \
+	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Bureaucrat> getGrade() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
 	return (this->grade_);
 }
 
 void	Bureaucrat::incrementGrade(void) {
-	std::clog << "\033[32m[" << this \
+	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Bureaucrat> incrementGrade() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
 	this->grade_--;
@@ -89,7 +89,7 @@ void	Bureaucrat::incrementGrade(void) {
 }
 
 void	Bureaucrat::decrementGrade(void) {
-	std::clog << "\033[32m[" << this \
+	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Bureaucrat> decrementGrade() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
 	this->grade_++;
@@ -105,14 +105,14 @@ void	Bureaucrat::decrementGrade(void) {
 
 // When an exception thrown
 const char*	Bureaucrat::GradeTooHighException::what(void) const throw() {
-	std::clog << "\033[32m[" << this \
+	std::clog << "\033[35;3m[" << this \
 		<< "]<Bureaucrat::GradeTooHighException> what() called\033[m" << std::endl;
 	return ("The grade too high");
 	// return (1);
 }
 
 const char*	Bureaucrat::GradeTooLowException::what(void) const throw() {
-	std::clog << "\033[32m[" << this \
+	std::clog << "\033[35;3m[" << this \
 		<< "]<Bureaucrat::GradeTooLowException> what() called\033[m" << std::endl;
 	return ("The grade too low");
 	// return (2);
