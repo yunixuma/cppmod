@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/22 15:32:53 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/22 22:25:01 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	Bureaucrat::incrementGrade(void) {
 		<< "]<Bureaucrat> incrementGrade() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
 	this->grade_--;
-	if (this->grade_ > 150)
-		throw Bureaucrat::GradeTooLowException();
-	else if (this->grade_ < 1)
+	// if (this->grade_ > 150)
+	// 	throw Bureaucrat::GradeTooLowException();
+	if (this->grade_ < 1)
 		throw Bureaucrat::GradeTooHighException();
 	// if (this->grade_ > 150)
 	// 	throw std::range_error("The grade too low");
@@ -94,8 +94,8 @@ void	Bureaucrat::decrementGrade(void) {
 	this->grade_++;
 	if (this->grade_ > 150)
 		throw Bureaucrat::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Bureaucrat::GradeTooHighException();
+	// else if (this->grade_ < 1)
+	// 	throw Bureaucrat::GradeTooHighException();
 	// if (this->grade_ > 150)
 	// 	throw std::range_error("The grade too low");
 	// else if (this->grade_ < 1)
