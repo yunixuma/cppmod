@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/23 13:24:15 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/23 18:18:01 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ private:
 	const int			grade_to_sign_;
 	const int			grade_to_exec_;
 public:
-	Form(const std::string& name, int grade_to_sign = 25, int grade_to_exec = 50);
+	Form(const std::string& name, int grade_to_sign = 50, int grade_to_exec = 25);
 	Form(const Form& src);
 	Form&	operator=(const Form& rhs);
 	~Form(void);
