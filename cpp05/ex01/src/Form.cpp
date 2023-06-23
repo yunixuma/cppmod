@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/23 13:28:56 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/23 14:03:24 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ Form::Form(const std::string& name, int grade_to_sign, int grade_to_exec) \
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<Form> Constructor called (" \
 		<< this->name_ << ")\033[m" << std::endl;
+	if (this->grade_to_sign_ > 150 || this->grade_to_exec_ > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (this->grade_to_sign_ < 1 || this->grade_to_exec_ < 1)
+		throw Bureaucrat::GradeTooHighException();
 }
 
 Form::Form(const Form& src) \
@@ -26,6 +30,10 @@ Form::Form(const Form& src) \
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<Form> Copy constructor called (" \
 		<< this->name_ << ")\033[m" << std::endl;
+	if (this->grade_to_sign_ > 150 || this->grade_to_exec_ > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (this->grade_to_sign_ < 1 || this->grade_to_exec_ < 1)
+		throw Bureaucrat::GradeTooHighException();
 }
 
 Form&	Form::operator=(const Form& rhs) {
@@ -39,6 +47,10 @@ Form&	Form::operator=(const Form& rhs) {
 		const_cast<int&>(this->grade_to_sign_) = rhs.grade_to_sign_;
 		const_cast<int&>(this->grade_to_exec_) = rhs.grade_to_exec_;
 	}
+	if (this->grade_to_sign_ > 150 || this->grade_to_exec_ > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (this->grade_to_sign_ < 1 || this->grade_to_exec_ < 1)
+		throw Bureaucrat::GradeTooHighException();
 	return (*this);
 }
 
