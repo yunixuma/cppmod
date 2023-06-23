@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/22 16:42:06 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/23 13:41:19 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
 
-int	case_construct_regular() {
+int	case_construct_regular(void) {
 	std::clog << "\033[32;43mCASE: Regular construct\033[m" << std::endl;
 	try {
 		Bureaucrat	bc1("John", 50);
@@ -34,7 +34,7 @@ int	case_construct_regular() {
 	return (0);
 }
 
-int	case_construct_low() {
+int	case_construct_low(void) {
 	std::clog << "\033[35;43mCASE: Too low w/ construct\033[m" << std::endl;
 	try {
 		Bureaucrat	bc("John", 151);
@@ -48,7 +48,7 @@ int	case_construct_low() {
 	return (0);
 }
 
-int	case_construct_high() {
+int	case_construct_high(void) {
 	std::clog << "\033[35;43mCASE: Too high w/ construct\033[m" << std::endl;
 	try {
 		Bureaucrat	bc("John", 0);
@@ -62,7 +62,7 @@ int	case_construct_high() {
 	return (0);
 }
 
-int	case_decrement_regular() {
+int	case_decrement_regular(void) {
 	std::clog << "\033[32;43mCASE: Regular decrement\033[m" << std::endl;
 	Bureaucrat	bc1("John", 50);
 	Bureaucrat	bc2("Jane");
@@ -80,7 +80,7 @@ int	case_decrement_regular() {
 	return (0);
 }
 
-int	case_decrement_low() {
+int	case_decrement_low(void) {
 	std::clog << "\033[35;43mCASE: Too low w/ decrement\033[m" << std::endl;
 	Bureaucrat	bc("John", 150);
 	try {
@@ -95,7 +95,7 @@ int	case_decrement_low() {
 	return (0);
 }
 
-int	case_increment_regular() {
+int	case_increment_regular(void) {
 	std::clog << "\033[32;43mCASE: Regular increment\033[m" << std::endl;
 	Bureaucrat	bc1("John", 50);
 	Bureaucrat	bc2("Jane");
@@ -113,7 +113,7 @@ int	case_increment_regular() {
 	return (0);
 }
 
-int	case_increment_high() {
+int	case_increment_high(void) {
 	std::clog << "\033[35;43mCASE: Too high w/ increment\033[m" << std::endl;
 	Bureaucrat	bc("John", 1);
 	try {

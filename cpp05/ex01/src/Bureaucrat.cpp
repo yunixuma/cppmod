@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/22 22:33:11 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/23 13:42:48 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,20 @@ void	Bureaucrat::decrementGrade(void) {
 	// 	throw std::range_error("The grade too high");
 }
 
-void	Bureaucrat::signForm(const Form& form) const {
+int	Bureaucrat::signForm(Form& form) {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Bureaucrat> signForm() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
-	this->grade_++;
-	if (this->grade_ > 150)
-		throw Bureaucrat::GradeTooLowException();
-	// else if (this->grade_ < 1)
-	// 	throw Bureaucrat::GradeTooHighException();
-	// if (this->grade_ > 150)
-	// 	throw std::range_error("The grade too low");
-	// else if (this->grade_ < 1)
-	// 	throw std::range_error("The grade too high");
+	try {
+		form.beSigned(*this);
+	}
+	catch (std::exception & e) {
+		std::cout << this->name_ << " couldn't sign " << form.getName() \
+			<< " because " << e.what() << "." << std::endl;
+		return (0);
+	}
+	std::cout << this->name_ << " signed " << form.getName() << std::endl;
+	return (1);
 }
 
 // When an exception thrown

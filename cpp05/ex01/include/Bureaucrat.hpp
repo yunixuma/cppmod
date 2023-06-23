@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/22 22:27:48 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/23 12:18:01 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <iostream>
 # include <string>
 # include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -43,7 +45,7 @@ public:
 	int					getGrade(void) const;
 	void				incrementGrade(void);
 	void				decrementGrade(void);
-	int					signForm(const Form& form) const;
+	int					signForm(Form& form);
 };
 
 std::ostream&	operator<<(std::ostream& stream, const Bureaucrat& bc);

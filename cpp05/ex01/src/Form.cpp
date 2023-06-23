@@ -3,35 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/22 17:26:51 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/23 13:28:56 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form(const std::string& name, int grade) \
-	: name_(name), grade_(grade) {
+Form::Form(const std::string& name, int grade_to_sign, int grade_to_exec) \
+	: name_(name), signed_(false), \
+	grade_to_sign_(grade_to_sign) , grade_to_exec_(grade_to_exec) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<Form> Constructor called (" \
 		<< this->name_ << ")\033[m" << std::endl;
-	if (this->grade_ > 150)
-		throw Form::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Form::GradeTooHighException();
 }
 
 Form::Form(const Form& src) \
-	: name_(src.name_), grade_(src.grade_) {
+	: name_(src.name_), signed_(src.signed_), \
+	grade_to_sign_(src.grade_to_sign_) , grade_to_exec_(src.grade_to_exec_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<Form> Copy constructor called (" \
 		<< this->name_ << ")\033[m" << std::endl;
-	if (this->grade_ > 150)
-		throw Form::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Form::GradeTooHighException();
 }
 
 Form&	Form::operator=(const Form& rhs) {
@@ -41,12 +35,10 @@ Form&	Form::operator=(const Form& rhs) {
 	if (this != &rhs)
 	{
 		const_cast<std::string&>(this->name_) = rhs.name_;
-		this->grade_ = rhs.grade_;
+		this->signed_ = rhs.signed_;
+		const_cast<int&>(this->grade_to_sign_) = rhs.grade_to_sign_;
+		const_cast<int&>(this->grade_to_exec_) = rhs.grade_to_exec_;
 	}
-	if (this->grade_ > 150)
-		throw Form::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Form::GradeTooHighException();
 	return (*this);
 }
 
@@ -63,56 +55,65 @@ const std::string&	Form::getName(void) const {
 	return (this->name_);
 }
 
-int	Form::getGrade(void) const {
+bool	Form::getSigned(void) const {
 	std::clog << "\033[32;2;3m[" << this \
-		<< "]<Form> getGrade() called (" \
+		<< "]<Form> getSigned() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
-	return (this->grade_);
+	return (this->signed_);
 }
 
-void	Form::incrementGrade(void) {
+int	Form::getGradeToSign(void) const {
 	std::clog << "\033[32;2;3m[" << this \
-		<< "]<Form> incrementGrade() called (" \
+		<< "]<Form> getGradeToSign() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
-	this->grade_--;
-	if (this->grade_ > 150)
-		throw Form::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Form::GradeTooHighException();
+	return (this->grade_to_sign_);
 }
 
-void	Form::decrementGrade(void) {
+int	Form::getGradeToExec(void) const {
 	std::clog << "\033[32;2;3m[" << this \
-		<< "]<Form> decrementGrade() called (" \
+		<< "]<Form> getGradeToExec() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
-	this->grade_++;
-	if (this->grade_ > 150)
+	return (this->grade_to_exec_);
+}
+
+void	Form::beSigned(const Bureaucrat& bc) {
+	std::clog << "\033[32;2;3m[" << this \
+		<< "]<Form> beSigned() called (" \
+		<< this->name_ << ")\033[m" << std::endl;
+	if (this->grade_to_sign_ < bc.getGrade())
 		throw Form::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Form::GradeTooHighException();
-	// if (this->grade_ > 150)
-	// 	throw std::range_error("The grade too low");
-	// else if (this->grade_ < 1)
-	// 	throw std::range_error("The grade too high");
+	else if (this->signed_ == true)
+		throw Form::AlreadySignedException();
+	this->signed_ = true;
 }
 
 // When an exception thrown
 const char*	Form::GradeTooHighException::what(void) const throw() {
 	std::clog << "\033[35;3m[" << this \
 		<< "]<Form::GradeTooHighException> what() called\033[m" << std::endl;
-	return ("The grade too high");
+	return ("the grade is too high");
 	// return (1);
 }
 
 const char*	Form::GradeTooLowException::what(void) const throw() {
 	std::clog << "\033[35;3m[" << this \
 		<< "]<Form::GradeTooLowException> what() called\033[m" << std::endl;
-	return ("The grade too low");
+	return ("the grade is too low");
 	// return (2);
+}
+
+const char*	Form::AlreadySignedException::what(void) const throw() {
+	std::clog << "\033[35;3m[" << this \
+		<< "]<Form::AlreadySignedException> what() called\033[m" << std::endl;
+	return ("already signed");
+	// return (3);
 }
 
 // Insertion operator overload to print
 std::ostream&	operator<<(std::ostream& stream, const Form& form) {
-	stream << form.getName() << ", Form grade " << form.getGrade() << ".";
+	stream << "Form \"" << form.getName() << "\", signed " \
+		<< (form.getSigned() ? "true" : "false") << ", grade " \
+		<< form.getGradeToSign() << " to sign, grade " \
+		<< form.getGradeToExec() << " to execute.";
 	return (stream);
 }

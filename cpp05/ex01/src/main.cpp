@@ -3,135 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/22 15:44:30 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/23 13:41:30 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-int	case_construct_regular() {
-	std::clog << "\033[32;43mCASE: Regular construct\033[m" << std::endl;
-	try {
-		Bureaucrat	bc1("John", 50);
-		Bureaucrat	bc2("Jane");
-	}
-	// catch (Bureaucrat & e)
-	// {
-	// 	/* handle exception */
-	// 	std::cerr << "An exception caught at Bureaucrat" << std::endl;
-	// }
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-int	case_construct_low() {
-	std::clog << "\033[35;43mCASE: Too low w/ construct\033[m" << std::endl;
-	try {
-		Bureaucrat	bc("John", 151);
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-int	case_construct_high() {
-	std::clog << "\033[35;43mCASE: Too high w/ construct\033[m" << std::endl;
-	try {
-		Bureaucrat	bc("John", 0);
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-int	case_decrement_regular() {
-	std::clog << "\033[32;43mCASE: Regular decrement\033[m" << std::endl;
-	Bureaucrat	bc1("John", 50);
+void	case_sign_success(void) {
+	std::clog << "\033[32;43mCASE: Succeed signing\033[m" << std::endl;
+	Bureaucrat	bc1("John", 25);
 	Bureaucrat	bc2("Jane");
-	try {
-		bc1.decrementGrade();
-		bc2.decrementGrade();
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
+	Form		form1("Form A");
+	Form		form2("Form B", 100, 100);
+	bc1.signForm(form1);
+	std::cout << form1 << std::endl;
+	bc2.signForm(form2);
+	std::cout << form2 << std::endl;
 }
 
-int	case_decrement_low() {
-	std::clog << "\033[35;43mCASE: Too low w/ decrement\033[m" << std::endl;
-	Bureaucrat	bc("John", 150);
-	try {
-		bc.decrementGrade();
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
+void	case_sign_fail_grade(void) {
+	std::clog << "\033[35;43mCASE: Fail signing for the grade\033[m" << std::endl;
+	Bureaucrat	bc("John", 80);
+	Form		form("Form B", 20, 40);
+	bc.signForm(form);
+	std::cout << form << std::endl;
 }
 
-int	case_increment_regular() {
-	std::clog << "\033[32;43mCASE: Regular increment\033[m" << std::endl;
-	Bureaucrat	bc1("John", 50);
+void	case_sign_fail_already(void) {
+	std::clog << "\033[35;43mCASE: Fail signing for already signed\033[m" << std::endl;
+	Bureaucrat	bc1("John", 25);
 	Bureaucrat	bc2("Jane");
-	try {
-		bc1.incrementGrade();
-		bc2.incrementGrade();
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
+	Form		form("Form B", 100, 100);
+	bc1.signForm(form);
+	std::cout << form << std::endl;
+	bc2.signForm(form);
+	std::cout << form << std::endl;
 }
 
-int	case_increment_high() {
-	std::clog << "\033[35;43mCASE: Too high w/ increment\033[m" << std::endl;
-	Bureaucrat	bc("John", 1);
-	try {
-		bc.incrementGrade();
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-int	main() {
-	if (!case_construct_regular())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_construct_high())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_construct_low())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_increment_regular())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_increment_high())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_decrement_regular())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_decrement_low())
-		std::cout << "No exception occurred" << std::endl;
+int	main(void) {
+	case_sign_success();
+	case_sign_fail_grade();
+	case_sign_fail_already();
 	return (0);
 }
