@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/23 21:18:48 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/24 17:58:02 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ public:
 	};
 private:
 public:
-	Form(const std::string& name, int grade_to_sign = 50, int grade_to_exec = 25);
+	Form(const std::string& name, int grade_to_sign = 145, int grade_to_exec = 137);
 	Form(const Form& src);
 	Form&	operator=(const Form& rhs);
 	~Form(void);

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/23 21:18:32 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/23 21:19:51 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ private:
 public:
 	AForm(const std::string& name, int grade_to_sign = 50, int grade_to_exec = 25);
 	AForm(const AForm& src);
-	virtual AForm&				operator=(const AForm& rhs);
+	virtual AForm&		operator=(const AForm& rhs);
 	virtual ~AForm(void);
-	virtual const std::string&	getName(void) const;
-	virtual bool				getSigned(void) const;
-	virtual int					getGradeToSign(void) const;
-	virtual int					getGradeToExec(void) const;
-	virtual void				beSigned(const Bureaucrat& bc) = 0;
+	const std::string&	getName(void) const;
+	bool				getSigned(void) const;
+	int					getGradeToSign(void) const;
+	int					getGradeToExec(void) const;
+	virtual void		beSigned(const Bureaucrat& bc) = 0;
 };
 
 std::ostream&	operator<<(std::ostream& stream, const AForm& form);
