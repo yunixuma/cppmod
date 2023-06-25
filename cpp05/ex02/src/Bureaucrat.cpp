@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/23 13:42:48 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/25 04:57:18 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	Bureaucrat::decrementGrade(void) {
 	// 	throw std::range_error("The grade too high");
 }
 
-int	Bureaucrat::signForm(Form& form) {
+int	Bureaucrat::signForm(AForm& form) {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Bureaucrat> signForm() called (" \
 		<< this->name_ << ")\033[m" << std::endl;

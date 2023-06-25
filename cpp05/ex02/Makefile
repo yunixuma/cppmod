@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/06/22 16:31:26 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/06/25 09:34:18 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@
 NAME			= form
 
 # Enumeration of files
-SRC				= main.cpp Bureaucrat.cpp Form.cpp
+SRC				= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+				  RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 # Check the platform
 OS				= $(shell uname)
