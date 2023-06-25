@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 09:35:22 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/25 11:33:02 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,22 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<ShrubberyCreationForm> execute() called (" \
 		<< this->getName() << ")\033[m" << std::endl;
-	(void)executor;
+	if (this->getGradeToExec() < executor.getGrade())
+		throw ShrubberyCreationForm::AlreadySignedException();		std::ofstream	ofs;
+
+	std::string		filepath_out = extor.getName() + "_shurrbu";
+	try {
+		ofs.open(filepath_out.c_str(), std::ios::out | std::ios::binary);
+		if (ofs.fail())
+			throw (std::exception());
+	}
+	catch (const std::exception& e) {
+		std::cerr << "\033[31m!!! Error opening thetarg dest. file. !!!\033[m" << std::endl;
+		return (ENOENT);
+	}
+	std::string	content;
+	ofs << content;
+	ofs.close();
 }
 
 // When an exception thrown
