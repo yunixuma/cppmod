@@ -6,14 +6,14 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 10:03:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:48:36 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target) \
-	: AForm("shrubbery_creation", target, 145, 137) {
+	: AForm("shrubbery_creation", target, 72, 45) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<RobotomyRequestForm> Constructor called (" \
 		<< this->getName() << ")\033[m" << std::endl;
@@ -68,6 +68,11 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<RobotomyRequestForm> execute() called (" \
 		<< this->getName() << ")\033[m" << std::endl;
+	if (this->getSigned() == false)
+		throw RobotomyRequestForm::NotSignedException();
+	else if (this->getGradeToExec() < executor.getGrade())
+		throw RobotomyRequestForm::GradeTooLowException();
+	
 	(void)executor;
 }
 

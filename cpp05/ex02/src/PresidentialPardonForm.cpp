@@ -6,14 +6,14 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 09:48:44 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:48:27 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target) \
-	: AForm("shrubbery_creation", target, 145, 137) {
+	: AForm("shrubbery_creation", target, 25, 5) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PresidentialPardonForm> Constructor called (" \
 		<< this->getName() << ")\033[m" << std::endl;
@@ -68,6 +68,11 @@ void	PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<PresidentialPardonForm> execute() called (" \
 		<< this->getName() << ")\033[m" << std::endl;
+	if (this->getSigned() == false)
+		throw PresidentialPardonForm::NotSignedException();
+	else if (this->getGradeToExec() < executor.getGrade())
+		throw PresidentialPardonForm::GradeTooLowException();
+
 	(void)executor;
 }
 

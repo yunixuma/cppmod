@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 13:42:59 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:47:06 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<ShrubberyCreationForm> execute() called (" \
 		<< this->getName() << ")\033[m" << std::endl;
-	if (this->getGradeToExec() < executor.getGrade())
-		throw ShrubberyCreationForm::AlreadySignedException();
+	if (this->getSigned() == false)
+		throw ShrubberyCreationForm::NotSignedException();
+	else if (this->getGradeToExec() < executor.getGrade())
+		throw ShrubberyCreationForm::GradeTooLowException();
 
 	std::ofstream	ofs;
 	std::string		filepath_out = this->getTarget() + "_shrubbery";
