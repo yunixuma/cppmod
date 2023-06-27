@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 23:34:53 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 13:42:59 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,24 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 		std::cerr << "\033[31m!!! Error opening thetarg dest. file. !!!\033[m" << std::endl;
 		return ;
 	}
-	std::string	content;
-	content = "TEST";
+
+	std::string	content = "\
+               ,@@@@@@@,\n\
+       ,,,.   ,@@@@@@/@@,  .oo8888o.\n\
+    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n\
+   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n\
+   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n\
+   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n\
+   `&%\\ ` /%&'    |.|        \\ '|8'\n\
+       |o|        | |         | |\n\
+       |.|        | |         | |\n\
+jgs \\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_\n\
+\n\
+------------------------------------------------\n\
+Thank you for visiting https://asciiart.website/\n\
+This ASCII pic can be found at\n\
+https://asciiart.website/index.php?art=plants/trees";
+
 	ofs << content;
 	ofs.close();
 }

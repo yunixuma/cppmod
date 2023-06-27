@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 23:41:57 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 13:12:24 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,14 +123,14 @@ int	Bureaucrat::executeForm(AForm const & form) {
 		<< "]<Bureaucrat> executeForm() called (" \
 		<< this->name_ << ")\033[m" << std::endl;
 	try {
-		form.beSigned(*this);
+		form.execute(*this);
 	}
 	catch (std::exception & e) {
 		std::cout << this->name_ << " couldn't sign " << form.getName() \
 			<< " because " << e.what() << "." << std::endl;
 		return (0);
 	}
-	std::cout << this->name_ << " signed " << form.getName() << std::endl;
+	std::cout << this->name_ << " executed " << form.getName() << std::endl;
 	return (1);
 }
 
