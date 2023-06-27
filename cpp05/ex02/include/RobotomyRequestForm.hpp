@@ -6,13 +6,16 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 14:35:48 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 21:21:16 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RobotomyRequestForm_HPP
 # define RobotomyRequestForm_HPP
 
+# include <iostream>
+# include <cstdlib>
+# include <ctime>
 # include "AForm.hpp"
 # include "Bureaucrat.hpp"
 
@@ -32,6 +35,11 @@ public:
 		virtual const char*	what() const throw();
 	};
 	class AlreadySignedException : public std::exception
+	{
+	public:
+		virtual const char*	what() const throw();
+	};
+	class NotSignedException : public std::exception
 	{
 	public:
 		virtual const char*	what() const throw();

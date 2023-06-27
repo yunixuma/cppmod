@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 14:48:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 21:22:54 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,14 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 		throw RobotomyRequestForm::NotSignedException();
 	else if (this->getGradeToExec() < executor.getGrade())
 		throw RobotomyRequestForm::GradeTooLowException();
-	
-	(void)executor;
+ 
+ 	srand(time(NULL));
+	if (rand() % 2)
+		std::cout << this->getTarget() \
+			<< " has been robotomized successfully and makes some drilling noises." << std::endl;
+	else
+		std::cout << "The robotomy for " << this->getTarget() \
+			<< " has failed" << std::endl;
 }
 
 // When an exception thrown
@@ -96,6 +102,13 @@ const char*	RobotomyRequestForm::AlreadySignedException::what(void) const throw(
 		<< "]<RobotomyRequestForm::AlreadySignedException> what() called\033[m" << std::endl;
 	return ("already signed");
 	// return (3);
+}
+
+const char*	RobotomyRequestForm::NotSignedException::what(void) const throw() {
+	std::clog << "\033[35;3m[" << this \
+		<< "]<RobotomyRequestForm::NotSignedException> what() called\033[m" << std::endl;
+	return ("not signed yet");
+	// return (4);
 }
 
 // Insertion operator overload to print

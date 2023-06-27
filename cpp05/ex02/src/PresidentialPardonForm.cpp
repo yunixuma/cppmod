@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 14:48:27 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 21:22:26 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 	else if (this->getGradeToExec() < executor.getGrade())
 		throw PresidentialPardonForm::GradeTooLowException();
 
-	(void)executor;
+	std::cout << this->getTarget() \
+		<< " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
 
 // When an exception thrown
@@ -96,6 +97,13 @@ const char*	PresidentialPardonForm::AlreadySignedException::what(void) const thr
 		<< "]<PresidentialPardonForm::AlreadySignedException> what() called\033[m" << std::endl;
 	return ("already signed");
 	// return (3);
+}
+
+const char*	PresidentialPardonForm::NotSignedException::what(void) const throw() {
+	std::clog << "\033[35;3m[" << this \
+		<< "]<PresidentialPardonForm::NotSignedException> what() called\033[m" << std::endl;
+	return ("not signed yet");
+	// return (4);
 }
 
 // Insertion operator overload to print

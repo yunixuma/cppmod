@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 14:47:06 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 20:15:51 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,13 @@ const char*	ShrubberyCreationForm::AlreadySignedException::what(void) const thro
 		<< "]<ShrubberyCreationForm::AlreadySignedException> what() called\033[m" << std::endl;
 	return ("already signed");
 	// return (3);
+}
+
+const char*	ShrubberyCreationForm::NotSignedException::what(void) const throw() {
+	std::clog << "\033[35;3m[" << this \
+		<< "]<ShrubberyCreationForm::NotSignedException> what() called\033[m" << std::endl;
+	return ("not signed yet");
+	// return (4);
 }
 
 // Insertion operator overload to print
