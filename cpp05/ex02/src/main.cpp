@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 05:35:48 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/25 23:34:22 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	case_sign_success(void) {
 	std::cout << *form1 << std::endl;
 	bc2.signForm(*form2);
 	std::cout << *form2 << std::endl;
+	bc2.executeForm(*form2);
 	delete form1;
 	delete form2;
 }

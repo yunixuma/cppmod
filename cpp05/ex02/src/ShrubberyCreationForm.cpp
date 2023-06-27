@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 11:33:02 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/25 23:34:53 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,10 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 		<< "]<ShrubberyCreationForm> execute() called (" \
 		<< this->getName() << ")\033[m" << std::endl;
 	if (this->getGradeToExec() < executor.getGrade())
-		throw ShrubberyCreationForm::AlreadySignedException();		std::ofstream	ofs;
+		throw ShrubberyCreationForm::AlreadySignedException();
 
-	std::string		filepath_out = extor.getName() + "_shurrbu";
+	std::ofstream	ofs;
+	std::string		filepath_out = this->getTarget() + "_shrubbery";
 	try {
 		ofs.open(filepath_out.c_str(), std::ios::out | std::ios::binary);
 		if (ofs.fail())
@@ -79,9 +80,10 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	}
 	catch (const std::exception& e) {
 		std::cerr << "\033[31m!!! Error opening thetarg dest. file. !!!\033[m" << std::endl;
-		return (ENOENT);
+		return ;
 	}
 	std::string	content;
+	content = "TEST";
 	ofs << content;
 	ofs.close();
 }

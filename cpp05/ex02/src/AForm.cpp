@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 07:53:09 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/25 20:30:21 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,37 +61,37 @@ AForm::~AForm(void) {
 }
 
 const std::string&	AForm::getName(void) const {
-	// std::clog << "\033[32;2;3m[" << this \
-	// 	<< "]<AForm> getName() called (" \
-	// 	<< this->name_ << ")\033[m" << std::endl;
+/*	 std::clog << "\033[32;2;3m[" << this \
+		<< "]<AForm> getName() called (" \
+		<< this->name_ << ")\033[m" << std::endl;*/
 	return (this->name_);
 }
 
 const std::string&	AForm::getTarget(void) const {
-	// std::clog << "\033[32;2;3m[" << this \
-	// 	<< "]<AForm> getTarget() called (" \
-	// 	<< this->name_ << ")\033[m" << std::endl;
+/*	 std::clog << "\033[32;2;3m[" << this \
+		<< "]<AForm> getTarget() called (" \
+		<< this->name_ << ")\033[m" << std::endl;*/
 	return (this->target_);
 }
 
 bool	AForm::getSigned(void) const {
-	// std::clog << "\033[32;2;3m[" << this \
-	// 	<< "]<AForm> getSigned() called (" \
-	// 	<< this->name_ << ")\033[m" << std::endl;
+/*	std::clog << "\033[32;2;3m[" << this \
+		<< "]<AForm> getSigned() called (" \
+		<< this->name_ << ")\033[m" << std::endl;*/
 	return (this->signed_);
 }
 
 int	AForm::getGradeToSign(void) const {
-	// std::clog << "\033[32;2;3m[" << this \
-	// 	<< "]<AForm> getGradeToSign() called (" \
-	// 	<< this->name_ << ")\033[m" << std::endl;
+/*	 std::clog << "\033[32;2;3m[" << this \
+		<< "]<AForm> getGradeToSign() called (" \
+		<< this->name_ << ")\033[m" << std::endl;*/
 	return (this->grade_to_sign_);
 }
 
 int	AForm::getGradeToExec(void) const {
-	// std::clog << "\033[32;2;3m[" << this \
-	// 	<< "]<AForm> getGradeToExec() called (" \
-	// 	<< this->name_ << ")\033[m" << std::endl;
+/*	std::clog << "\033[32;2;3m[" << this \
+		<< "]<AForm> getGradeToExec() called (" \
+		<< this->name_ << ")\033[m" << std::endl;*/
 	return (this->grade_to_exec_);
 }
 

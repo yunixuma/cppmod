@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 07:13:52 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/25 23:26:29 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
+// # include <cstdlib>
+# include <fstream>
+// # include <iostream>
 # include "AForm.hpp"
 # include "Bureaucrat.hpp"
 
@@ -42,8 +45,8 @@ public:
 	ShrubberyCreationForm(const ShrubberyCreationForm& src);
 	ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& rhs);
 	~ShrubberyCreationForm(void);
-	void				beSigned(const Bureaucrat& bc);
-	void				execute(Bureaucrat const & executor) const;
+	void	beSigned(const Bureaucrat& bc);
+	void	execute(Bureaucrat const & executor) const;
 };
 
 std::ostream&	operator<<(std::ostream& stream, const ShrubberyCreationForm& form);
