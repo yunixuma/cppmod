@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/25 23:34:22 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 23:02:23 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,103 +14,72 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-int	case_construct_regular(void) {
-	std::clog << "\033[32;43mCASE: Regular construct\033[m" << std::endl;
-	try {
-		AForm*	form1 = new ShrubberyCreationForm("W-8BEN");
-		std::cout << form1 << std::endl;
-		AForm*	form2 = new ShrubberyCreationForm("DS-160");
-		std::cout << form2 << std::endl;
-		AForm*	form3 = new ShrubberyCreationForm("IRS 1040");
-		std::cout << form3 << std::endl;
-		delete form1;
-		delete form2;
-		delete form3;
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-int	case_construct_low(void) {
-	std::clog << "\033[35;43mCASE: Too low w/ construct\033[m" << std::endl;
-	try {
-		AForm*	form = new ShrubberyCreationForm("W-8BEN");
-		std::cout << form << std::endl;
-		delete form;
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-int	case_construct_high(void) {
-	std::clog << "\033[35;43mCASE: Too high w/ construct\033[m" << std::endl;
-	try {
-		AForm*	form = new ShrubberyCreationForm("W-8BEN");
-		std::cout << *form << std::endl;
-		delete form;
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-void	case_sign_success(void) {
-	std::clog << "\033[32;43mCASE: Succeed signing\033[m" << std::endl;
-	Bureaucrat	bc1("John", 40);
-	Bureaucrat	bc2("Jane");
-	AForm*		form1 = new ShrubberyCreationForm("W-8BEN");
-	AForm*		form2 = new ShrubberyCreationForm("DS-160");
-	bc1.signForm(*form1);
+void	case_construct(void) {
+	std::clog << "\033[32;43mCASE: Construct & copy assignment\033[m" << std::endl;
+	AForm*	form1 = new ShrubberyCreationForm("W-8BEN");
 	std::cout << *form1 << std::endl;
-	bc2.signForm(*form2);
+	AForm*	form2 = new ShrubberyCreationForm(*form1);
 	std::cout << *form2 << std::endl;
-	bc2.executeForm(*form2);
+	ShrubberyCreationForm*	form3 = new ShrubberyCreationForm("DS-160");
+	std::cout << *form3 << std::endl;
+	*form3 = *form2;
+	std::cout << *form3 << std::endl;
 	delete form1;
 	delete form2;
+	delete form3;
 }
 
-void	case_sign_fail_grade(void) {
-	std::clog << "\033[35;43mCASE: Fail signing for the grade\033[m" << std::endl;
-	Bureaucrat	bc("John", 80);
+void	case_exec_success(void) {
+	std::clog << "\033[32;43mCASE: Succeed execution\033[m" << std::endl;
+	Bureaucrat	bc("John", 5);
+	std::cout << bc << std::endl;
+	AForm*		form1 = new ShrubberyCreationForm("W-8BEN");
+	AForm*		form2 = new RobotomyRequestForm("DS-160");
+	AForm*		form3 = new PresidentialPardonForm("DS-160");
+	bc.signForm(*form1);
+	bc.signForm(*form2);
+	bc.signForm(*form3);
+	std::cout << *form1 << std::endl;
+	std::cout << *form2 << std::endl;
+	std::cout << *form3 << std::endl;
+	bc.executeForm(*form1);
+	bc.executeForm(*form2);
+	bc.executeForm(*form2);
+	bc.executeForm(*form2);
+	bc.executeForm(*form3);
+	delete form1;
+	delete form2;
+	delete form3;
+}
+
+void	case_exec_fail_grade(void) {
+	std::clog << "\033[35;43mCASE: Fail execution for the grade\033[m" << std::endl;
+	Bureaucrat	bc("John", 140);
+	std::cout << bc << std::endl;
 	AForm*		form = new ShrubberyCreationForm("DS-160");
 	bc.signForm(*form);
 	std::cout << *form << std::endl;
+	bc.executeForm(*form);
 	delete form;
 }
 
-void	case_sign_fail_already(void) {
-	std::clog << "\033[35;43mCASE: Fail signing for already signed\033[m" << std::endl;
-	Bureaucrat	bc1("John", 40);
-	Bureaucrat	bc2("Jane");
+void	case_exec_fail_nosign(void) {
+	std::clog << "\033[35;43mCASE: Fail execution for not signed\033[m" << std::endl;
+	Bureaucrat	bc("John", 40);
+	std::cout << bc << std::endl;
 	AForm*		form = new ShrubberyCreationForm("DS-160");
-	bc1.signForm(*form);
 	std::cout << *form << std::endl;
-	bc2.signForm(*form);
-	std::cout << *form << std::endl;
+	bc.executeForm(*form);
 	delete form;
 }
 
 int	main(void) {
-	if (!case_construct_regular())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_construct_high())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_construct_low())
-		std::cout << "No exception occurred" << std::endl;
-	case_sign_success();
-	case_sign_fail_grade();
-	case_sign_fail_already();
+	// case_construct()
+	case_exec_success();
+	case_exec_fail_grade();
+	case_exec_fail_nosign();
 	return (0);
 }

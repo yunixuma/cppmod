@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 13:12:24 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 22:46:36 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	Bureaucrat::executeForm(AForm const & form) {
 		form.execute(*this);
 	}
 	catch (std::exception & e) {
-		std::cout << this->name_ << " couldn't sign " << form.getName() \
+		std::cout << this->name_ << " couldn't execute " << form.getName() \
 			<< " because " << e.what() << "." << std::endl;
 		return (0);
 	}

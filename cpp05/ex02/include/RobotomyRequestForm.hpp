@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 21:21:16 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 22:55:23 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,26 @@ class Bureaucrat;
 class RobotomyRequestForm : public AForm
 {
 public:
-	class GradeTooHighException : public std::exception
-	{
-	public:
-		virtual const char*	what() const throw();
-	};
-	class GradeTooLowException : public std::exception
-	{
-	public:
-		virtual const char*	what() const throw();
-	};
-	class AlreadySignedException : public std::exception
-	{
-	public:
-		virtual const char*	what() const throw();
-	};
-	class NotSignedException : public std::exception
-	{
-	public:
-		virtual const char*	what() const throw();
-	};
+// 	class GradeTooHighException : public std::exception
+// 	{
+// 	public:
+// 		virtual const char*	what() const throw();
+// 	};
+// 	class GradeTooLowException : public std::exception
+// 	{
+// 	public:
+// 		virtual const char*	what() const throw();
+// 	};
+// 	class AlreadySignedException : public std::exception
+// 	{
+// 	public:
+// 		virtual const char*	what() const throw();
+// 	};
+// 	class NotSignedException : public std::exception
+// 	{
+// 	public:
+// 		virtual const char*	what() const throw();
+// 	};
 	RobotomyRequestForm(const std::string& target);
 	RobotomyRequestForm(const RobotomyRequestForm& src);
 	RobotomyRequestForm&	operator=(const RobotomyRequestForm& rhs);
@@ -52,6 +52,6 @@ public:
 	void	execute(Bureaucrat const & executor) const;
 };
 
-std::ostream&	operator<<(std::ostream& stream, const RobotomyRequestForm& form);
+// std::ostream&	operator<<(std::ostream& stream, const RobotomyRequestForm& form);
 
 #endif

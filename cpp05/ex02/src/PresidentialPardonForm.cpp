@@ -6,14 +6,14 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 21:22:26 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/27 23:01:45 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target) \
-	: AForm("shrubbery_creation", target, 25, 5) {
+	: AForm("presidential_pardon", target, 25, 5) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PresidentialPardonForm> Constructor called (" \
 		<< this->getName() << ")\033[m" << std::endl;
@@ -28,10 +28,10 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<PresidentialPardonForm> Copy constructor called (" \
 		<< this->getName() << ")\033[m" << std::endl;
-	if (this->getGradeToSign() > 150 || this->getGradeToExec() > 150)
-		throw Bureaucrat::GradeTooLowException();
-	else if (this->getGradeToSign() < 1 || this->getGradeToExec() < 1)
-		throw Bureaucrat::GradeTooHighException();
+	// if (this->getGradeToSign() > 150 || this->getGradeToExec() > 150)
+	// 	throw Bureaucrat::GradeTooLowException();
+	// else if (this->getGradeToSign() < 1 || this->getGradeToExec() < 1)
+	// 	throw Bureaucrat::GradeTooHighException();
 }
 
 PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs) {
@@ -78,39 +78,39 @@ void	PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 }
 
 // When an exception thrown
-const char*	PresidentialPardonForm::GradeTooHighException::what(void) const throw() {
-	std::clog << "\033[35;3m[" << this \
-		<< "]<PresidentialPardonForm::GradeTooHighException> what() called\033[m" << std::endl;
-	return ("the grade is too high");
-	// return (1);
-}
+// const char*	PresidentialPardonForm::GradeTooHighException::what(void) const throw() {
+// 	std::clog << "\033[35;3m[" << this \
+// 		<< "]<PresidentialPardonForm::GradeTooHighException> what() called\033[m" << std::endl;
+// 	return ("the grade is too high");
+// 	// return (1);
+// }
 
-const char*	PresidentialPardonForm::GradeTooLowException::what(void) const throw() {
-	std::clog << "\033[35;3m[" << this \
-		<< "]<PresidentialPardonForm::GradeTooLowException> what() called\033[m" << std::endl;
-	return ("the grade is too low");
-	// return (2);
-}
+// const char*	PresidentialPardonForm::GradeTooLowException::what(void) const throw() {
+// 	std::clog << "\033[35;3m[" << this \
+// 		<< "]<PresidentialPardonForm::GradeTooLowException> what() called\033[m" << std::endl;
+// 	return ("the grade is too low");
+// 	// return (2);
+// }
 
-const char*	PresidentialPardonForm::AlreadySignedException::what(void) const throw() {
-	std::clog << "\033[35;3m[" << this \
-		<< "]<PresidentialPardonForm::AlreadySignedException> what() called\033[m" << std::endl;
-	return ("already signed");
-	// return (3);
-}
+// const char*	PresidentialPardonForm::AlreadySignedException::what(void) const throw() {
+// 	std::clog << "\033[35;3m[" << this \
+// 		<< "]<PresidentialPardonForm::AlreadySignedException> what() called\033[m" << std::endl;
+// 	return ("already signed");
+// 	// return (3);
+// }
 
-const char*	PresidentialPardonForm::NotSignedException::what(void) const throw() {
-	std::clog << "\033[35;3m[" << this \
-		<< "]<PresidentialPardonForm::NotSignedException> what() called\033[m" << std::endl;
-	return ("not signed yet");
-	// return (4);
-}
+// const char*	PresidentialPardonForm::NotSignedException::what(void) const throw() {
+// 	std::clog << "\033[35;3m[" << this \
+// 		<< "]<PresidentialPardonForm::NotSignedException> what() called\033[m" << std::endl;
+// 	return ("not signed yet");
+// 	// return (4);
+// }
 
 // Insertion operator overload to print
-std::ostream&	operator<<(std::ostream& stream, const PresidentialPardonForm& PresidentialPardonForm) {
-	stream << "PresidentialPardonForm \"" << PresidentialPardonForm.getName() << "\", signed " \
-		<< (PresidentialPardonForm.getSigned() ? "true" : "false") << ", grade " \
-		<< PresidentialPardonForm.getGradeToSign() << " to sign, grade " \
-		<< PresidentialPardonForm.getGradeToExec() << " to execute.";
-	return (stream);
-}
+// std::ostream&	operator<<(std::ostream& stream, const PresidentialPardonForm& PresidentialPardonForm) {
+// 	stream << "PresidentialPardonForm \"" << PresidentialPardonForm.getName() << "\", signed " \
+// 		<< (PresidentialPardonForm.getSigned() ? "true" : "false") << ", grade " \
+// 		<< PresidentialPardonForm.getGradeToSign() << " to sign, grade " \
+// 		<< PresidentialPardonForm.getGradeToExec() << " to execute.";
+// 	return (stream);
+// }
