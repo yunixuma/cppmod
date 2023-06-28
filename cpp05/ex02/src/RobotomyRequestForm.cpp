@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 23:09:04 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/28 23:11:16 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 		throw RobotomyRequestForm::NotSignedException();
 	else if (this->getGradeToExec() < executor.getGrade())
 		throw RobotomyRequestForm::GradeTooLowException();
- 
- 	srand(time(NULL));
-	if ((rand() / 1000) % 2)
+
+ 	std::srand(std::time(NULL));
+	if (std::rand() % 2)
 		std::cout << this->getTarget() \
 			<< " has been robotomized successfully and makes some drilling noises." << std::endl;
 	else

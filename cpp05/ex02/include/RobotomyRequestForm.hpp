@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 22:55:23 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/28 23:12:57 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RobotomyRequestForm_HPP
 
 # include <iostream>
+# include <unistd.h>
 # include <cstdlib>
 # include <ctime>
 # include "AForm.hpp"

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 23:02:23 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/28 23:16:06 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	case_exec_success(void) {
 	std::cout << *form3 << std::endl;
 	bc.executeForm(*form1);
 	bc.executeForm(*form2);
+	usleep(574831);
 	bc.executeForm(*form2);
+	usleep(657483);
 	bc.executeForm(*form2);
 	bc.executeForm(*form3);
 	delete form1;
