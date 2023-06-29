@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 15:49:09 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 17:32:59 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ Intern&	Intern::operator=(const Intern& rhs) {
 Intern::~Intern(void) {
 	std::clog << "\033[31;2;3m[" << this \
 		<< "]<Intern> Destructor called\033[m" << std::endl;
+	delete forms_[0];
+	delete forms_[1];
+	delete forms_[2];
 }
 
 AForm*	Intern::makeForm(const std::string& name, const std::string& target) {
