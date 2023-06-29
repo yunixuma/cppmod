@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 12:47:08 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 15:47:46 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,13 @@ https://asciiart.website/index.php?art=plants/trees";
 
 	ofs << content;
 	ofs.close();
+}
+
+AForm*	ShrubberyCreationForm::clone(void) const {
+	std::clog << "\033[35;2;3m[" << this \
+		<< "]<ShrubberyCreationForm> clone() called (" \
+		<< this->getName() << ")\033[m" << std::endl;
+	return (new ShrubberyCreationForm(*this));
 }
 
 // When an exception thrown

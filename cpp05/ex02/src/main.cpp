@@ -6,18 +6,19 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/28 23:16:06 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 15:55:35 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <unistd.h>
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-void	case_construct(void) {
+static void	case_construct(void) {
 	std::clog << "\033[32;43mCASE: Construct & copy assignment\033[m" << std::endl;
 	AForm*	form1 = new ShrubberyCreationForm("W-8BEN");
 	std::cout << *form1 << std::endl;
@@ -32,7 +33,7 @@ void	case_construct(void) {
 	delete form3;
 }
 
-void	case_exec_success(void) {
+static void	case_exec_success(void) {
 	std::clog << "\033[32;43mCASE: Succeed execution\033[m" << std::endl;
 	Bureaucrat	bc("John", 5);
 	std::cout << bc << std::endl;
@@ -57,7 +58,7 @@ void	case_exec_success(void) {
 	delete form3;
 }
 
-void	case_exec_fail_grade(void) {
+static void	case_exec_fail_grade(void) {
 	std::clog << "\033[35;43mCASE: Fail execution for the grade\033[m" << std::endl;
 	Bureaucrat	bc("John", 140);
 	std::cout << bc << std::endl;
@@ -68,7 +69,7 @@ void	case_exec_fail_grade(void) {
 	delete form;
 }
 
-void	case_exec_fail_nosign(void) {
+static void	case_exec_fail_nosign(void) {
 	std::clog << "\033[35;43mCASE: Fail execution for not signed\033[m" << std::endl;
 	Bureaucrat	bc("John", 40);
 	std::cout << bc << std::endl;
@@ -79,9 +80,10 @@ void	case_exec_fail_nosign(void) {
 }
 
 int	main(void) {
-	// case_construct()
+	case_construct()
 	case_exec_success();
 	case_exec_fail_grade();
 	case_exec_fail_nosign();
+	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 12:50:22 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 13:50:10 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ public:
 	~RobotomyRequestForm(void);
 	void	beSigned(const Bureaucrat& bc);
 	void	execute(Bureaucrat const & executor) const;
+	AForm*	clone(void) const;
 };
 
 // std::ostream&	operator<<(std::ostream& stream, const RobotomyRequestForm& form);

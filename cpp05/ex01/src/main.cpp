@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/23 18:24:17 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 15:55:43 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-int	case_construct_regular(void) {
+static int	case_construct_regular(void) {
 	std::clog << "\033[32;43mCASE: Regular construct\033[m" << std::endl;
 	try {
 		Form	form1("W-8BEN", 40, 20);
@@ -32,7 +32,7 @@ int	case_construct_regular(void) {
 	return (0);
 }
 
-int	case_construct_low(void) {
+static int	case_construct_low(void) {
 	std::clog << "\033[35;43mCASE: Too low w/ construct\033[m" << std::endl;
 	try {
 		Form	form("W-8BEN", 151);
@@ -46,7 +46,7 @@ int	case_construct_low(void) {
 	return (0);
 }
 
-int	case_construct_high(void) {
+static int	case_construct_high(void) {
 	std::clog << "\033[35;43mCASE: Too high w/ construct\033[m" << std::endl;
 	try {
 		Form	form("W-8BEN", 0);
@@ -60,7 +60,7 @@ int	case_construct_high(void) {
 	return (0);
 }
 
-void	case_sign_success(void) {
+static void	case_sign_success(void) {
 	std::clog << "\033[32;43mCASE: Succeed signing\033[m" << std::endl;
 	Bureaucrat	bc1("John", 40);
 	Bureaucrat	bc2("Jane");
@@ -72,7 +72,7 @@ void	case_sign_success(void) {
 	std::cout << form2 << std::endl;
 }
 
-void	case_sign_fail_grade(void) {
+static void	case_sign_fail_grade(void) {
 	std::clog << "\033[35;43mCASE: Fail signing for the grade\033[m" << std::endl;
 	Bureaucrat	bc("John", 80);
 	Form		form("DS-160", 40, 20);
@@ -80,7 +80,7 @@ void	case_sign_fail_grade(void) {
 	std::cout << form << std::endl;
 }
 
-void	case_sign_fail_already(void) {
+static void	case_sign_fail_already(void) {
 	std::clog << "\033[35;43mCASE: Fail signing for already signed\033[m" << std::endl;
 	Bureaucrat	bc1("John", 40);
 	Bureaucrat	bc2("Jane");
@@ -101,5 +101,6 @@ int	main(void) {
 	case_sign_success();
 	case_sign_fail_grade();
 	case_sign_fail_already();
+	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }

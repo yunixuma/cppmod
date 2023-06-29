@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 12:47:02 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 15:48:07 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,13 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	else
 		std::cout << "The robotomy for " << this->getTarget() \
 			<< " has failed" << std::endl;
+}
+
+AForm*	RobotomyRequestForm::clone(void) const {
+	std::clog << "\033[35;2;3m[" << this \
+		<< "]<RobotomyRequestForm> clone() called (" \
+		<< this->getName() << ")\033[m" << std::endl;
+	return (new RobotomyRequestForm(*this));
 }
 
 // When an exception thrown

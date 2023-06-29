@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 12:46:52 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 15:48:36 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ void	PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 
 	std::cout << this->getTarget() \
 		<< " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}
+
+AForm*	PresidentialPardonForm::clone(void) const {
+	std::clog << "\033[35;2;3m[" << this \
+		<< "]<PresidentialPardonForm> clone() called (" \
+		<< this->getName() << ")\033[m" << std::endl;
+	return (new PresidentialPardonForm(*this));
 }
 
 // When an exception thrown

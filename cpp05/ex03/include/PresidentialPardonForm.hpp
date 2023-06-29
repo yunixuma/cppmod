@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 12:50:22 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 13:50:13 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RobotomyRequestForm_HPP
-# define RobotomyRequestForm_HPP
+#ifndef PRESIDENTALPARDONFORM_HPP
+# define PRESIDENTALPARDONFORM_HPP
 
 # include <iostream>
-# include <cstdlib>
-# include <ctime>
 # include "AForm.hpp"
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class RobotomyRequestForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 public:
 // 	class GradeTooHighException : public std::exception
@@ -44,14 +42,15 @@ public:
 // 	public:
 // 		virtual const char*	what() const throw();
 // 	};
-	RobotomyRequestForm(const std::string& target);
-	RobotomyRequestForm(const RobotomyRequestForm& src);
-	RobotomyRequestForm&	operator=(const RobotomyRequestForm& rhs);
-	~RobotomyRequestForm(void);
+	PresidentialPardonForm(const std::string& target);
+	PresidentialPardonForm(const PresidentialPardonForm& src);
+	PresidentialPardonForm&	operator=(const PresidentialPardonForm& rhs);
+	~PresidentialPardonForm(void);
 	void	beSigned(const Bureaucrat& bc);
 	void	execute(Bureaucrat const & executor) const;
+	AForm*	clone(void) const;
 };
 
-// std::ostream&	operator<<(std::ostream& stream, const RobotomyRequestForm& form);
+// std::ostream&	operator<<(std::ostream& stream, const PresidentialPardonForm& form);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 13:59:26 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 15:50:27 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ const std::string&	AForm::getTarget(void) const {
 		<< "]<AForm> getTarget() called (" \
 		<< this->name_ << ")\033[m" << std::endl;*/
 	return (this->target_);
+}
+
+void	AForm::setTarget(const std::string& target) {
+/*	 std::clog << "\033[32;2;3m[" << this \
+		<< "]<AForm> setTarget() called (" \
+		<< this->name_ << ")\033[m" << std::endl;*/
+	const_cast<std::string&>(this->target_) = target;
 }
 
 bool	AForm::getSigned(void) const {
