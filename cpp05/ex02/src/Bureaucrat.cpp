@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/27 22:46:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 16:49:31 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,13 +130,14 @@ int	Bureaucrat::executeForm(AForm const & form) {
 			<< " because " << e.what() << "." << std::endl;
 		return (0);
 	}
-	std::cout << this->name_ << " executed " << form.getName() << std::endl;
+	std::cout << *this << " executed " << form << std::endl;
+	// std::cout << this->name_ << " executed " << form.getName() << std::endl;
 	return (1);
 }
 
 // When an exception thrown
 const char*	Bureaucrat::GradeTooHighException::what(void) const throw() {
-	std::clog << "\033[35;3m[" << this \
+	std::clog << "\033[35;2;3m[" << this \
 		<< "]<Bureaucrat::GradeTooHighException> what() called\033[m" << std::endl;
 	return ("The grade too high");
 	// return (1);

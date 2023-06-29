@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 15:54:21 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 16:33:02 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ static void	case_shrubbery(void) {
 	Intern	someRandomIntern;
 	AForm*	rrf;
 	rrf = someRandomIntern.makeForm("shrubbery creation", "Bender");
-	if (rrf)
-		std::cout << *rrf << std::endl;
+	if (!rrf)
+		return ;
+	std::cout << *rrf << std::endl;
+	Bureaucrat	bc("John", 1);
+	bc.signForm(*rrf);
+	bc.executeForm(*rrf);
 }
 
 static void	case_robotomy(void) {
@@ -32,8 +36,12 @@ static void	case_robotomy(void) {
 	Intern	someRandomIntern;
 	AForm*	rrf;
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-	if (rrf)
-		std::cout << *rrf << std::endl;
+	if (!rrf)
+		return ;
+	std::cout << *rrf << std::endl;
+	Bureaucrat	bc("John", 1);
+	bc.signForm(*rrf);
+	bc.executeForm(*rrf);
 }
 
 static void	case_presidential(void) {
@@ -41,8 +49,12 @@ static void	case_presidential(void) {
 	Intern	someRandomIntern;
 	AForm*	rrf;
 	rrf = someRandomIntern.makeForm("presidential pardon", "Bender");
-	if (rrf)
-		std::cout << *rrf << std::endl;
+	if (!rrf)
+		return ;
+	std::cout << *rrf << std::endl;
+	Bureaucrat	bc("John", 1);
+	bc.signForm(*rrf);
+	bc.executeForm(*rrf);
 }
 
 static void	case_noexist(void) {
@@ -50,8 +62,12 @@ static void	case_noexist(void) {
 	Intern	someRandomIntern;
 	AForm*	rrf;
 	rrf = someRandomIntern.makeForm("something name", "Bender");
-	if (rrf)
-		std::cout << *rrf << std::endl;
+	if (!rrf)
+		return ;
+	std::cout << *rrf << std::endl;
+	Bureaucrat	bc("John", 1);
+	bc.signForm(*rrf);
+	bc.executeForm(*rrf);
 }
 
 int	main(void) {

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 12:46:52 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 16:47:15 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ PresidentialPardonForm::~PresidentialPardonForm(void) {
 }
 
 void	PresidentialPardonForm::beSigned(const Bureaucrat& bc) {
-	std::clog << "\033[32;2;3m[" << this \
+	std::clog << "\033[32;3m[" << this \
 		<< "]<PresidentialPardonForm> beSigned() called (" \
 		<< this->getName() << ")\033[m" << std::endl;
 	if (this->getGradeToSign() < bc.getGrade())

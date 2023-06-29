@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 15:55:35 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/06/29 16:47:50 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	case_exec_fail_nosign(void) {
 }
 
 int	main(void) {
-	case_construct()
+	case_construct();
 	case_exec_success();
 	case_exec_fail_grade();
 	case_exec_fail_nosign();
