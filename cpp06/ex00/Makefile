@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
+#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/06/29 17:54:07 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/06/30 12:18:26 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # ********************** Section for Macros (Variables) ********************** #
 # Product file
-NAME			= conversion
+NAME			= convert
 
 # Enumeration of files
-SRC				= main.cpp Conversion.cpp
+SRC				= main.cpp ScalarConverter.cpp
 
 # Check the platform
 OS				= $(shell uname)
