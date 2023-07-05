@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
-
+/*
 std::string	ScalarConverter::convert(const std::string& str) {
 	 std::clog << "\033[32;2;3m<ScalarConverter> toInt() called (" \
 		<< str << ")\033[m" << std::endl;
@@ -35,3 +35,4 @@ std::string	ScalarConverter::toDouble(const std::string& str) {
 		<< str << ")\033[m" << std::endl;
 	return (str);
 }
+*/
