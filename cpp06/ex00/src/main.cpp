@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/05 09:21:15 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/05 19:49:17 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,58 +22,39 @@ int	main(int argc, char *argv[]) {
 		std::cerr << "\033[31mInvalid argument\033[m" << std::endl;
 		return (1);
 	}
-	float				f;
-	double				dbl;
-	int					n;
-	char				c;
-	std::stringstream	ss;
-
 	std::string	str(argv[1]);
 
-	ss.str("");
-	ss.clear(std::stringstream::goodbit);	
-	ss << str;
 	try {
-		ss >> dbl;
+		char	c = ScalarConverter::convert(str);
+		std::cout << "\033[33mchar: " << c << std::endl;
 	}
 	catch (std::exception & e) {
-		std::cerr << "\033[31mInvalid double: " << c << "\033[m" << std::endl;
-		return (1);
+		std::cerr << "\033[31mchar: " << e.what() << "\033[m" << std::endl;
 	}
-	std::cout << "double: " << dbl << std::endl;
 
-	ss.str("");
-	ss.clear(std::stringstream::goodbit);	
-	ss << str;
 	try {
-		ss >> f;
+		int	n = ScalarConverter::convert(str);
+		std::cout << "\033[33mint: " << n << std::endl;
 	}
 	catch (std::exception & e) {
-		std::cerr << "\033[31mInvalid float: " << f << "\033[m" << std::endl;
+		std::cerr << "\033[31mint: " << e.what() << "\033[m" << std::endl;
 	}
-	std::cout << "float: " << f << std::endl;
 
-	ss.str("");
-	ss.clear(std::stringstream::goodbit);	
-	ss << str;
 	try {
-		ss >> n;
+		float	f = ScalarConverter::convert(str);
+		std::cout << "\033[33mfloat: " << dbl << std::endl;
 	}
 	catch (std::exception & e) {
-		std::cerr << "\033[31mInvalid int: " << n << "\033[m" << std::endl;
+		std::cerr << "\033[31mfloat: " << e.what() << "\033[m" << std::endl;
 	}
-	std::cout << "int: " << n << std::endl;
 
-	ss.str("");
-	ss.clear(std::stringstream::goodbit);	
-	ss << str;
 	try {
-		ss >> c;
+		double	dbl = ScalarConverter::convert(str);
+		std::cout << "\033[33mdouble: " << dbl << std::endl;
 	}
 	catch (std::exception & e) {
-		std::cerr << "\033[31mInvalid char: " << c << "\033[m" << std::endl;
+		std::cerr << "\033[31mdouble: " << e.what() << "\033[m" << std::endl;
 	}
-	std::cout << "char: " << c << std::endl;
 
 	// std::cout << "char: " << ScalarConverter::toChar(str) << std::endl;
 	// std::cout << "int: " << ScalarConverter::toInt(str) << std::endl;
