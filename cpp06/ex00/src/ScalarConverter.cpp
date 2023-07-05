@@ -12,11 +12,38 @@
 
 #include "ScalarConverter.hpp"
 
-template<> one::operator char(std::string& str) {
-	if (str.length != 1)
-		return ('!');
-	return (*str.c_str());
+template<typename RET>
+RET	ScalarConverter::convert(std::string& str) {
+	RET			ret;
+	std::stringstream	ss;
+	ss << str;
+	ss >> ret;
+	return (static_cast<RET>(ret));
 }
+/*
+template<>
+char<RET>	ScalarConverter::convert<char>(std::string& str) {
+	char			c;
+	stringstream	ss;
+	ss << str;
+	ss >> c;
+	return (c);
+}
+
+template<>	ScalarConverter::convert float(std::string& str) {
+	return (1.5);
+}
+
+template<>	ScalarConverter::convert double(std::string& str) {
+	return (1.5);
+}
+
+// template<class T>
+// static char ScalarConverter::convert(std::string& str) {
+// 	if (str.length != 1)
+// 		return ('!');
+// 	return (*str.c_str());
+// }
 
 template <typename T>
 int	ScalarConverter::convert(std::string& str)
@@ -74,7 +101,6 @@ int	ScalarConverter::convert(std::string& str)
 	std::cout << "char: " << c << std::endl;
 }
 
-/*
 std::string	ScalarConverter::convert(const std::string& str) {
 	 std::clog << "\033[32;2;3m<ScalarConverter> toInt() called (" \
 		<< str << ")\033[m" << std::endl;

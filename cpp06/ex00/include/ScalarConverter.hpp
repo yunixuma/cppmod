@@ -17,13 +17,21 @@
 # include <sstream>
 # include <string>
 
+// template<class T>
+// class ScalarConverter;
+
+// template<class T> class ScalarConverter
 class ScalarConverter
 {
 private:
 	ScalarConverter();
 	~ScalarConverter();
 public:
-	template<class T>	convert T(std::string& str);
+	template<typename RET>
+	static RET	convert(std::string& str); 
+	// template<typename T>
+	// static T	convert(std::string& str);
+	// template<class T>char	convert(std::string& str);
 	// template <typename T>
 	// char	convert(std::string& str);
 	// template <typename T>

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/05 19:49:17 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/06 05:35:11 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[]) {
 	std::string	str(argv[1]);
 
 	try {
-		char	c = ScalarConverter::convert(str);
+		char	c = ScalarConverter::convert<char>(str);
 		std::cout << "\033[33mchar: " << c << std::endl;
 	}
 	catch (std::exception & e) {
@@ -33,16 +33,16 @@ int	main(int argc, char *argv[]) {
 	}
 
 	try {
-		int	n = ScalarConverter::convert(str);
+		int	n = ScalarConverter::convert<int>(str);
 		std::cout << "\033[33mint: " << n << std::endl;
 	}
 	catch (std::exception & e) {
 		std::cerr << "\033[31mint: " << e.what() << "\033[m" << std::endl;
 	}
-
+/*
 	try {
 		float	f = ScalarConverter::convert(str);
-		std::cout << "\033[33mfloat: " << dbl << std::endl;
+		std::cout << "\033[33mfloat: " << f << std::endl;
 	}
 	catch (std::exception & e) {
 		std::cerr << "\033[31mfloat: " << e.what() << "\033[m" << std::endl;
@@ -55,7 +55,7 @@ int	main(int argc, char *argv[]) {
 	catch (std::exception & e) {
 		std::cerr << "\033[31mdouble: " << e.what() << "\033[m" << std::endl;
 	}
-
+*/
 	// std::cout << "char: " << ScalarConverter::toChar(str) << std::endl;
 	// std::cout << "int: " << ScalarConverter::toInt(str) << std::endl;
 	// std::cout << "float: " << ScalarConverter::toFloat(str) << std::endl;
