@@ -12,6 +12,85 @@
 
 #include "ScalarConverter.hpp"
 
+void	ScalarConverter::convert(std::string& str) {
+	if (str.empty() || str.length() == 0) {
+		std::cout << "\033[31mEmpty string" << std::endl;
+		return ;
+	}
+
+	std::stringstream	ss;
+	ss << str;
+
+	int	n;
+	ss >> n;
+	if (!ss.fail() && ss.eof()) {
+		std::cout << "\033[32mint: " << n << std::endl;
+		return ;
+	}
+
+	ss.str("");
+	ss.clear(std::stringstream::goodbit);
+	ss << str;
+	if (str.length() == 1) {
+		char	c;
+		ss >> c;
+		std::cout << "\033[32mchar: " << c << "\033[m" << std::endl;
+		return ;
+	}
+
+	double	dbl;
+	ss >> dbl;
+	if (!ss.fail() && ss.eof()) {
+		std::cout << "\033[32mdouble: " << dbl << std::endl;
+		return ;
+	}
+
+	if (isPseudo(str))
+	{
+		std::cout << "\033[32mdouble: " << str << "\033[m" << std::endl;
+		return ;
+	}
+
+	if (str[str.length() - 1] == 'f') {
+		str.erase(str.length() - 1);
+	}
+	ss.str("");
+	ss.clear(std::stringstream::goodbit);
+	ss << str;
+	float	f;
+	ss >> f;
+	if (!ss.fail() && ss.eof()) {
+		std::cout << "\033[32mfloat: " << f << std::endl;
+		return ;
+	}
+
+	if (isPseudo(str))
+	{
+		std::cout << "\033[32mfloat: " << str << "\033[m" << std::endl;
+		return ;
+	}
+
+	std::cout << "\033[31mInvalid input: " << str << "\033[m" << std::endl;
+}
+
+bool	ScalarConverter::isPseudo(std::string& str) {
+	if (str == "nan" || str == "inf" || str == "+inf" || str == "-inf")
+		return (true);
+	return (false);
+}
+/*
+bool	ScalarConverter::isInt(std::string& str) {
+	std::stringstream	ss;
+	int					n;
+
+	ss << str;
+	ss >> n;
+	if (ss.fail() || !ss.eof())
+		return (false);
+	return (true);
+}
+*/
+/*
 template<typename RET>
 RET	ScalarConverter::convert(std::string& str) {
 	RET			ret;
@@ -19,7 +98,7 @@ RET	ScalarConverter::convert(std::string& str) {
 	ss << str;
 	ss >> ret;
 	return (static_cast<RET>(ret));
-}
+}*/
 /*
 template<>
 char<RET>	ScalarConverter::convert<char>(std::string& str) {

@@ -26,9 +26,11 @@ class ScalarConverter
 private:
 	ScalarConverter();
 	~ScalarConverter();
+	// template<typename T>
+	static bool	isPseudo(std::string& str);
 public:
-	template<typename RET>
-	static RET	convert(std::string& str); 
+	// template<typename RET>
+	static void	convert(std::string& str); 
 	// template<typename T>
 	// static T	convert(std::string& str);
 	// template<class T>char	convert(std::string& str);

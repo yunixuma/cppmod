@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/06 05:35:11 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/06 07:03:06 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ int	main(int argc, char *argv[]) {
 		std::cerr << "\033[31mInvalid argument\033[m" << std::endl;
 		return (1);
 	}
-	std::string	str(argv[1]);
+	std::string	str = argv[1];
+	ScalarConverter::convert(str);
 
-	try {
+/*	try {
 		char	c = ScalarConverter::convert<char>(str);
 		std::cout << "\033[33mchar: " << c << std::endl;
 	}
@@ -38,7 +39,7 @@ int	main(int argc, char *argv[]) {
 	}
 	catch (std::exception & e) {
 		std::cerr << "\033[31mint: " << e.what() << "\033[m" << std::endl;
-	}
+	}*/
 /*
 	try {
 		float	f = ScalarConverter::convert(str);
@@ -54,12 +55,12 @@ int	main(int argc, char *argv[]) {
 	}
 	catch (std::exception & e) {
 		std::cerr << "\033[31mdouble: " << e.what() << "\033[m" << std::endl;
-	}
-*/
+	}*/
+/*
 	// std::cout << "char: " << ScalarConverter::toChar(str) << std::endl;
 	// std::cout << "int: " << ScalarConverter::toInt(str) << std::endl;
 	// std::cout << "float: " << ScalarConverter::toFloat(str) << std::endl;
-	// std::cout << "double: " << ScalarConverter::toDouble(str) << std::endl;
+	// std::cout << "double: " << ScalarConverter::toDouble(str) << std::endl;*/
 	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }
