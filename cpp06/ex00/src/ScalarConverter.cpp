@@ -28,16 +28,14 @@ void	ScalarConverter::convert(std::string& str) {
 		return ;
 	}
 
-	ss.str("");
-	ss.clear(std::stringstream::goodbit);
-	ss << str;
 	if (str.length() == 1) {
-		char	c;
-		ss >> c;
-		std::cout << "\033[32mchar: " << c << "\033[m" << std::endl;
+		char	c = str[0];
+		std::cout << "\033[32mchar: '" << c << "'\033[m" << std::endl;
 		return ;
 	}
 
+	ss.str("");
+	ss.clear(std::stringstream::goodbit);
 	double	dbl;
 	ss >> dbl;
 	if (!ss.fail() && ss.eof()) {
@@ -60,13 +58,13 @@ void	ScalarConverter::convert(std::string& str) {
 	float	f;
 	ss >> f;
 	if (!ss.fail() && ss.eof()) {
-		std::cout << "\033[32mfloat: " << f << std::endl;
+		std::cout << "\033[32mfloat: " << f << "f\033[m" << std::endl;
 		return ;
 	}
 
 	if (isPseudo(str))
 	{
-		std::cout << "\033[32mfloat: " << str << "\033[m" << std::endl;
+		std::cout << "\033[32mfloat: " << str << "f\033[m" << std::endl;
 		return ;
 	}
 

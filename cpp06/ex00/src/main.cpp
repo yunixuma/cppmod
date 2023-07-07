@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/06 07:03:06 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/06 13:07:08 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 int	main(int argc, char *argv[]) {
 	if (argc != 2 || !argv[0] || !argv[1]) {
-		std::cerr << "\033[31mInvalid argument\033[m" << std::endl;
+		std::cerr << "\033[31mMust be only one argument\033[m" << std::endl;
 		return (1);
 	}
 	std::string	str = argv[1];
