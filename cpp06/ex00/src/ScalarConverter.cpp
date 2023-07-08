@@ -24,13 +24,21 @@ void	ScalarConverter::convert(std::string& str) {
 	int	n;
 	ss >> n;
 	if (!ss.fail() && ss.eof()) {
-		std::cout << "\033[32mint: " << n << std::endl;
+		display(n, \
+			(FLAG_CAST << SHIFT_CHAR) \
+			+ (FLAG_REGULAR << SHIFT_INT) \
+			+ (FLAG_INTEGER << SHIFT_FLOAT) \
+			+ (FLAG_INTEGER << SHIFT_DOUBLE));
 		return ;
 	}
 
 	if (str.length() == 1) {
 		char	c = str[0];
-		std::cout << "\033[32mchar: '" << c << "'\033[m" << std::endl;
+		display(c, \
+			(FLAG_REGULAR << SHIFT_CHAR) \
+			+ (FLAG_CAST << SHIFT_INT) \
+			+ (FLAG_CAST << SHIFT_FLOAT) \
+			+ (FLAG_CAST << SHIFT_DOUBLE));
 		return ;
 	}
 
@@ -39,13 +47,17 @@ void	ScalarConverter::convert(std::string& str) {
 	double	dbl;
 	ss >> dbl;
 	if (!ss.fail() && ss.eof()) {
-		std::cout << "\033[32mdouble: " << dbl << std::endl;
+		display(dbl, \
+			(FLAG_CAST << SHIFT_CHAR) \
+			+ (FLAG_CAST << SHIFT_INT) \
+			+ (FLAG_CAST << SHIFT_FLOAT) \
+			+ (FLAG_REGULAR << SHIFT_DOUBLE));
 		return ;
 	}
 
 	if (isPseudo(str))
 	{
-		std::cout << "\033[32mdouble: " << str << "\033[m" << std::endl;
+		display(str);
 		return ;
 	}
 
@@ -58,13 +70,17 @@ void	ScalarConverter::convert(std::string& str) {
 	float	f;
 	ss >> f;
 	if (!ss.fail() && ss.eof()) {
-		std::cout << "\033[32mfloat: " << f << "f\033[m" << std::endl;
+		display(f, \
+			(FLAG_CAST << SHIFT_CHAR) \
+			+ (FLAG_CAST << SHIFT_INT) \
+			+ (FLAG_REGULAR << SHIFT_FLOAT) \
+			+ (FLAG_CAST << SHIFT_DOUBLE));
 		return ;
 	}
 
 	if (isPseudo(str))
 	{
-		std::cout << "\033[32mfloat: " << str << "f\033[m" << std::endl;
+		display(str);
 		return ;
 	}
 
@@ -72,10 +88,43 @@ void	ScalarConverter::convert(std::string& str) {
 }
 
 bool	ScalarConverter::isPseudo(std::string& str) {
-	if (str == "nan" || str == "inf" || str == "+inf" || str == "-inf")
+	if (str == STR_NAN || str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG)
 		return (true);
 	return (false);
 }
+
+void	ScalarConverter::display(const std::string& str) {
+	std::cout << "\033[31mint: " << STR_IMPOS << "\033[m" << std::endl;
+	std::cout << "\033[31mchar: " << STR_IMPOS << "\033[m" << std::endl;
+	std::cout << "\033[33mfloat: " << str << CHR_FLOAT << "\033[m" << std::endl;
+	std::cout << "\033[33mdouble: " << str << "\033[m" << std::endl;
+}
+
+template <typename T>
+void	ScalarConverter::display(T scalar, int flag) {
+	std::cout << "\033[32mT: " << scalar \
+		<< " (" << std::hex << flag << std::dec << ")\033[m" << std::endl;
+
+	std::cout << "\033[32mint: " << static_cast<int>(scalar) << "\033[m" << std::endl;
+
+	if (' ' <= scalar && scalar <= '~')
+		std::cout << "\033[32mchar: " << static_cast<char>(scalar) << "\033[m" << std::endl;
+	else
+		std::cout << "\033[33mint: " << STR_NODISP << "\033[m" << std::endl;
+
+	std::cout << "\033[32mfloat: " << static_cast<float>(scalar);
+	if (((flag >> SHIFT_FLOAT) & FLAG_MASK) == FLAG_INTEGER)
+		std::cout << STR_DECIMAL;
+	std::cout << CHR_FLOAT << "\033[m" << std::endl;
+
+	std::cout << "\033[32mdouble: " << static_cast<double>(scalar);
+	if (((flag >> SHIFT_DOUBLE) & FLAG_MASK) == FLAG_INTEGER)
+		std::cout << STR_DECIMAL;
+	std::cout << "\033[m" << std::endl;
+
+	(void)flag;
+}
+
 /*
 bool	ScalarConverter::isInt(std::string& str) {
 	std::stringstream	ss;

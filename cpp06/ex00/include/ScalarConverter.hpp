@@ -19,6 +19,25 @@
 
 // template<class T>
 // class ScalarConverter;
+# define SHIFT_CHAR		12
+# define SHIFT_INT		8
+# define SHIFT_FLOAT	4
+# define SHIFT_DOUBLE	0
+# define FLAG_REGULAR	0x0
+# define FLAG_CAST		0x1
+# define FLAG_NODISP	0x2
+# define FLAG_INTEGER	0x2
+# define FLAG_PSEUDO	0x4
+# define FLAG_IMPOS		0x8
+# define FLAG_MASK		0xF
+# define CHR_FLOAT		'f'
+# define STR_NAN		"nan"
+# define STR_INF		"inf"
+# define STR_INF_POS	"+inf"
+# define STR_INF_NEG	"-inf"
+# define STR_DECIMAL	".0"
+# define STR_IMPOS		"impossible"
+# define STR_NODISP		"Non displayable"
 
 // template<class T> class ScalarConverter
 class ScalarConverter
@@ -30,9 +49,10 @@ private:
 	static bool	isPseudo(std::string& str);
 public:
 	// template<typename RET>
-	static void	convert(std::string& str); 
-	// template<typename T>
-	// static T	convert(std::string& str);
+	static void	convert(std::string& str);
+	static void	display(const std::string& str);
+	template<typename T>
+	static void	display(T scalar, int flag);
 	// template<class T>char	convert(std::string& str);
 	// template <typename T>
 	// char	convert(std::string& str);
