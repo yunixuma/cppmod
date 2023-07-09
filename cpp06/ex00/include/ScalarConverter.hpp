@@ -14,6 +14,7 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <sstream>
 # include <string>
 
@@ -29,7 +30,8 @@
 # define FLAG_INTEGER	0x2
 # define FLAG_PSEUDO	0x4
 # define FLAG_IMPOS		0x8
-# define FLAG_MASK		0xF
+# define MASK_FLAG		0xf
+# define MASK_CHAR		0xff
 # define CHR_FLOAT		'f'
 # define STR_NAN		"nan"
 # define STR_INF		"inf"
@@ -46,7 +48,7 @@ private:
 	ScalarConverter();
 	~ScalarConverter();
 	// template<typename T>
-	static bool	isPseudo(std::string& str);
+	// static bool	isPseudo(std::string& str);
 public:
 	// template<typename RET>
 	static void	convert(std::string& str);

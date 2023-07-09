@@ -24,6 +24,7 @@ void	ScalarConverter::convert(std::string& str) {
 	int	n;
 	ss >> n;
 	if (!ss.fail() && ss.eof()) {
+		std::clog << "\033[35;2;3mint\033[m" << std::endl;
 		display(n, \
 			(FLAG_CAST << SHIFT_CHAR) \
 			+ (FLAG_REGULAR << SHIFT_INT) \
@@ -34,6 +35,7 @@ void	ScalarConverter::convert(std::string& str) {
 
 	if (str.length() == 1) {
 		char	c = str[0];
+		std::clog << "\033[35;2;3mchar\033[m" << std::endl;
 		display(c, \
 			(FLAG_REGULAR << SHIFT_CHAR) \
 			+ (FLAG_CAST << SHIFT_INT) \
@@ -47,6 +49,7 @@ void	ScalarConverter::convert(std::string& str) {
 	double	dbl;
 	ss >> dbl;
 	if (!ss.fail() && ss.eof()) {
+		std::clog << "\033[35;2;3mdouble\033[m" << std::endl;
 		display(dbl, \
 			(FLAG_CAST << SHIFT_CHAR) \
 			+ (FLAG_CAST << SHIFT_INT) \
@@ -54,9 +57,20 @@ void	ScalarConverter::convert(std::string& str) {
 			+ (FLAG_REGULAR << SHIFT_DOUBLE));
 		return ;
 	}
-
-	if (isPseudo(str))
+/*
+	if (str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG) {
+		std::clog << "\033[35;2;3mdouble inf\033[m" << std::endl;
+		display(dbl, \
+			(FLAG_IMPOS << SHIFT_CHAR) \
+			+ (FLAG_CAST << SHIFT_INT) \
+			+ ((FLAG_CAST | FLAG_PSEUDO) << SHIFT_FLOAT) \
+			+ (FLAG_PSEUDO << SHIFT_DOUBLE));
+		return ;
+	}
+*/
+	if (str == STR_NAN || str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG)
 	{
+		std::clog << "\033[35;2;3mdouble pseudo\033[m" << std::endl;
 		display(str);
 		return ;
 	}
@@ -70,6 +84,7 @@ void	ScalarConverter::convert(std::string& str) {
 	float	f;
 	ss >> f;
 	if (!ss.fail() && ss.eof()) {
+		std::clog << "\033[35;2;3mfloat\033[m" << std::endl;
 		display(f, \
 			(FLAG_CAST << SHIFT_CHAR) \
 			+ (FLAG_CAST << SHIFT_INT) \
@@ -77,22 +92,33 @@ void	ScalarConverter::convert(std::string& str) {
 			+ (FLAG_CAST << SHIFT_DOUBLE));
 		return ;
 	}
-
-	if (isPseudo(str))
+/*
+	if (str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG) {
+		std::clog << "\033[35;2;3mfloat inf\033[m" << std::endl;
+		display(f, \
+			(FLAG_IMPOS << SHIFT_CHAR) \
+			+ (FLAG_CAST << SHIFT_INT) \
+			+ (FLAG_PSEUDO << SHIFT_FLOAT) \
+			+ ((FLAG_CAST | FLAG_PSEUDO) << SHIFT_DOUBLE));
+		return ;
+	}
+*/
+	if (str == STR_NAN || str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG)
 	{
+		std::clog << "\033[35;2;3mfloat pseudo\033[m" << std::endl;
 		display(str);
 		return ;
 	}
 
 	std::cout << "\033[31mInvalid input: " << str << "\033[m" << std::endl;
 }
-
+/*
 bool	ScalarConverter::isPseudo(std::string& str) {
 	if (str == STR_NAN || str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG)
 		return (true);
 	return (false);
 }
-
+*/
 void	ScalarConverter::display(const std::string& str) {
 	std::cout << "\033[31mint: " << STR_IMPOS << "\033[m" << std::endl;
 	std::cout << "\033[31mchar: " << STR_IMPOS << "\033[m" << std::endl;
@@ -107,22 +133,27 @@ void	ScalarConverter::display(T scalar, int flag) {
 
 	std::cout << "\033[32mint: " << static_cast<int>(scalar) << "\033[m" << std::endl;
 
-	if (' ' <= scalar && scalar <= '~')
+	if (' ' <= static_cast<char>(scalar) && static_cast<char>(scalar) <= '~')
 		std::cout << "\033[32mchar: " << static_cast<char>(scalar) << "\033[m" << std::endl;
 	else
-		std::cout << "\033[33mint: " << STR_NODISP << "\033[m" << std::endl;
+		std::cout << "\033[33mchar: " << STR_NODISP << "\033[m" << std::endl;
 
+	const std::ios::fmtflags flags = std::cout.flags();
+	std::cout.setf(std::ios::showpos);
+
+	// if (((flag >> SHIFT_FLOAT) & MASK_FLAG) == FLAG_INTEGER)
+	if (static_cast<double>(scalar) == static_cast<int>(scalar))
+		std::cout << std::fixed << std::setprecision(1);
 	std::cout << "\033[32mfloat: " << static_cast<float>(scalar);
-	if (((flag >> SHIFT_FLOAT) & FLAG_MASK) == FLAG_INTEGER)
-		std::cout << STR_DECIMAL;
 	std::cout << CHR_FLOAT << "\033[m" << std::endl;
 
+	// if (((flag >> SHIFT_DOUBLE) & MASK_FLAG) == FLAG_INTEGER)
+	if (static_cast<double>(scalar) == static_cast<int>(scalar))
+		std::cout << std::fixed << std::setprecision(1);
 	std::cout << "\033[32mdouble: " << static_cast<double>(scalar);
-	if (((flag >> SHIFT_DOUBLE) & FLAG_MASK) == FLAG_INTEGER)
-		std::cout << STR_DECIMAL;
 	std::cout << "\033[m" << std::endl;
 
-	(void)flag;
+	std::cout.flags(flags);
 }
 
 /*
