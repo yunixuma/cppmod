@@ -18,8 +18,6 @@
 # include <sstream>
 # include <string>
 
-// template<class T>
-// class ScalarConverter;
 # define SHIFT_CHAR		12
 # define SHIFT_INT		8
 # define SHIFT_FLOAT	4
