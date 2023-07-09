@@ -74,7 +74,8 @@ void	ScalarConverter::convert(std::string& str) {
 		display(str);
 		return ;
 	}
-
+// std::clog << std::numeric_limits<int>::min() << std::endl;
+// std::clog << std::numeric_limits<int>::max() << std::endl;
 	if (str[str.length() - 1] == 'f') {
 		str.erase(str.length() - 1);
 	}
@@ -139,7 +140,7 @@ void	ScalarConverter::display(T scalar, int flag) {
 		std::cout << "\033[33mchar: " << STR_NODISP << "\033[m" << std::endl;
 
 	const std::ios::fmtflags flags = std::cout.flags();
-	std::cout.setf(std::ios::showpos);
+	// std::cout.setf(std::ios::showpos);
 
 	// if (((flag >> SHIFT_FLOAT) & MASK_FLAG) == FLAG_INTEGER)
 	if (static_cast<double>(scalar) == static_cast<int>(scalar))

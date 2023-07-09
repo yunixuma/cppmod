@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/06 13:07:08 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/09 22:56:54 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,5 @@ int	main(int argc, char *argv[]) {
 	// std::cout << "int: " << ScalarConverter::toInt(str) << std::endl;
 	// std::cout << "float: " << ScalarConverter::toFloat(str) << std::endl;
 	// std::cout << "double: " << ScalarConverter::toDouble(str) << std::endl;*/
-	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }
