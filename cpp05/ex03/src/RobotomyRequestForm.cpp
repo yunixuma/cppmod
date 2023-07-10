@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 15:48:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/10 14:52:19 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	else if (this->getGradeToExec() < executor.getGrade())
 		throw RobotomyRequestForm::GradeTooLowException();
 
- 	std::srand(std::time(NULL));
+	std::srand(std::time(NULL));
 	if (std::rand() % 2)
 		std::cout << this->getTarget() \
 			<< " has been robotomized successfully and makes some drilling noises." << std::endl;

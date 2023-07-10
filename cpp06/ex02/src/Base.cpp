@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/10 20:06:37 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:19:23 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,4 @@ Base&	Base::operator=(const Base& rhs) {
 Base::~Base(void) {
 	std::cout << "\033[31;2;3m[" << this \
 		<< "]<Base> Destructor called\033[m" << std::endl;
-}
-
-Base*	Base::generate(void) {
-	std::cout << "\033[32m[" << this \
-		<< "]<Base> generate() called\033[m" << std::endl;
-}
-
-void	Base::identify(Base* p) {
-	std::cout << "\033[32m[" << this \
-		<< "]<Base> identify(*p) called\033[m" << std::endl;
-}
-
-void	Base::identify(Base& p) {
-	std::cout << "\033[32m[" << this \
-		<< "]<Base> identify(&p) called\033[m" << std::endl;
 }

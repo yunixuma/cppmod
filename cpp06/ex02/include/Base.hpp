@@ -16,6 +16,8 @@
 # include <iostream>
 # include <cctype>
 # include <string>
+# include <cstdlib>
+# include <ctime>
 
 class Base
 {
@@ -24,9 +26,9 @@ public:
 	// Base(const Base& src);
 	// Base&	operator=(const Base& rhs);
 	virtual ~Base(void);
-	void			generate(Base* p);
-	virtual void	identify(Base* p);
-	virtual void	identify(Base& p);
+	// Base*			generate(void);
+	// virtual void	identify(Base* p);
+	// virtual void	identify(Base& p);
 };
 
 #endif

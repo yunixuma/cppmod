@@ -14,10 +14,10 @@
 
 C::C(void) {
 	std::cout << "\033[36;2;3m[" << this \
-		<< "]<C> Constructor called (" << this->type << ")\033[m" << std::endl;
-	this->type = "C";
+		<< "]<C> Constructor called\033[m" << std::endl;
+	// this->type = "C";
 }
-
+/*
 C::C(const C& src) : Base(src) {
 	std::cout << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<C> Copy constructor called (" << this->type << ")\033[m" << std::endl;
@@ -34,8 +34,8 @@ C&	C::operator=(const C& rhs) {
 	}
 	return (*this);
 }
-
+*/
 C::~C(void) {
 	std::cout << "\033[31;2;3m[" << this \
-		<< "]<C> Destructor called (" << this->type << ")\033[m" << std::endl;
+		<< "]<C> Destructor called\033[m" << std::endl;
 }
