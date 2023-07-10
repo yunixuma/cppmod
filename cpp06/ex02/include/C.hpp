@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   C.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 11:04:04 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/10 19:54:40 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGCAT_HPP
-# define WRONGCAT_HPP
+#ifndef C_HPP
+# define C_HPP
 
-# include "WrongAnimal.hpp"
+# include "Base.hpp"
 
-class WrongCat : public WrongAnimal
+class C : public Base
 {
 public:
-	WrongCat(void);
-	WrongCat(const WrongCat& src);
-	WrongCat&	operator=(const WrongCat& rhs);
-	~WrongCat(void);
-	void	makeSound(void) const;
+	C(void);
+	C(const C& src);
+	C&	operator=(const C& rhs);
+	~C(void);
+	void	generate(Base* p);
+	void	identify(Base* p);
+	void	identify(Base& p);
 };
 
 #endif

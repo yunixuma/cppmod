@@ -14,8 +14,8 @@
 
 B::B(void) {
 	std::cout << "\033[36;2;3m[" << this \
-		<< "]<B> Constructor called (" << this->type << ")\033[m" << std::endl;
-	this->type = "B";
+		<< "]<B> Constructor called\033[m" << std::endl;
+	// this->type = "B";
 }
 
 B::B(const B& src) : Base(src) {

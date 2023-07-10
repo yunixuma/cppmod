@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   A.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 11:03:18 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/10 20:01:14 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef A_HPP
+# define A_HPP
 
-# include "Animal.hpp"
+# include "Base.hpp"
 
-class Cat : public Animal
+class A : public Base
 {
 public:
-	Cat(void);
-	Cat(const Cat& src);
-	Cat&	operator=(const Cat& rhs);
-	~Cat(void);
-	void	makeSound(void) const;
+	A(void);
+	A(const A& src);
+	A&	operator=(const A& rhs);
+	~A(void);
+	void	generate(Base* p);
+	void	identify(Base* p);
+	void	identify(Base& p);
 };
 
 #endif

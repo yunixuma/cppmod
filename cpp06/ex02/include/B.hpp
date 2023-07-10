@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/06 11:03:27 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/10 20:01:39 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef B_HPP
+# define B_HPP
 
-# include "Animal.hpp"
+# include "Base.hpp"
 
-class Dog : public Animal
+class B : public Base
 {
 public:
-	Dog(void);
-	Dog(const Dog& src);
-	Dog&	operator=(const Dog& rhs);
-	~Dog(void);
-	void	makeSound(void) const;
+	B(void);
+	B(const B& src);
+	B&	operator=(const B& rhs);
+	~B(void);
+	void	generate(Base* p);
+	void	identify(Base* p);
+	void	identify(Base& p);
 };
 
 #endif

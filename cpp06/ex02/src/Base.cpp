@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/10 19:19:38 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/10 20:06:37 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Base&	Base::operator=(const Base& rhs) {
 */
 Base::~Base(void) {
 	std::cout << "\033[31;2;3m[" << this \
-		<< "]<Base> Destructor called (" << this->type << ")\033[m" << std::endl;
+		<< "]<Base> Destructor called\033[m" << std::endl;
 }
 
 Base*	Base::generate(void) {
