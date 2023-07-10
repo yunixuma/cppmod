@@ -14,7 +14,7 @@
 
 void	ScalarConverter::convert(std::string& str) {
 	if (str.empty() || str.length() == 0) {
-		std::cout << "\033[31mEmpty string" << std::endl;
+		std::cerr << "\033[31mEmpty string" << std::endl;
 		return ;
 	}
 
@@ -68,7 +68,7 @@ void	ScalarConverter::convert(std::string& str) {
 	}
 */
 
-	std::cout << "\033[31mInvalid input: \"" << str << "\"\033[m" << std::endl;
+	std::cerr << "\033[31mInvalid input: \"" << str << "\"\033[m" << std::endl;
 }
 
 // bool	ScalarConverter::forInt(std::stringstream& ss) {
@@ -79,12 +79,12 @@ bool	ScalarConverter::forInt(const std::string& str) {
 	ss << str;
 	ss >> n;
 	if (!ss.fail() && ss.eof()) {
-		std::clog << "\033[35;2;3mint\033[m" << std::endl;
 		display(n, \
 			(FLAG_CAST << SHIFT_CHAR) \
 			+ (FLAG_REGULAR << SHIFT_INT) \
 			+ (FLAG_INTEGER << SHIFT_FLOAT) \
 			+ (FLAG_INTEGER << SHIFT_DOUBLE));
+		std::clog << "\033[35;2;3mint\033[m" << std::endl;
 		return (true);
 	}
 	return (false);
@@ -93,12 +93,12 @@ bool	ScalarConverter::forInt(const std::string& str) {
 bool	ScalarConverter::forChar(const std::string& str) {
 	if (str.length() == 1) {
 		char	c = str[0];
-		std::clog << "\033[35;2;3mchar\033[m" << std::endl;
 		display(c, \
 			(FLAG_REGULAR << SHIFT_CHAR) \
 			+ (FLAG_CAST << SHIFT_INT) \
 			+ (FLAG_CAST << SHIFT_FLOAT) \
 			+ (FLAG_CAST << SHIFT_DOUBLE));
+		std::clog << "\033[35;2;3mchar\033[m" << std::endl;
 		return (true);
 	}
 	return (false);
@@ -127,8 +127,8 @@ bool	ScalarConverter::forDouble(const std::string& str) {
 			flag += (FLAG_MIN << SHIFT_INT);
 		else
 			flag += (FLAG_CAST << SHIFT_INT);
-		std::clog << "\033[35;2;3mdouble\033[m" << std::endl;
 		display(dbl, flag);
+		std::clog << "\033[35;2;3mdouble\033[m" << std::endl;
 		return (true);
 	}
 	return (false);
@@ -163,12 +163,12 @@ bool	ScalarConverter::forFloat(const std::string& str) {
 			flag += (FLAG_MIN << SHIFT_INT);
 		else
 			flag += (FLAG_CAST << SHIFT_INT);
-		std::clog << "\033[35;2;3mfloat\033[m" << std::endl;
 		display(f, \
 			(FLAG_CAST << SHIFT_CHAR) \
 			+ (FLAG_CAST << SHIFT_INT) \
 			+ (FLAG_REGULAR << SHIFT_FLOAT) \
 			+ (FLAG_CAST << SHIFT_DOUBLE));
+		std::clog << "\033[35;2;3mfloat\033[m" << std::endl;
 		return (true);
 	}
 	return (false);
