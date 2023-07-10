@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/10 15:43:56 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/10 16:34:52 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,24 @@ void	identify(Base* p) {
 
 void	identify(Base& p) {
 	std::cout << "\033[32midentify(&p) called\033[m" << std::endl;
-	if (dynamic_cast<A*>(&p))
+	try {
+		Base base = dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
-	else if (dynamic_cast<B*>(&p))
+		return ;
+	}
+	catch (...) {}
+	try {
+		Base base = dynamic_cast<B&>(p);
 		std::cout << "B" << std::endl;
-	else if (dynamic_cast<C*>(&p))
+		return ;
+	}
+	catch (...) {}
+	try {
+		Base base = dynamic_cast<C&>(p);
 		std::cout << "C" << std::endl;
+		return ;
+	}
+	catch (...) {}
 }
 
 void	trial(void) {
@@ -66,7 +78,9 @@ int	main(void)
 	for (int i = 0; i < 5; i++) {
 		std::clog << std::endl << "\033[35;43mTrial " << i + 1 << "\033[m" << std::endl;
 		trial();
-		unsigned int us_sleep = ((rand() + rand()) * 333333) % 1000000;
+		unsigned int us_sleep = rand() % 1000000;
+		// if (us_sleep < 333333)
+		// 	us_sleep += (rand() * 333333) % 1000000;
 		usleep(us_sleep);
 	}
 	return 0;
