@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
+#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/07/09 23:32:47 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/07/10 10:44:30 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,9 +121,9 @@ test_pseudo:
 	@echo "\n\033[33;42mTest case: +inff\033[m"
 	-./$(NAME) +inff
 	@echo "\n\033[33;42mTest case: -inf\033[m"
-	-./$(NAME) +inf
+	-./$(NAME) -inf
 	@echo "\n\033[33;42mTest case: -inff\033[m"
-	-./$(NAME) +inff
+	-./$(NAME) -inff
 	@echo "\033[2;3mRegular tests finished\033[m"
 
 # Recipes

@@ -17,6 +17,7 @@
 # include <iomanip>
 # include <sstream>
 # include <string>
+# include <limits>
 
 # define SHIFT_CHAR		12
 # define SHIFT_INT		8
@@ -28,7 +29,7 @@
 # define FLAG_INTEGER	0x2
 # define FLAG_MIN		0x2
 # define FLAG_MAX		0x4
-# define FLAG_PSEUDO	0x4
+# define FLAG_PSEUDO	0x8
 # define FLAG_IMPOS		0x8
 # define MASK_FLAG		0xf
 # define MASK_CHAR		0xff
@@ -49,10 +50,17 @@ private:
 	~ScalarConverter();
 	// template<typename T>
 	// static bool	isPseudo(std::string& str);
+	// static bool	forInt(std::stringstream& ss);
+	static bool	forInt(const std::string& str);
+	static bool	forChar(const std::string& str);
+	// static bool	forDouble(std::stringstream& ss);
+	static bool	forDouble(const std::string& str);
+	static bool	forFloat(const std::string& str);
+	static bool	forPseudo(const std::string& str);
 public:
 	// template<typename RET>
 	static void	convert(std::string& str);
-	static void	display(const std::string& str);
+	static void	display(const std::string& str, int flag);
 	template<typename T>
 	static void	display(T scalar, int flag);
 	// template<class T>char	convert(std::string& str);

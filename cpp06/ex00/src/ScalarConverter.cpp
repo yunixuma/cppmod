@@ -18,45 +18,25 @@ void	ScalarConverter::convert(std::string& str) {
 		return ;
 	}
 
-	std::stringstream	ss;
-	ss << str;
+	// std::stringstream	ss, ss_copy;
+	// ss << str;
+	// ss_copy << ss.rdbuf();
 
-	int	n;
-	ss >> n;
-	if (!ss.fail() && ss.eof()) {
-		std::clog << "\033[35;2;3mint\033[m" << std::endl;
-		display(n, \
-			(FLAG_CAST << SHIFT_CHAR) \
-			+ (FLAG_REGULAR << SHIFT_INT) \
-			+ (FLAG_INTEGER << SHIFT_FLOAT) \
-			+ (FLAG_INTEGER << SHIFT_DOUBLE));
+	// if (forInt(ss_copy))
+	if (forInt(str))
 		return ;
-	}
 
-	if (str.length() == 1) {
-		char	c = str[0];
-		std::clog << "\033[35;2;3mchar\033[m" << std::endl;
-		display(c, \
-			(FLAG_REGULAR << SHIFT_CHAR) \
-			+ (FLAG_CAST << SHIFT_INT) \
-			+ (FLAG_CAST << SHIFT_FLOAT) \
-			+ (FLAG_CAST << SHIFT_DOUBLE));
+	if (forChar(str))
 		return ;
-	}
 
-	ss.str("");
-	ss.clear(std::stringstream::goodbit);
-	double	dbl;
-	ss >> dbl;
-	if (!ss.fail() && ss.eof()) {
-		std::clog << "\033[35;2;3mdouble\033[m" << std::endl;
-		display(dbl, \
-			(FLAG_CAST << SHIFT_CHAR) \
-			+ (FLAG_CAST << SHIFT_INT) \
-			+ (FLAG_CAST << SHIFT_FLOAT) \
-			+ (FLAG_REGULAR << SHIFT_DOUBLE));
+	// ss_copy << ss.rdbuf();
+	// if (forDouble(ss_copy))
+	if (forDouble(str))
 		return ;
-	}
+
+	// ss.str("");
+	// ss.clear(std::stringstream::goodbit);
+
 /*
 	if (str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG) {
 		std::clog << "\033[35;2;3mdouble inf\033[m" << std::endl;
@@ -68,31 +48,14 @@ void	ScalarConverter::convert(std::string& str) {
 		return ;
 	}
 */
-	if (str == STR_NAN || str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG)
-	{
-		std::clog << "\033[35;2;3mdouble pseudo\033[m" << std::endl;
-		display(str);
-		return ;
-	}
+
 // std::clog << std::numeric_limits<int>::min() << std::endl;
 // std::clog << std::numeric_limits<int>::max() << std::endl;
-	if (str[str.length() - 1] == 'f') {
-		str.erase(str.length() - 1);
-	}
-	ss.str("");
-	ss.clear(std::stringstream::goodbit);
-	ss << str;
-	float	f;
-	ss >> f;
-	if (!ss.fail() && ss.eof()) {
-		std::clog << "\033[35;2;3mfloat\033[m" << std::endl;
-		display(f, \
-			(FLAG_CAST << SHIFT_CHAR) \
-			+ (FLAG_CAST << SHIFT_INT) \
-			+ (FLAG_REGULAR << SHIFT_FLOAT) \
-			+ (FLAG_CAST << SHIFT_DOUBLE));
+
+	// if (forFloat(ss_copy))
+	if (forFloat(str))
 		return ;
-	}
+
 /*
 	if (str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG) {
 		std::clog << "\033[35;2;3mfloat inf\033[m" << std::endl;
@@ -104,15 +67,125 @@ void	ScalarConverter::convert(std::string& str) {
 		return ;
 	}
 */
-	if (str == STR_NAN || str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG)
-	{
-		std::clog << "\033[35;2;3mfloat pseudo\033[m" << std::endl;
-		display(str);
-		return ;
-	}
 
 	std::cout << "\033[31mInvalid input: " << str << "\033[m" << std::endl;
 }
+
+// bool	ScalarConverter::forInt(std::stringstream& ss) {
+bool	ScalarConverter::forInt(const std::string& str) {
+	std::stringstream	ss;
+	int					n;
+
+	ss << str;
+	ss >> n;
+	if (!ss.fail() && ss.eof()) {
+		std::clog << "\033[35;2;3mint\033[m" << std::endl;
+		display(n, \
+			(FLAG_CAST << SHIFT_CHAR) \
+			+ (FLAG_REGULAR << SHIFT_INT) \
+			+ (FLAG_INTEGER << SHIFT_FLOAT) \
+			+ (FLAG_INTEGER << SHIFT_DOUBLE));
+		return (true);
+	}
+	return (false);
+}
+
+bool	ScalarConverter::forChar(const std::string& str) {
+	if (str.length() == 1) {
+		char	c = str[0];
+		std::clog << "\033[35;2;3mchar\033[m" << std::endl;
+		display(c, \
+			(FLAG_REGULAR << SHIFT_CHAR) \
+			+ (FLAG_CAST << SHIFT_INT) \
+			+ (FLAG_CAST << SHIFT_FLOAT) \
+			+ (FLAG_CAST << SHIFT_DOUBLE));
+		return (true);
+	}
+	return (false);
+}
+
+// bool	ScalarConverter::forDouble(std::stringstream& ss) {
+bool	ScalarConverter::forDouble(const std::string& str) {
+	if (forPseudo(str)) {
+		std::clog << "\033[35;2;3mdouble pseudo\033[m" << std::endl;
+		return (true);
+	}
+
+	std::stringstream	ss;
+	double				dbl;
+
+	ss << str;
+	ss >> dbl;
+	if (!ss.fail() && ss.eof()) {
+		std::clog << "\033[35;2;3mdouble\033[m" << std::endl;
+		display(dbl, \
+			(FLAG_CAST << SHIFT_CHAR) \
+			+ (FLAG_CAST << SHIFT_INT) \
+			+ (FLAG_CAST << SHIFT_FLOAT) \
+			+ (FLAG_REGULAR << SHIFT_DOUBLE));
+		return (true);
+	}
+	return (false);
+}
+
+bool	ScalarConverter::forFloat(const std::string& str) {
+	if (str[str.length() - 1] != 'f')
+		return (false);
+	std::string	str_trim(str);
+	str_trim.erase(str_trim.length() - 1);
+
+	if (forPseudo(str_trim)) {
+		std::clog << "\033[35;2;3mfloat pseudo\033[m" << std::endl;
+		return (true);
+	}
+
+	std::stringstream	ss;
+	float	f;
+
+	// ss.str("");
+	// ss.clear(std::stringstream::goodbit);
+	ss << str_trim;
+	ss >> f;
+	if (!ss.fail() && ss.eof()) {
+		std::clog << "\033[35;2;3mfloat\033[m" << std::endl;
+		display(f, \
+			(FLAG_CAST << SHIFT_CHAR) \
+			+ (FLAG_CAST << SHIFT_INT) \
+			+ (FLAG_REGULAR << SHIFT_FLOAT) \
+			+ (FLAG_CAST << SHIFT_DOUBLE));
+		return (true);
+	}
+	return (false);
+}
+
+bool	ScalarConverter::forPseudo(const std::string& str) {
+	if (str == STR_INF || str == STR_INF_POS) {
+		display(str, \
+			(FLAG_MAX << SHIFT_CHAR) \
+			+ (FLAG_MAX << SHIFT_INT) \
+			+ (FLAG_MAX << SHIFT_FLOAT) \
+			+ (FLAG_MAX << SHIFT_DOUBLE));
+		return (true);
+	}
+	if (str == STR_INF_NEG) {
+		display(str, \
+			(FLAG_MIN << SHIFT_CHAR) \
+			+ (FLAG_MIN << SHIFT_INT) \
+			+ (FLAG_MIN << SHIFT_FLOAT) \
+			+ (FLAG_MIN << SHIFT_DOUBLE));
+		return (true);
+	}
+	if (str == STR_NAN) {
+		display(str, \
+			(FLAG_IMPOS << SHIFT_CHAR) \
+			+ (FLAG_IMPOS << SHIFT_INT) \
+			+ (FLAG_PSEUDO << SHIFT_FLOAT) \
+			+ (FLAG_PSEUDO << SHIFT_DOUBLE));
+		return (true);
+	}
+	return (false);
+}
+
 /*
 bool	ScalarConverter::isPseudo(std::string& str) {
 	if (str == STR_NAN || str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG)
@@ -120,8 +193,16 @@ bool	ScalarConverter::isPseudo(std::string& str) {
 	return (false);
 }
 */
-void	ScalarConverter::display(const std::string& str) {
-	std::cout << "\033[31mint: " << STR_IMPOS << "\033[m" << std::endl;
+void	ScalarConverter::display(const std::string& str, int flag) {
+	std::cout << "\033[31mint: ";
+	if (((flag >> SHIFT_INT) & MASK_FLAG) == FLAG_MAX)
+		std::cout << std::numeric_limits<int>::max();
+	else if (((flag >> SHIFT_INT) & MASK_FLAG) == FLAG_MIN)
+		std::cout << std::numeric_limits<int>::min();
+	else
+		std::cout << STR_IMPOS;
+	std::cout << "\033[m" << std::endl;
+
 	std::cout << "\033[31mchar: " << STR_IMPOS << "\033[m" << std::endl;
 	std::cout << "\033[33mfloat: " << str << CHR_FLOAT << "\033[m" << std::endl;
 	std::cout << "\033[33mdouble: " << str << "\033[m" << std::endl;
