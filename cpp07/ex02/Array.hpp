@@ -80,7 +80,6 @@ public:
 		return (this->arr_[index]);
 	}
 	Array&	operator=(const T* rhs) {
-		delete[] this->arr_;
 		for (unsigned int i = 0; i < this->size_; i++)
 			this->arr_[i] = rhs[i];
 		std::clog << "\033[35;2;3m[" << this \

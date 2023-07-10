@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/10 20:46:14 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/11 05:02:50 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	case_string(void) {
 	iter(foods, 5, debug_print);
 	std::clog << "\033[32;2mApplying append()\033[m" << std::endl;
 	iter(fruits, foods, 5, append);
-	std::clog << "products (float):" << std::endl;
+	std::clog << "products (string):" << std::endl;
 	iter(fruits, 5, debug_print);
 	return (0);
 }
