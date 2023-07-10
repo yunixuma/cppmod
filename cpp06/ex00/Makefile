@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/07/10 18:25:42 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/07/10 18:02:16 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,8 +80,14 @@ test_error:
 	-./$(NAME) 4 2
 	@echo "\033[41mTest case: Empty string\033[m"
 	-./$(NAME) ""
+	@echo "\033[41mTest case: Consecutive white spaces\033[m"
+	-./$(NAME) "  "
 	@echo "\033[41mTest case: Neither number nor single char\033[m"
 	-./$(NAME) ".."
+	@echo "\033[41mTest case: End w/ consective float signs\033[m"
+	-./$(NAME) "123.456ff"
+	@echo "\033[41mTest case: Not a pseudo string\033[m"
+	-./$(NAME) "NaN"
 	@echo "\033[41mTest case: Too long characters value\033[m"
 	-./$(NAME) "170141183460469231731687303715884105728"
 	@echo "\033[2;3mError handling tests finished\033[m"
@@ -91,6 +97,8 @@ test_regular:
 	-@read _
 	@echo "\n\033[33;42mTest case: char\033[m"
 	-./$(NAME) .
+	@echo "\n\033[33;42mTest case: A white space\033[m"
+	-./$(NAME) " "
 	@echo "\n\033[33;42mTest case: positive integer (printable char)\033[m"
 	-./$(NAME) 42
 	@echo "\n\033[33;42mTest case: negative integer (not printable)\033[m"
