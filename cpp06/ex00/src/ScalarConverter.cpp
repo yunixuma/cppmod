@@ -68,7 +68,7 @@ void	ScalarConverter::convert(std::string& str) {
 	}
 */
 
-	std::cout << "\033[31mInvalid input: " << str << "\033[m" << std::endl;
+	std::cout << "\033[31mInvalid input: \"" << str << "\"\033[m" << std::endl;
 }
 
 // bool	ScalarConverter::forInt(std::stringstream& ss) {
@@ -117,12 +117,18 @@ bool	ScalarConverter::forDouble(const std::string& str) {
 	ss << str;
 	ss >> dbl;
 	if (!ss.fail() && ss.eof()) {
-		std::clog << "\033[35;2;3mdouble\033[m" << std::endl;
-		display(dbl, \
-			(FLAG_CAST << SHIFT_CHAR) \
-			+ (FLAG_CAST << SHIFT_INT) \
+		int	flag;
+		flag = (FLAG_CAST << SHIFT_CHAR) \
 			+ (FLAG_CAST << SHIFT_FLOAT) \
-			+ (FLAG_REGULAR << SHIFT_DOUBLE));
+			+ (FLAG_REGULAR << SHIFT_DOUBLE);
+		if (dbl > std::numeric_limits<int>::max())
+			flag += (FLAG_MAX << SHIFT_INT);
+		else if (dbl < std::numeric_limits<int>::min())
+			flag += (FLAG_MIN << SHIFT_INT);
+		else
+			flag += (FLAG_CAST << SHIFT_INT);
+		std::clog << "\033[35;2;3mdouble\033[m" << std::endl;
+		display(dbl, flag);
 		return (true);
 	}
 	return (false);
@@ -147,6 +153,16 @@ bool	ScalarConverter::forFloat(const std::string& str) {
 	ss << str_trim;
 	ss >> f;
 	if (!ss.fail() && ss.eof()) {
+		int	flag;
+		flag = (FLAG_CAST << SHIFT_CHAR) \
+			+ (FLAG_REGULAR << SHIFT_FLOAT) \
+			+ (FLAG_CAST << SHIFT_DOUBLE);
+		if (f > std::numeric_limits<int>::max())
+			flag += (FLAG_MAX << SHIFT_INT);
+		else if (f < std::numeric_limits<int>::min())
+			flag += (FLAG_MIN << SHIFT_INT);
+		else
+			flag += (FLAG_CAST << SHIFT_INT);
 		std::clog << "\033[35;2;3mfloat\033[m" << std::endl;
 		display(f, \
 			(FLAG_CAST << SHIFT_CHAR) \
@@ -194,16 +210,19 @@ bool	ScalarConverter::isPseudo(std::string& str) {
 }
 */
 void	ScalarConverter::display(const std::string& str, int flag) {
-	std::cout << "\033[31mint: ";
-	if (((flag >> SHIFT_INT) & MASK_FLAG) == FLAG_MAX)
-		std::cout << std::numeric_limits<int>::max();
-	else if (((flag >> SHIFT_INT) & MASK_FLAG) == FLAG_MIN)
-		std::cout << std::numeric_limits<int>::min();
-	else
-		std::cout << STR_IMPOS;
-	std::cout << "\033[m" << std::endl;
+	std::cout << "\033[32mT: \"" << str \
+		<< "\" (" << std::hex << flag << std::dec << ")\033[m" << std::endl;
 
 	std::cout << "\033[31mchar: " << STR_IMPOS << "\033[m" << std::endl;
+
+	if (((flag >> SHIFT_INT) & MASK_FLAG) == FLAG_MAX)
+		std::cout << "\033[33mint: " << std::numeric_limits<int>::max();
+	else if (((flag >> SHIFT_INT) & MASK_FLAG) == FLAG_MIN)
+		std::cout << "\033[33mint: " << std::numeric_limits<int>::min();
+	else
+		std::cout << "\033[31mint: " << STR_IMPOS;
+	std::cout << "\033[m" << std::endl;
+
 	std::cout << "\033[33mfloat: " << str << CHR_FLOAT << "\033[m" << std::endl;
 	std::cout << "\033[33mdouble: " << str << "\033[m" << std::endl;
 }
@@ -213,28 +232,38 @@ void	ScalarConverter::display(T scalar, int flag) {
 	std::cout << "\033[32mT: " << scalar \
 		<< " (" << std::hex << flag << std::dec << ")\033[m" << std::endl;
 
-	std::cout << "\033[32mint: " << static_cast<int>(scalar) << "\033[m" << std::endl;
-
 	if (' ' <= static_cast<char>(scalar) && static_cast<char>(scalar) <= '~')
 		std::cout << "\033[32mchar: " << static_cast<char>(scalar) << "\033[m" << std::endl;
 	else
 		std::cout << "\033[33mchar: " << STR_NODISP << "\033[m" << std::endl;
 
+	if (((flag >> SHIFT_INT) & MASK_FLAG) == FLAG_MAX)
+		std::cout << "\033[33mint: " << std::numeric_limits<int>::max();
+	else if (((flag >> SHIFT_INT) & MASK_FLAG) == FLAG_MIN)
+		std::cout << "\033[33mint: " << std::numeric_limits<int>::min();
+	else
+		std::cout << "\033[32mint: " << static_cast<int>(scalar);
+	std::cout << "\033[m" << std::endl;
+
 	const std::ios::fmtflags flags = std::cout.flags();
 	// std::cout.setf(std::ios::showpos);
 
 	// if (((flag >> SHIFT_FLOAT) & MASK_FLAG) == FLAG_INTEGER)
-	if (static_cast<double>(scalar) == static_cast<int>(scalar))
+	if (static_cast<float>(scalar) == static_cast<int>(scalar))
 		std::cout << std::fixed << std::setprecision(1);
+	else
+		std::cout << std::setprecision(8);
 	std::cout << "\033[32mfloat: " << static_cast<float>(scalar);
 	std::cout << CHR_FLOAT << "\033[m" << std::endl;
+	std::cout.flags(flags);
 
 	// if (((flag >> SHIFT_DOUBLE) & MASK_FLAG) == FLAG_INTEGER)
 	if (static_cast<double>(scalar) == static_cast<int>(scalar))
 		std::cout << std::fixed << std::setprecision(1);
+	else
+		std::cout << std::setprecision(27);
 	std::cout << "\033[32mdouble: " << static_cast<double>(scalar);
 	std::cout << "\033[m" << std::endl;
-
 	std::cout.flags(flags);
 }
 

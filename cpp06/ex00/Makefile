@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/07/10 10:44:30 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/07/10 15:55:27 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,9 +70,9 @@ re: fclean all
 
 # Additional targets
 debug: fclean all
-test: re test_abnormal test_regular test_pseudo
-test_abnormal:
-	@echo "\n\033[31;3mAbnormal tests\033[m"
+test: debug test_error test_regular test_abnormal test_pseudo test_over
+test_error:
+	@echo "\n\033[31;1;3mError handling tests\033[m"
 	@echo "\033[41mTest case: No arguments\033[m"
 	-./$(NAME)
 	@echo "\033[41mTest case: Too many arguments\033[m"
@@ -81,13 +81,9 @@ test_abnormal:
 	-./$(NAME) ""
 	@echo "\033[41mTest case: Neither number nor single char\033[m"
 	-./$(NAME) ".."
-	@echo "\033[41mTest case: No integer part\033[m"
-	-./$(NAME) ".5"
-	@echo "\033[41mTest case: Over int type\033[m"
-	-./$(NAME) "2147483648"
-	@echo "\033[2;3mAbnormal tests finished\033[m"
+	@echo "\033[2;3mError handling tests finished\033[m"
 test_regular:
-	@echo "\n\033[33;42mRegular tests: \033[m"
+	@echo "\n\033[32;1;3mRegular tests: \033[m"
 	@echo "To continue, hit the [Enter] key"
 	-@read _
 	@echo "\n\033[33;42mTest case: char\033[m"
@@ -104,8 +100,22 @@ test_regular:
 	-./$(NAME) 2.7183f
 	@echo "\n\033[33;42mTest case: double\033[m"
 	-./$(NAME) 2.7183
+	@echo "\033[2;3mRegular tests finished\033[m"
+test_abnormal:
+	@echo "\n\033[32;1;3mAbnormal tests: \033[m"
+	@echo "To continue, hit the [Enter] key"
+	-@read _
+	@echo "\033[31;43mTest case: No integer part\033[m"
+	-./$(NAME) ".5"
+	@echo "\n\033[31;43mTest case: start w/ white spaces\033[m"
+	-./$(NAME) "  123.4567"
+	@echo "\033[31;43mTest case: Exponential notation (large number)\033[m"
+	-./$(NAME) "1.234567890123456E012"
+	@echo "\033[31;43mTest case: Exponential notation (small number)\033[m"
+	-./$(NAME) "1.234567890123456e-012"
+	@echo "\033[2;3mAbnormal tests finished\033[m"
 test_pseudo:
-	@echo "\n\033[33;42mPseudo tests: \033[m"
+	@echo "\n\033[32;1;3mPseudo tests: \033[m"
 	@echo "To continue, hit the [Enter] key"
 	-@read _
 	@echo "\n\033[33;42mTest case: nan\033[m"
@@ -124,9 +134,44 @@ test_pseudo:
 	-./$(NAME) -inf
 	@echo "\n\033[33;42mTest case: -inff\033[m"
 	-./$(NAME) -inff
-	@echo "\033[2;3mRegular tests finished\033[m"
+	@echo "\033[2;3mPseudo tests finished\033[m"
+test_over:
+	@echo "\n\033[33;1;3mOverflow tests: \033[m"
+	@echo "To continue, hit the [Enter] key"
+	-@read _
+	@echo "\033[31;43mTest case: Over INT_MAX\033[m"
+	-./$(NAME) "2147483648"
+	@echo "\033[31;43mTest case: Over INT_MAX (+64)\033[m"
+	-./$(NAME) "2147483711"
+	@echo "\033[31;43mTest case: Under INT_MIN\033[m"
+	-./$(NAME) "-2147483649"
+	@echo "\033[31;43mTest case: Under INT_MIN (-64)\033[m"
+	-./$(NAME) "-2147483712"
+	@echo "\033[31;43mTest case: LLONG_MAX\033[m"
+	-./$(NAME) "9223372036854775807"
+	@echo "\033[31;43mTest case: Over LLONG_MAX\033[m"
+	-./$(NAME) "9223372036854775808"
+	@echo "\033[31;43mTest case: LLONG_MIN\033[m"
+	-./$(NAME) "-9223372036854775808"
+	@echo "\033[31;43mTest case: Under LLONG_MIN\033[m"
+	-./$(NAME) "-9223372036854775809"
+	@echo "\033[31;43mTest case: Max. value of float data type\033[m"
+	-./$(NAME) "3.402823E+38"
+	@echo "\033[31;43mTest case: Min. value of float data type\033[m"
+	-./$(NAME) "3.402823E-38"
+	@echo "\033[31;43mTest case: Max. value of double data type\033[m"
+	-./$(NAME) "1.79769313486231570814527424e+308"
+	@echo "\033[31;43mTest case: Min. value of double data type\033[m"
+	-./$(NAME) "-1.79769313486231702725871112e-309"
+	@echo "\033[31;43mTest case: Min. fractional of float data type\033[m"
+	-./$(NAME) "1.00000011920928955078125"
+	@echo "\033[31;43mTest case: Underflow at float data type\033[m"
+	-./$(NAME) "1.000000059604644775390625"
+	@echo "\033[31;43mTest case: Min. fractional of double data type\033[m"
+	-./$(NAME) "1.0000000000000000000000016543612251060553497428173841399257071316242218017578125"
+	@echo "\033[2;3mOverflow tests finished\033[m"
 
-# Recipes
+# Recipes 1.797693134862315807935e+308
 $(NAME): $(OBJS)
 	$(CPP) $(LDFLAGS) $(OBJS) -o $(NAME)
 
