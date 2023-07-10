@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/07/10 18:02:16 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/07/10 18:56:48 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -191,7 +191,7 @@ test_over_float:
 	-./$(NAME) "1.00000000000000000011102230246251565404236316680908203125e-309"
 	@echo "\033[2;3mOverflow tests for floating-point finished\033[m"
 
-# Recipes 1.797693134862315807935e+308
+# Recipes
 $(NAME): $(OBJS)
 	$(CPP) $(LDFLAGS) $(OBJS) -o $(NAME)
 
