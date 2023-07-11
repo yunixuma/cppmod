@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/11 16:27:31 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/11 23:46:07 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ static int	case_numeric(void) {
 	std::clog << std::endl << "\033[32;2mTrying access on the inavailable index\033[m" << std::endl;
 	try {
 		// std::clog << "\033[2;3mIn try{} block\033[m" << std::endl;
-		std::cout << "arr_floats[" << arr_floats.size() 
-			<< "] * arr_nums[" << arr_nums.size() << "] = " << std::flush;
-		std::cout << multiply(arr_floats[arr_floats.size()], arr_nums[arr_nums.size()]) \
-			<< std::endl;
+		std::cout << "arr_floats[" << static_cast<int>(-arr_floats.size()) 
+			<< "] * arr_nums[" << -arr_nums.size() << "] = " << std::flush;
+		std::cout << multiply(arr_floats[static_cast<int>(-arr_floats.size())], \
+			arr_nums[-arr_nums.size()]) << std::endl;
 	}
 	catch (std::exception& e) {
 		// std::clog << "\033[2;3mIn catch{} block\033[m" << std::endl;
