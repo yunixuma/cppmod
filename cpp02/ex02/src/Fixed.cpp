@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/01 21:28:45 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/12 00:09:53 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ float	Fixed::toFloat( void ) const {
 
 // Operator overload for comparison
 bool	Fixed::operator>(const Fixed& rhs) const {
+	return (this->fixedRawBits_ > rhs.fixedRawBits_);
+/*
 	if (this->fractionalBits_ == rhs.fractionalBits_)
 		return (this->fixedRawBits_ > rhs.fixedRawBits_);
 	else if (this->fixedRawBits_ == rhs.fixedRawBits_)
@@ -74,7 +76,7 @@ bool	Fixed::operator>(const Fixed& rhs) const {
 	int shift = this->fractionalBits_ - rhs.fractionalBits_;
 	if (this->fixedRawBits_ < rhs.fixedRawBits_)
 		return (this->fixedRawBits_ > (rhs.fixedRawBits_ >> shift));
-	return ((this->fixedRawBits_ >> -shift) > rhs.fixedRawBits_);
+	return ((this->fixedRawBits_ >> -shift) > rhs.fixedRawBits_);*/
 }
 
 bool	Fixed::operator<(const Fixed& rhs) const {
@@ -90,12 +92,14 @@ bool	Fixed::operator<=(const Fixed& rhs) const {
 }
 
 bool	Fixed::operator==(const Fixed& rhs) const {
-	if (this->fractionalBits_ == rhs.fractionalBits_)
-		return (this->fixedRawBits_ == rhs.fixedRawBits_);
-	int shift = this->fractionalBits_ - rhs.fractionalBits_;
-	if (this->fixedRawBits_ < rhs.fixedRawBits_)
-		return (this->fixedRawBits_ == (rhs.fixedRawBits_ >> shift));
-	return ((this->fixedRawBits_ >> -shift) == rhs.fixedRawBits_);
+	return (this->fixedRawBits_ == rhs.fixedRawBits_);
+/*
+	// if (this->fractionalBits_ == rhs.fractionalBits_)
+	// 	return (this->fixedRawBits_ == rhs.fixedRawBits_);
+	// int shift = this->fractionalBits_ - rhs.fractionalBits_;
+	// if (this->fixedRawBits_ < rhs.fixedRawBits_)
+	// 	return (this->fixedRawBits_ == (rhs.fixedRawBits_ >> shift));
+	// return ((this->fixedRawBits_ >> -shift) == rhs.fixedRawBits_);*/
 }
 
 bool	Fixed::operator!=(const Fixed& rhs) const {
@@ -104,6 +108,10 @@ bool	Fixed::operator!=(const Fixed& rhs) const {
 
 // Operator overload for arithmetic
 Fixed	Fixed::operator+(const Fixed& roperand) const {
+	Fixed	ret;
+	ret.fixedRawBits_ = this->fixedRawBits_ + roperand.fixedRawBits_;
+	return (ret);
+/*
 	Fixed	ret;
 	int		shift;
 
@@ -124,11 +132,15 @@ Fixed	Fixed::operator+(const Fixed& roperand) const {
 		ret.fixedRawBits_ += (roperand.fixedRawBits_ << shift);
 	else
 		ret.fixedRawBits_ += (roperand.fixedRawBits_ >> -shift);
-	return (ret);
+	return (ret);*/
 }
 
 //Fixed	operator-(const Fixed& loperand, const Fixed& roperand) {
 Fixed	Fixed::operator-(const Fixed& roperand) const {
+	Fixed	ret;
+	ret.fixedRawBits_ = this->fixedRawBits_ - roperand.fixedRawBits_;
+	return (ret);
+/*
 	Fixed	ret;
 	int		shift;
 
@@ -149,7 +161,7 @@ Fixed	Fixed::operator-(const Fixed& roperand) const {
 		ret.fixedRawBits_ -= (roperand.fixedRawBits_ << shift);
 	else
 		ret.fixedRawBits_ -= (roperand.fixedRawBits_ >> -shift);
-	return (ret);
+	return (ret);*/
 }
 
 Fixed	Fixed::operator*(const Fixed& roperand) const {
