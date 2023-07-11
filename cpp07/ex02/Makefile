@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/07/10 19:23:50 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/07/11 16:51:18 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,8 +54,10 @@ endif
 
 # Mandatory targets
 all: $(NAME)
-fclean:
+fclean: clean
 	-$(RM) $(RMFLAGS) $(NAME)
+clean: 
+	-$(RM) $(RMFLAGS) *.su
 re: fclean all
 
 # Additional targets

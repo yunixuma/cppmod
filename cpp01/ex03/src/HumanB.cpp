@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 22:08:41 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/11 16:46:53 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 HumanB::HumanB(std::string name) {
 	this->name_ = name;
 	this->weapon_ = NULL;
-	std::cout << "\033[36;2;3m" << "Creating a humanB (";
-	std::cout << this << ": " << this->name_ << ")\033[m" << std::endl;
+	std::cout << "\033[36;2;3m" << "Creating a humanB (" \
+		<< this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
 HumanB::~HumanB(void) {
-	std::cout << "\033[31;2;3m" << "Destroying the humanB (";
-	std::cout << this << ": " << this->name_ << ")\033[m" << std::endl;
+	std::cout << "\033[31;2;3m" << "Destroying the humanB (" \
+		<< this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
 std::string	HumanB::getName(void) const {
@@ -29,8 +29,8 @@ std::string	HumanB::getName(void) const {
 }
 
 void	HumanB::setName(std::string name) {
-	std::cout << "\033[2;3m" << "Rename " << this << ": ";
-	std::cout << this->name_ << " -> " << name << "\033[m" << std::endl;
+	std::cout << "\033[2;3m" << "Rename " << this << ": " \
+		<< this->name_ << " -> " << name << "\033[m" << std::endl;
 	this->name_ = name;
 }
 
@@ -40,11 +40,11 @@ Weapon*	HumanB::getWeapon() const {
 
 void	HumanB::setWeapon(Weapon& weapon) {
 	if (this->weapon_) {
-		std::cout << "\033[2;3m" << "Switching the equipment (" << this << ": ";
-		std::cout << this->weapon_->getType() << " -> " << weapon.getType() << ")\033[m" << std::endl;
+		std::cout << "\033[2;3m" << "Switching the equipment (" << this << ": " \
+			<< this->weapon_->getType() << " -> " << weapon.getType() << ")\033[m" << std::endl;
 	} else {
-		std::cout << "\033[2;3m" << "Equipping (" << this << ": ";
-		std::cout << weapon.getType() << ")\033[m" << std::endl;
+		std::cout << "\033[2;3m" << "Equipping (" << this << ": " \
+			<< weapon.getType() << ")\033[m" << std::endl;
 	}
 	this->weapon_ = &weapon;
 }

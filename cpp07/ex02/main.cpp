@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/11 05:14:35 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/11 16:27:31 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ static void	debug_array(T& tc) {
 }
 
 template <typename T1, typename T2>
-static void	multiply(T1& arg1, T2& arg2) {
+static T1&	multiply(T1& arg1, T2& arg2) {
 	arg1 *= arg2;
+	return (arg1);
 }
 
 template <typename T1, typename T2>
-static void	append(T1& arg1, T2& arg2) {
+static T1&	append(T1& arg1, T2& arg2) {
 	arg1 += arg2;
+	return (arg1);
 }
 
 static int	case_numeric(void) {
@@ -65,6 +67,19 @@ static int	case_numeric(void) {
 	std::clog << std::endl << "\033[32;2mValues after multiplying\033[m" << std::endl;
 	std::clog << "multiplicands (float):" << std::endl;
 	debug_array(arr_floats);
+
+	std::clog << std::endl << "\033[32;2mTrying access on the inavailable index\033[m" << std::endl;
+	try {
+		// std::clog << "\033[2;3mIn try{} block\033[m" << std::endl;
+		std::cout << "arr_floats[" << arr_floats.size() 
+			<< "] * arr_nums[" << arr_nums.size() << "] = " << std::flush;
+		std::cout << multiply(arr_floats[arr_floats.size()], arr_nums[arr_nums.size()]) \
+			<< std::endl;
+	}
+	catch (std::exception& e) {
+		// std::clog << "\033[2;3mIn catch{} block\033[m" << std::endl;
+		std::clog << "\033[31m" << e.what() << "\033[m" << std::endl;
+	}
 
 	return (0);
 }
@@ -100,6 +115,18 @@ static int	case_string(void) {
 	std::clog << "products (string):" << std::endl;
 	debug_array(arr_fruits);
 
+	std::clog << std::endl << "\033[32;2mTrying access on the inavailable index\033[m" << std::endl;
+	try {
+		// std::clog << "\033[2;3mIn try{} block\033[m" << std::endl;
+		std::cout << "arr_fruits[" << arr_fruits.size() \
+			<< "] + arr_foods[" << arr_foods.size() << "] = " << std::flush;
+		std::cout << append(arr_fruits[arr_fruits.size()], arr_foods[arr_foods.size()]) \
+			<< std::endl;
+	}
+	catch (std::exception& e) {
+		// std::clog << "\033[2;3mIn catch{} block\033[m" << std::endl;
+		std::clog << "\033[31m" << e.what() << "\033[m" << std::endl;
+	}
 	return (0);
 }
 

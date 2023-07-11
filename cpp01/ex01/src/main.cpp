@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/29 15:58:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/11 16:34:57 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ Zombie*	test_array(void) {
 	delete[] ar_1;
 	delete[] ar_0;
 
-	std::cout << "Return " << ar_2->get_name();
-	std::cout << " on the heap (" << ar_2 << ")" << std::endl;
+	std::cout << "Return " << ar_2->get_name() \
+		<< " on the heap (" << ar_2 << ")" << std::endl;
 	return (ar_2);
 }
 

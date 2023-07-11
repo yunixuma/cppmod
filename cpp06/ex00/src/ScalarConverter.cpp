@@ -253,8 +253,8 @@ void	ScalarConverter::display(T scalar, int flag) {
 		std::cout << std::fixed << std::setprecision(1);
 	else
 		std::cout << std::setprecision(8);
-	std::cout << "\033[32mfloat: " << static_cast<float>(scalar);
-	std::cout << CHR_FLOAT << "\033[m" << std::endl;
+	std::cout << "\033[32mfloat: " << static_cast<float>(scalar) \
+		<< CHR_FLOAT << "\033[m" << std::endl;
 	std::cout.flags(flags);
 
 	// if (((flag >> SHIFT_DOUBLE) & MASK_FLAG) == FLAG_INTEGER)
@@ -262,8 +262,8 @@ void	ScalarConverter::display(T scalar, int flag) {
 		std::cout << std::fixed << std::setprecision(1);
 	else
 		std::cout << std::setprecision(27);
-	std::cout << "\033[32mdouble: " << static_cast<double>(scalar);
-	std::cout << "\033[m" << std::endl;
+	std::cout << "\033[32mdouble: " << static_cast<double>(scalar) \
+		<< "\033[m" << std::endl;
 	std::cout.flags(flags);
 }
 

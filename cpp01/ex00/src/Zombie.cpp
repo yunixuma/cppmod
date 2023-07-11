@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/05/28 23:00:14 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/11 16:34:43 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 Zombie::Zombie(std::string name) {
 	this->name_ = name;
-	std::cout << "\033[36;2;3m" << "Creating a zombie (";
-	std::cout << this << ": " << this->name_ << ")\033[m" << std::endl;
+	std::cout << "\033[36;2;3m" << "Creating a zombie (" \
+		<< this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
 Zombie::~Zombie(void) {
-	std::cout << "\033[31;2;3m" << "Destroying the zombie (";
-	std::cout << this << ": " << this->name_ << ")\033[m" << std::endl;
+	std::cout << "\033[31;2;3m" << "Destroying the zombie (" \
+		<< this << ": " << this->name_ << ")\033[m" << std::endl;
 }
 
 const std::string&	Zombie::get_name(void) const {
@@ -28,8 +28,8 @@ const std::string&	Zombie::get_name(void) const {
 }
 
 void	Zombie::set_name(std::string name) {
-	std::cout << "\033[2;3m" << "Rename " << this;
-	std::cout << ": " << this->name_ << " -> " << name << "\033[m" << std::endl;
+	std::cout << "\033[2;3m" << "Rename " << this \
+		<< ": " << this->name_ << " -> " << name << "\033[m" << std::endl;
 	this->name_ = name;
 }
 
