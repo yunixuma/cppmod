@@ -22,13 +22,7 @@
 class Base
 {
 public:
-	// Base(void);
-	// Base(const Base& src);
-	// Base&	operator=(const Base& rhs);
 	virtual ~Base(void);
-	// Base*			generate(void);
-	// virtual void	identify(Base* p);
-	// virtual void	identify(Base& p);
 };
 
 #endif

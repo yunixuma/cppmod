@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   A.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/10 15:18:43 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/12 23:09:31 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,8 @@
 class A : public Base
 {
 public:
-	A(void);
-	// A(const A& src);
-	// A&	operator=(const A& rhs);
-	~A(void);
-	// void	generate(Base* p);
-	// void	identify(Base* p);
-	// void	identify(Base& p);
+	// A(void);
+	// ~A(void);
 };
 
 #endif

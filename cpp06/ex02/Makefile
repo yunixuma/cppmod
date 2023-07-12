@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/07/10 18:33:34 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/07/12 23:10:56 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME			= realtype
 
 # Enumeration of files
-SRC				= main.cpp Base.cpp A.cpp B.cpp C.cpp
+SRC				= main.cpp Base.cpp
 
 # Check the platform
 OS				= $(shell uname)

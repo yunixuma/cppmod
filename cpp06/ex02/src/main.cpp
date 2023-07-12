@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/10 16:34:52 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/12 20:22:54 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ int	main(void)
 		std::clog << std::endl << "\033[35;43mTrial " << i + 1 << "\033[m" << std::endl;
 		trial();
 		unsigned int us_sleep = rand() % 1000000;
-		// if (us_sleep < 333333)
-		// 	us_sleep += (rand() * 333333) % 1000000;
 		usleep(us_sleep);
 	}
 	return 0;
