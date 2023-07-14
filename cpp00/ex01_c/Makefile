@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
+#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/05/15 17:21:12 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/07/15 02:45:16 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ RM				= rm
 
 # Command options (flags)
 CFLAGS		= -Wall -Wextra -Werror
-DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer -fsanitize=thread
+DEBUGCFLAGS		= -g -ggdb -fsanitize=address -fno-omit-frame-pointer -fsanitize=thread
 ifneq ($(OS), Darwin)
 	DEBUGCFLAGS	+= -fstack-usage
 endif

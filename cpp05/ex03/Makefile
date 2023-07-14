@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/06/29 11:37:44 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/07/15 02:45:16 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ RM				= rm
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98
 INCLUDES		= -I$(INCDIR)
 RMFLAGS			= -r
-DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer
+DEBUGCFLAGS		= -g -ggdb -fsanitize=address -fno-omit-frame-pointer
 ifneq ($(OS), Darwin)
 	DEBUGCFLAGS	+= -fstack-usage
 endif
@@ -45,11 +45,9 @@ DEBUGLDFLAGS	= -fsanitize=address
 
 # Redefination when the specific target
 ifeq ($(MAKECMDGOALS), debug)
-	ifneq ($(OS), Darwin)
-		CPPFLAGS	+= $(DEBUGCFLAGS)
-		LDFLAGS	+= $(DEBUGLDFLAGS)
-	endif
-	DEF		+= -D DEBUG_MODE=1
+	CPPFLAGS	+= $(DEBUGCFLAGS)
+	LDFLAGS		+= $(DEBUGLDFLAGS)
+	DEF			+= -D DEBUG_MODE=1
 endif
 
 # Macros to replace and/or integrate
