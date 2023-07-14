@@ -13,11 +13,7 @@
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
-// # include <iostream>
-// # include <iomanip>
-// # include <sstream>
-// # include <string>
-// # include <limits>
+# include <iostream>
 
 template <typename T>
 void	swap(T& arg1, T& arg2) {
@@ -36,11 +32,24 @@ T	max(T& arg1, T& arg2) {
 	return (arg1 > arg2 ? arg1 : arg2);
 };
 
-/*
-// Comparison operators
-template <typename T>
-bool	operator>(T& arg1, T& arg2) {
-	return (arg1 > arg2);
+template <typename T1, typename T2>
+void	swap(T1& arg1, T2& arg2) {
+	std::clog << "\033[35;2;3mswap(T1&, T2&) called\033[m" << std::endl;
+	T1	tmp = arg1;
+	arg1 = arg2;
+	arg2 = tmp;
 };
-*/
+
+template <typename T1, typename T2>
+T1	min(T1& arg1, T2& arg2) {
+	std::clog << "\033[35;2;3mmin(T1&, T2&) called\033[m" << std::endl;
+	return (arg1 < arg2 ? arg1 : arg2);
+};
+
+template <typename T1, typename T2>
+T1	max(T1& arg1, T2& arg2) {
+	std::clog << "\033[35;2;3mmax(T1&, T2&) called\033[m" << std::endl;
+	return (arg1 > arg2 ? arg1 : arg2);
+};
+
 #endif

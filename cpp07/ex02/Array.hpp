@@ -51,7 +51,7 @@ public:
 			this->arr_ = new T[rhs.size_];
 			for (unsigned int i = 0; i < rhs.size_; i++)
 				this->arr_[i] = rhs.arr_[i];
-			size_ = rhs.size_;
+			this->size_ = rhs.size_;
 		}
 		std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
 			<< "]<Array> Copy assignment operator called ( <" \

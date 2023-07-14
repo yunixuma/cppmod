@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/11 23:49:46 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/14 20:09:33 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ static int	case_numeric(void) {
 	std::clog << std::endl << "\033[32;2mTrying access on the inavailable index\033[m" << std::endl;
 	try {
 		// std::clog << "\033[2;3mIn try{} block\033[m" << std::endl;
-		std::cout << "arr_floats[" << static_cast<int>(-arr_floats.size()) 
-			<< "] * arr_nums[" << -static_cast<int>(arr_nums.size()) << "] = " << std::flush;
-		std::cout << multiply(arr_floats[static_cast<int>(-arr_floats.size())], \
-			arr_nums[-static_cast<int>(arr_nums.size())]) << std::endl;
+		std::cout << "arr_floats[" << -1 \
+			<< "] * arr_nums[" << -1 << "] = " << std::flush;
+		std::cout << multiply(arr_floats[-1], \
+			arr_nums[-1]) << std::endl;
 	}
 	catch (std::exception& e) {
 		// std::clog << "\033[2;3mIn catch{} block\033[m" << std::endl;
@@ -107,11 +107,11 @@ static int	case_string(void) {
 	std::clog << "foods (string):" << std::endl;
 	debug_array(arr_foods);
 
-	std::clog << std::endl << "\033[32;2mApplying multiply()\033[m" << std::endl;
+	std::clog << std::endl << "\033[32;2mApplying append()\033[m" << std::endl;
 	for (unsigned int i = 0; i < arr_fruits.size(); i++)
 		append(arr_fruits[i], arr_foods[i]);
 
-	std::clog << std::endl << "\033[32;2mValues after multiplying\033[m" << std::endl;
+	std::clog << std::endl << "\033[32;2mValues after appending\033[m" << std::endl;
 	std::clog << "products (string):" << std::endl;
 	debug_array(arr_fruits);
 

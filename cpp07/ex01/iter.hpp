@@ -3,21 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/10 20:29:41 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/07/14 19:59:22 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITER_HPP
 # define ITER_HPP
-
-// # include <iostream>
-// # include <iomanip>
-// # include <sstream>
-// # include <string>
-// # include <limits>
 
 template <typename T>
 void	iter(T* arr, size_t len, void (*func)(T&)) {
