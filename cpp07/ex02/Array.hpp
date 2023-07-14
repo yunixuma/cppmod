@@ -32,13 +32,15 @@ private:
 	};
 public:
 	Array(unsigned int n = 0) : arr_(NULL), size_(n) {
-		this->arr_ = new T[n];
+		if (n)
+			this->arr_ = new T[n];
 		std::clog << "\033[36;2;3m[" << this \
 			<< "]<Array> Constructor called ( <" \
 			<< this->getType() << ">[" \
 			<< this->size_ << "] )\033[m" << std::endl;
 	};
 	Array(const Array& src) {
+		this->arr_ = NULL;
 		*this = src;
 		std::clog << "\033[36;2;3m[" << this \
 			<< "]<Array> Copy constructor called ( <" \
@@ -46,8 +48,13 @@ public:
 			<< this->size_ << "] )\033[m" << std::endl;
 	};
 	Array&	operator=(const Array& rhs) {
+		std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
+			<< "]<Array> Copy assignment operator called ( <" \
+			<< this->getType() << ">[" \
+			<< this->size_ << "] )\033[m" << std::endl;
 		if (this != &rhs) {
-			delete[] this->arr_;
+			if (this->arr_)
+				delete[] this->arr_;
 			this->arr_ = new T[rhs.size_];
 			for (unsigned int i = 0; i < rhs.size_; i++)
 				this->arr_[i] = rhs.arr_[i];
@@ -64,7 +71,8 @@ public:
 			<< "]<Array> Destructor called ( <" \
 			<< this->getType() << ">[" \
 			<< this->size_ << "] )\033[m" << std::endl;
-		delete[] this->arr_;
+		if (this->arr_)
+			delete[] this->arr_;
 		this->arr_ = NULL;
 	};
 	unsigned int	size(void) const {
