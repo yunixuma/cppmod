@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/07/15 04:37:59 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/07/15 20:10:08 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OS				= $(shell uname)
 # Defination of macro constants
 
 # Enumeration of directories
+DBGDIR			= $(NAME).dSYM
 
 # Aliases of commands
 CPP				= c++
@@ -33,7 +34,7 @@ RM				= rm
 CPPFLAGS		= -Wall -Wextra -Werror -std=c++98
 INCLUDES		= -I
 RMFLAGS			= -r
-DEBUGCFLAGS		= -g -ggdb -fsanitize=address -fno-omit-frame-pointer
+DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer
 ifneq ($(OS), Darwin)
 	DEBUGCFLAGS	+= -fstack-usage
 endif
@@ -41,8 +42,10 @@ DEBUGLDFLAGS	= -fsanitize=address
 
 # Redefination when the specific target
 ifeq ($(MAKECMDGOALS), debug)
-	CPPFLAGS	+= $(DEBUGCFLAGS)
-	LDFLAGS	+= $(DEBUGLDFLAGS)
+	ifneq ($(OS), Darwin)
+		CPPFLAGS	+= $(DEBUGCFLAGS)
+		LDFLAGS	+= $(DEBUGLDFLAGS)
+	endif
 	DEF		+= -D DEBUG_MODE=1
 endif
 
@@ -52,7 +55,9 @@ endif
 
 # Mandatory targets
 all: $(NAME)
-fclean:
+clean:
+	-$(RM) $(RMFLAGS) $(DBGDIR)
+fclean: clean
 	-$(RM) $(RMFLAGS) $(NAME)
 re: fclean all
 
