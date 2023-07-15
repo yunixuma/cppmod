@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/15 16:37:41 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/15 21:06:55 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,10 +182,44 @@ static int	case_string(void) {
 	return (0);
 }
 
+static int	case_empty(void) {
+	std::clog << "\033[43mCASE: Test for some types of empty array\033[m" << std::endl;
+	int			 		nums[] = {};
+	std::string 		strs[] = {};
+	Array<int>			arr_nums(0);
+	Array<std::string>	arr_strs(0);
+
+	std::clog << std::endl << "\033[32;2mValues at construction\033[m" << std::endl;
+	std::clog << "arr_nums (int):" << std::endl;
+	debug_array(arr_nums);
+	std::clog << "arr_strs (string):" << std::endl;
+	debug_array(arr_strs);
+
+	std::clog << std::endl << "\033[32;2mCopying array values\033[m" << std::endl;
+	arr_nums = nums;
+	arr_strs = strs;
+
+	std::clog << std::endl << "\033[32;2mValues after copying\033[m" << std::endl;
+	std::clog << "arr_nums (int):" << std::endl;
+	debug_array(arr_nums);
+	std::clog << "arr_strs (string):" << std::endl;
+	debug_array(arr_strs);
+
+	std::clog << std::endl << "\033[32;2mTrying access on the inavailable index\033[m" << std::endl;
+	try {
+		std::cout << "arr_nums[" << arr_nums.size() << "] = " << arr_nums[arr_nums.size()] << std::endl;
+	}
+	catch (std::exception& e) {
+		std::clog << "\033[31m" << e.what() << "\033[m" << std::endl;
+	}
+	return (0);
+}
+
 int	main(void) {
 	case_sample();
 	case_numeric();
 	case_string();
+	case_empty();
 	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }
