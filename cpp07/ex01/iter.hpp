@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/14 19:59:22 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/15 04:36:55 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,24 @@ void	iter(T* arr, size_t len, void (*func)(T&)) {
 		func(arr[i]);
 };
 
+template <typename T>
+void	iter(const T* arr, size_t len, void (*func)(const T&)) {
+	if (!arr || !func)
+		return ;
+	for (size_t i = 0; i < len; i++)
+		func(arr[i]);
+};
+
 template <typename T1, typename T2>
 void	iter(T1* arr1, T2* arr2, size_t len, void (*func)(T1&, T2&)) {
+	if (!arr1 || !arr2 || !func)
+		return ;
+	for (size_t i = 0; i < len; i++)
+		func(arr1[i], arr2[i]);
+};
+
+template <typename T1, typename T2>
+void	iter(const T1* arr1, const T2* arr2, size_t len, void (*func)(const T1&, const T2&)) {
 	if (!arr1 || !arr2 || !func)
 		return ;
 	for (size_t i = 0; i < len; i++)
