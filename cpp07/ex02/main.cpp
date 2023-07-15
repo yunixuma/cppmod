@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/14 20:09:33 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/15 04:37:12 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "Array.hpp"
 
 template <typename T>
-static void	debug_print(T& arg) {
+static void	debug_print(const T& arg) {
 	std::cout << "\033[35;3m[" << &arg << "] {" << arg << "}\033[m" << std::endl;
 }
 
 template <typename T>
-static void	debug_array(T& tc) {
+static void	debug_array(const T& tc) {
 	std::cout << "\033[35;3m" << tc << "\033[m" << std::endl;
 	for (unsigned int i = 0; i < tc.size(); i++)
 		debug_print(tc[i]);
@@ -35,6 +35,58 @@ template <typename T1, typename T2>
 static T1&	append(T1& arg1, T2& arg2) {
 	arg1 += arg2;
 	return (arg1);
+}
+
+#define MAX_VAL 750
+static int	case_sample(void)
+{
+	Array<int> numbers(MAX_VAL);
+	int* mirror = new int[MAX_VAL];
+	srand(time(NULL));
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		const int value = rand();
+		numbers[i] = value;
+		mirror[i] = value;
+	}
+	std::cout << "numbers size: " << numbers.size() << std::endl;
+	//SCOPE
+	{
+		Array<int> tmp = numbers;
+		Array<int> test(tmp);
+	}
+
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		if (mirror[i] != numbers[i])
+		{
+			std::cerr << "didn't save the same value!!" << std::endl;
+			return 1;
+		}
+	}
+	try
+	{
+		numbers[-2] = 0;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	try
+	{
+		numbers[MAX_VAL] = 0;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		numbers[i] = rand();
+	}
+	delete [] mirror;//
+	return 0;
 }
 
 static int	case_numeric(void) {
@@ -131,6 +183,7 @@ static int	case_string(void) {
 }
 
 int	main(void) {
+	case_sample();
 	case_numeric();
 	case_string();
 	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
