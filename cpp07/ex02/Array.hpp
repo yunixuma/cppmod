@@ -87,6 +87,12 @@ public:
 		}
 		return (this->arr_[index]);
 	}
+	const T&	operator[](unsigned int index) const {
+		if (index >= this->size_) {
+			throw Array::OutBoundsException();
+		}
+		return (this->arr_[index]);
+	}
 	Array&	operator=(const T* rhs) {
 		for (unsigned int i = 0; i < this->size_; i++)
 			this->arr_[i] = rhs[i];
