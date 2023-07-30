@@ -48,10 +48,6 @@ public:
 			<< this->size_ << "] )\033[m" << std::endl;
 	};
 	Array&	operator=(const Array& rhs) {
-		std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
-			<< "]<Array> Copy assignment operator called ( <" \
-			<< this->getType() << ">[" \
-			<< this->size_ << "] )\033[m" << std::endl;
 		if (this != &rhs) {
 			if (this->arr_)
 				delete[] this->arr_;
