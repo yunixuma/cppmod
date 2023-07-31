@@ -12,10 +12,10 @@
 
 #include "ScalarConverter.hpp"
 
-void	ScalarConverter::convert(std::string& str) {
+int	ScalarConverter::convert(std::string& str) {
 	if (str.empty() || str.length() == 0) {
 		std::cerr << "\033[31mEmpty string" << std::endl;
-		return ;
+		return (1);
 	}
 
 	// std::stringstream	ss, ss_copy;
@@ -24,15 +24,15 @@ void	ScalarConverter::convert(std::string& str) {
 
 	// if (forInt(ss_copy))
 	if (forInt(str))
-		return ;
+		return (0);
 
 	if (forChar(str))
-		return ;
+		return (0);
 
 	// ss_copy << ss.rdbuf();
 	// if (forDouble(ss_copy))
 	if (forDouble(str))
-		return ;
+		return (0);
 
 	// ss.str("");
 	// ss.clear(std::stringstream::goodbit);
@@ -54,7 +54,7 @@ void	ScalarConverter::convert(std::string& str) {
 
 	// if (forFloat(ss_copy))
 	if (forFloat(str))
-		return ;
+		return (0);
 
 /*
 	if (str == STR_INF || str == STR_INF_POS || str == STR_INF_NEG) {
@@ -69,6 +69,7 @@ void	ScalarConverter::convert(std::string& str) {
 */
 
 	std::cerr << "\033[31mInvalid input: \"" << str << "\"\033[m" << std::endl;
+	return (1);
 }
 
 // bool	ScalarConverter::forInt(std::stringstream& ss) {

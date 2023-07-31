@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/14 20:01:06 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/31 14:54:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "iter.hpp"
 
 template <typename T>
-static void	debug_print(T& arg) {
+static void	debug_print(const T& arg) {
 	std::cout << "\033[35;3m[" << &arg << "] {" << arg << "}\033[m" << std::endl;
 }
 
