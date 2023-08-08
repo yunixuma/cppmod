@@ -14,19 +14,14 @@
 # define EASYFIND_HPP
 
 # include <iostream>
+# include <vector>
+# include <list>
+# include <map>
 
-template <typename T>
-int	easyfind(T& container, int tofind) {
-	for ( itr = container.begin(); itr != container.end(); ++itr) {
-		if (*itr == tofind)
-			return (*itr);
-	}
-};
-
-template <typename T>
-int	easyfind(const T& container, int tofind) {
-	for ( itr = container.begin(); itr != container.end(); ++itr) {
-		if (*itr == tofind)
+template <typename T, typename U>
+int	easyfind(const T& container, U tofind) {
+	for (typename T::const_iterator itr = container.begin(); itr != container.end(); ++itr) {
+		if (static_cast<U>(*itr) == tofind)
 			return (*itr);
 	}
 };

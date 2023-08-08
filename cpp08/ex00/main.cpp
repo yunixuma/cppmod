@@ -3,71 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/30 13:11:40 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/08/08 12:24:12 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "easyfindhpp"
+#include "easyfind.hpp"
 
-static int	case_sample(void) {
-	std::clog << "\033[43mSample tests\033[m" << std::endl;
-	int	a = 2;
-	int	b = 3;
+static int	case_vector(void) {
+	std::clog << "\033[43mCASE: Test for vector\033[m" << std::endl;
+	std::vector<int> myvec = {1, 2, 3, 4, 5};
 
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-	std::string	c = "chaine1";
-	std::string	d = "chaine2";
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+	easyfind(vec, 3);
+	easyfind(vec, 6);
 
 	return (0);
 }
 
-static int	case_additional(void) {
-	std::clog << "\033[43mAdditional tests\033[m" << std::endl;
-	std::clog << "\033[33mCASE: Change the value of one variable\033[m" << std::endl;
-	std::string c = "chaine1";
-	std::string d = "chaine";
+static int	case_list(void) {
+	std::clog << "\033[43mCASE: Test for list\033[m" << std::endl;
+	std::list<double> mylst = {1.1, 2.2, 3.3, 4.4};
 
-	std::clog << "\033[2;3mBefore swap\033[m" << std::endl;
-	std::cout << "c[" << &c << "] = " << c \
-		<< ", d[" << &d << "] = " << d << std::endl;
-	::swap(c, d);
-	std::clog << "\033[2;3mAfter swap\033[m" << std::endl;
-	std::cout << "c[" << &c << "] = " << c \
-		<< ", d[" << &d << "] = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-
-	std::clog << "\033[33mCASE: Different types\033[m" << std::endl;
-	float	a = 4.2;
-	int		b = 2;
-
-	std::clog << "\033[2;3mBefore swap\033[m" << std::endl;
-	std::cout << "a[" << &a << "] = " << a \
-		<< ", b[" << &b << "] = " << b << std::endl;
-	::swap( a, b );
-	std::clog << "\033[2;3mAfter swap\033[m" << std::endl;
-	std::cout << "a[" << &a << "] = " << a \
-		<< ", b[" << &b << "] = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+	easyfind(mylst, 3.3);
 
 	return (0);
 }
+/*
+static int	case_map(void) {
+	std::clog << "\033[43mCASE: Test for map\033[m" << std::endl;
+	std::map<std::string, int> mymap = {{"one", 1}, {"two", 2}, {"three", 3}};
 
+	easyfind(mymap, 2);
+	easyfind(mymap, 6);
+
+	return (0);
+}
+*/
 int	main(void) {
-	case_sample();
-	case_additional();
+	case_vector();
+	case_list();
+//	case_map();
 	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }
