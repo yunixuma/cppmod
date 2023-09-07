@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/07/15 21:06:55 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/07/31 15:01:19 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Array.hpp"
 
 template <typename T>
@@ -185,7 +187,7 @@ static int	case_string(void) {
 static int	case_empty(void) {
 	std::clog << "\033[43mCASE: Test for some types of empty array\033[m" << std::endl;
 	int			 		nums[] = {};
-	std::string 		strs[] = {};
+	std::string 		strs[] = {""};
 	Array<int>			arr_nums(0);
 	Array<std::string>	arr_strs(0);
 

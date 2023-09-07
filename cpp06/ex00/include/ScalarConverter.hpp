@@ -59,7 +59,7 @@ private:
 	static bool	forPseudo(const std::string& str);
 public:
 	// template<typename RET>
-	static void	convert(std::string& str);
+	static int	convert(std::string& str);
 	static void	display(const std::string& str, int flag);
 	template<typename T>
 	static void	display(T scalar, int flag);
