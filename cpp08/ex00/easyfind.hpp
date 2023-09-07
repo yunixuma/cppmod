@@ -12,20 +12,11 @@
 
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
-
-# include <iostream>
-
-template <typename T>
-int	easyfind(T& container, int tofind) {
-	for ( itr = container.begin(); itr != container.end(); ++itr) {
-		if (*itr == tofind)
-			return (*itr);
-	}
-};
+# include <algorithm>
 
 template <typename T>
-int	easyfind(const T& container, int tofind) {
-	for ( itr = container.begin(); itr != container.end(); ++itr) {
+int	easyfind(std::iterator<T, int> t, int tofind) {
+	for (std::iterator<T, int> itr = t.begin(); itr != t.end(); ++itr) {
 		if (*itr == tofind)
 			return (*itr);
 	}
