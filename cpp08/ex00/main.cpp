@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/09/12 15:40:05 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/09/12 19:51:43 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	case_list(void) {
 		std::cout << easyfind(mylst, 6.6) << " found\033[m" << std::endl;
 	}
 	catch (std::exception& e) {
-		std::cout << "\033[31;3m" << e.what() << std::endl;
+		std::cout << "\033[31;3m" << e.what() << "\033[m" << std::endl;
 	}
 
 	return (0);
