@@ -17,13 +17,23 @@
 # include <vector>
 # include <list>
 # include <map>
+# include <exception>
+
+class EasyFindException : public std::exception
+{
+public:
+	const char* what() const throw() {
+		return "Not found";
+	}
+};
 
 template <typename T, typename U>
-int	easyfind(const T& container, U tofind) {
+U	easyfind(const T& container, U tofind) {
 	for (typename T::const_iterator itr = container.begin(); itr != container.end(); ++itr) {
 		if (static_cast<U>(*itr) == tofind)
-			return (*itr);
+			return (tofind);
 	}
+	throw EasyFindException();
 };
 
 #endif
