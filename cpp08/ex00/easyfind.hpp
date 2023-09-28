@@ -16,7 +16,8 @@
 # include <iostream>
 # include <vector>
 # include <list>
-# include <map>
+// # include <map>
+# include <algorithm>
 # include <exception>
 
 class EasyFindException : public std::exception
@@ -28,12 +29,18 @@ public:
 };
 
 template <typename T, typename U>
-U	easyfind(const T& container, U tofind) {
-	for (typename T::const_iterator itr = container.begin(); itr != container.end(); ++itr) {
-		if (static_cast<U>(*itr) == tofind)
-			return (tofind);
-	}
-	throw EasyFindException();
+typename T::value_type	easyfind(const T& container, U toFind) {
+// U	easyfind(const T& container, U toFind) {
+	// typename T::const_iterator itr;
+	// U	ret = std::find(itr.begin(), itr.end(), toFind);
+	// T&	ret = std::find(container.begin(), container.end(), toFind);
+	typename T::const_iterator itr = std::find(container.begin(), container.end(), toFind);
+	// itr.find(toFind);
+	// return (static_cast<T>(itr));
+	if (itr != container.end())
+		return (*itr);
+	else
+		throw EasyFindException();
 };
 
 #endif
