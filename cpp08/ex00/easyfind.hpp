@@ -28,8 +28,17 @@ public:
 	}
 };
 
+template <typename T>
+int	easyfind(const T& container, int toFind) {
+	typename T::const_iterator itr = std::find(container.begin(), container.end(), toFind);
+	if (itr != container.end())
+		return (*itr);
+	else
+		throw EasyFindException();
+};
+
 template <typename T, typename U>
-typename T::value_type	easyfind(const T& container, U toFind) {
+typename T::value_type	easyfindInfer(const T& container, U toFind) {
 // U	easyfind(const T& container, U toFind) {
 	// typename T::const_iterator itr;
 	// U	ret = std::find(itr.begin(), itr.end(), toFind);
