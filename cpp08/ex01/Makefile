@@ -6,17 +6,17 @@
 #    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/09/07 16:27:57 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/09/29 22:36:39 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # ********************** Section for Macros (Variables) ********************** #
 # Product file
-NAME			= form
+NAME			= span
 
 # Enumeration of files
-SRC				= main.cpp Bureaucrat.cpp Form.cpp
+SRC				= main.cpp Span.cpp
 
 # Check the platform
 OS				= $(shell uname)
@@ -24,9 +24,7 @@ OS				= $(shell uname)
 # Defination of macro constants
 
 # Enumeration of directories
-SRCDIR			= ./src
-INCDIR			= ./include
-OBJDIR			= ./obj
+DBGDIR			= $(NAME).dSYM
 
 # Aliases of commands
 CXX				= c++
@@ -34,9 +32,9 @@ RM				= rm
 
 # Command options (flags)
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
-INCLUDES		= -I$(INCDIR)
+INCLUDES		= -I
 RMFLAGS			= -r
-DEBUGCFLAGS		= -g -ggdb -fsanitize=address -fno-omit-frame-pointer
+DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer
 ifneq ($(OS), Darwin)
 	DEBUGCFLAGS	+= -fstack-usage
 endif
@@ -44,24 +42,21 @@ DEBUGLDFLAGS	= -fsanitize=address
 
 # Redefination when the specific target
 ifeq ($(MAKECMDGOALS), debug)
-	CXXFLAGS	+= $(DEBUGCFLAGS)
-	LDFLAGS		+= $(DEBUGLDFLAGS)
-	DEF			+= -D DEBUG_MODE=1
+	ifneq ($(OS), Darwin)
+		CXXFLAGS	+= $(DEBUGCFLAGS)
+		LDFLAGS	+= $(DEBUGLDFLAGS)
+	endif
+	DEF		+= -D DEBUG_MODE=1
 endif
-
-# Macros to replace and/or integrate
-SRCS			= $(addprefix $(SRCDIR)/, $(SRC))
-OBJS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.o)))
-DEPS			= $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.cpp=.d)))
 
 # ********************* Section for targets and commands ********************* #
 # Phonies
-.PHONY: all clean fclean re debug
+.PHONY: all fclean re debug
 
 # Mandatory targets
 all: $(NAME)
 clean:
-	-$(RM) $(RMFLAGS) $(OBJDIR)
+	-$(RM) $(RMFLAGS) $(DBGDIR)
 fclean: clean
 	-$(RM) $(RMFLAGS) $(NAME)
 re: fclean all
@@ -70,15 +65,7 @@ re: fclean all
 debug: fclean all
 
 # Recipes
-$(NAME): $(OBJS)
-	$(CXX) $(LDFLAGS) $(OBJS) -o $(NAME)
-
-$(OBJDIR):
-	@mkdir -p $@
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) $(DEF) $(INCLUDES) -o $@ -c $<
-
-# Including and ignore .dep files when they are not found
--include $(DEPS)
+$(NAME):
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 
 # ******** ******** ******** ******** **** ******** ******** ******** ******** #
