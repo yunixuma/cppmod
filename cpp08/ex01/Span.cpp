@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/01 15:11:19 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/01 15:55:36 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	Span::addNumber(int num) {
 	if (this->numbers_.size() >= this->N_)
 		throw Span::StoreFullException();
 	this->numbers_.push_back(num);
+	this->numbers_.sort();
 }
 
 int	Span::shortestSpan(void) const {
@@ -67,7 +68,13 @@ int	Span::shortestSpan(void) const {
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
 		throw Span::NoSpanException();
-	int	ret = 0;
+	int ret = this->numbers_[1] - this->numbers_[0];
+	int	tmp;
+	for (const std::iterator itr = this->numbers_[1], itr = this->numbers_.end()) {
+		tmp = - *(itr++) + *itr;
+		if (tmp < ret)
+			ret = tmp;
+	}
 	return (ret);
 }
 
@@ -80,8 +87,8 @@ int	Span::longestSpan(void) const {
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
 		throw Span::NoSpanException();
-	int	num_max = *max_element(this->numbers_.begin(), this->numbers_.end());
-	int	num_min = *min_element(this->numbers_.begin(), this->numbers_.end());
+	int	num_max = this->numbers_.back();
+	int	num_min = this->numbers_.front();
 	return (num_max - num_min);
 }
 
