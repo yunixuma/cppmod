@@ -3,94 +3,104 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/09/29 22:47:48 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/01 15:03:02 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(const std::string& name, int grade) \
-	: name_(name), grade_(grade) {
+Span::Span(int n) : N_(n) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<Span> Constructor called (" \
-		<< this->name_ << ")\033[m" << std::endl;
-	if (this->grade_ > 150)
-		throw Span::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Span::GradeTooHighException();
+		<< this->N_ << ")\033[m" << std::endl;
 }
 
-Span::Span(const Span& src) \
-	: name_(src.name_), grade_(src.grade_) {
+Span::Span(const Span& src) : N_(src.N_), numbers_(src.numbers_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<Span> Copy constructor called (" \
-		<< this->name_ << ")\033[m" << std::endl;
+		<< this->N_ << ")\033[m" << std::endl;
 	// this->name_ = src.name_;
 	// this->grade_ = src.grade_;
-	if (this->grade_ > 150)
-		throw Span::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Span::GradeTooHighException();
+	// if (this->grade_ > 150)
+	// 	throw Span::GradeTooLowException();
+	// else if (this->grade_ < 1)
+	// 	throw Span::GradeTooHighException();
 }
 
 Span&	Span::operator=(const Span& rhs) {
 	std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
 		<< "]<Span> Copy assignment operator called (" \
-		<< this->name_ << ")\033[m" << std::endl;
+		<< this->N_ << ")\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		const_cast<std::string&>(this->name_) = rhs.name_;
-		this->grade_ = rhs.grade_;
+		this->numbers_ = rhs.numbers_;
+		this->N_ = rhs.N_;
 	}
-	if (this->grade_ > 150)
-		throw Span::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw Span::GradeTooHighException();
 	return (*this);
 }
 
 Span::~Span(void) {
 	std::clog << "\033[31;2;3m[" << this \
 		<< "]<Span> Destructor called (" \
-		<< this->name_ << ")\033[m" << std::endl;
+		<< this->N_ << ")\033[m" << std::endl;
 }
 
-int	Span::getGrade(void) const {
+void	Span::addNumber(int num) {
 	std::clog << "\033[32;2;3m[" << this \
-		<< "]<Span> getGrade() called (" \
-		<< this->name_ << ")\033[m" << std::endl;
-	return (this->grade_);
+		<< "]<Span> addNumber() called (" \
+		<< this->numbers_.size() << " / " << this->N_ \
+		<< ")\033[m" << std::endl;
+	if (this->numbers_.size() >= this->N_)
+		throw Span::StoreFullException();
+	this->numbers_.push_back(num);
 }
 
-void	Span::incrementGrade(void) {
+int	Span::shortestSpan(void) const {
 	std::clog << "\033[32;2;3m[" << this \
-		<< "]<Span> incrementGrade() called (" \
-		<< this->name_ << ")\033[m" << std::endl;
-	this->grade_--;
-	// if (this->grade_ > 150)
-	// 	throw Span::GradeTooLowException();
-	if (this->grade_ < 1)
-		throw Span::GradeTooHighException();
-	// if (this->grade_ > 150)
-	// 	throw std::range_error("The grade too low");
-	// else if (this->grade_ < 1)
-	// 	throw std::range_error("The grade too high");
+		<< "]<Span> shortestSpan() called (" \
+		<< this->N_ << ")\033[m" << std::endl;
+	if (this->numbers_.size() == 0)
+		throw Span::NoStoredException();
+	else if (this->numbers_.size() == 1)
+		throw Span::NoSpanException();
+	int	ret = 0;
+	return (ret);
+}
+
+int	Span::longestSpan(void) const {
+	std::clog << "\033[32;2;3m[" << this \
+		<< "]<Span> longestSpan() called (" \
+		<< this->N_ << ")\033[m" << std::endl;
+	if (this->numbers_.size() == 0)
+		throw Span::NoStoredException();
+	else if (this->numbers_.size() == 1)
+		throw Span::NoSpanException();
+	int	num_max = *max_element(this->numbers_.begin(), this->numbers_.end());
+	int	num_min = *min_element(this->numbers_.begin(), this->numbers_.end());
+	return (num_max - num_min);
 }
 
 // When an exception thrown
-const char*	Span::GradeTooHighException::what(void) const throw() {
+const char*	Span::NoStoredException::what(void) const throw() {
+	std::clog << "\033[35;3m[" << this \
+		<< "]<Span::NoStoredException> what() called\033[m" << std::endl;
+	return ("No numbers stored");
+	// return (2);
+}
+
+const char*	Span::NoSpanException::what(void) const throw() {
 	std::clog << "\033[35;2;3m[" << this \
-		<< "]<Span::GradeTooHighException> what() called\033[m" << std::endl;
-	return ("The grade too high");
+		<< "]<Span::NoSpanException> what() called\033[m" << std::endl;
+	return ("No span found");
 	// return (1);
 }
 
-const char*	Span::GradeTooLowException::what(void) const throw() {
+const char*	Span::StoreFullException::what(void) const throw() {
 	std::clog << "\033[35;3m[" << this \
-		<< "]<Span::GradeTooLowException> what() called\033[m" << std::endl;
-	return ("The grade too low");
-	// return (2);
+		<< "]<Span::StoreFullException> what() called\033[m" << std::endl;
+	return ("The store is already full");
+	// return (3);
 }
