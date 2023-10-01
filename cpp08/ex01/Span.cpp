@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/01 15:03:02 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/01 15:11:19 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	Span::addNumber(int num) {
 int	Span::shortestSpan(void) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Span> shortestSpan() called (" \
-		<< this->N_ << ")\033[m" << std::endl;
+		<< this->numbers_.size() << " / " << this->N_ \
+		<< ")\033[m" << std::endl;
 	if (this->numbers_.size() == 0)
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
@@ -73,7 +74,8 @@ int	Span::shortestSpan(void) const {
 int	Span::longestSpan(void) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Span> longestSpan() called (" \
-		<< this->N_ << ")\033[m" << std::endl;
+		<< this->numbers_.size() << " / " << this->N_ \
+		<< ")\033[m" << std::endl;
 	if (this->numbers_.size() == 0)
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
