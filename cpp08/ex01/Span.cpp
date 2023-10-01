@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/01 15:55:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/01 20:59:33 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,13 @@ int	Span::shortestSpan(void) const {
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
 		throw Span::NoSpanException();
-	int ret = this->numbers_[1] - this->numbers_[0];
+	std::list<int>::const_iterator itr = this->numbers_.begin();
+	std::list<int>::const_iterator end = this->numbers_.end();
+
+	int ret = INT_MAX;
 	int	tmp;
-	for (const std::iterator itr = this->numbers_[1], itr = this->numbers_.end()) {
-		tmp = - *(itr++) + *itr;
+	while (++itr != end) {
+		tmp = - *(--itr) + *(++itr);
 		if (tmp < ret)
 			ret = tmp;
 	}
