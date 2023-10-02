@@ -3,17 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 15:15:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 20:56:52 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <stack>
 #include <list>
-// #include "MutantStack.hpp"
-/*
+#include "MutantStack.hpp"
+
+static int	case_purestack(void) {
+	std::clog << "\033[43mCASE: Test for pure stack data structure\033[m" << std::endl;
+	std::stack<int>	stk;
+	stk.push(5);
+	stk.push(17);
+	std::cout << stk.top() << std::endl;
+	stk.pop();
+	std::cout << stk.size() << std::endl;
+	stk.push(3);
+	stk.push(5);
+	stk.push(737);
+	//[...]
+
+	stk.push(0);
+/*	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+	std::stack<int> s(mstack);*/
+	return (0);
+}
+
 static int	case_basic(void) {
 	std::clog << "\033[43mCASE: Test for MutantStack\033[m" << std::endl;
 	MutantStack<int> mstack;
@@ -28,19 +56,19 @@ static int	case_basic(void) {
 	//[...]
 
 	mstack.push(0);
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
+/*	std::iterator it = mstack.begin();
+	std::iterator ite = mstack.end();
 	++it;
 	--it;
 	while (it != ite)
 	{
 		std::cout << *it << std::endl;
 		++it;
-	}
+	}*/
 	std::stack<int> s(mstack);
 	return (0);
 }
-*/
+
 static int	case_list(void) {
 	std::clog << "\033[43mCASE: Test for list instead of MutantStack\033[m" << std::endl;
 	std::list<int> lst;
@@ -69,7 +97,8 @@ static int	case_list(void) {
 }
 
 int	main(void) {
-	// case_basic();
+	case_purestack();
+	case_basic();
 	case_list();
 	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
