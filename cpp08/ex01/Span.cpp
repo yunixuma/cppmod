@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/01 20:59:33 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 11:29:31 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ Span&	Span::operator=(const Span& rhs) {
 		<< this->N_ << ")\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		this->numbers_ = rhs.numbers_;
 		this->N_ = rhs.N_;
+		this->numbers_ = rhs.numbers_;
 	}
 	return (*this);
 }
@@ -115,4 +115,19 @@ const char*	Span::StoreFullException::what(void) const throw() {
 		<< "]<Span::StoreFullException> what() called\033[m" << std::endl;
 	return ("The store is already full");
 	// return (3);
+}
+
+// Debug
+void	Span::debug(void) const {
+	std::clog << "\033[36;2;3m[" << this \
+		<< "]<Span> debug() called (" \
+		<< this->numbers_.size() << " / " << this->N_ \
+		<< ")\033[m" << std::endl;
+	std::list<int>::const_iterator itr = this->numbers_.begin();
+	std::list<int>::const_iterator end = this->numbers_.end();
+	unsigned int	i = 0;
+	while (itr != end) {
+		std::cout << i++ << "\t: " << *itr << std::endl;
+		itr++;
+	}
 }

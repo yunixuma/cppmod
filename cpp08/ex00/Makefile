@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
+#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/09/12 15:35:01 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/10/02 11:33:59 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ endif
 # Mandatory targets
 all: $(NAME)
 clean:
-	-$(RM) $(RMFLAGS) $(DBGDIR)
+	-$(RM) $(RMFLAGS) $(DBGDIR) *.su
 fclean: clean
 	-$(RM) $(RMFLAGS) $(NAME)
 re: fclean all

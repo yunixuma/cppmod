@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/01 15:28:18 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 11:21:08 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <list>
 # include <algorithm>
 # include <exception>
+# include <climits>
 
 class Span
 {
@@ -31,6 +32,7 @@ public:
 	void	addNumber(int num);
 	int		shortestSpan(void) const;
 	int		longestSpan(void) const;
+	void	debug(void) const;
 	class NoStoredException : public std::exception
 	{
 	public:
