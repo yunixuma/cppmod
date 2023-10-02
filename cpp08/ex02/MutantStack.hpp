@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 13:26:09 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 19:59:15 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_HPP
-# define STACK_HPP
+#ifndef MUTANTSTACK_HPP
+# define MUTANTSTACK_HPP
 
 # include <iostream>
 # include <stack>
@@ -19,10 +19,10 @@
 # include <exception>
 
 template <class T>
-class MutantStack : public std::stack<T>
+class MutantStack : public std::stack
 {
 private:
-	T*				arr_;
+	std::stack<T>	stack_;
 	unsigned int	size_;
 	class OutBoundsException : public std::exception
 	{
@@ -50,8 +50,8 @@ public:
 	};
 	MutantStack&	operator=(const MutantStack& rhs) {
 		if (this != &rhs) {
-			if (this->arr_)
-				delete[] this->arr_;
+			if (this->stack_)
+				delete[] this->stack_;
 			this->arr_ = new T[rhs.size_];
 			for (unsigned int i = 0; i < rhs.size_; i++)
 				this->arr_[i] = rhs.arr_[i];
@@ -72,24 +72,91 @@ public:
 			delete[] this->arr_;
 		this->arr_ = NULL;
 	};
+	T&	top() {
+		return ();
+	};
+	bool	empty() const {
+		return ();
+	};
 	unsigned int	size(void) const {
 		return (this->size_);
 	};
-	const std::string	getType(void) const {
-		return (typeid(this->arr_).name());
+	void	push(T value) {
+		return ();
+	};
+	T&	pop(void) {
+		return ();
+	};
+	const T&	operator*() const {
+		return ();
+	};
+	T&	operator*() {
+		return ();
+	};
+	const T& operator->() const {
+		return ();
+	};
+	T&	operator->() {
+		return ();
+	};
+	const T&	operator[](unsigned int index) const {
+		if (index >= this->size_) {
+			throw MutantStack::OutBoundsException();
+		}
+		return (this->arr_[index]);
 	};
 	T&	operator[](unsigned int index) {
 		if (index >= this->size_) {
 			throw MutantStack::OutBoundsException();
 		}
 		return (this->arr_[index]);
+	};
+	iterator&	operator++() {
+		return ();
+	};
+	iterator	operator++(int) {
+		return ();
+	};
+	iterator&	operator--() {
+		return ();
+	};
+	iterator	operator--(int) {
+		return ();
+	};
+	iterator&	operator+=(size_t n) {
+		return ();
 	}
-	const T&	operator[](unsigned int index) const {
-		if (index >= this->size_) {
-			throw MutantStack::OutBoundsException();
-		}
-		return (this->arr_[index]);
+	iterator	operator+(size_t n) {
+		return ();
+	};
+	iterator&	operator-=(size_t n) {
+		return ();
+	};
+	iterator	operator-(size_t n) {
+		return ();
+	};
+	bool	operator==(const iterator& it) const {
+		return ();
+	};
+	bool	operator!=(const iterator& it) const {
+		return ();
+	};
+	bool	operator>(const iterator& it) const {
+		return ();
+	};
+	bool	operator<(const iterator& it) const {
+		return ();
 	}
+	bool	operator>=(const iterator& it) const {
+		return ();
+	};
+	bool	operator<=(const iterator& it) const {
+		return ();
+	};
+
+	const std::string	getType(void) const {
+			return (typeid(this->arr_).name());
+	};
 	MutantStack&	operator=(const T* rhs) {
 		for (unsigned int i = 0; i < this->size_; i++)
 			this->arr_[i] = rhs[i];
@@ -99,6 +166,13 @@ public:
 			<< "] <-[" << &rhs << "])\033[m" << std::endl;
 		return (*this);
 	};
+};
+
+template <typename T>
+std::ostream&	operator<<(std::ostream& stream, const MutantStack<T>& tc) {
+	stream << "[" << &tc << "]<MutantStack> has < " \
+		<< tc.getType() << "[" << tc.size() << "] >\033[m";
+	return (stream);
 };
 
 #endif
