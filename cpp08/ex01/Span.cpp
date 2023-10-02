@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 11:29:31 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 11:55:49 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,37 @@ Span&	Span::operator=(const Span& rhs) {
 Span::~Span(void) {
 	std::clog << "\033[31;2;3m[" << this \
 		<< "]<Span> Destructor called (" \
-		<< this->N_ << ")\033[m" << std::endl;
-}
-
-void	Span::addNumber(int num) {
-	std::clog << "\033[32;2;3m[" << this \
-		<< "]<Span> addNumber() called (" \
 		<< this->numbers_.size() << " / " << this->N_ \
 		<< ")\033[m" << std::endl;
+}
+
+void	Span::addNumberSub(int num) {
 	if (this->numbers_.size() >= this->N_)
 		throw Span::StoreFullException();
 	this->numbers_.push_back(num);
 	this->numbers_.sort();
+}
+
+void	Span::addNumber(int num) {
+	std::clog << "\033[32;2;3m[" << this \
+		<< "]<Span> addNumber(" << num << ") called (" \
+		<< this->numbers_.size() << " / " << this->N_ \
+		<< ")\033[m" << std::endl;
+	this->addNumberSub(num);
+}
+
+void	Span::addNumbers(int num1, int num2) {
+	std::clog << "\033[32;2;3m[" << this \
+		<< "]<Span> addNumbers(" << num1 << ", " << num2 << ") called (" \
+		<< this->numbers_.size() << " / " << this->N_ \
+		<< ")\033[m" << std::endl;
+	if (num1 > num2) {
+		int	tmp = num1;
+		num1 = num2;
+		num2 = tmp;
+	}
+	for (int i = num1; i <= num2; i++)
+		this->addNumberSub(i);
 }
 
 int	Span::shortestSpan(void) const {

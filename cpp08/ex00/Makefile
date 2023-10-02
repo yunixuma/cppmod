@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/02 11:33:59 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/10/02 11:59:09 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CXX				= c++
 RM				= rm
 
 # Command options (flags)
-CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98 -MMD -MP $(DEF)
 INCLUDES		= -I
 RMFLAGS			= -r
 DEBUGCFLAGS		= -g -ggdb -fno-omit-frame-pointer
@@ -56,7 +56,7 @@ endif
 # Mandatory targets
 all: $(NAME)
 clean:
-	-$(RM) $(RMFLAGS) $(DBGDIR) *.su
+	-$(RM) $(RMFLAGS) $(DBGDIR) $(NAME)-*.su $(NAME).d
 fclean: clean
 	-$(RM) $(RMFLAGS) $(NAME)
 re: fclean all

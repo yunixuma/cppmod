@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 11:28:23 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 11:52:16 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,33 @@ static int	case_copy(void) {
 	return (0);
 }
 
+static int	case_range(void) {
+	std::clog << "\033[43mCASE: " \
+		<< "Test for add numbers of the range" \
+		<< "\033[m" << std::endl;
+	Span	mySpan = Span(105);
+
+	try {
+		mySpan.addNumber(300);
+		mySpan.addNumbers(200, 100);
+		mySpan.debug();
+		mySpan.addNumbers(-20, 10);
+		mySpan.debug();
+	}
+	catch (std::exception& e) {
+		std::cout << "\033[31;3m" << e.what() << std::endl;
+	}
+
+	return (0);
+}
+
 int	main(void) {
 	case_basic();
 	case_full();
 	case_nostored();
 	case_nospan();
 	case_copy();
+	case_range();
 	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }

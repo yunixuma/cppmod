@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 11:21:08 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 11:48:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ class Span
 private:
 	unsigned int	N_;
 	std::list<int>	numbers_;
+	void	addNumberSub(int num);
 public:
 	Span(int N);
 	Span(const Span& src);
 	Span&	operator=(const Span& rhs);
 	~Span();
 	void	addNumber(int num);
+	void	addNumbers(int num1, int num2);
 	int		shortestSpan(void) const;
 	int		longestSpan(void) const;
 	void	debug(void) const;
