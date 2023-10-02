@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 11:55:49 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 12:07:57 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ int	Span::shortestSpan(void) const {
 	int ret = INT_MAX;
 	int	tmp;
 	while (++itr != end) {
-		tmp = - *(--itr) + *(++itr);
+		tmp = - *(--itr);
+		tmp += *(++itr);
 		if (tmp < ret)
 			ret = tmp;
 	}

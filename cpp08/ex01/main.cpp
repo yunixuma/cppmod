@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 11:52:16 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/02 12:04:47 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	case_nostored(void) {
 	Span	mySpan = Span(2);
 
 	try {
-		mySpan.shortestSpan();
+		std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
 		mySpan.addNumber(-3);
 		mySpan.addNumber(7);
 		mySpan.addNumber(-18);
@@ -73,7 +73,7 @@ static int	case_nospan(void) {
 
 	try {
 		mySpan.addNumber(1);
-		mySpan.longestSpan();
+		std::cout << "longestSpan: " << mySpan.longestSpan() << "\033[m" << std::endl;
 		mySpan.addNumber(7);
 		mySpan.addNumber(-18);
 	}
@@ -110,11 +110,11 @@ static int	case_range(void) {
 	std::clog << "\033[43mCASE: " \
 		<< "Test for add numbers of the range" \
 		<< "\033[m" << std::endl;
-	Span	mySpan = Span(105);
+	Span	mySpan = Span(45);
 
 	try {
-		mySpan.addNumber(300);
-		mySpan.addNumbers(200, 100);
+		mySpan.addNumbers(300, 300);
+		mySpan.addNumbers(200, 180);
 		mySpan.debug();
 		mySpan.addNumbers(-20, 10);
 		mySpan.debug();
@@ -122,6 +122,9 @@ static int	case_range(void) {
 	catch (std::exception& e) {
 		std::cout << "\033[31;3m" << e.what() << std::endl;
 	}
+	mySpan.debug();
+	std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
+	std::cout << "longestSpan: " << mySpan.longestSpan() << "\033[m" << std::endl;
 
 	return (0);
 }
