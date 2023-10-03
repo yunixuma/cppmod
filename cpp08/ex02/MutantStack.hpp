@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/03 11:16:01 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 14:31:00 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 # include <exception>
 
 template <class T>
-class MutantStack : public std::stack<T>, \
-	std::iterator<std::random_access_iterator_tag, T>	
+class MutantStack : public std::stack<T>, public std::iterator<std::random_access_iterator_tag, T>
 {
 private:
 	std::stack<T>	stack_;
@@ -36,6 +35,16 @@ private:
 	};
 public:
 	typedef typename std::stack<T>::container_type::iterator iterator;
+	class MutantStackIterator \
+		: public std::iterator<std::random_access_iterator_tag, T>
+	{
+	private:
+		MutantStack<T>*	ptr_;
+		size_t			index_;
+	public:
+		MutantStackIterator(void) : ptr_(NULL), index_(SIZE_MAX) {};
+		MutantStackIterator(MutantStack<T>* stk, size_t index) : ptr_(stk), index_(index) {};
+	};
 	MutantStack(void) : index_(0) {
 		// if (n)
 			// this->stack_ = new T[n];
@@ -46,7 +55,7 @@ public:
 			<< " )\033[m" << std::endl;
 	};
 	MutantStack(const MutantStack& src) {
-		this->stack_ = NULL;
+		// this->stack_ = NULL;
 		*this = src;
 		std::clog << "\033[36;2;3m[" << this \
 			<< "]<MutantStack> Copy constructor called ( <" \
@@ -56,11 +65,12 @@ public:
 	};
 	MutantStack&	operator=(const MutantStack& rhs) {
 		if (this != &rhs) {
-			if (this->stack_)
-				delete[] this->stack_;
-			this->stack_ = new T[rhs.index_];
-			for (unsigned int i = 0; i < rhs.index_; i++)
-				this->stack_[i] = rhs.stack_[i];
+			// if (this->stack_)
+			// 	delete[] this->stack_;
+			// this->stack_ = new T[rhs.index_];
+			// for (unsigned int i = 0; i < rhs.index_; i++)
+			// 	this->stack_[i] = rhs.stack_[i];
+			this->stack_ = rhs.stack_;
 			this->index_ = rhs.index_;
 		}
 		std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
@@ -120,6 +130,12 @@ public:
 			throw MutantStack::OutBoundsException();
 		}
 		return (this->stack_[index]);
+	};
+	iterator	begin() {
+		return (MutantStackIterator(this, 0));
+	};
+	iterator	end() {
+		return (MutantStackIterator());
 	};
 /*
 	iterator&	operator++() {

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/03 11:56:12 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 14:04:59 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,15 @@ static int	case_basic(void) {
 	//[...]
 	push_and_pr(&stk, 0);
 
-/*	std::iterator it = stk.begin();
-	std::iterator ite = stk.end();
+	MutantStack<int>::iterator it = stk.begin();
+	MutantStack<int>::iterator ite = stk.end();
 	++it;
 	--it;
 	while (it != ite)
 	{
 		std::cout << *it << std::endl;
 		++it;
-	}*/
+	}
 	std::stack<int> s(stk);
 	return (0);
 }
