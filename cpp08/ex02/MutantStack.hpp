@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/03 14:31:00 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:54:15 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # include <iterator>
 # include <algorithm>
 # include <exception>
+# include <climits>
 
 template <class T>
-class MutantStack : public std::stack<T>, public std::iterator<std::random_access_iterator_tag, T>
+class MutantStack : private std::stack<T>, public std::iterator<std::random_access_iterator_tag, T>
 {
 private:
 	std::stack<T>	stack_;
@@ -40,10 +41,10 @@ public:
 	{
 	private:
 		MutantStack<T>*	ptr_;
-		size_t			index_;
+		unsigned int			index_;
 	public:
-		MutantStackIterator(void) : ptr_(NULL), index_(SIZE_MAX) {};
-		MutantStackIterator(MutantStack<T>* stk, size_t index) : ptr_(stk), index_(index) {};
+		MutantStackIterator(void) : ptr_(NULL), index_(UINT_MAX) {};
+		MutantStackIterator(MutantStack<T>* stk, unsigned int index) : ptr_(stk), index_(index) {};
 	};
 	MutantStack(void) : index_(0) {
 		// if (n)
@@ -132,7 +133,8 @@ public:
 		return (this->stack_[index]);
 	};
 	iterator	begin() {
-		return (MutantStackIterator(this, 0));
+		return (stack_.std::deque<T>::begin());
+		// return (MutantStackIterator(this, 0));
 	};
 	iterator	end() {
 		return (MutantStackIterator());
@@ -150,16 +152,16 @@ public:
 	iterator	operator--(int) {
 		return ();
 	};
-	iterator&	operator+=(size_t n) {
+	iterator&	operator+=(unsigned int n) {
 		return ();
 	}
-	iterator	operator+(size_t n) {
+	iterator	operator+(unsigned int n) {
 		return ();
 	};
-	iterator&	operator-=(size_t n) {
+	iterator&	operator-=(unsigned int n) {
 		return ();
 	};
-	iterator	operator-(size_t n) {
+	iterator	operator-(unsigned int n) {
 		return ();
 	};
 	bool	operator==(const iterator& it) const {
