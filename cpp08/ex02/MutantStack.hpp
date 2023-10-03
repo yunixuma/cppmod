@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/03 17:53:34 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:57:27 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,26 @@ public:
 		*this = stack;
 	}
 	typedef typename container::iterator iterator;
-	iterator begin() {
+	iterator	begin() {
 		return this->c.begin();
 	}
-	iterator end() {
+	iterator	end() {
 		return this->c.end();
 	}
-	T& front() {
+	T&	front() {
 		return this->c.front();
 	}
-	T& back() {
+	T&	back() {
 		return this->c.back();
 	}
+	// iterator	operator++() {
+	// 	return this->c++;
+	// }
+	// iterator	operator++(int) {
+	// 	iterator ret = this->c;
+	// 	(*this);
+	// 	return ret;
+	// }
 	const std::string	getType(void) const {
 		return (typeid(this).name());
 	};

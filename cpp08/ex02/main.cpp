@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/03 17:56:17 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 18:10:53 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	case_purestack(void) {
 	push_and_pr(&stk, 17);
 	pr_and_pop(&stk);
 	push_and_pr(&stk, 3);
-	push_and_pr(&stk, 5);
+	push_and_pr(&stk, -5);
 	push_and_pr(&stk, 737);
 	push_and_pr(&stk, 0);
 	pr_and_pop(&stk);
@@ -105,7 +105,7 @@ static int	case_basic(void) {
 	push_and_pr(&stk, 17);
 	pr_and_pop(&stk);
 	push_and_pr(&stk, 3);
-	push_and_pr(&stk, 5);
+	push_and_pr(&stk, -5);
 	push_and_pr(&stk, 737);
 	push_and_pr(&stk, 0);
 	pr_and_pop(&stk);
@@ -113,15 +113,25 @@ static int	case_basic(void) {
 
 	MutantStack<int>::iterator it = stk.begin();
 	MutantStack<int>::iterator ite = stk.end();
-	++it;
-	std::cout << "stk[" << &stk.front() << "].front()\t: " << stk.front() << std::endl;
-	std::cout << "stk[" << &stk.back() << "].back()\t: " << stk.back() << std::endl;
-	--it;
+	std::cout << "stk.front()\t[" << &stk.front() \
+		<< "]: " << stk.front() << std::endl;
+	std::cout << "stk.back()\t[" << &stk.back() \
+		<< "]: " << stk.back() << std::endl;
+	unsigned int i = 0;
 	while (it != ite)
 	{
-		std::cout << *it << std::endl;
-		++it;
+		std::cout << "stk[" << i++ << "]\t[" \
+			<< &(*it) << "]: " << *it << std::endl;
+		it++;
 	}
+	it = stk.begin();
+	std::cout << "stk[0]++\t[" \
+		<< &(*(it++)) << "]: " << *it << std::endl;
+	std::cout << "--stk[0]\t[" \
+		<< &(*(--it)) << "]: " << *it << std::endl;
+	it += 2;
+	std::cout << "stk[0]+2\t[" \
+		<< &(*(it)) << "]: " << *it << std::endl;
 	std::stack<int> s(stk);
 	return (0);
 }
@@ -133,7 +143,7 @@ static int	case_list(void) {
 	push_and_pr(&lst, 17);
 	pr_and_pop(&lst);
 	push_and_pr(&lst, 3);
-	push_and_pr(&lst, 5);
+	push_and_pr(&lst, -5);
 	push_and_pr(&lst, 737);
 	push_and_pr(&lst, 0);
 	pr_and_pop(&lst);
@@ -145,7 +155,7 @@ static int	case_list(void) {
 	--it;
 	while (it != ite)
 	{
-		std::cout << *it << std::endl;
+		std::cout << "[" << &(*it) << "]: " << *it << std::endl;
 		++it;
 	}
 	std::list<int> s(lst);
