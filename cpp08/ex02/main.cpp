@@ -6,58 +6,86 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 20:56:52 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 11:56:12 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <stack>
 #include <list>
+#include <typeinfo>
 #include "MutantStack.hpp"
+
+template <class T, typename U>
+static void	push_and_pr(T* stk, U val) {
+	stk->push(val);
+	std::cout << "[" \
+		<< stk << "]<" \
+		<< typeid(*stk).name() << ">stk[" \
+		<< stk->size() - 1 << "]\t: " \
+		<< stk->top() << std::endl;
+}
+
+template <typename U>
+static void	push_and_pr(std::list<U>* stk, U val) {
+	stk->push_back(val);
+	std::cout << "[" \
+		<< stk << "]<" \
+		<< typeid(*stk).name() << ">stk[" \
+		<< stk->size() - 1 << "]\t: " \
+		<< stk->back() << std::endl;
+}
+
+template <typename U>
+static U&	pr_and_pop(std::stack<U>* stk) {
+	U&	ret = stk->top();
+	std::cout << "[" \
+		<< stk << "]<" \
+		<< typeid(*stk).name() << ">stk[" \
+		<< stk->size() - 1 << "]\t: " \
+		<< ret << std::endl;
+	stk->pop();
+	return (ret);
+}
+
+template <typename U>
+static U&	pr_and_pop(MutantStack<U>* stk) {
+	U&	ret = stk->top();
+	std::cout << "[" \
+		<< stk << "]<" \
+		<< typeid(*stk).name() << ">stk[" \
+		<< stk->size() - 1 << "]\t: " \
+		<< ret << std::endl;
+	stk->pop();
+	return (ret);
+}
+
+template <typename U>
+static U&	pr_and_pop(std::list<U>* stk) {
+	U&	ret = stk->back();
+	std::cout << "[" \
+		<< stk << "]<" \
+		<< typeid(*stk).name() << ">stk[" \
+		<< stk->size() - 1 << "]\t: " \
+		<< ret << std::endl;
+	stk->pop_back();
+	return (ret);
+}
 
 static int	case_purestack(void) {
 	std::clog << "\033[43mCASE: Test for pure stack data structure\033[m" << std::endl;
 	std::stack<int>	stk;
-	stk.push(5);
-	stk.push(17);
-	std::cout << stk.top() << std::endl;
-	stk.pop();
-	std::cout << stk.size() << std::endl;
-	stk.push(3);
-	stk.push(5);
-	stk.push(737);
+	push_and_pr(&stk, 5);
+	push_and_pr(&stk, 17);
+	pr_and_pop(&stk);
+	push_and_pr(&stk, 3);
+	push_and_pr(&stk, 5);
+	push_and_pr(&stk, 737);
+	pr_and_pop(&stk);
 	//[...]
-
-	stk.push(0);
-/*	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
-	++it;
-	--it;
-	while (it != ite)
-	{
-		std::cout << *it << std::endl;
-		++it;
-	}
-	std::stack<int> s(mstack);*/
-	return (0);
-}
-
-static int	case_basic(void) {
-	std::clog << "\033[43mCASE: Test for MutantStack\033[m" << std::endl;
-	MutantStack<int> mstack;
-	mstack.push(5);
-	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
-	mstack.pop();
-	std::cout << mstack.size() << std::endl;
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
-	//[...]
-
-	mstack.push(0);
-/*	std::iterator it = mstack.begin();
-	std::iterator ite = mstack.end();
+	push_and_pr(&stk, 0);
+/*	MutantStack<int>::iterator it = stk.begin();
+	MutantStack<int>::iterator ite = stk.end();
 	++it;
 	--it;
 	while (it != ite)
@@ -65,24 +93,49 @@ static int	case_basic(void) {
 		std::cout << *it << std::endl;
 		++it;
 	}*/
-	std::stack<int> s(mstack);
+	std::stack<int> s(stk);
+	return (0);
+}
+
+static int	case_basic(void) {
+	std::clog << "\033[43mCASE: Test for MutantStack\033[m" << std::endl;
+	MutantStack<int> stk;
+	push_and_pr(&stk, 5);
+	push_and_pr(&stk, 17);
+	pr_and_pop(&stk);
+	push_and_pr(&stk, 3);
+	push_and_pr(&stk, 5);
+	push_and_pr(&stk, 737);
+	pr_and_pop(&stk);
+	//[...]
+	push_and_pr(&stk, 0);
+
+/*	std::iterator it = stk.begin();
+	std::iterator ite = stk.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}*/
+	std::stack<int> s(stk);
 	return (0);
 }
 
 static int	case_list(void) {
 	std::clog << "\033[43mCASE: Test for list instead of MutantStack\033[m" << std::endl;
 	std::list<int> lst;
-	lst.push_back(5);
-	lst.push_back(17);
-	// std::cout << lst.top() << std::endl;
-	// lst.pop();
-	std::cout << lst.size() << std::endl;
-	lst.push_back(3);
-	lst.push_back(5);
-	lst.push_back(737);
+	push_and_pr(&lst, 5);
+	push_and_pr(&lst, 17);
+	pr_and_pop(&lst);
+	push_and_pr(&lst, 3);
+	push_and_pr(&lst, 5);
+	push_and_pr(&lst, 737);
+	pr_and_pop(&lst);
 	//[...]
+	push_and_pr(&lst, 0);
 
-	lst.push_back(0);
 	std::list<int>::iterator it = lst.begin();
 	std::list<int>::iterator ite = lst.end();
 	++it;
