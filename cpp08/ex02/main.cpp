@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/03 18:10:53 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 18:52:58 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,17 @@ static int	case_purestack(void) {
 static int	case_basic(void) {
 	std::clog << "\033[43mCASE: Test for MutantStack\033[m" << std::endl;
 	MutantStack<int> stk;
+
+	std::cout << stk << std::endl;
+	std::cout << "stk.empty()\t: " \
+		<< stk.empty() << std::endl;
+	std::cout << "stk.begin()\t->[" \
+		<< &(*stk.begin()) << "]: " << *stk.begin() << std::endl;
+	std::cout << "stk.end()\t->[" \
+		<< &(*stk.end()) << "]: " << *stk.end() << std::endl;
+	std::cout << "stk.front()\t->[" << &stk.front() \
+		<< "]: " << stk.front() << std::endl;
+
 	push_and_pr(&stk, 5);
 	push_and_pr(&stk, 17);
 	pr_and_pop(&stk);
@@ -111,26 +122,28 @@ static int	case_basic(void) {
 	pr_and_pop(&stk);
 	//[...]
 
+	std::cout << "stk.empty()\t: " \
+		<< stk.empty() << std::endl;
 	MutantStack<int>::iterator it = stk.begin();
 	MutantStack<int>::iterator ite = stk.end();
-	std::cout << "stk.front()\t[" << &stk.front() \
+	std::cout << "stk.front()\t->[" << &stk.front() \
 		<< "]: " << stk.front() << std::endl;
-	std::cout << "stk.back()\t[" << &stk.back() \
+	std::cout << "stk.back()\t->[" << &stk.back() \
 		<< "]: " << stk.back() << std::endl;
 	unsigned int i = 0;
 	while (it != ite)
 	{
-		std::cout << "stk[" << i++ << "]\t[" \
+		std::cout << "stk[" << i++ << "]\t->[" \
 			<< &(*it) << "]: " << *it << std::endl;
 		it++;
 	}
 	it = stk.begin();
-	std::cout << "stk[0]++\t[" \
+	std::cout << "stk[0]++\t->[" \
 		<< &(*(it++)) << "]: " << *it << std::endl;
-	std::cout << "--stk[0]\t[" \
+	std::cout << "--stk[0]\t->[" \
 		<< &(*(--it)) << "]: " << *it << std::endl;
 	it += 2;
-	std::cout << "stk[0]+2\t[" \
+	std::cout << "stk[0]+2\t->[" \
 		<< &(*(it)) << "]: " << *it << std::endl;
 	std::stack<int> s(stk);
 	return (0);
