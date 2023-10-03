@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/03 15:54:15 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:02:05 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,27 @@
 # include <exception>
 # include <climits>
 
+template <typename T, class container=std::deque<T> >
+class MutantStack : public std::stack<T>
+{
+    public:
+        MutantStack(){}
+        ~MutantStack(){}
+        MutantStack(const MutantStack &stack)
+        {
+            *this = stack;
+        }
+        typedef typename container::iterator iterator;
+        iterator begin()
+        {
+            return this->c.begin();
+        }
+        iterator end()
+        {
+            return this->c.end();
+        }
+};
+/*
 template <class T>
 class MutantStack : private std::stack<T>, public std::iterator<std::random_access_iterator_tag, T>
 {
@@ -106,7 +127,7 @@ public:
 	void	pop(void) {
 		return (stack_.pop());
 	};
-/*
+*//*
 	const T&	operator*() const {
 		return ();
 	};
@@ -119,7 +140,7 @@ public:
 	T&	operator->() {
 		return ();
 	};
-*/
+*//*
 	const T&	operator[](unsigned int index) const {
 		if (index >= stack_.size()) {
 			throw MutantStack::OutBoundsException();
@@ -139,7 +160,7 @@ public:
 	iterator	end() {
 		return (MutantStackIterator());
 	};
-/*
+*//*
 	iterator&	operator++() {
 		return ();
 	};
@@ -192,12 +213,12 @@ public:
 			<< "] <-[" << &rhs << "])\033[m" << std::endl;
 		return (*this);
 	};
-*/
+*//*
 	const std::string	getType(void) const {
 			return (typeid(this->stack_).name());
 	};
 };
-
+*/
 template <typename T>
 std::ostream&	operator<<(std::ostream& stream, const MutantStack<T>& tc) {
 	stream << "[" << &tc << "]<MutantStack> has < " \
