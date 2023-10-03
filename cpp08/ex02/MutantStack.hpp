@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/03 16:02:05 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/03 17:53:34 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,28 @@
 template <typename T, class container=std::deque<T> >
 class MutantStack : public std::stack<T>
 {
-    public:
-        MutantStack(){}
-        ~MutantStack(){}
-        MutantStack(const MutantStack &stack)
-        {
-            *this = stack;
-        }
-        typedef typename container::iterator iterator;
-        iterator begin()
-        {
-            return this->c.begin();
-        }
-        iterator end()
-        {
-            return this->c.end();
-        }
+public:
+	MutantStack(){}
+	~MutantStack(){}
+	MutantStack(const MutantStack &stack) {
+		*this = stack;
+	}
+	typedef typename container::iterator iterator;
+	iterator begin() {
+		return this->c.begin();
+	}
+	iterator end() {
+		return this->c.end();
+	}
+	T& front() {
+		return this->c.front();
+	}
+	T& back() {
+		return this->c.back();
+	}
+	const std::string	getType(void) const {
+		return (typeid(this).name());
+	};
 };
 /*
 template <class T>
@@ -221,7 +227,7 @@ public:
 */
 template <typename T>
 std::ostream&	operator<<(std::ostream& stream, const MutantStack<T>& tc) {
-	stream << "[" << &tc << "]<MutantStack> has < " \
+	stream << "[" << &tc << "]< " \
 		<< tc.getType() << "[" << tc.size() << "] >\033[m";
 	return (stream);
 };
