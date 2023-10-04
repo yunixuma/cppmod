@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 12:04:47 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/04 22:20:01 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ static int	case_range(void) {
 	Span	mySpan = Span(45);
 
 	try {
-		mySpan.addNumbers(300, 300);
-		mySpan.addNumbers(200, 180);
+		mySpan.addNumber(300, 300);
+		mySpan.addNumber(200, 180);
 		mySpan.debug();
-		mySpan.addNumbers(-20, 10);
+		mySpan.addNumber(-20, 10);
 		mySpan.debug();
 	}
 	catch (std::exception& e) {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/02 11:48:41 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/04 22:19:26 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	Span&	operator=(const Span& rhs);
 	~Span();
 	void	addNumber(int num);
-	void	addNumbers(int num1, int num2);
+	void	addNumber(int num1, int num2);
 	int		shortestSpan(void) const;
 	int		longestSpan(void) const;
 	void	debug(void) const;
