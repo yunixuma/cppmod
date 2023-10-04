@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/04 22:19:44 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/04 22:24:18 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	Span::addNumber(int num) {
 
 void	Span::addNumber(int num1, int num2) {
 	std::clog << "\033[32;2;3m[" << this \
-		<< "]<Span> addNumbers(" << num1 << ", " << num2 << ") called (" \
+		<< "]<Span> addNumber(" << num1 << ", " << num2 << ") called (" \
 		<< this->numbers_.size() << " / " << this->N_ \
 		<< ")\033[m" << std::endl;
 	if (num1 > num2) {
