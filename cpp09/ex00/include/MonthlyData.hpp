@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/06 02:31:52 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/06 12:10:36 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,15 @@ public:
 		virtual const char*	what() const throw();
 	};
 private:
-	const std::string	name_;
-	int					grade_;
+	std::map<int, float>	day_;
 public:
-	MonthlyData(const std::string& name, int grade = 100);
+	MonthlyData(int day, float price);
 	MonthlyData(const MonthlyData& src);
 	MonthlyData&	operator=(const MonthlyData& rhs);
 	~MonthlyData(void);
-	const std::string&	getName(void) const;
-	int					getGrade(void) const;
-	void				incrementGrade(void);
-	void				decrementGrade(void);
-	// int					GradeTooHighException();
-	// int					GradeTooLowException();
+	float	getPrice(int day) const;
 };
 
-std::ostream&	operator<<(std::ostream& stream, const MonthlyData& bc);
+// std::ostream&	operator<<(std::ostream& stream, const MonthlyData& bc);
 
 #endif

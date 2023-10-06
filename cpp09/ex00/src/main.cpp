@@ -3,146 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/29 15:55:49 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/06 11:13:49 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Bureaucrat.hpp"
+#include "BitcoinExchange.hpp"
 
-static int	case_construct_regular(void) {
-	std::clog << "\033[32;43mCASE: Regular construct\033[m" << std::endl;
+int main(int argc, char *argv[])
+{
+	if (argc != 4) {
+		std::cerr << "\033[33mUsage: ./sed <source file> <search string> <replacement string> \033[m" << std::endl;
+		return (EINVAL);
+	}
+
+	std::string s_search = argv[2];
+	std::string s_replace = argv[3];
+	if (s_search.length() == 0) {
+		std::cerr << "\033[31mError: The search string is empty.\033[m" << std::endl;
+		return (ESPIPE);
+	}
+
+	std::ifstream 	ifs;
+	std::string		filepath_in = argv[1];
 	try {
-		Bureaucrat	bc1("John", 50);
-		std::cout << bc1 << std::endl;
-		Bureaucrat	bc2("Jane");
-		std::cout << bc2 << std::endl;
+		ifs.open(filepath_in.c_str(), std::ios::in | std::ios::binary);
+		if (ifs) {
+			char	c;
+			ifs.read(&c, 1);
+			ifs.seekg(0, ifs.beg);
+		}
+		if (ifs.fail()) {
+			throw (std::exception());
+		}
 	}
-	// catch (Bureaucrat & e)
-	// {
-	// 	/* handle exception */
-	// 	std::cerr << "An exception caught at Bureaucrat" << std::endl;
-	// }
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
+	catch (const std::exception& e) {
+		std::cerr << "\033[31m!!! Error opening the src. file. !!!\033[m" << std::endl;
+		return (ENOENT);
 	}
-	return (0);
-}
 
-static int	case_construct_low(void) {
-	std::clog << "\033[35;43mCASE: Too low w/ construct\033[m" << std::endl;
+	std::ofstream	ofs;
+	std::string		filepath_out = filepath_in + ".replace";
 	try {
-		Bureaucrat	bc("John", 151);
-		std::cout << bc << std::endl;
+		ofs.open(filepath_out.c_str(), std::ios::out | std::ios::binary);
+		if (ofs.fail())
+			throw (std::exception());
 	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
+	catch (const std::exception& e) {
+		std::cerr << "\033[31m!!! Error opening the dest. file. !!!\033[m" << std::endl;
+		return (ENOENT);
 	}
-	return (0);
-}
 
-static int	case_construct_high(void) {
-	std::clog << "\033[35;43mCASE: Too high w/ construct\033[m" << std::endl;
-	try {
-		Bureaucrat	bc("John", 0);
-		std::cout << bc << std::endl;
+	std::string buf_line;
+	std::string buf_file;
+	while (std::getline (ifs, buf_line)) {
+		buf_file += buf_line;
+		if (!ifs.rdstate())
+			buf_file += "\n";
 	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
+	buf_file = sed_line(buf_file, s_search, s_replace);
 
-static int	case_decrement_regular(void) {
-	std::clog << "\033[32;43mCASE: Regular decrement\033[m" << std::endl;
-	Bureaucrat	bc1("John", 50);
-	Bureaucrat	bc2("Jane");
-	try {
-		bc1.decrementGrade();
-		std::cout << bc1 << std::endl;
-		bc2.decrementGrade();
-		std::cout << bc2 << std::endl;
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-static int	case_decrement_low(void) {
-	std::clog << "\033[35;43mCASE: Too low w/ decrement\033[m" << std::endl;
-	Bureaucrat	bc("John", 150);
-	try {
-		bc.decrementGrade();
-		std::cout << bc << std::endl;
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-static int	case_increment_regular(void) {
-	std::clog << "\033[32;43mCASE: Regular increment\033[m" << std::endl;
-	Bureaucrat	bc1("John", 50);
-	Bureaucrat	bc2("Jane");
-	try {
-		bc1.incrementGrade();
-		std::cout << bc1 << std::endl;
-		bc2.incrementGrade();
-		std::cout << bc2 << std::endl;
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-static int	case_increment_high(void) {
-	std::clog << "\033[35;43mCASE: Too high w/ increment\033[m" << std::endl;
-	Bureaucrat	bc("John", 1);
-	try {
-		bc.incrementGrade();
-		std::cout << bc << std::endl;
-	}
-	catch (std::exception & e) {
-		std::cerr << "An error caught, thrown from std::exception: " << std::endl \
-			<< e.what() << std::endl;
-		return (1);
-	}
-	return (0);
-}
-
-int	main() {
-	if (!case_construct_regular())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_construct_high())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_construct_low())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_increment_regular())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_increment_high())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_decrement_regular())
-		std::cout << "No exception occurred" << std::endl;
-	if (!case_decrement_low())
-		std::cout << "No exception occurred" << std::endl;
-	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
+	ofs << buf_file;
+	ifs.close();
+	ofs.close();
 	return (0);
 }
