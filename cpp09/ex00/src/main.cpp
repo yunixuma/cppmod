@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/06 11:13:49 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/06 17:06:17 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "BitcoinExchange.hpp"
+
+相場データファイル読み込み	BitcoinExchange
+計算対象ファイル読み込み	main
+日付変換				DateConverter
+$BTC価格計算			BitcoinExchange
+
 
 int main(int argc, char *argv[])
 {
