@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 10:41:56 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/07 13:18:46 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ public:
 	void	addNumber(int num);
 	// template <typename T>
 	// void	addNumber(const T& container);
-	// template <typename T>
-	// void	addNumber(const typename T::const_iterator& begin, const typename T::const_iterator& end) {
-	// 	if (this->numbers_.size() + std::distance(begin, end) > this->N_)
-	// 		throw Span::StoreFullException();
-	// 	this->numbers_.insert(this->numbers_.end(), begin, end);
-	// 	this->numbers_.sort();
-	// };
+	template <typename T>
+	void	addNumber(const T& begin, const T& end) {
+		if (this->numbers_.size() + std::distance(begin, end) > this->N_)
+			throw Span::StoreFullException();
+		this->numbers_.insert(begin, end);
+	};
 	unsigned int		shortestSpan(void) const;
 	unsigned int		longestSpan(void) const;
 	void	debug(void) const;

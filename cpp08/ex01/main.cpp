@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 11:04:57 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/07 13:19:30 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,15 +120,15 @@ static int	case_copy(void) {
 
 	return (0);
 }
-/*
+
 static int	case_range(void) {
 	std::clog << "\033[43mCASE: " \
-		<< "Test for add numbers of the range" \
+		<< "Test for add numbers of an iterator" \
 		<< "\033[m" << std::endl;
 	Span	mySpan = Span(8);
 	int	arr[] = {1, 3, 5, 7, 9};
 	int	n = sizeof(arr) / sizeof(arr[0]);
-	const std::vector<int>	myvec(arr, arr + n);
+	std::vector<int>	myvec(arr, arr + n);
 
 	try {
 		mySpan.addNumber(myvec.begin(), myvec.end());
@@ -145,7 +145,7 @@ static int	case_range(void) {
 
 	return (0);
 }
-*/
+
 int	main(void) {
 	case_basic();
 	case_limit();
@@ -153,7 +153,7 @@ int	main(void) {
 	case_nostored();
 	case_nospan();
 	case_copy();
-	// case_range();
+	case_range();
 	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }
