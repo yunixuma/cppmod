@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 09:24:11 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/07 18:00:18 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ static int	case_mstack_int(void) {
 }
 
 static int	case_mstack_str(void) {
-	std::clog << "\033[43mCASE: Test for MutantStack of string\033[m" << std::endl;
+	std::clog << "\033[43mCASE: Test for MutantStack of string & const_iterator\033[m" << std::endl;
 	MutantStack<std::string> stk;
 
 	std::cout << stk << std::endl;
@@ -183,12 +183,14 @@ static int	case_mstack_str(void) {
 	push_and_pr(&stk, "carrot");
 	push_and_pr(&stk, "pepper");
 	pr_and_pop(&stk);
+/*	std::cout << "\033[33mconst top\033[m\t: \033[32m" \
+		<< const_cast<const MutantStack<std::string> *>(&stk)->top << "\033[m" << std::endl;*/
 	//[...]
 
 	std::cout << "stk.\033[33mempty()\033[m\t: \033[32m" \
 		<< stk.empty() << "\033[m" << std::endl;
-	MutantStack<std::string>::iterator it = stk.begin();
-	MutantStack<std::string>::iterator ite = stk.end();
+	MutantStack<std::string>::const_iterator it = stk.begin();
+	MutantStack<std::string>::const_iterator ite = stk.end();
 	std::cout << "stk.\033[33mfront()\033[m\t->[" << &stk.front() \
 		<< "]: \033[32m" << stk.front() << "\033[m" << std::endl;
 	std::cout << "stk.\033[33mback()\033[m\t->[" << &stk.back() \

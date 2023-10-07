@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 09:14:50 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/07 17:59:51 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,34 @@ public:
 		*this = stack;
 	}
 	typedef typename container::iterator iterator;
+	typedef typename container::const_iterator const_iterator;
 	iterator	begin() {
 		return this->c.begin();
 	}
 	iterator	end() {
 		return this->c.end();
 	}
-	const iterator	begin() const {
-		return this->c.begin();
-	}
-	const iterator	end() const {
-		return this->c.end();
-	}
+	// const_iterator	begin() const {
+	// 	return this->c.begin();
+	// }
+	// const_iterator	end() const {
+	// 	return this->c.end();
+	// }
 	T&	front() {
 		return this->c.front();
 	}
 	T&	back() {
 		return this->c.back();
 	}
-	const T&	front() const {
-		return this->c.front();
-	}
-	const T&	back() const {
-		return this->c.back();
-	}
+	// const T&	top() const {
+	// 	return this->top();
+	// }
+	// const T&	front() const {
+	// 	return this->c.front();
+	// }
+	// const T&	back() const {
+	// 	return this->c.back();
+	// }
 	// iterator	operator++() {
 	// 	return this->c++;
 	// }
@@ -211,22 +215,22 @@ public:
 	iterator	operator-(unsigned int n) {
 		return ();
 	};
-	bool	operator==(const iterator& it) const {
+	bool	operator==(const_iterator& it) const {
 		return ();
 	};
-	bool	operator!=(const iterator& it) const {
+	bool	operator!=(const_iterator& it) const {
 		return ();
 	};
-	bool	operator>(const iterator& it) const {
+	bool	operator>(const_iterator& it) const {
 		return ();
 	};
-	bool	operator<(const iterator& it) const {
+	bool	operator<(const_iterator& it) const {
 		return ();
 	}
-	bool	operator>=(const iterator& it) const {
+	bool	operator>=(const_iterator& it) const {
 		return ();
 	};
-	bool	operator<=(const iterator& it) const {
+	bool	operator<=(const_iterator& it) const {
 		return ();
 	};
 *//*
