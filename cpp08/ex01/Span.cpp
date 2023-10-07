@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 22:06:12 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/07 22:11:37 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ unsigned int	Span::longestSpan(void) const {
 
 // When an exception thrown
 const char*	Span::NoStoredException::what(void) const throw() {
-	std::clog << "\033[35;3m[" << this \
+	std::clog << "\033[35;2;3m[" << this \
 		<< "]<Span::NoStoredException> what() called\033[m" << std::endl;
 	return ("No numbers stored");
 	// return (2);
@@ -151,7 +151,7 @@ const char*	Span::NoSpanException::what(void) const throw() {
 }
 
 const char*	Span::StoreFullException::what(void) const throw() {
-	std::clog << "\033[35;3m[" << this \
+	std::clog << "\033[35;2;3m[" << this \
 		<< "]<Span::StoreFullException> what() called\033[m" << std::endl;
 	return ("The store is already full");
 	// return (3);
