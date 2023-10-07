@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/04 20:12:02 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/07 09:14:50 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <climits>
 
 template <typename T, class container=std::deque<T> >
-class MutantStack : public std::stack<T>
+class MutantStack : public std::stack<T, container>
 {
 public:
 	MutantStack(){}
@@ -36,10 +36,22 @@ public:
 	iterator	end() {
 		return this->c.end();
 	}
+	const iterator	begin() const {
+		return this->c.begin();
+	}
+	const iterator	end() const {
+		return this->c.end();
+	}
 	T&	front() {
 		return this->c.front();
 	}
 	T&	back() {
+		return this->c.back();
+	}
+	const T&	front() const {
+		return this->c.front();
+	}
+	const T&	back() const {
 		return this->c.back();
 	}
 	// iterator	operator++() {

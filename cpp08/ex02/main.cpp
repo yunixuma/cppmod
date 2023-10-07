@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/04 21:03:42 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/07 09:24:11 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "MutantStack.hpp"
 
 template <class T, typename U>
-static void	push_and_pr(T* stk, U val) {
+static void	push_and_pr(T* stk, const U& val) {
 	stk->push(val);
 	std::cout << "[" \
 		<< stk << "]\033[35m<" \
