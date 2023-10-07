@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/04 22:24:18 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/07 11:05:13 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ Span::~Span(void) {
 void	Span::addNumberSub(int num) {
 	if (this->numbers_.size() >= this->N_)
 		throw Span::StoreFullException();
-	this->numbers_.push_back(num);
-	this->numbers_.sort();
+	// this->numbers_.push_back(num);
+	// this->numbers_.sort();
+	this->numbers_.insert(num);
 }
 
 void	Span::addNumber(int num) {
@@ -63,22 +64,23 @@ void	Span::addNumber(int num) {
 		<< ")\033[m" << std::endl;
 	this->addNumberSub(num);
 }
-
-void	Span::addNumber(int num1, int num2) {
+/*
+template <typename T>
+void	Span::addNumber(const typename T::iterator& begin, const typename T::iterator& end) {
+// void	Span::addNumber(const T& container) {
 	std::clog << "\033[32;2;3m[" << this \
-		<< "]<Span> addNumber(" << num1 << ", " << num2 << ") called (" \
+		<< "]<Span> addNumber(" << container << ") called (" \
 		<< this->numbers_.size() << " / " << this->N_ \
 		<< ")\033[m" << std::endl;
-	if (num1 > num2) {
-		int	tmp = num1;
-		num1 = num2;
-		num2 = tmp;
-	}
-	for (int i = num1; i <= num2; i++)
-		this->addNumberSub(i);
+	// typename T::const_iterator it = container.begin();
+	// typename T::const_iterator ite = container.end();
+	// while (it != ite)
+	// 	this->addNumberSub(*it++);
+	for (T::iterator itr = begin; itr != end; itr++)
+		this->addNumberSub(*itr);
 }
-
-int	Span::shortestSpan(void) const {
+*/
+unsigned int	Span::shortestSpan(void) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Span> shortestSpan() called (" \
 		<< this->numbers_.size() << " / " << this->N_ \
@@ -87,11 +89,11 @@ int	Span::shortestSpan(void) const {
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
 		throw Span::NoSpanException();
-	std::list<int>::const_iterator itr = this->numbers_.begin();
-	std::list<int>::const_iterator end = this->numbers_.end();
+	std::multiset<int>::const_iterator itr = this->numbers_.begin();
+	std::multiset<int>::const_iterator end = this->numbers_.end();
 
-	int ret = INT_MAX;
-	int	tmp;
+	unsigned int	ret = UINT_MAX;
+	unsigned int	tmp;
 	while (++itr != end) {
 		tmp = - *(--itr);
 		tmp += *(++itr);
@@ -101,7 +103,7 @@ int	Span::shortestSpan(void) const {
 	return (ret);
 }
 
-int	Span::longestSpan(void) const {
+unsigned int	Span::longestSpan(void) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<Span> longestSpan() called (" \
 		<< this->numbers_.size() << " / " << this->N_ \
@@ -110,8 +112,8 @@ int	Span::longestSpan(void) const {
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
 		throw Span::NoSpanException();
-	int	num_max = this->numbers_.back();
-	int	num_min = this->numbers_.front();
+	int	num_max = *this->numbers_.rbegin();
+	int	num_min = *this->numbers_.begin();
 	return (num_max - num_min);
 }
 
@@ -143,8 +145,8 @@ void	Span::debug(void) const {
 		<< "]<Span> debug() called (" \
 		<< this->numbers_.size() << " / " << this->N_ \
 		<< ")\033[m" << std::endl;
-	std::list<int>::const_iterator itr = this->numbers_.begin();
-	std::list<int>::const_iterator end = this->numbers_.end();
+	std::multiset<int>::const_iterator itr = this->numbers_.begin();
+	std::multiset<int>::const_iterator end = this->numbers_.end();
 	unsigned int	i = 0;
 	while (itr != end) {
 		std::cout << i++ << "\t: " << *itr << std::endl;

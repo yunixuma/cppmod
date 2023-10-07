@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/04 22:20:01 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/07 11:04:57 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <vector>
 #include "Span.hpp"
 
 static int	case_basic(void) {
@@ -21,14 +22,28 @@ static int	case_basic(void) {
 	mySpan.addNumber(-3);
 	mySpan.addNumber(7);
 	mySpan.addNumber(-18);
+	std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
+	std::cout << "longestSpan: " << mySpan.longestSpan() << "\033[m" << std::endl;
 
-	try {
-		std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
-		std::cout << "longestSpan: " << mySpan.longestSpan() << "\033[m" << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cout << "\033[31;3m" << e.what() << std::endl;
-	}
+	mySpan.addNumber(7);
+	std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
+	std::cout << "longestSpan: " << mySpan.longestSpan() << "\033[m" << std::endl;
+
+	return (0);
+}
+
+static int	case_limit(void) {
+	std::clog << "\033[43mCASE: Test for max/min\033[m" << std::endl;
+	Span	mySpan = Span(5);
+
+	mySpan.addNumber(INT_MAX);
+	mySpan.addNumber(INT_MIN);
+	std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
+	std::cout << "longestSpan: " << mySpan.longestSpan() << "\033[m" << std::endl;
+
+	mySpan.addNumber(0);
+	std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
+	std::cout << "longestSpan: " << mySpan.longestSpan() << "\033[m" << std::endl;
 
 	return (0);
 }
@@ -105,18 +120,20 @@ static int	case_copy(void) {
 
 	return (0);
 }
-
+/*
 static int	case_range(void) {
 	std::clog << "\033[43mCASE: " \
 		<< "Test for add numbers of the range" \
 		<< "\033[m" << std::endl;
-	Span	mySpan = Span(45);
+	Span	mySpan = Span(8);
+	int	arr[] = {1, 3, 5, 7, 9};
+	int	n = sizeof(arr) / sizeof(arr[0]);
+	const std::vector<int>	myvec(arr, arr + n);
 
 	try {
-		mySpan.addNumber(300, 300);
-		mySpan.addNumber(200, 180);
+		mySpan.addNumber(myvec.begin(), myvec.end());
 		mySpan.debug();
-		mySpan.addNumber(-20, 10);
+		mySpan.addNumber(myvec.begin(), myvec.end());
 		mySpan.debug();
 	}
 	catch (std::exception& e) {
@@ -128,14 +145,15 @@ static int	case_range(void) {
 
 	return (0);
 }
-
+*/
 int	main(void) {
 	case_basic();
+	case_limit();
 	case_full();
 	case_nostored();
 	case_nospan();
 	case_copy();
-	case_range();
+	// case_range();
 	std::clog << "\033[33;42mFINISH\033[m" << std::endl;
 	return (0);
 }

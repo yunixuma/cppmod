@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/04 22:19:26 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/07 10:41:56 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SPAN_HPP
 
 # include <iostream>
-# include <list>
+# include <set>
 # include <algorithm>
 # include <exception>
 # include <climits>
@@ -23,7 +23,7 @@ class Span
 {
 private:
 	unsigned int	N_;
-	std::list<int>	numbers_;
+	std::multiset<int>	numbers_;
 	void	addNumberSub(int num);
 public:
 	Span(int N);
@@ -31,9 +31,17 @@ public:
 	Span&	operator=(const Span& rhs);
 	~Span();
 	void	addNumber(int num);
-	void	addNumber(int num1, int num2);
-	int		shortestSpan(void) const;
-	int		longestSpan(void) const;
+	// template <typename T>
+	// void	addNumber(const T& container);
+	// template <typename T>
+	// void	addNumber(const typename T::const_iterator& begin, const typename T::const_iterator& end) {
+	// 	if (this->numbers_.size() + std::distance(begin, end) > this->N_)
+	// 		throw Span::StoreFullException();
+	// 	this->numbers_.insert(this->numbers_.end(), begin, end);
+	// 	this->numbers_.sort();
+	// };
+	unsigned int		shortestSpan(void) const;
+	unsigned int		longestSpan(void) const;
 	void	debug(void) const;
 	class NoStoredException : public std::exception
 	{

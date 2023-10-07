@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/02 11:57:42 by ykosaka          ###   ########.fr        #
+#    Updated: 2023/10/07 10:08:16 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ endif
 
 # ********************* Section for targets and commands ********************* #
 # Phonies
-.PHONY: all fclean re debug
+.PHONY: all clean fclean re debug
 
 # Mandatory targets
 all: $(NAME)
@@ -65,7 +65,7 @@ re: fclean all
 debug: fclean all
 
 # Recipes
-$(NAME):
+$(NAME): $(SRC)
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(NAME)
 
 # ******** ******** ******** ******** **** ******** ******** ******** ******** #
