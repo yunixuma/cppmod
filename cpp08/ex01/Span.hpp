@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 22:03:37 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 00:26:29 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 class Span
 {
 private:
-	unsigned int	N_;
+	unsigned int		N_;
 	std::multiset<int>	numbers_;
 	unsigned int		shortestSpanVal_;
 	void				addNumberSub(int num);

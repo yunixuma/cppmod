@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 22:07:42 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 00:28:10 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,16 @@ static int	case_copy(void) {
 	mySpan.addNumber(7);
 	mySpan.addNumber(-18);
 	mySpan.debug();
+	std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
 
 	Span	mySpan2(mySpan);
 	mySpan2.debug();
+	std::cout << "shortestSpan: " << mySpan2.shortestSpan() << "\033[m" << std::endl;
 
 	Span	mySpan3(3);
 	mySpan3 = mySpan;
 	mySpan3.debug();
+	std::cout << "shortestSpan: " << mySpan3.shortestSpan() << "\033[m" << std::endl;
 
 	return (0);
 }

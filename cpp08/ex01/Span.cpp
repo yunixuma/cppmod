@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 22:11:37 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 00:30:00 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ Span::Span(int n) : N_(n), shortestSpanVal_(UINT_MAX) {
 		<< this->N_ << ")\033[m" << std::endl;
 }
 
-Span::Span(const Span& src) : N_(src.N_), numbers_(src.numbers_) {
+Span::Span(const Span& src) \
+	: N_(src.N_), numbers_(src.numbers_), \
+	shortestSpanVal_(src.shortestSpanVal_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<Span> Copy constructor called (" \
 		<< this->N_ << ")\033[m" << std::endl;
@@ -38,6 +40,7 @@ Span&	Span::operator=(const Span& rhs) {
 	{
 		this->N_ = rhs.N_;
 		this->numbers_ = rhs.numbers_;
+		this->shortestSpanVal_ = rhs.shortestSpanVal_;
 	}
 	return (*this);
 }
