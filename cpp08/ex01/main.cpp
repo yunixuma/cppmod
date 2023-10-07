@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 13:19:30 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/07 22:07:42 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,10 @@ static int	case_range(void) {
 	std::clog << "\033[43mCASE: " \
 		<< "Test for add numbers of an iterator" \
 		<< "\033[m" << std::endl;
-	Span	mySpan = Span(8);
-	int	arr[] = {1, 3, 5, 7, 9};
+	Span	mySpan = Span(9);
+	int	arr[] = {14, 1, 5, 9, 2, 6};
 	int	n = sizeof(arr) / sizeof(arr[0]);
-	std::vector<int>	myvec(arr, arr + n);
+	const std::vector<int>	myvec(arr, arr + n);
 
 	try {
 		mySpan.addNumber(myvec.begin(), myvec.end());
@@ -139,9 +139,9 @@ static int	case_range(void) {
 	catch (std::exception& e) {
 		std::cout << "\033[31;3m" << e.what() << std::endl;
 	}
-	mySpan.debug();
 	std::cout << "shortestSpan: " << mySpan.shortestSpan() << "\033[m" << std::endl;
 	std::cout << "longestSpan: " << mySpan.longestSpan() << "\033[m" << std::endl;
+	mySpan.debug();
 
 	return (0);
 }

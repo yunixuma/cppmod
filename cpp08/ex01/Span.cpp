@@ -6,13 +6,13 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 11:05:13 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/07 22:06:12 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(int n) : N_(n) {
+Span::Span(int n) : N_(n), shortestSpanVal_(UINT_MAX) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<Span> Constructor called (" \
 		<< this->N_ << ")\033[m" << std::endl;
@@ -54,7 +54,24 @@ void	Span::addNumberSub(int num) {
 		throw Span::StoreFullException();
 	// this->numbers_.push_back(num);
 	// this->numbers_.sort();
-	this->numbers_.insert(num);
+	std::multiset<int>::iterator	cur = this->numbers_.insert(num);
+	std::multiset<int>::iterator	prev = cur;
+	prev--;
+	std::multiset<int>::iterator	next = cur;
+	next++;
+	unsigned int	tmp;
+	if (cur != this->numbers_.begin()) {
+		// std::clog << *cur << " - " << *prev << " = " << *cur - *prev << std::endl;
+		tmp = *cur - *prev;
+		if (tmp < this->shortestSpanVal_)
+			this->shortestSpanVal_ = tmp;
+	}
+	if (next != this->numbers_.end()) {
+		tmp = *next - *cur;
+		// std::clog << *next << " - " << *cur << " = " << *next - *cur << std::endl;
+		if (tmp < this->shortestSpanVal_)
+			this->shortestSpanVal_ = tmp;
+	}
 }
 
 void	Span::addNumber(int num) {
@@ -89,7 +106,8 @@ unsigned int	Span::shortestSpan(void) const {
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
 		throw Span::NoSpanException();
-	std::multiset<int>::const_iterator itr = this->numbers_.begin();
+	return (shortestSpanVal_);
+/*	std::multiset<int>::const_iterator itr = this->numbers_.begin();
 	std::multiset<int>::const_iterator end = this->numbers_.end();
 
 	unsigned int	ret = UINT_MAX;
@@ -100,7 +118,7 @@ unsigned int	Span::shortestSpan(void) const {
 		if (tmp < ret)
 			ret = tmp;
 	}
-	return (ret);
+	return (ret);*/
 }
 
 unsigned int	Span::longestSpan(void) const {

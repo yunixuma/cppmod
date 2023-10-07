@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 13:18:46 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/07 22:03:37 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <set>
+# include <iterator>
 # include <algorithm>
 # include <exception>
 # include <climits>
@@ -24,7 +25,8 @@ class Span
 private:
 	unsigned int	N_;
 	std::multiset<int>	numbers_;
-	void	addNumberSub(int num);
+	unsigned int		shortestSpanVal_;
+	void				addNumberSub(int num);
 public:
 	Span(int N);
 	Span(const Span& src);
@@ -37,7 +39,8 @@ public:
 	void	addNumber(const T& begin, const T& end) {
 		if (this->numbers_.size() + std::distance(begin, end) > this->N_)
 			throw Span::StoreFullException();
-		this->numbers_.insert(begin, end);
+		for (T it = begin; it != end; it++)
+			this->addNumber(*it);
 	};
 	unsigned int		shortestSpan(void) const;
 	unsigned int		longestSpan(void) const;
