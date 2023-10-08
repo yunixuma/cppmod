@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 17:59:51 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 19:07:03 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ public:
 	iterator	end() {
 		return this->c.end();
 	}
-	// const_iterator	begin() const {
-	// 	return this->c.begin();
-	// }
-	// const_iterator	end() const {
-	// 	return this->c.end();
-	// }
+	const_iterator	begin() const {
+		return this->c.begin();
+	}
+	const_iterator	end() const {
+		return this->c.end();
+	}
 	T&	front() {
 		return this->c.front();
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 18:00:18 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 19:07:34 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ static int	case_mstack_int(void) {
 
 static int	case_mstack_str(void) {
 	std::clog << "\033[43mCASE: Test for MutantStack of string & const_iterator\033[m" << std::endl;
-	MutantStack<std::string> stk;
+	MutantStack<std::string>	stk;
 
 	std::cout << stk << std::endl;
 	std::cout << "stk.\033[33mempty()\033[m\t: \033[32m" \
@@ -210,7 +210,7 @@ static int	case_mstack_str(void) {
 	it += 2;
 	std::cout << "stk[0]\033[33m+2\033[m\t->[" \
 		<< &(*(it)) << "]: \033[32m" << *it << "\033[m" << std::endl;
-	std::stack<std::string> s(stk);
+	std::stack<std::string>	s(stk);
 	return (0);
 }
 
