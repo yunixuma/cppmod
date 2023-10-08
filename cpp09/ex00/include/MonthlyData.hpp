@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 09:59:08 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 10:19:42 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ public:
 	bool			addData(int day, float price);
 	float			getPrice(int day) const;
 };
-
-// std::ostream&	operator<<(std::ostream& stream, const MonthlyData& bc);
 
 #endif

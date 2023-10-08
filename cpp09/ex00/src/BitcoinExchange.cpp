@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/06 02:27:55 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 12:36:51 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 BitcoinExchange::BitcoinExchange(const std::string& name, int grade) \
 	: name_(name), grade_(grade) {
 	std::clog << "\033[36;2;3m[" << this \
-		<< "]<BitcoinExchange> Constructor called (" \
-		<< this->name_ << ")\033[m" << std::endl;
+		<< "]<BitcoinExchange> Constructor called" \
+		<< "\033[m" << std::endl;
 	if (this->grade_ > 150)
 		throw BitcoinExchange::GradeTooLowException();
 	else if (this->grade_ < 1)
@@ -26,8 +26,8 @@ BitcoinExchange::BitcoinExchange(const std::string& name, int grade) \
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) \
 	: name_(src.name_), grade_(src.grade_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
-		<< "]<BitcoinExchange> Copy constructor called (" \
-		<< this->name_ << ")\033[m" << std::endl;
+		<< "]<BitcoinExchange> Copy constructor called" \
+		<< "\033[m" << std::endl;
 	// this->name_ = src.name_;
 	// this->grade_ = src.grade_;
 	if (this->grade_ > 150)
@@ -38,8 +38,8 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) \
 
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 	std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
-		<< "]<BitcoinExchange> Copy assignment operator called (" \
-		<< this->name_ << ")\033[m" << std::endl;
+		<< "]<BitcoinExchange> Copy assignment operator called" \
+		<< "\033[m" << std::endl;
 	if (this != &rhs)
 	{
 		const_cast<std::string&>(this->name_) = rhs.name_;
@@ -103,22 +103,26 @@ void	BitcoinExchange::decrementGrade(void) {
 }
 
 // When an exception thrown
-const char*	BitcoinExchange::GradeTooHighException::what(void) const throw() {
+const char*	BitcoinExchange::InvalidDateException::what(std::string& s_date) const throw() {
 	std::clog << "\033[35;3m[" << this \
-		<< "]<BitcoinExchange::GradeTooHighException> what() called\033[m" << std::endl;
-	return ("The grade too high");
-	// return (1);
+		<< "]<BitcoinExchange::InvalidDateException> what() called\033[m" << std::endl;
+	return ("Error: bad data => " + s_date);
 }
 
-const char*	BitcoinExchange::GradeTooLowException::what(void) const throw() {
+const char*	BitcoinExchange::InvalidFormatException::what(std::string& line) const throw() {
 	std::clog << "\033[35;3m[" << this \
-		<< "]<BitcoinExchange::GradeTooLowException> what() called\033[m" << std::endl;
-	return ("The grade too low");
-	// return (2);
+		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" << std::endl;
+	return ("Error: bad data => " + s_date);
 }
 
-// Insertion operator overload to print
-std::ostream&	operator<<(std::ostream& stream, const BitcoinExchange& bc) {
-	stream << bc.getName() << ", bureaucrat grade " << bc.getGrade() << ".";
-	return (stream);
+const char*	BitcoinExchange::NotPositiveException::what(void) const throw() {
+	std::clog << "\033[35;3m[" << this \
+		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" << std::endl;
+	return ("Error: not a positive number.");
+}
+
+const char*	BitcoinExchange::TooLargeException::what(void) const throw() {
+	std::clog << "\033[35;3m[" << this \
+		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" << std::endl;
+	return ("Error: too large a number.");
 }
