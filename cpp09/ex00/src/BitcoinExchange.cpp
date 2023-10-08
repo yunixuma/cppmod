@@ -3,37 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 12:36:51 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 18:00:11 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(const std::string& name, int grade) \
-	: name_(name), grade_(grade) {
+BitcoinExchange::BitcoinExchange(const std::string& filepath) \
+	: monthlyData_() {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<BitcoinExchange> Constructor called" \
 		<< "\033[m" << std::endl;
-	if (this->grade_ > 150)
-		throw BitcoinExchange::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw BitcoinExchange::GradeTooHighException();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) \
-	: name_(src.name_), grade_(src.grade_) {
+	: monthlyData_(src.monthlyData_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<BitcoinExchange> Copy constructor called" \
 		<< "\033[m" << std::endl;
-	// this->name_ = src.name_;
-	// this->grade_ = src.grade_;
-	if (this->grade_ > 150)
-		throw BitcoinExchange::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw BitcoinExchange::GradeTooHighException();
 }
 
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& rhs) {
@@ -42,7 +32,7 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 		<< "\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		const_cast<std::string&>(this->name_) = rhs.name_;
+		this->monthlyData_ = rhs.name_;
 		this->grade_ = rhs.grade_;
 	}
 	if (this->grade_ > 150)

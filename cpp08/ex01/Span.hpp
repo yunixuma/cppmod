@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 00:26:29 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 18:17:06 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ private:
 	unsigned int		shortestSpanVal_;
 	void				addNumberSub(int num);
 public:
-	Span(int N);
+	Span(unsigned int N);
 	Span(const Span& src);
 	Span&	operator=(const Span& rhs);
 	~Span();

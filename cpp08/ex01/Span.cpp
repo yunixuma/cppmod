@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 00:30:00 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 18:27:23 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(int n) : N_(n), shortestSpanVal_(UINT_MAX) {
+Span::Span(unsigned int n) : N_(n), shortestSpanVal_(UINT_MAX) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<Span> Constructor called (" \
 		<< this->N_ << ")\033[m" << std::endl;
@@ -58,20 +58,20 @@ void	Span::addNumberSub(int num) {
 	// this->numbers_.push_back(num);
 	// this->numbers_.sort();
 	std::multiset<int>::iterator	cur = this->numbers_.insert(num);
-	std::multiset<int>::iterator	prev = cur;
-	prev--;
-	std::multiset<int>::iterator	next = cur;
-	next++;
 	unsigned int	tmp;
 	if (cur != this->numbers_.begin()) {
+		std::multiset<int>::iterator	prev = cur;
+		prev--;
 		// std::clog << *cur << " - " << *prev << " = " << *cur - *prev << std::endl;
 		tmp = *cur - *prev;
 		if (tmp < this->shortestSpanVal_)
 			this->shortestSpanVal_ = tmp;
 	}
+	std::multiset<int>::iterator	next = cur;
+	next++;
 	if (next != this->numbers_.end()) {
-		tmp = *next - *cur;
 		// std::clog << *next << " - " << *cur << " = " << *next - *cur << std::endl;
+		tmp = *next - *cur;
 		if (tmp < this->shortestSpanVal_)
 			this->shortestSpanVal_ = tmp;
 	}
@@ -147,15 +147,15 @@ const char*	Span::NoStoredException::what(void) const throw() {
 }
 
 const char*	Span::NoSpanException::what(void) const throw() {
-	std::clog << "\033[35;2;3m[" << this \
-		<< "]<Span::NoSpanException> what() called\033[m" << std::endl;
+/*	std::clog << "\033[35;2;3m[" << this \
+		<< "]<Span::NoSpanException> what() called\033[m" << std::endl;*/
 	return ("No span found");
 	// return (1);
 }
 
 const char*	Span::StoreFullException::what(void) const throw() {
-	std::clog << "\033[35;2;3m[" << this \
-		<< "]<Span::StoreFullException> what() called\033[m" << std::endl;
+/*	std::clog << "\033[35;2;3m[" << this \
+		<< "]<Span::StoreFullException> what() called\033[m" << std::endl;*/
 	return ("The store is already full");
 	// return (3);
 }

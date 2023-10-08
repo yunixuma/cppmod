@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/07 08:49:12 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 18:12:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ public:
 };
 
 template <typename T>
-const int&	easyfind(const T& container, int toFind) {
+const typename T::value_type&	easyfind(const T& container, int toFind) {
 // typename T::const_iterator&	easyfind(const T& container, int toFind) {
 	typename T::const_iterator itr = std::find(container.begin(), container.end(), toFind);
 	if (itr != container.end())
@@ -39,7 +39,7 @@ const int&	easyfind(const T& container, int toFind) {
 };
 
 template <typename T, typename U>
-const typename T::value_type&	easyfindInfer(const T& container, U toFind) {
+const typename T::value_type&	easyfindInfer(const T& container, const U& toFind) {
 // typename T::const_iterator&	easyfindInfer(const T& container, U toFind) {
 // U	easyfind(const T& container, U toFind) {
 	// typename T::const_iterator itr;

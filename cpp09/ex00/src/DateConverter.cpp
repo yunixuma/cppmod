@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DateConverter.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 09:28:59 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 17:51:48 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ bool	DateConverter::valid(int date) {
 }
 
 int	DateConverter::getPrevMonth(int month) {
-	if (month % 100 > 0)
+	if (month % 100 > 1)
 		return (month - 1);
 	if (month * 100 <= DATE_LOWER_LIMIT)
 		return (0);
