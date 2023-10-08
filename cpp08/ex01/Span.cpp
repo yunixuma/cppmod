@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 18:27:23 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/09 02:04:49 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(unsigned int n) : N_(n), shortestSpanVal_(UINT_MAX) {
+Span::Span(unsigned int n) : N_(n), shortest_span_val_(UINT_MAX) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<Span> Constructor called (" \
 		<< this->N_ << ")\033[m" << std::endl;
@@ -20,7 +20,7 @@ Span::Span(unsigned int n) : N_(n), shortestSpanVal_(UINT_MAX) {
 
 Span::Span(const Span& src) \
 	: N_(src.N_), numbers_(src.numbers_), \
-	shortestSpanVal_(src.shortestSpanVal_) {
+	shortest_span_val_(src.shortest_span_val_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<Span> Copy constructor called (" \
 		<< this->N_ << ")\033[m" << std::endl;
@@ -40,7 +40,7 @@ Span&	Span::operator=(const Span& rhs) {
 	{
 		this->N_ = rhs.N_;
 		this->numbers_ = rhs.numbers_;
-		this->shortestSpanVal_ = rhs.shortestSpanVal_;
+		this->shortest_span_val_ = rhs.shortest_span_val_;
 	}
 	return (*this);
 }
@@ -64,16 +64,16 @@ void	Span::addNumberSub(int num) {
 		prev--;
 		// std::clog << *cur << " - " << *prev << " = " << *cur - *prev << std::endl;
 		tmp = *cur - *prev;
-		if (tmp < this->shortestSpanVal_)
-			this->shortestSpanVal_ = tmp;
+		if (tmp < this->shortest_span_val_)
+			this->shortest_span_val_ = tmp;
 	}
 	std::multiset<int>::iterator	next = cur;
 	next++;
 	if (next != this->numbers_.end()) {
 		// std::clog << *next << " - " << *cur << " = " << *next - *cur << std::endl;
 		tmp = *next - *cur;
-		if (tmp < this->shortestSpanVal_)
-			this->shortestSpanVal_ = tmp;
+		if (tmp < this->shortest_span_val_)
+			this->shortest_span_val_ = tmp;
 	}
 }
 
@@ -109,7 +109,7 @@ unsigned int	Span::shortestSpan(void) const {
 		throw Span::NoStoredException();
 	else if (this->numbers_.size() == 1)
 		throw Span::NoSpanException();
-	return (shortestSpanVal_);
+	return (shortest_span_val_);
 /*	std::multiset<int>::const_iterator itr = this->numbers_.begin();
 	std::multiset<int>::const_iterator end = this->numbers_.end();
 

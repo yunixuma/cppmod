@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 18:17:06 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/09 02:04:06 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Span
 private:
 	unsigned int		N_;
 	std::multiset<int>	numbers_;
-	unsigned int		shortestSpanVal_;
+	unsigned int		shortest_span_val_;
 	void				addNumberSub(int num);
 public:
 	Span(unsigned int N);
