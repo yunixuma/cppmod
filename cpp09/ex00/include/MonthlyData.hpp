@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 10:19:42 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/09 03:53:01 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include <iterator>
 # include <iostream>
 
+# define INVALID_PRICE	-0.01f
+
 class MonthlyData
 {
 private:
 	int						month_;
-	std::map<int, float>	dailyPrice_;
+	std::map<int, float>	daily_price_;
 public:
 	MonthlyData(int month = 0);
 	MonthlyData(const MonthlyData& src);

@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 18:00:11 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/09 03:56:38 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange(const std::string& filepath) \
-	: monthlyData_() {
+	: monthly_data_() {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<BitcoinExchange> Constructor called" \
 		<< "\033[m" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) \
-	: monthlyData_(src.monthlyData_) {
+	: monthly_data_(src.monthly_data_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<BitcoinExchange> Copy constructor called" \
 		<< "\033[m" << std::endl;
@@ -32,27 +32,40 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 		<< "\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		this->monthlyData_ = rhs.name_;
-		this->grade_ = rhs.grade_;
+		this->monthly_data_ = rhs.monthly_data_;
 	}
-	if (this->grade_ > 150)
-		throw BitcoinExchange::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw BitcoinExchange::GradeTooHighException();
 	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange(void) {
 	std::clog << "\033[31;2;3m[" << this \
-		<< "]<BitcoinExchange> Destructor called (" \
-		<< this->name_ << ")\033[m" << std::endl;
+		<< "]<BitcoinExchange> Destructor called\033[m" << std::endl;
 }
 
-const std::string&	BitcoinExchange::getName(void) const {
+void	BitcoinExchange::exchange(int date, float amount) const {
 	std::clog << "\033[32;2;3m[" << this \
-		<< "]<BitcoinExchange> getName() called (" \
-		<< this->name_ << ")\033[m" << std::endl;
-	return (this->name_);
+		<< "]<BitcoinExchange> exchange(" \
+		<< date ", " << amount << ") called\033[m" << std::endl;
+	int		month = DateConverter.yyyymmdd2yyyymm(date);
+	int		day = DateConverter.yyyymmdd2dd(date);
+	float	price = getPrice(month, day);
+	std::cout << month / 100 << "-" << month % 100 << "-" << day << " => ";
+	if (price == INVALID_PRICE) {
+		std::cout << "No data" << std::endl;
+	else
+		std::cout << amount << " = " << price * amount << std::endl;
+}
+
+float	BitcoinExchange::getPrice(int month, int day) const {
+	std::clog << "\033[32;2;3m[" << this \
+		<< "]<BitcoinExchange> getPrice(" \
+		<< month ", " << day << ") called\033[m" << std::endl;
+	float	price = INVALID_PRICE;
+	while (month > 0 && price == INVALID_PRICE) {
+		price = this->monthly_data_.find(month)->second.getPrice(day);
+		month = DateConverter.prevMonth(month);
+	}
+	return (price);
 }
 
 int	BitcoinExchange::getGrade(void) const {
