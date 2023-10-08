@@ -3,79 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   DateConverter.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/06 16:43:59 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/08 09:29:13 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATECONVERTER_HPP
 # define DATECONVERTER_HPP
 
-# include <iostream>
-# include <iomanip>
 # include <sstream>
 # include <string>
-# include <limits>
 
-# define SHIFT_CHAR		12
-# define SHIFT_INT		8
-# define SHIFT_FLOAT	4
-# define SHIFT_DOUBLE	0
-# define FLAG_REGULAR	0x0
-# define FLAG_CAST		0x1
-# define FLAG_NODISP	0x2
-# define FLAG_INTEGER	0x2
-# define FLAG_MIN		0x2
-# define FLAG_MAX		0x4
-# define FLAG_PSEUDO	0x8
-# define FLAG_IMPOS		0x8
-# define MASK_FLAG		0xf
-# define MASK_CHAR		0xff
-# define CHR_FLOAT		'f'
-# define STR_NAN		"nan"
-# define STR_INF		"inf"
-# define STR_INF_POS	"+inf"
-# define STR_INF_NEG	"-inf"
-# define STR_DECIMAL	".0"
-# define STR_IMPOS		"impossible"
-# define STR_NODISP		"Non displayable"
+# define DATE_LOWER_LIMIT	19700101
+# define DATE_HIGHER_LIMIT	20380119
+// # define YEAR_LOWER_LIMIT	DATE_LOWER_LIMIT / 10000
+// # define YEAR_HIGHER_LIMIT	DATE_HIGHER_LIMIT / 10000
 
-// template<class T> class ScalarConverter
-class ScalarConverter
+class DateConverter
 {
 private:
-	ScalarConverter();
-	~ScalarConverter();
-	// template<typename T>
-	// static bool	isPseudo(std::string& str);
-	// static bool	forInt(std::stringstream& ss);
-	static bool	forInt(const std::string& str);
-	static bool	forChar(const std::string& str);
-	// static bool	forDouble(std::stringstream& ss);
-	static bool	forDouble(const std::string& str);
-	static bool	forFloat(const std::string& str);
-	static bool	forPseudo(const std::string& str);
+	DateConverter();
+	~DateConverter();
 public:
-	// template<typename RET>
-	static int	convert(std::string& str);
-	static void	display(const std::string& str, int flag);
-	template<typename T>
-	static void	display(T scalar, int flag);
-	// template<class T>char	convert(std::string& str);
-	// template <typename T>
-	// char	convert(std::string& str);
-	// template <typename T>
-	// int		convert(std::string& str);
-	// template <typename T>
-	// float	convert(std::string& str);
-	// template <typename T>
-	// double	convert(std::string& str);
-	// static std::string	toInt(const std::string& str);
-	// static std::string	toChar(const std::string& str);
-	// static std::string	toFloat(const std::string& str);
-	// static std::string	toDouble(const std::string& str);
+	static int	iso2yyyymmdd(std::string& s_date);
+	static bool	valid(int date);
+	static int	yyyymmdd2yyyymm(int date);
+	static int	yyyymmdd2dd(int date);
+	static int	getPrevMonth(int month);
 };
 
 #endif

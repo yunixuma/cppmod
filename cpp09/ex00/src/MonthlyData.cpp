@@ -6,21 +6,17 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/06 02:31:38 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/08 09:16:56 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MonthlyData.hpp"
 
-MonthlyData::MonthlyData(const std::string& name, int grade) \
-	: name_(name), grade_(grade) {
+MonthlyData::MonthlyData(int month) \
+	: month_(month) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<MonthlyData> Constructor called (" \
-		<< this->name_ << ")\033[m" << std::endl;
-	if (this->grade_ > 150)
-		throw MonthlyData::GradeTooLowException();
-	else if (this->grade_ < 1)
-		throw MonthlyData::GradeTooHighException();
+		<< this->month_ << ")\033[m" << std::endl;
 }
 
 MonthlyData::MonthlyData(const MonthlyData& src) \
