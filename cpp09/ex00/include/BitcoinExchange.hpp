@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 03:46:01 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/09 11:12:24 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 # include <exception>
 # include <iostream>
 # include <string>
+# include "btc.h"
 # include "MonthlyData.hpp"
-
-# define INVALID_PRICE	-0.01f
 
 class BitcoinExchange
 {
