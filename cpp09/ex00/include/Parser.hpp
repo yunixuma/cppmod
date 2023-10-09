@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 11:34:57 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/09 11:46:53 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "btc.h"
 # include "DateConverter.hpp"
 
-# define DELIM	","
+# define DELIM	','
 
 class Parser
 {
@@ -27,7 +27,7 @@ private:
 	~Parser();
 public:
 	static t_pair	split(std::string& line);
-	static t_pair	split(std::string& line, std::string& delim);
+	static t_pair	split(std::string& line, char delim);
 };
 
 #endif

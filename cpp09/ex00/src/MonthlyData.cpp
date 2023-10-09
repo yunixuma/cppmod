@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 03:56:22 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/09 15:48:01 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ bool	MonthlyData::addData(int day, float price) {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<MonthlyData> addData() called (" \
 		<< this->month_ << day << ")\033[m" << std::endl;
-	std::pair<std::iterator, bool>	ret;
-	ret = daily_price_.insert(std::pair<int, float>::value_type(day, price));
-	if (ret.second == false)
+	// std::pair<std::iterator, bool>	ret;
+	if (daily_price_.insert(std::make_pair(day, price)).second \
+		== false)
 		return (false);
 	return (true);
 }
@@ -61,7 +61,7 @@ float	MonthlyData::getPrice(int day) const {
 		<< this->month_ << day << ")\033[m" << std::endl;
 	float	price = INVALID_PRICE;
 	while (day > 0 && price == INVALID_PRICE) {
-		price = this->daily_data_.find(day)->second;
+		price = this->daily_price_.find(day)->second;
 		day--;
 	}
 	return (price);

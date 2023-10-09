@@ -6,18 +6,21 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 11:35:57 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/09 15:50:20 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.hpp"
 
 t_pair	Parser::split(std::string& line) {
-	return (Parser(line, DELIM));
+	return (Parser::split(line, DELIM));
 }
 
-t_pair	Parser::split(std::string& line, std::string& delim) {
-	std::string	buf_line_new;
+t_pair	Parser::split(std::string& line, char delim) {
+	(void)line;
+	(void)delim;
+	return (std::make_pair(0, 0.0f));
+/*	std::string	buf_line_new;
 	size_t		len_line = buf_line.length();
 	size_t		len_search = s_search.length();
 	size_t 	pos = 0;
@@ -54,5 +57,5 @@ t_pair	Parser::split(std::string& line, std::string& delim) {
 	if (!valid(n_date)) {
 		return (0);
 	}
-	return (n_date);
+	return (n_date);*/
 }

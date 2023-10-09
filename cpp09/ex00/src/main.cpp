@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/06 17:06:17 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/09 11:46:14 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <fstream>
+#include "btc.h"
 #include "BitcoinExchange.hpp"
+#include "Parser.hpp"
 
-相場データファイル読み込み	BitcoinExchange
-計算対象ファイル読み込み	main
-日付変換				DateConverter
-$BTC価格計算			BitcoinExchange
-
+// 相場データファイル読み込み	BitcoinExchange
+// 計算対象ファイル読み込み	main
+// 日付変換				DateConverter
+// $BTC価格計算			BitcoinExchange
 
 int main(int argc, char *argv[])
 {
@@ -70,7 +72,7 @@ int main(int argc, char *argv[])
 		if (!ifs.rdstate())
 			buf_file += "\n";
 	}
-	buf_file = sed_line(buf_file, s_search, s_replace);
+	buf_file = Parser::split(buf_file, '|');
 
 	ofs << buf_file;
 	ifs.close();
