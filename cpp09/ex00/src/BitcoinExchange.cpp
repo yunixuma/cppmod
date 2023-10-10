@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 15:27:19 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/10 18:11:07 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	BitcoinExchange::exchange(int date, float amount) const {
 		std::cout << "No data" << std::endl;
 	else
 		std::cout << amount << " = " << price * amount << std::endl;
+	// throw NotPositiveException();
+	// throw std::invalid_argument("Error: not a positive number.");
 }
 
 float	BitcoinExchange::getPrice(int month, int day) const {
@@ -70,18 +72,19 @@ float	BitcoinExchange::getPrice(int month, int day) const {
 }
 
 // When an exception thrown
-std::string	BitcoinExchange::InvalidFormatException::what(std::string& line) const throw() {
+// const char*	BitcoinExchange::InvalidFormatException::what(void) const throw() {
+const char*	BitcoinExchange::InvalidFormatException::invalid_argument(std::string& line) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
 		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" \
 		<< std::endl;*/
-	return (std::string("Error: bad data => ") + line);
+	return ((std::string("Error: bad data => ") + line).c_str());
 }
 
-std::string	BitcoinExchange::InvalidDateException::what(std::string& s_date) const throw() {
+const char*	BitcoinExchange::InvalidDateException::invalid_argument(std::string& s_date) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
 		<< "]<BitcoinExchange::InvalidDateException> what() called\033[m" \
 		<< std::endl;*/
-	return (std::string("Error: bad data =>) ") + s_date);
+	return ((std::string("Error: bad data =>) ") + s_date).c_str());
 }
 
 const char*	BitcoinExchange::NotPositiveException::what(void) const throw() {

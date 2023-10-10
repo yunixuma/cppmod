@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 15:27:33 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/10 18:08:53 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,24 @@ public:
 	~BitcoinExchange(void);
 	void				exchange(int date, float amount) const;
 	float				getPrice(int month, int day) const;
-	class InvalidFormatException : public std::exception
+	class InvalidFormatException : public std::invalid_argument
 	{
 	public:
-		virtual std::string	what(std::string& line) const throw();
+		// virtual std::string	what(std::string& line) const throw();
+		virtual const char*	invalid_argument(std::string& line) const throw();
 	};
-	class InvalidDateException : public std::exception
+	class InvalidDateException : public std::invalid_argument
 	{
 	public:
-		virtual std::string	what(std::string& s_date) const throw();
+		virtual const char*	invalid_argument(std::string& s_date) const throw();
+		// virtual std::string	what(std::string& s_date) const throw();
 	};
-	class NotPositiveException : public std::exception
+	class NotPositiveException : public std::range_error
 	{
 	public:
 		virtual const char*	what() const throw();
 	};
-	class TooLargeException : public std::exception
+	class TooLargeException : public std::out_of_range
 	{
 	public:
 		virtual const char*	what() const throw();
