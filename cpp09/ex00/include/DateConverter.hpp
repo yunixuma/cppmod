@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 09:29:13 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/12 21:47:46 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define DATE_HIGHER_LIMIT	20380119
 // # define YEAR_LOWER_LIMIT	DATE_LOWER_LIMIT / 10000
 // # define YEAR_HIGHER_LIMIT	DATE_HIGHER_LIMIT / 10000
+# define DATE_INVALID		0
 
 class DateConverter
 {

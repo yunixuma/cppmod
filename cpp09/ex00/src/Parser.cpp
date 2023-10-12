@@ -6,20 +6,30 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 15:50:20 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/12 22:15:27 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.hpp"
 
-t_pair	Parser::split(std::string& line) {
-	return (Parser::split(line, DELIM));
+t_pair	Parser::split2Pair(std::string& line) {
+	return (Parser::split2Pair(line, DELIM));
 }
 
-t_pair	Parser::split(std::string& line, char delim) {
-	(void)line;
+t_pair	Parser::split2Pair(std::string& line, char delim) {
 	(void)delim;
-	return (std::make_pair(0, 0.0f));
+	(void)line;
+	std::string	s_date = "2021-10-12";
+	std::string	s_amount = "3.1415926";
+//	return (std::make_pair(DATE_INVALID, INVALID_AMOUNT));
+	float				amount;
+	std::stringstream	ss;
+	ss << s_amount;
+	ss >> amount;
+	if (ss.fail() || !ss.eof())
+		amount = INVALID_AMOUNT;
+	return (std::make_pair(DateConverter::iso2yyyymmdd(s_date), amount));
+	
 /*	std::string	buf_line_new;
 	size_t		len_line = buf_line.length();
 	size_t		len_search = s_search.length();

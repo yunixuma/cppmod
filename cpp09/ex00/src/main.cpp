@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 11:46:14 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/12 22:15:59 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 // 日付変換				DateConverter
 // $BTC価格計算			BitcoinExchange
 
+int	main(void) {
+	std::string	line = "2021-10-12,0.00000001";
+	t_pair	pair = Parser::split2Pair(line);
+	std::cout << pair.first << ", " << pair.second << std::endl;
+}
+
+/*
 int main(int argc, char *argv[])
 {
 	if (argc != 4) {
@@ -79,3 +86,4 @@ int main(int argc, char *argv[])
 	ofs.close();
 	return (0);
 }
+*/

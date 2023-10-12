@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 15:48:01 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/12 21:44:20 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ float	MonthlyData::getPrice(int day) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<MonthlyData> getPrice() called (" \
 		<< this->month_ << day << ")\033[m" << std::endl;
-	float	price = INVALID_PRICE;
-	while (day > 0 && price == INVALID_PRICE) {
+	float	price = INVALID_AMOUNT;
+	while (day > 0 && price == INVALID_AMOUNT) {
 		price = this->daily_price_.find(day)->second;
 		day--;
 	}

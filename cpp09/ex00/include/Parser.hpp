@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/09 11:46:53 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/12 21:56:56 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ private:
 	Parser();
 	~Parser();
 public:
-	static t_pair	split(std::string& line);
-	static t_pair	split(std::string& line, char delim);
+	static t_pair	split2Pair(std::string& line);
+	static t_pair	split2Pair(std::string& line, char delim);
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/10 18:11:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/12 21:56:12 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	BitcoinExchange::exchange(int date, float amount) const {
 	int		day = DateConverter::yyyymmdd2dd(date);
 	float	price = getPrice(month, day);
 	std::cout << month / 100 << "-" << month % 100 << "-" << day << " => ";
-	if (price == INVALID_PRICE)
+	if (price == INVALID_AMOUNT)
 		std::cout << "No data" << std::endl;
 	else
 		std::cout << amount << " = " << price * amount << std::endl;
@@ -63,8 +63,8 @@ float	BitcoinExchange::getPrice(int month, int day) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<BitcoinExchange> getPrice(" \
 		<< month << ", " << day << ") called\033[m" << std::endl;
-	float	price = INVALID_PRICE;
-	while (month > 0 && price == INVALID_PRICE) {
+	float	price = INVALID_AMOUNT;
+	while (month > 0 && price == INVALID_AMOUNT) {
 		price = this->monthly_data_.find(month)->second.getPrice(day);
 		month = DateConverter::getPrevMonth(month);
 	}
