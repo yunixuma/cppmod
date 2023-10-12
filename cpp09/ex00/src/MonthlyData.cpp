@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/12 21:44:20 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 02:29:01 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,21 @@ MonthlyData::~MonthlyData(void) {
 		<< this->month_ << ")\033[m" << std::endl;
 }
 
+bool	MonthlyData::addData(t_pair& pair) {
+	std::clog << "\033[32;2;3m[" << this \
+		<< "]<MonthlyData> addData() called (" \
+		<< this->month_ << ")\033[m" << std::endl;
+	// std::pair<std::iterator, bool>	ret;
+	int	day = DateConverter::yyyymmdd2dd(pair.first);
+	return (addData(day, pair.second));
+}
+
 bool	MonthlyData::addData(int day, float price) {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<MonthlyData> addData() called (" \
 		<< this->month_ << day << ")\033[m" << std::endl;
 	// std::pair<std::iterator, bool>	ret;
-	if (daily_price_.insert(std::make_pair(day, price)).second \
+	if (daily_price_.insert(std::make_pair<int, float>(day, price)).second \
 		== false)
 		return (false);
 	return (true);
@@ -61,7 +70,10 @@ float	MonthlyData::getPrice(int day) const {
 		<< this->month_ << day << ")\033[m" << std::endl;
 	float	price = INVALID_AMOUNT;
 	while (day > 0 && price == INVALID_AMOUNT) {
-		price = this->daily_price_.find(day)->second;
+		if (this->daily_price_.find(day) != this->daily_price_.end())
+			price = this->daily_price_.find(day)->second;
+		std::clog << this->month_ << "-" << day \
+			<< " -> " << price << std::endl;
 		day--;
 	}
 	return (price);

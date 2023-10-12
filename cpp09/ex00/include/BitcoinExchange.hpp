@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/10 18:08:53 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/13 02:07:30 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # include <iostream>
 # include <string>
 # include <cstring>
-# include "btc.h"
+# include "btc.hpp"
 # include "MonthlyData.hpp"
+# include "Parser.hpp"
 # include "DateConverter.hpp"
 
 class BitcoinExchange
@@ -30,6 +31,7 @@ public:
 	BitcoinExchange(const BitcoinExchange& src);
 	BitcoinExchange&	operator=(const BitcoinExchange& rhs);
 	~BitcoinExchange(void);
+	void				exchange(t_pair& pair) const;
 	void				exchange(int date, float amount) const;
 	float				getPrice(int month, int day) const;
 	class InvalidFormatException : public std::invalid_argument

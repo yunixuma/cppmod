@@ -6,13 +6,11 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 00:55:04 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 02:08:04 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <fstream>
-#include "btc.h"
+#include "btc.hpp"
 #include "BitcoinExchange.hpp"
 #include "Parser.hpp"
 
@@ -30,6 +28,8 @@ int	main(int argc, char *argv[]) {
 		std::cerr << "\033[33mUsage: ./btc <input file> \033[m" << std::endl;
 		return (EINVAL);
 	}
+
+	BitcoinExchange	be(FILEPATH_DATA);
 
 	std::ifstream 	ifs;
 	std::string		filepath = argv[1];
@@ -50,8 +50,9 @@ int	main(int argc, char *argv[]) {
 	}
 
 	while (std::getline (ifs, line)) {
-		t_pair	pair = Parser::split2Pair(line);
-		std::cout << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
+		t_pair	pair = Parser::split2Pair(line, '|');
+		std::cout << "{" << pair.first << "} | {" << pair.second << "}" << std::endl;
+		be.exchange(pair);
 	}
 
 	ifs.close();

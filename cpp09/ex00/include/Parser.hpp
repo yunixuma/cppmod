@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/12 21:56:56 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 01:24:26 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <sstream>
 # include <string>
-# include "btc.h"
+# include "btc.hpp"
 # include "DateConverter.hpp"
 
 # define DELIM	','

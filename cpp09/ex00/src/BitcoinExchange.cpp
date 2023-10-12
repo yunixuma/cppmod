@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/12 21:56:12 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 02:28:00 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,34 @@ BitcoinExchange::BitcoinExchange(const std::string& filepath) \
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<BitcoinExchange> Constructor called" \
 		<< "\033[m" << std::endl;
-	(void)filepath;
+	std::ifstream 	ifs;
+	try {
+		ifs.open(filepath.c_str(), std::ios::in | std::ios::binary);
+		if (ifs) {
+			char	c;
+			ifs.read(&c, 1);
+			ifs.seekg(0, ifs.beg);
+		}
+		if (ifs.fail()) {
+			throw (std::exception());
+		}
+	}
+	catch (const std::exception& e) {
+		std::cerr << "\033[31m!!! Error opening the src. file. !!!\033[m" << std::endl;
+	}
+
+	int	month;
+	std::string	line;
+	while (std::getline (ifs, line)) {
+		t_pair	pair = Parser::split2Pair(line);
+		std::cout << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
+		month = DateConverter::yyyymmdd2yyyymm(pair.first);
+		if (monthly_data_.find(month) == monthly_data_.end())
+			monthly_data_.insert(std::make_pair(month, MonthlyData(month)));
+		monthly_data_.find(month)->second.addData(pair);
+	}
+
+	ifs.close();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) \
@@ -59,14 +86,23 @@ void	BitcoinExchange::exchange(int date, float amount) const {
 	// throw std::invalid_argument("Error: not a positive number.");
 }
 
+void	BitcoinExchange::exchange(t_pair& pair) const {
+	std::clog << "\033[32;2;3m[" << this \
+		<< "]<BitcoinExchange> exchange(" \
+		<< "pair" << ") called\033[m" << std::endl;
+	exchange(pair.first, pair.second);
+}
+
 float	BitcoinExchange::getPrice(int month, int day) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<BitcoinExchange> getPrice(" \
 		<< month << ", " << day << ") called\033[m" << std::endl;
 	float	price = INVALID_AMOUNT;
 	while (month > 0 && price == INVALID_AMOUNT) {
-		price = this->monthly_data_.find(month)->second.getPrice(day);
+		if (this->monthly_data_.find(month) != this->monthly_data_.end())
+			price = this->monthly_data_.find(month)->second.getPrice(day);
 		month = DateConverter::getPrevMonth(month);
+		day = 31;
 	}
 	return (price);
 }
