@@ -6,11 +6,12 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/12 22:15:27 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/12 23:03:52 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Parser.hpp"
+#include <iostream>
 
 t_pair	Parser::split2Pair(std::string& line) {
 	return (Parser::split2Pair(line, DELIM));
@@ -18,9 +19,21 @@ t_pair	Parser::split2Pair(std::string& line) {
 
 t_pair	Parser::split2Pair(std::string& line, char delim) {
 	(void)delim;
-	(void)line;
-	std::string	s_date = "2021-10-12";
-	std::string	s_amount = "3.1415926";
+	std::string	s_date;
+	std::string	s_amount;
+	size_t	left, right;
+	left = line.find_first_not_of(" \t");
+	right = line.find(delim);
+	right = line.find_last_not_of(" \t", right - 1);
+	// std::clog << "(" << left << ", " << right << ")" << std::endl;
+	s_date = line.substr(left, right - left + 1);
+	// std::clog << s_date << std::endl;
+	left = line.find(delim, right + 1);
+	left = line.find_first_not_of(" \t", left + 1);
+	right = line.find_last_not_of(" \t");
+	// std::clog << "(" << left << ", " << right << ")" << std::endl;
+	s_amount = line.substr(left, right - left + 1);
+	// std::clog << s_amount << std::endl;
 //	return (std::make_pair(DATE_INVALID, INVALID_AMOUNT));
 	float				amount;
 	std::stringstream	ss;
