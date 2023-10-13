@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 02:28:00 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 10:26:31 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	BitcoinExchange::exchange(int date, float amount) const {
 	int		month = DateConverter::yyyymmdd2yyyymm(date);
 	int		day = DateConverter::yyyymmdd2dd(date);
 	float	price = getPrice(month, day);
-	std::cout << month / 100 << "-" << month % 100 << "-" << day << " => ";
+	std::cout << DateConverter::yyyymmddOutput(date) << " => ";
 	if (price == INVALID_AMOUNT)
 		std::cout << "No data" << std::endl;
 	else

@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/12 21:47:46 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 10:30:15 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ private:
 	DateConverter();
 	~DateConverter();
 public:
-	static int	iso2yyyymmdd(std::string& s_date);
-	static bool	valid(int date);
-	static int	yyyymmdd2yyyymm(int date);
-	static int	yyyymmdd2dd(int date);
-	static int	getPrevMonth(int month);
+	static int			iso2yyyymmdd(std::string& s_date);
+	static bool			valid(int date);
+	static int			yyyymmdd2yyyymm(int date);
+	static int			yyyymmdd2dd(int date);
+	static int			getPrevMonth(int month);
+	static std::string	yyyymmddOutput(int date);
+
 };
 
 #endif

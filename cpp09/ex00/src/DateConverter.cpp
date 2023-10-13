@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DateConverter.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/08 17:51:48 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/13 10:33:56 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,16 @@ int	DateConverter::getPrevMonth(int month) {
 	if (month * 100 <= DATE_LOWER_LIMIT)
 		return (0);
 	return (month - 89);
+}
+
+std::string	DateConverter::yyyymmddOutput(int date) {
+	std::string			s_date;
+	std::stringstream	ss;
+	ss << date;
+	ss >> s_date;
+	while (s_date.length() < 8)
+		s_date = "0" + s_date;
+	return (s_date.substr(0, 4) \
+		+ "-" + s_date.substr(4, 2) \
+		+ "-" + s_date.substr(6, 2));
 }
