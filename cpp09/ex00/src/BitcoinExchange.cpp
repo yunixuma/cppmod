@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 19:57:11 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/13 20:03:51 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	BitcoinExchange::exchange(t_pair& pair) const {
 	// 	std::cerr << e.what() << std::endl;
 	// }
 	catch (const std::exception& e) {
-		std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
+		std::cerr << "\033[33m" << e.what() << "\033[m" << std::endl;
 	}
 }
 
