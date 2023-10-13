@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 19:58:15 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/13 20:00:44 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ t_pair	Parser::split2Pair(std::string& line, char delim) {
 	ss >> amount;
 	std::clog << s_amount << "\t" << ss.fail() << "\t" << ss.eof() << std::endl;
 	if (ss.fail() || !ss.eof())
-		amount = INVALID_AMOUNT;
+		throw InvalidFormatException();
+		// amount = INVALID_AMOUNT;
 	return (std::make_pair(DateConverter::iso2yyyymmdd(s_date), amount));
 }
 
