@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 02:07:30 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 15:13:17 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,33 @@ class BitcoinExchange
 {
 private:
 	std::map<int, MonthlyData>	monthly_data_;
+	void				addData(std::ifstream& ifs);
+	void				exchange(int date, float amount) const;
 public:
-	BitcoinExchange(const std::string& filepath);
+	BitcoinExchange(void);
+	~BitcoinExchange(void);
 	BitcoinExchange(const BitcoinExchange& src);
 	BitcoinExchange&	operator=(const BitcoinExchange& rhs);
-	~BitcoinExchange(void);
+	void				openData(const std::string& filepath);
 	void				exchange(t_pair& pair) const;
-	void				exchange(int date, float amount) const;
 	float				getPrice(int month, int day) const;
-	class InvalidFormatException : public std::invalid_argument
-	{
-	public:
-		// virtual std::string	what(std::string& line) const throw();
-		virtual const char*	invalid_argument(std::string& line) const throw();
-	};
-	class InvalidDateException : public std::invalid_argument
-	{
-	public:
-		virtual const char*	invalid_argument(std::string& s_date) const throw();
-		// virtual std::string	what(std::string& s_date) const throw();
-	};
-	class NotPositiveException : public std::range_error
+	// class NotPositiveException : public std::range_error
+	class DuplicateDataException : public std::exception
 	{
 	public:
 		virtual const char*	what() const throw();
 	};
-	class TooLargeException : public std::out_of_range
+	class NotPositiveException : public std::exception
 	{
 	public:
 		virtual const char*	what() const throw();
+	};
+	// class TooLargeException : public std::out_of_range
+	class TooLargeException : public std::exception
+	{
+	public:
+		virtual const char*	what() const throw();
+		// virtual const char*	out_of_range() const throw();
 	};
 };
 

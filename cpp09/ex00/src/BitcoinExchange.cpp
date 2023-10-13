@@ -6,45 +6,17 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 10:26:31 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 15:26:24 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(const std::string& filepath) \
+BitcoinExchange::BitcoinExchange(void) \
 	: monthly_data_() {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<BitcoinExchange> Constructor called" \
 		<< "\033[m" << std::endl;
-	std::ifstream 	ifs;
-	try {
-		ifs.open(filepath.c_str(), std::ios::in | std::ios::binary);
-		if (ifs) {
-			char	c;
-			ifs.read(&c, 1);
-			ifs.seekg(0, ifs.beg);
-		}
-		if (ifs.fail()) {
-			throw (std::exception());
-		}
-	}
-	catch (const std::exception& e) {
-		std::cerr << "\033[31m!!! Error opening the src. file. !!!\033[m" << std::endl;
-	}
-
-	int	month;
-	std::string	line;
-	while (std::getline (ifs, line)) {
-		t_pair	pair = Parser::split2Pair(line);
-		std::cout << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
-		month = DateConverter::yyyymmdd2yyyymm(pair.first);
-		if (monthly_data_.find(month) == monthly_data_.end())
-			monthly_data_.insert(std::make_pair(month, MonthlyData(month)));
-		monthly_data_.find(month)->second.addData(pair);
-	}
-
-	ifs.close();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) \
@@ -70,14 +42,95 @@ BitcoinExchange::~BitcoinExchange(void) {
 		<< "]<BitcoinExchange> Destructor called\033[m" << std::endl;
 }
 
+void	BitcoinExchange::openData(const std::string& filepath) {
+// bool	BitcoinExchange::openData(const std::string& filepath) {
+	std::clog << "\033[36;2;3m[" << this \
+		<< "]<BitcoinExchange> openData called" \
+		<< "\033[m" << std::endl;
+	std::ifstream 	ifs;
+	try {
+		ifs.open(filepath.c_str(), std::ios::in | std::ios::binary);
+		if (ifs) {
+			char	c;
+			ifs.read(&c, 1);
+			ifs.seekg(0, ifs.beg);
+		}
+		if (ifs.fail()) {
+			throw (std::exception());
+		}
+	}
+	catch (const std::exception& e) {
+		std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
+		throw (e);
+		// return (false);
+	}
+	
+	try {
+		addData(ifs);
+	}
+	catch (const std::exception& e) {
+		ifs.close();
+		throw (e);
+		// return (false);
+	}
+	ifs.close();
+	// return (status);
+}
+
+void	BitcoinExchange::addData(std::ifstream& ifs) {
+	int			month;
+	char		delim;
+	std::string	line;
+	t_pair		pair;
+
+	std::getline (ifs, line);
+	delim = Parser::searchDelim(line);
+	while (std::getline (ifs, line)) {
+		try {
+			pair = Parser::split2Pair(line, delim);
+		}
+		catch (std::exception& e) {
+			std::cerr << "\033[31m" << e.what() << line << "\033[m" << std::endl;
+			throw (e);
+			// return (false);
+		}
+		if (!DateConverter::valid(pair.first)) {
+			std::cerr << "\033[31m" << "Error: invalid date => " << line << "\033[m" << std::endl;
+			throw (DateConverter::InvalidDateException());
+			// return (false);
+		}
+		// std::clog << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
+		// if (pair.first < DATE_LOWER_LIMIT || DATE_HIGHER_LIMIT < pair.first) {
+		// 	throw DateConverter::InvalidDateException();
+		// 	// std::cerr << "\033[31m!!! Error: Bad date format !!!\033[m" << std::endl;
+		// 	// return (false);
+		// }
+		month = DateConverter::yyyymmdd2yyyymm(pair.first);
+		if (monthly_data_.find(month) == monthly_data_.end())
+			monthly_data_.insert(std::make_pair(month, MonthlyData(month)));
+		if (monthly_data_.find(month)->second.addData(pair) == false) {
+			throw DuplicateDataException();
+			// std::cerr << "\033[31m!!! Error: Bad data format !!!\033[m" << std::endl;
+			// return (false);
+		}
+	}
+	// return (true);
+}
+
 void	BitcoinExchange::exchange(int date, float amount) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<BitcoinExchange> exchange(" \
 		<< date << ", " << amount << ") called\033[m" << std::endl;
+	if (!DateConverter::valid(date))
+		throw std::invalid_argument(std::string("Error: bad input => ") + DateConverter::yyyymmdd2iso(date));
+	else if (amount < 0)
+		throw NotPositiveException();
+	else if (amount > TOO_LARGE_AMOUNT)
+		throw TooLargeException();
 	int		month = DateConverter::yyyymmdd2yyyymm(date);
 	int		day = DateConverter::yyyymmdd2dd(date);
 	float	price = getPrice(month, day);
-	std::cout << DateConverter::yyyymmddOutput(date) << " => ";
+	std::cout << DateConverter::yyyymmdd2iso(date) << " => ";
 	if (price == INVALID_AMOUNT)
 		std::cout << "No data" << std::endl;
 	else
@@ -90,7 +143,15 @@ void	BitcoinExchange::exchange(t_pair& pair) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<BitcoinExchange> exchange(" \
 		<< "pair" << ") called\033[m" << std::endl;
-	exchange(pair.first, pair.second);
+	try {
+		exchange(pair.first, pair.second);
+	}
+	// catch (const std::invalid_argument& e) {
+	// 	std::cerr << e.what() << std::endl;
+	// }
+	catch (const std::exception& e) {
+		std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
+	}
 }
 
 float	BitcoinExchange::getPrice(int month, int day) const {
@@ -108,29 +169,21 @@ float	BitcoinExchange::getPrice(int month, int day) const {
 }
 
 // When an exception thrown
-// const char*	BitcoinExchange::InvalidFormatException::what(void) const throw() {
-const char*	BitcoinExchange::InvalidFormatException::invalid_argument(std::string& line) const throw() {
+const char*	BitcoinExchange::DuplicateDataException::what(void) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
-		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" \
+		<< "]<BitcoinExchange::DuplicateDataException> what() called\033[m" \
 		<< std::endl;*/
-	return ((std::string("Error: bad data => ") + line).c_str());
+	return ("Error: duplicate data");
 }
-
-const char*	BitcoinExchange::InvalidDateException::invalid_argument(std::string& s_date) const throw() {
-/*	std::clog << "\033[35;3m[" << this \
-		<< "]<BitcoinExchange::InvalidDateException> what() called\033[m" \
-		<< std::endl;*/
-	return ((std::string("Error: bad data =>) ") + s_date).c_str());
-}
-
 const char*	BitcoinExchange::NotPositiveException::what(void) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
-		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" \
+		<< "]<BitcoinExchange::NotPositiveException> what() called\033[m" \
 		<< std::endl;*/
 	return ("Error: not a positive number.");
 }
 
 const char*	BitcoinExchange::TooLargeException::what(void) const throw() {
+// const char*	BitcoinExchange::TooLargeException::out_of_range(void) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
 		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" \
 		<< std::endl;*/

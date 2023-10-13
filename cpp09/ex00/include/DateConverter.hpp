@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 10:30:15 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 14:40:23 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <sstream>
 # include <string>
+# include <exception>
 
 # define DATE_LOWER_LIMIT	19700101
 # define DATE_HIGHER_LIMIT	20380119
@@ -33,8 +34,13 @@ public:
 	static int			yyyymmdd2yyyymm(int date);
 	static int			yyyymmdd2dd(int date);
 	static int			getPrevMonth(int month);
-	static std::string	yyyymmddOutput(int date);
-
+	static std::string	yyyymmdd2iso(int date);
+	class InvalidDateException : public std::exception
+	{
+	public:
+		// virtual const char*	invalid_argument(const std::string& s_date) const throw();
+		virtual const char*	what() const throw();
+	};
 };
 
 #endif

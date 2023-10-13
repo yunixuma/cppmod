@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 02:08:04 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 15:14:11 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,33 @@
 // $BTC価格計算			BitcoinExchange
 
 int	main(int argc, char *argv[]) {
+	// Change destination of clog/cerr to /dev/null
+	std::streambuf* strbuf;
+	std::ofstream ofstr("/dev/null");
+	strbuf = std::clog.rdbuf(ofstr.rdbuf());
+	// Restore destination of clog/cerr when debugging
+	if (DEBUG_MODE)
+		std::clog.rdbuf(strbuf);
+
 	std::string	line = "2021-04-10,3.1415926 ";
-	t_pair	pair = Parser::split2Pair(line);
-	std::cout << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
+	t_pair		pair = Parser::split2Pair(line);
+	std::clog << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
 
 	if (argc != 2) {
 		std::cerr << "\033[33mUsage: ./btc <input file> \033[m" << std::endl;
 		return (EINVAL);
 	}
 
-	BitcoinExchange	be(FILEPATH_DATA);
-
+	BitcoinExchange	be;
+	// if (be.openData(FILEPATH_DATA) == false)
+	// 	return (ENOENT);
+	try {
+		be.openData(FILEPATH_DATA);
+	}
+	catch (const std::exception& e) {
+		// std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
+		return (ENOENT);
+	}
 	std::ifstream 	ifs;
 	std::string		filepath = argv[1];
 	try {
@@ -49,9 +65,18 @@ int	main(int argc, char *argv[]) {
 		return (ENOENT);
 	}
 
+	char	delim;
+	std::getline (ifs, line);
+	delim = Parser::searchDelim(line);
 	while (std::getline (ifs, line)) {
-		t_pair	pair = Parser::split2Pair(line, '|');
-		std::cout << "{" << pair.first << "} | {" << pair.second << "}" << std::endl;
+		try {
+			pair = Parser::split2Pair(line, delim);
+		}
+		catch (const std::exception& e) {
+			std::cerr << "\033[31m" << e.what() << line << "\033[m" << std::endl;
+			continue ;
+		}
+		std::clog << "{" << pair.first << "} " << delim << " {" << pair.second << "}" << std::endl;
 		be.exchange(pair);
 	}
 
