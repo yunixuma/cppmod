@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 14:17:06 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/13 19:58:15 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_pair	Parser::split2Pair(std::string& line, char delim) {
 	std::stringstream	ss;
 	ss << s_amount;
 	ss >> amount;
+	std::clog << s_amount << "\t" << ss.fail() << "\t" << ss.eof() << std::endl;
 	if (ss.fail() || !ss.eof())
 		amount = INVALID_AMOUNT;
 	return (std::make_pair(DateConverter::iso2yyyymmdd(s_date), amount));
