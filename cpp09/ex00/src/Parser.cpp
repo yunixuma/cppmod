@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 20:00:44 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/13 20:12:28 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_pair	Parser::split2Pair(std::string& line) {
 }
 
 t_pair	Parser::split2Pair(std::string& line, char delim) {
-	(void)delim;
+	int			date;
 	std::string	s_date;
 	std::string	s_amount;
 	size_t	left, right;
@@ -38,6 +38,9 @@ t_pair	Parser::split2Pair(std::string& line, char delim) {
 	// std::clog << "(" << left << ", " << right << ")" << std::endl;
 	s_date = line.substr(left, right - left + 1);
 	// std::clog << s_date << std::endl;
+	date = DateConverter::iso2yyyymmdd(s_date);
+	if (date == DATE_INVALID)
+		throw DateConverter::InvalidDateException();
 	left = line.find(delim, right + 1);
 	left = line.find_first_not_of(" \t", left + 1);
 	right = line.find_last_not_of(" \t");
@@ -53,7 +56,7 @@ t_pair	Parser::split2Pair(std::string& line, char delim) {
 	if (ss.fail() || !ss.eof())
 		throw InvalidFormatException();
 		// amount = INVALID_AMOUNT;
-	return (std::make_pair(DateConverter::iso2yyyymmdd(s_date), amount));
+	return (std::make_pair(date, amount));
 }
 
 // When an exception thrown
