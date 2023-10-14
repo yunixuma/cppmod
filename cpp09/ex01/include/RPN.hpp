@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 03:38:21 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 03:53:48 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include <string>
 # include <cstring>
 # include <stack>
+
+# ifndef DEBUG_MODE
+#  define DEBUG_MODE	0
+# endif
+
+# define CHRS_NUM		"0123456789"
+# define CHRS_OPER		"+-*/%"
+# define CHRS_SPACE		" \t\n\v\f\r"
 
 class RPN
 {

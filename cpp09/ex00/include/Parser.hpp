@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 14:10:12 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 03:54:58 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "btc.hpp"
 # include "DateConverter.hpp"
 
-# define DELIM	','
-# define DELIMS	",|:;/=-@"
+# define CHR_DELIM	','
+# define CHRS_CHR_DELIM	",|:;/=-@"
 
 class Parser
 {

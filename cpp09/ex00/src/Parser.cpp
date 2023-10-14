@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parser.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 20:12:28 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/15 03:54:58 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 char	Parser::searchDelim(std::string& line) {
 	size_t	pos;
-	pos = line.find_first_of(DELIMS);
+	pos = line.find_first_of(CHRS_CHR_DELIM);
 	if (pos == std::string::npos)
-		return (DELIM);
+		return (CHR_DELIM);
 	return (line[pos]);
 }
 
 t_pair	Parser::split2Pair(std::string& line) {
-	return (Parser::split2Pair(line, DELIM));
+	return (Parser::split2Pair(line, CHR_DELIM));
 }
 
 t_pair	Parser::split2Pair(std::string& line, char delim) {
