@@ -6,17 +6,18 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 15:13:17 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 03:19:02 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BITCOINEXCHANGE_HPP
 # define BITCOINEXCHANGE_HPP
 
-# include <exception>
+# include <map>
 # include <iostream>
 # include <string>
 # include <cstring>
+# include <exception>
 # include "btc.hpp"
 # include "MonthlyData.hpp"
 # include "Parser.hpp"
