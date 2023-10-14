@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 03:45:43 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 03:50:12 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ int	main(int argc, char *argv[]) {
 		std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
 		return (EINVAL);
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
