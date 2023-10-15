@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/15 23:53:45 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/10/16 03:37:55 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,7 @@ test_sample:
 	@echo "\n\033[32;1;3mRegular tests: \033[m"
 	@echo "\n\033[33;42mTest case: sample\033[m"
 	-./$(NAME) ./res/input.txt
+	@echo "\033[2;3mSample tests finished\033[m"
 test_arg:
 	@echo "\n\033[31;1;3mError handling tests for arguments\033[m"
 	@echo "To continue, hit the [Enter] key"
@@ -88,6 +89,7 @@ test_arg:
 	-./$(NAME) "./"
 	@echo "\033[41mTest case: Input file not exists\033[m"
 	-./$(NAME) nonexists.txt
+	@echo "\033[2;3mArgument tests finished\033[m"
 test_except:
 	@echo "\n\033[31;1;3mError handling tests for exceptions\033[m"
 	@echo "To continue, hit the [Enter] key"
@@ -98,17 +100,17 @@ test_except:
 	@echo "\033[41mTest case: Invalid date format\033[m"
 	-cp -r ./res/data_dateformat.csv ./data.csv
 	-./$(NAME) ./res/input.txt
-	@echo "\033[41mTest case: Outdate (before 19700101)\033[m"
+	@echo "\033[41mTest case: Out of range (before 19700101)\033[m"
 	-cp -r ./res/data_toopast.csv ./data.csv
 	-./$(NAME) ./res/input.txt
-	@echo "\033[41mTest case: Outdate (after 20380119)\033[m"
+	@echo "\033[41mTest case: Out of range (after 20380119)\033[m"
 	-cp -r ./res/data_toofuture.csv ./data.csv
 	-./$(NAME) ./res/input.txt
-	@echo "\033[41mTest case: Negative amount\033[m"
+	@echo "\033[41mTest case: Negative price\033[m"
 	-cp -r ./res/data_negative.csv ./data.csv
 	-./$(NAME) ./res/input.txt
-	@echo "\033[41mTest case: No amount\033[m"
-	-cp -r ./res/data_noamount.csv ./data.csv
+	@echo "\033[41mTest case: No price\033[m"
+	-cp -r ./res/data_noprice.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Multiple delimiters\033[m"
 	-cp -r ./res/data_delims.csv ./data.csv
@@ -126,17 +128,18 @@ test_except:
 	-cp -r ./res/data_onlynl.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	-mv ./res/data_original.csv ./data.csv
-	@echo "\033[31;43mTest case: Empty parameter file\033[m"
+	@echo "\033[41mTest case: Empty parameter file\033[m"
 	-./$(NAME) ./res/input_empty.txt
+	@echo "\033[2;3mException tests finished\033[m"
 test_edge: 
 	@echo "\n\033[32;1;3mEdge case tests: \033[m"
 	@echo "To continue, hit the [Enter] key"
 	-@read _
 	@echo "\033[31;43mTest case: Invalid date format\033[m"
 	-./$(NAME) ./res/input_dateformat.txt
-	@echo "\033[31;43mTest case: Outdate (before 19700101)\033[m"
+	@echo "\033[31;43mTest case: Out of range (before 19700101)\033[m"
 	-./$(NAME) ./res/input_toopast.txt
-	@echo "\033[31;43mTest case: Outdate (after 20380119)\033[m"
+	@echo "\033[31;43mTest case: Out of range (after 20380119)\033[m"
 	-./$(NAME) ./res/input_toofuture.txt
 	@echo "\033[31;43mTest case: Not issued yet\033[m"
 	-./$(NAME) ./res/input_notissue.txt
@@ -152,7 +155,9 @@ test_edge:
 	-./$(NAME) ./res/input_emptyparam.txt
 	@echo "\033[31;43mTest case: Only \\\n in parameters\033[m"
 	-./$(NAME) ./res/input_onlynl.txt
-	@echo "\033[2;3mAbnormal tests finished\033[m"
+	@echo "\033[31;43mTest case: Large amounts\033[m"
+	-./$(NAME) ./res/input_large.txt
+	@echo "\033[2;3mEdge tests finished\033[m"
 
 # Recipes
 $(NAME): $(OBJS)

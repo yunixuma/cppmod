@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/15 19:18:44 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/10/16 03:15:34 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ test_sample:
 	-./$(NAME) "7 7 * 7 -"
 	-./$(NAME) "1 2 * 2 / 2 * 2 4 - +"
 	-./$(NAME) "(1 + 1)"
+	@echo "\033[2;3mSample tests finished\033[m"
 test_regular:
 	@echo "\n\033[32;1;3mRegular tests: \033[m"
 	@echo "To continue, hit the [Enter] key"

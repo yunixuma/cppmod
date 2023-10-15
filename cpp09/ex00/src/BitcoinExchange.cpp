@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 23:47:35 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/16 03:39:18 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ const char*	BitcoinExchange::TooLargeException::what(void) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
 		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" \
 		<< std::endl;*/
-	return ("Error: too large a number.");
+	return ("Error: too large number.");
 }
 
 const char*	BitcoinExchange::EmptyDataException::what(void) const throw() {
