@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 19:08:47 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 20:00:50 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	RPN::getResult(void) const {
 		<< "]<RPN> result called" \
 		<< "\033[m" << std::endl;
 	if (vals_.size() > 1)
-		throw SyntaxError();
+		throw NotConcludedException();
 	else if (vals_.size() == 0)
 		throw NoStacksException();
 	return (vals_.top());
@@ -131,4 +131,11 @@ const char*	RPN::NoStacksException::what(void) const throw() {
 		<< "]<RPN::NoStacksException> what() called\033[m" \
 		<< std::endl;*/
 	return ("Error: No input");
+}
+
+const char*	RPN::NotConcludedException::what(void) const throw() {
+/*	std::clog << "\033[35;3m[" << this \
+		<< "]<RPN::NotConcludedException> what() called\033[m" \
+		<< std::endl;*/
+	return ("Error: The expression is not concluded");
 }
