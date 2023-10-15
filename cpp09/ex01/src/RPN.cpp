@@ -6,21 +6,21 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 02:46:05 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 13:13:18 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
 RPN::RPN(void) \
-	: monthly_data_() {
+	: vals_() {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<RPN> Constructor called" \
 		<< "\033[m" << std::endl;
 }
 
 RPN::RPN(const RPN& src) \
-	: monthly_data_(src.monthly_data_) {
+	: vals_(src.vals_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<RPN> Copy constructor called" \
 		<< "\033[m" << std::endl;
@@ -31,9 +31,7 @@ RPN&	RPN::operator=(const RPN& rhs) {
 		<< "]<RPN> Copy assignment operator called" \
 		<< "\033[m" << std::endl;
 	if (this != &rhs)
-	{
-		this->monthly_data_ = rhs.monthly_data_;
-	}
+		this->vals_ = rhs.vals_;
 	return (*this);
 }
 
@@ -42,155 +40,88 @@ RPN::~RPN(void) {
 		<< "]<RPN> Destructor called\033[m" << std::endl;
 }
 
-void	RPN::openData(const std::string& filepath) {
-// bool	RPN::openData(const std::string& filepath) {
+void	RPN::tokenize(std::string::iterator& it) {
 	std::clog << "\033[36;2;3m[" << this \
-		<< "]<RPN> openData called" \
+		<< "]<RPN> tokenize called" \
 		<< "\033[m" << std::endl;
-	std::ifstream 	ifs;
-	try {
-		ifs.open(filepath.c_str(), std::ios::in | std::ios::binary);
-		if (ifs) {
-			char	c;
-			ifs.read(&c, 1);
-			ifs.seekg(0, ifs.beg);
-		}
-		if (ifs.fail()) {
-			throw (std::exception());
-		}
+	if (std::strchr(CHRS_NUM, *it)) {
+		stackVal(*it - '0');
 	}
-	catch (const std::exception& e) {
-		std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
-		throw (e);
-		// return (false);
-	}
-	
-	try {
-		addData(ifs);
-	}
-	catch (const std::exception& e) {
-		ifs.close();
-		throw (e);
-		// return (false);
-	}
-	ifs.close();
-	// return (status);
+	else if (std::strchr(CHRS_OPER, *it))
+		operation(*it);
+	else if (!std::strchr(CHRS_SPACE, *it))
+		throw InvalidTokenError();
 }
 
-void	RPN::addData(std::ifstream& ifs) {
-	int			month;
-	char		delim;
-	std::string	line;
-	t_pair		pair;
-
-	std::getline (ifs, line);
-	delim = Parser::searchDelim(line);
-	while (std::getline (ifs, line)) {
-		try {
-			pair = Parser::split2Pair(line, delim);
-		}
-		catch (std::exception& e) {
-			std::cerr << "\033[31m" << e.what() << line << "\033[m" << std::endl;
-			throw (e);
-			// return (false);
-		}
-		if (!DateConverter::valid(pair.first)) {
-			std::cerr << "\033[31m" << "Error: invalid date => " << line << "\033[m" << std::endl;
-			throw (DateConverter::InvalidDateException());
-			// return (false);
-		}
-		if (pair.second == INVALID_AMOUNT) {
-			std::cerr << "\033[31m" << "Error: invalid price => " << line << "\033[m" << std::endl;
-			throw (Parser::InvalidFormatException());
-			// return (false);
-		}
-		// std::clog << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
-		// if (pair.first < DATE_LOWER_LIMIT || DATE_HIGHER_LIMIT < pair.first) {
-		// 	throw DateConverter::InvalidDateException();
-		// 	// std::cerr << "\033[31m!!! Error: Bad date format !!!\033[m" << std::endl;
-		// 	// return (false);
-		// }
-		month = DateConverter::yyyymmdd2yyyymm(pair.first);
-		if (monthly_data_.find(month) == monthly_data_.end())
-			monthly_data_.insert(std::make_pair(month, MonthlyData(month)));
-		if (monthly_data_.find(month)->second.addData(pair) == false) {
-			throw DuplicateDataException();
-			// std::cerr << "\033[31m!!! Error: Bad data format !!!\033[m" << std::endl;
-			// return (false);
-		}
-	}
-	// return (true);
+void	RPN::stackVal(int val) {
+	std::clog << "\033[36;2;3m[" << this \
+		<< "]<RPN> stackVal called" \
+		<< "\033[m" << std::endl;
+	vals_.push(val);
 }
 
-void	RPN::exchange(int date, float amount) const {
-	std::clog << "\033[32;2;3m[" << this \
-		<< "]<RPN> exchange(" \
-		<< date << ", " << amount << ") called\033[m" << std::endl;
-	if (!DateConverter::valid(date))
-		throw std::invalid_argument(std::string("Error: bad input => ") + DateConverter::yyyymmdd2iso(date));
-	else if (amount < 0)
-		throw NotPositiveException();
-	else if (amount > TOO_LARGE_AMOUNT)
-		throw TooLargeException();
-	int		month = DateConverter::yyyymmdd2yyyymm(date);
-	int		day = DateConverter::yyyymmdd2dd(date);
-	float	price = getPrice(month, day);
-	std::cout << DateConverter::yyyymmdd2iso(date) << " => ";
-	if (price == INVALID_AMOUNT)
-		std::cout << "No data" << std::endl;
-	else
-		std::cout << amount << " = " << price * amount << std::endl;
-	// throw NotPositiveException();
-	// throw std::invalid_argument("Error: not a positive number.");
+void	RPN::operation(char oper) {
+	std::clog << "\033[36;2;3m[" << this \
+		<< "]<RPN> operation called" \
+		<< "\033[m" << std::endl;
+	if (vals_.size() < 2)
+		throw SyntaxError();
+	int	val2 = vals_.top();
+	vals_.pop();
+	int	val1 = vals_.top();
+	vals_.pop();
+	vals_.push(calc(val1, val2, oper));
 }
 
-void	RPN::exchange(t_pair& pair) const {
-	std::clog << "\033[32;2;3m[" << this \
-		<< "]<RPN> exchange(" \
-		<< "pair" << ") called\033[m" << std::endl;
-	try {
-		exchange(pair.first, pair.second);
-	}
-	// catch (const std::invalid_argument& e) {
-	// 	std::cerr << e.what() << std::endl;
-	// }
-	catch (const std::exception& e) {
-		std::cerr << "\033[33m" << e.what() << "\033[m" << std::endl;
+int	RPN::calc(int val1, int val2, char oper) {
+	std::clog << "\033[36;2;3m[" << this \
+		<< "]<RPN> calc called" \
+		<< "\033[m" << std::endl;
+	switch (oper) {
+		case '+':
+			return (val1 + val2);
+		case '-':
+			return (val1 - val2);
+		case '*':
+			return (val1 * val2);
+		case '/':
+			if (val2 == 0)
+				throw DivideByZeroException();
+			return (val1 / val2);
+		default:
+			throw SyntaxError();
 	}
 }
 
-float	RPN::getPrice(int month, int day) const {
-	std::clog << "\033[32;2;3m[" << this \
-		<< "]<RPN> getPrice(" \
-		<< month << ", " << day << ") called\033[m" << std::endl;
-	float	price = INVALID_AMOUNT;
-	while (month > 0 && price == INVALID_AMOUNT) {
-		if (this->monthly_data_.find(month) != this->monthly_data_.end())
-			price = this->monthly_data_.find(month)->second.getPrice(day);
-		month = DateConverter::getPrevMonth(month);
-		day = 31;
-	}
-	return (price);
+int	RPN::getResult(void) const {
+	std::clog << "\033[36;2;3m[" << this \
+		<< "]<RPN> result called" \
+		<< "\033[m" << std::endl;
+	if (vals_.size() > 1)
+		throw SyntaxError();
+	else if (vals_.size() == 0)
+		return (0);
+	return (vals_.top());
 }
 
 // When an exception thrown
-const char*	RPN::DuplicateDataException::what(void) const throw() {
+const char*	RPN::SyntaxError::what(void) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
-		<< "]<RPN::DuplicateDataException> what() called\033[m" \
+		<< "]<RPN::SyntaxError> what() called\033[m" \
 		<< std::endl;*/
-	return ("Error: duplicate data");
-}
-const char*	RPN::NotPositiveException::what(void) const throw() {
-/*	std::clog << "\033[35;3m[" << this \
-		<< "]<RPN::NotPositiveException> what() called\033[m" \
-		<< std::endl;*/
-	return ("Error: not a positive number.");
+	return ("Error: Syntax error");
 }
 
-const char*	RPN::TooLargeException::what(void) const throw() {
-// const char*	RPN::TooLargeException::out_of_range(void) const throw() {
+const char*	RPN::InvalidTokenError::what(void) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
-		<< "]<RPN::InvalidFormatException> what() called\033[m" \
+		<< "]<RPN::InvaldTokenError> what() called\033[m" \
 		<< std::endl;*/
-	return ("Error: too large a number.");
+	return ("Error: Invalid token detected");
+}
+
+const char*	RPN::DivideByZeroException::what(void) const throw() {
+/*	std::clog << "\033[35;3m[" << this \
+		<< "]<RPN::DivideByZeroException> what() called\033[m" \
+		<< std::endl;*/
+	return ("Error: Divide by zero");
 }

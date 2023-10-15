@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 03:50:12 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 12:56:56 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[]) {
 		std::clog.rdbuf(strbuf);
 
 	if (argc != 2) {
-		std::cerr << "\033[33mUsage: ./RPN "<RPN expression>" \033[m" << std::endl;
+		std::cerr << "\033[33mUsage: ./RPN \"<RPN expression>\" \033[m" << std::endl;
 		return (ENOENT);
 	}
 
@@ -33,10 +33,10 @@ int	main(int argc, char *argv[]) {
 	std::string::iterator	ite = formula.end();
 	try {
 		while (it != ite) {
-			rpn.tokenize(*it);
+			rpn.tokenize(it);
 			it++;
 		}
-		std::cout << rpn.result() << std::endl;
+		std::cout << rpn.getResult() << std::endl;
 	}
 	catch (const std::exception& e) {
 		std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
