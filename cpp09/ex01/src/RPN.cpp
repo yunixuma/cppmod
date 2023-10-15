@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 13:13:18 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 19:08:47 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	RPN::getResult(void) const {
 	if (vals_.size() > 1)
 		throw SyntaxError();
 	else if (vals_.size() == 0)
-		return (0);
+		throw NoStacksException();
 	return (vals_.top());
 }
 
@@ -124,4 +124,11 @@ const char*	RPN::DivideByZeroException::what(void) const throw() {
 		<< "]<RPN::DivideByZeroException> what() called\033[m" \
 		<< std::endl;*/
 	return ("Error: Divide by zero");
+}
+
+const char*	RPN::NoStacksException::what(void) const throw() {
+/*	std::clog << "\033[35;3m[" << this \
+		<< "]<RPN::NoStacksException> what() called\033[m" \
+		<< std::endl;*/
+	return ("Error: No input");
 }

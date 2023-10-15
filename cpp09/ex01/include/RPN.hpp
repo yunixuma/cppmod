@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 13:10:19 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 19:07:51 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ public:
 		virtual const char*	what() const throw();
 	};
 	class DivideByZeroException : public std::exception
+	{
+	public:
+		virtual const char*	what() const throw();
+	};
+	class NoStacksException : public std::exception
 	{
 	public:
 		virtual const char*	what() const throw();
