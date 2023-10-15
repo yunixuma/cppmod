@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/15 21:11:02 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/10/15 21:57:12 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ test: debug test_sample test_arg test_except test_edge
 test_sample:
 	@echo "\n\033[32;1;3mRegular tests: \033[m"
 	@echo "\n\033[33;42mTest case: sample\033[m"
-	-./$(NAME) ./files/input.txt
+	-./$(NAME) ./res/input.txt
 test_arg:
 	@echo "\n\033[31;1;3mError handling tests for arguments\033[m"
 	@echo "To continue, hit the [Enter] key"
@@ -81,7 +81,7 @@ test_arg:
 	@echo "\033[41mTest case: No arguments\033[m"
 	-./$(NAME)
 	@echo "\033[41mTest case: Too many arguments\033[m"
-	-./$(NAME) ./files/input.txt ./files/input.txt
+	-./$(NAME) ./res/input.txt ./res/input.txt
 	@echo "\033[41mTest case: Empty string\033[m"
 	-./$(NAME) ""
 	@echo "\033[41mTest case: Directory\033[m"
@@ -93,60 +93,60 @@ test_except:
 	@echo "To continue, hit the [Enter] key"
 	-@read _
 	@echo "\033[41mTest case: Data file not exists\033[m"
-	-mv ./files/data.csv ./files/data_original.csv
+	-mv ./data.csv ./res/data_original.csv
 	-./$(NAME)
 	@echo "\033[41mTest case: Invalid date format\033[m"
-	-cp -r ./files/data_dateformat.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
+	-cp -r ./res/data_dateformat.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Outdate (before 19700101)\033[m"
-	-cp -r ./files/data_toopast.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
+	-cp -r ./res/data_toopast.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Outdate (after 20380119)\033[m"
-	-cp -r ./files/data_toofuture.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
+	-cp -r ./res/data_toofuture.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Negative amount\033[m"
-	-cp -r ./files/data_negative.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
+	-cp -r ./res/data_negative.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: No amount\033[m"
-	-cp -r ./files/data_noamount.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
+	-cp -r ./res/data_noamount.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Multiple delimiters\033[m"
-	-cp -r ./files/data_delims.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
+	-cp -r ./res/data_delims.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Empty line contains in data\033[m"
-	-cp -r ./files/data_emptyline.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
+	-cp -r ./res/data_emptyline.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: No data\033[m"
-	-cp -r ./files/data_emptydata.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
+	-cp -r ./res/data_emptydata.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Empty data file\033[m"
-	-cp -r ./files/data_empty.csv ./files/data.csv
-	-./$(NAME) ./files/input.txt
-	-mv ./files/data_original.csv ./files/data.csv
+	-cp -r ./res/data_empty.csv ./res/data.csv
+	-./$(NAME) ./res/input.txt
+	-mv ./res/data_original.csv ./data.csv
 test_edge: 
 	@echo "\n\033[32;1;3mEdge case tests: \033[m"
 	@echo "To continue, hit the [Enter] key"
 	-@read _
 	@echo "\033[31;43mTest case: Invalid date format\033[m"
-	-./$(NAME) ./files/input_dateformat.txt
+	-./$(NAME) ./res/input_dateformat.txt
 	@echo "\033[31;43mTest case: Outdate (before 19700101)\033[m"
-	-./$(NAME) ./files/input_toopast.txt
+	-./$(NAME) ./res/input_toopast.txt
 	@echo "\033[31;43mTest case: Outdate (after 20380119)\033[m"
-	-./$(NAME) ./files/input_toofuture.txt
+	-./$(NAME) ./res/input_toofuture.txt
 	@echo "\033[31;43mTest case: Not issued yet\033[m"
-	-./$(NAME) ./files/input_notissue.txt
+	-./$(NAME) ./res/input_notissue.txt
 	@echo "\033[31;43mTest case: Negative amount\033[m"
-	-./$(NAME) ./files/input_negative.txt
+	-./$(NAME) ./res/input_negative.txt
 	@echo "\033[31;43mTest case: No amount\033[m"
-	-./$(NAME) ./files/input_noamount.txt
+	-./$(NAME) ./res/input_noamount.txt
 	@echo "\033[31;43mTest case: Multiple delimiters\033[m"
-	-./$(NAME) ./files/input_delims.txt
+	-./$(NAME) ./res/input_delims.txt
 	@echo "\033[31;43mTest case: Empty line contains in parameters\033[m"
-	-./$(NAME) ./files/input_emptyline.txt
+	-./$(NAME) ./res/input_emptyline.txt
 	@echo "\033[31;43mTest case: No parameters\033[m"
-	-./$(NAME) ./files/input_emptyparam.txt
+	-./$(NAME) ./res/input_emptyparam.txt
 	@echo "\033[31;43mTest case: Empty parameter file\033[m"
-	-./$(NAME) ./files/input_empty.txt
+	-./$(NAME) ./res/input_empty.txt
 	@echo "\033[2;3mAbnormal tests finished\033[m"
 
 # Recipes
