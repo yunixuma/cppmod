@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/15 17:17:34 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/10/15 21:11:02 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ re: fclean all
 
 # Additional targets
 debug: fclean all
-test: re test_sample test_arg test_except test_edge
+test: debug test_sample test_arg test_except test_edge
 test_sample:
 	@echo "\n\033[32;1;3mRegular tests: \033[m"
 	@echo "\n\033[33;42mTest case: sample\033[m"
@@ -102,7 +102,7 @@ test_except:
 	-cp -r ./files/data_toopast.csv ./files/data.csv
 	-./$(NAME) ./files/input.txt
 	@echo "\033[41mTest case: Outdate (after 20380119)\033[m"
-	-cp -r ./files/data_future.csv ./files/data.csv
+	-cp -r ./files/data_toofuture.csv ./files/data.csv
 	-./$(NAME) ./files/input.txt
 	@echo "\033[41mTest case: Negative amount\033[m"
 	-cp -r ./files/data_negative.csv ./files/data.csv
@@ -113,6 +113,16 @@ test_except:
 	@echo "\033[41mTest case: Multiple delimiters\033[m"
 	-cp -r ./files/data_delims.csv ./files/data.csv
 	-./$(NAME) ./files/input.txt
+	@echo "\033[41mTest case: Empty line contains in data\033[m"
+	-cp -r ./files/data_emptyline.csv ./files/data.csv
+	-./$(NAME) ./files/input.txt
+	@echo "\033[41mTest case: No data\033[m"
+	-cp -r ./files/data_emptydata.csv ./files/data.csv
+	-./$(NAME) ./files/input.txt
+	@echo "\033[41mTest case: Empty data file\033[m"
+	-cp -r ./files/data_empty.csv ./files/data.csv
+	-./$(NAME) ./files/input.txt
+	-mv ./files/data_original.csv ./files/data.csv
 test_edge: 
 	@echo "\n\033[32;1;3mEdge case tests: \033[m"
 	@echo "To continue, hit the [Enter] key"
@@ -131,6 +141,12 @@ test_edge:
 	-./$(NAME) ./files/input_noamount.txt
 	@echo "\033[31;43mTest case: Multiple delimiters\033[m"
 	-./$(NAME) ./files/input_delims.txt
+	@echo "\033[31;43mTest case: Empty line contains in parameters\033[m"
+	-./$(NAME) ./files/input_emptyline.txt
+	@echo "\033[31;43mTest case: No parameters\033[m"
+	-./$(NAME) ./files/input_emptyparam.txt
+	@echo "\033[31;43mTest case: Empty parameter file\033[m"
+	-./$(NAME) ./files/input_empty.txt
 	@echo "\033[2;3mAbnormal tests finished\033[m"
 
 # Recipes
