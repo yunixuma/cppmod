@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 22:13:28 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 23:47:35 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	BitcoinExchange::openData(const std::string& filepath) {
 		}
 	}
 	catch (const std::exception& e) {
-		std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
+		// std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
+		std::cerr << "\033[31m!!! Error occurs while opening the data file. !!!\033[m" << std::endl;
 		throw (e);
 		// return (false);
 	}
@@ -70,6 +71,8 @@ void	BitcoinExchange::openData(const std::string& filepath) {
 	}
 	catch (const std::exception& e) {
 		ifs.close();
+		if (e.what() != NULL)
+			std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
 		throw (e);
 		// return (false);
 	}
@@ -91,7 +94,7 @@ void	BitcoinExchange::addData(std::ifstream& ifs) {
 		}
 		catch (std::exception& e) {
 			std::cerr << "\033[31m" << e.what() << line << "\033[m" << std::endl;
-			throw (e);
+			throw OtherException();
 			// return (false);
 		}
 		if (!DateConverter::valid(pair.first)) {
@@ -101,7 +104,7 @@ void	BitcoinExchange::addData(std::ifstream& ifs) {
 		}
 		if (pair.second < 0) {
 			std::cerr << "\033[31m" << "Error: invalid price => " << line << "\033[m" << std::endl;
-			throw (Parser::InvalidFormatException());
+			throw (OtherException());
 			// return (false);
 		}
 		// std::clog << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
@@ -119,6 +122,8 @@ void	BitcoinExchange::addData(std::ifstream& ifs) {
 			// return (false);
 		}
 	}
+	if (this->monthly_data_.empty())
+		throw EmptyDataException();
 	// return (true);
 }
 
@@ -193,4 +198,18 @@ const char*	BitcoinExchange::TooLargeException::what(void) const throw() {
 		<< "]<BitcoinExchange::InvalidFormatException> what() called\033[m" \
 		<< std::endl;*/
 	return ("Error: too large a number.");
+}
+
+const char*	BitcoinExchange::EmptyDataException::what(void) const throw() {
+/*	std::clog << "\033[35;3m[" << this \
+		<< "]<BitcoinExchange::EmptyDataException> what() called\033[m" \
+		<< std::endl;*/
+	return ("Error: No price data.");
+}
+
+const char*	BitcoinExchange::OtherException::what(void) const throw() {
+/*	std::clog << "\033[35;3m[" << this \
+		<< "]<BitcoinExchange::OtherException> what() called\033[m" \
+		<< std::endl;*/
+	return (NULL);
 }

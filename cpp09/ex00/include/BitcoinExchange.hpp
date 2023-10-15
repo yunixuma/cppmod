@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 03:19:02 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 23:41:22 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ public:
 	};
 	// class TooLargeException : public std::out_of_range
 	class TooLargeException : public std::exception
+	{
+	public:
+		virtual const char*	what() const throw();
+		// virtual const char*	out_of_range() const throw();
+	};
+	class EmptyDataException : public std::exception
+	{
+	public:
+		virtual const char*	what() const throw();
+		// virtual const char*	out_of_range() const throw();
+	};
+	class OtherException : public std::exception
 	{
 	public:
 		virtual const char*	what() const throw();

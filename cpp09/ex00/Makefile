@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/15 22:04:39 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/10/15 23:53:45 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,7 +122,12 @@ test_except:
 	@echo "\033[41mTest case: Empty data file\033[m"
 	-cp -r ./res/data_empty.csv ./data.csv
 	-./$(NAME) ./res/input.txt
+	@echo "\033[41mTest case: Only \\\n in data file\033[m"
+	-cp -r ./res/data_onlynl.csv ./data.csv
+	-./$(NAME) ./res/input.txt
 	-mv ./res/data_original.csv ./data.csv
+	@echo "\033[31;43mTest case: Empty parameter file\033[m"
+	-./$(NAME) ./res/input_empty.txt
 test_edge: 
 	@echo "\n\033[32;1;3mEdge case tests: \033[m"
 	@echo "To continue, hit the [Enter] key"
@@ -145,8 +150,8 @@ test_edge:
 	-./$(NAME) ./res/input_emptyline.txt
 	@echo "\033[31;43mTest case: No parameters\033[m"
 	-./$(NAME) ./res/input_emptyparam.txt
-	@echo "\033[31;43mTest case: Empty parameter file\033[m"
-	-./$(NAME) ./res/input_empty.txt
+	@echo "\033[31;43mTest case: Only \\\n in parameters\033[m"
+	-./$(NAME) ./res/input_onlynl.txt
 	@echo "\033[2;3mAbnormal tests finished\033[m"
 
 # Recipes
