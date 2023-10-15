@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 03:54:58 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 23:17:34 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,14 @@ t_pair	Parser::split2Pair(std::string& line, char delim) {
 		throw DateConverter::InvalidDateException();
 	left = line.find(delim, right + 1);
 	left = line.find_first_not_of(" \t", left + 1);
+	// std::clog << "(left, length) = (" << left << ", " << line.length() << ")" << std::endl;
+	if (left == std::string::npos)
+		throw InvalidFormatException();
+	// if (left >= line.length() - 1)
+	// 	throw InvalidFormatException();
 	right = line.find_last_not_of(" \t");
-	// std::clog << "(" << left << ", " << right << ")" << std::endl;
+	// if (left > right)
+	// 	throw InvalidFormatException();
 	s_amount = line.substr(left, right - left + 1);
 	// std::clog << s_amount << std::endl;
 //	return (std::make_pair(DATE_INVALID, INVALID_AMOUNT));

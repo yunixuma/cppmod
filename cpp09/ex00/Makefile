@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/15 21:57:12 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/10/15 22:04:39 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,31 +96,31 @@ test_except:
 	-mv ./data.csv ./res/data_original.csv
 	-./$(NAME)
 	@echo "\033[41mTest case: Invalid date format\033[m"
-	-cp -r ./res/data_dateformat.csv ./res/data.csv
+	-cp -r ./res/data_dateformat.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Outdate (before 19700101)\033[m"
-	-cp -r ./res/data_toopast.csv ./res/data.csv
+	-cp -r ./res/data_toopast.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Outdate (after 20380119)\033[m"
-	-cp -r ./res/data_toofuture.csv ./res/data.csv
+	-cp -r ./res/data_toofuture.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Negative amount\033[m"
-	-cp -r ./res/data_negative.csv ./res/data.csv
+	-cp -r ./res/data_negative.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: No amount\033[m"
-	-cp -r ./res/data_noamount.csv ./res/data.csv
+	-cp -r ./res/data_noamount.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Multiple delimiters\033[m"
-	-cp -r ./res/data_delims.csv ./res/data.csv
+	-cp -r ./res/data_delims.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Empty line contains in data\033[m"
-	-cp -r ./res/data_emptyline.csv ./res/data.csv
+	-cp -r ./res/data_emptyline.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: No data\033[m"
-	-cp -r ./res/data_emptydata.csv ./res/data.csv
+	-cp -r ./res/data_emptydata.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	@echo "\033[41mTest case: Empty data file\033[m"
-	-cp -r ./res/data_empty.csv ./res/data.csv
+	-cp -r ./res/data_empty.csv ./data.csv
 	-./$(NAME) ./res/input.txt
 	-mv ./res/data_original.csv ./data.csv
 test_edge: 

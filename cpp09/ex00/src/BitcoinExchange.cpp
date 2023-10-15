@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 20:03:51 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/15 22:13:28 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	BitcoinExchange::addData(std::ifstream& ifs) {
 			throw (DateConverter::InvalidDateException());
 			// return (false);
 		}
-		if (pair.second == INVALID_AMOUNT) {
+		if (pair.second < 0) {
 			std::cerr << "\033[31m" << "Error: invalid price => " << line << "\033[m" << std::endl;
 			throw (Parser::InvalidFormatException());
 			// return (false);

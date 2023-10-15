@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 03:47:26 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/15 22:05:18 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char *argv[]) {
 		}
 	}
 	catch (const std::exception& e) {
-		std::cerr << "\033[31m!!! Error opening the src. file. !!!\033[m" << std::endl;
+		std::cerr << "\033[31m!!! Error occurs while opening the param. file. !!!\033[m" << std::endl;
 		return (ENOENT);
 	}
 
