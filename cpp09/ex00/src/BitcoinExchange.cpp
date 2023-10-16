@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/16 10:53:40 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/16 15:27:36 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,7 @@ const char*	BitcoinExchange::EmptyDataException::what(void) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
 		<< "]<BitcoinExchange::EmptyDataException> what() called\033[m" \
 		<< std::endl;*/
-	return ("Error: No price data.");
+	return ("Error: no price data.");
 }
 
 const char*	BitcoinExchange::OtherException::what(void) const throw() {
