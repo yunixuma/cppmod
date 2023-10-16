@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/16 15:27:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/16 17:03:06 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	BitcoinExchange::addData(std::ifstream& ifs) {
 			throw (DateConverter::InvalidDateException());
 			// return (false);
 		}
-		if (pair.second < 0) {
+		if (pair.second < LOWER_LIMIT_AMOUNT) {
 			std::cout << "\033[31m" << "Error: invalid price => " << line << "\033[m" << std::endl;
 			throw (OtherException());
 			// return (false);
@@ -134,9 +134,9 @@ void	BitcoinExchange::exchange(int date, float amount) const {
 		<< date << ", " << amount << ") called\033[m" << std::endl;
 	if (!DateConverter::valid(date))
 		throw std::invalid_argument(std::string("Error: bad input => ") + DateConverter::yyyymmdd2iso(date));
-	else if (amount < 0)
+	else if (amount < LOWER_LIMIT_AMOUNT)
 		throw NotPositiveException();
-	else if (amount > TOO_LARGE_AMOUNT)
+	else if (amount > HIGHER_LIMIT_AMOUNT)
 		throw TooLargeException();
 	int		month = DateConverter::yyyymmdd2yyyymm(date);
 	int		day = DateConverter::yyyymmdd2dd(date);

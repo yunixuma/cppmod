@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/16 10:50:22 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/16 17:06:36 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[]) {
 		std::clog.rdbuf(strbuf);
 
 	if (argc != 2) {
-		std::cerr << "\033[33mUsage: ./RPN \"<RPN expression>\" \033[m" << std::endl;
+		std::cout << "\033[33mUsage: ./RPN \"<RPN expression>\" \033[m" << std::endl;
 		return (ENOENT);
 	}
 
