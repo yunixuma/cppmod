@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/16 03:39:18 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/16 10:53:40 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ void	BitcoinExchange::openData(const std::string& filepath) {
 		}
 	}
 	catch (const std::exception& e) {
-		// std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
-		std::cerr << "\033[31m!!! Error occurs while opening the data file. !!!\033[m" << std::endl;
+		// std::cout << "\033[31m" << e.what() << "\033[m" << std::endl;
+		// std::cout << "\033[31m!!! Error occurs while opening the data file. !!!\033[m" << std::endl;
+		std::cout << "\033[31mError: could not open file.\033[m" << std::endl;
 		throw (e);
 		// return (false);
 	}
@@ -72,7 +73,7 @@ void	BitcoinExchange::openData(const std::string& filepath) {
 	catch (const std::exception& e) {
 		ifs.close();
 		if (e.what() != NULL)
-			std::cerr << "\033[31m" << e.what() << "\033[m" << std::endl;
+			std::cout << "\033[31m" << e.what() << "\033[m" << std::endl;
 		throw (e);
 		// return (false);
 	}
@@ -93,24 +94,24 @@ void	BitcoinExchange::addData(std::ifstream& ifs) {
 			pair = Parser::split2Pair(line, delim);
 		}
 		catch (std::exception& e) {
-			std::cerr << "\033[31m" << e.what() << line << "\033[m" << std::endl;
+			std::cout << "\033[31m" << e.what() << line << "\033[m" << std::endl;
 			throw OtherException();
 			// return (false);
 		}
 		if (!DateConverter::valid(pair.first)) {
-			std::cerr << "\033[31m" << "Error: invalid date => " << line << "\033[m" << std::endl;
+			std::cout << "\033[31m" << "Error: invalid date => " << line << "\033[m" << std::endl;
 			throw (DateConverter::InvalidDateException());
 			// return (false);
 		}
 		if (pair.second < 0) {
-			std::cerr << "\033[31m" << "Error: invalid price => " << line << "\033[m" << std::endl;
+			std::cout << "\033[31m" << "Error: invalid price => " << line << "\033[m" << std::endl;
 			throw (OtherException());
 			// return (false);
 		}
 		// std::clog << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
 		// if (pair.first < DATE_LOWER_LIMIT || DATE_HIGHER_LIMIT < pair.first) {
 		// 	throw DateConverter::InvalidDateException();
-		// 	// std::cerr << "\033[31m!!! Error: Bad date format !!!\033[m" << std::endl;
+		// 	// std::cout << "\033[31m!!! Error: Bad date format !!!\033[m" << std::endl;
 		// 	// return (false);
 		// }
 		month = DateConverter::yyyymmdd2yyyymm(pair.first);
@@ -118,7 +119,7 @@ void	BitcoinExchange::addData(std::ifstream& ifs) {
 			monthly_data_.insert(std::make_pair(month, MonthlyData(month)));
 		if (monthly_data_.find(month)->second.addData(pair) == false) {
 			throw DuplicateDataException();
-			// std::cerr << "\033[31m!!! Error: Bad data format !!!\033[m" << std::endl;
+			// std::cout << "\033[31m!!! Error: Bad data format !!!\033[m" << std::endl;
 			// return (false);
 		}
 	}
@@ -157,10 +158,10 @@ void	BitcoinExchange::exchange(t_pair& pair) const {
 		exchange(pair.first, pair.second);
 	}
 	// catch (const std::invalid_argument& e) {
-	// 	std::cerr << e.what() << std::endl;
+	// 	std::cout << e.what() << std::endl;
 	// }
 	catch (const std::exception& e) {
-		std::cerr << "\033[33m" << e.what() << "\033[m" << std::endl;
+		std::cout << "\033[33m" << e.what() << "\033[m" << std::endl;
 	}
 }
 
