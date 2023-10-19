@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/20 04:21:42 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/20 06:12:50 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ std::vector<int>	PmergeMe::list2Vector(const std::list<int>& lst) {
 	return (vec);
 }
 
-float	PmergeMe::sort(std::list<int>& lst) {
+clock_t	PmergeMe::sort(std::list<int>& lst) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
 	std::clog << &lst << "\t<" << typeid(lst).name() \
@@ -87,19 +87,25 @@ float	PmergeMe::sort(std::list<int>& lst) {
 	clock_t	start = clock();
 	int		tmp = 0;
 	while (tmp >= 0)
-		tmp++;
+		tmp += 8;
+// https://cpprefjp.github.io/reference/algorithm/iter_swap.html
+// https://cpprefjp.github.io/reference/list/list/insert.html
 	clock_t	end = clock();
-	std::clog << start << "\t" << end << "\t" \
-		<< difftime(end, start) << std::endl;
-	return (0.0f);
+	return (difftime(end, start));
 }
 
-float	PmergeMe::sort(std::vector<int>& vec) {
+clock_t	PmergeMe::sort(std::vector<int>& vec) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
 	std::clog << &vec << "\t<" << typeid(vec).name() \
 		<< ">\033[m" << std::endl;
-	return (0.0f);
+	clock_t	start = clock();
+	int		tmp = 0;
+	while (tmp >= 0)
+		tmp += 13;
+// https://cpprefjp.github.io/reference/vector/vector/insert.html
+	clock_t	end = clock();
+	return (difftime(end, start));
 }
 
 // When an exception thrown

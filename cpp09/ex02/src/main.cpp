@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/20 03:54:32 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/20 04:48:52 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@ int	main(int argc, char *argv[]) {
 	printList(lst);
 	std::cout << "Time to process a range of " \
 		<< lst.size() << " elements with std::list : " \
-		<< time_lst << " us" << std::endl;
+		<< time_lst << " clocks" << std::endl;
 
 	time_vec = pme.sort(vec);
 
 	std::cout << "Time to process a range of " \
 		<< vec.size() << " elements with std::vector : " \
-		<< time_vec << " us" << std::endl;
-
+		<< time_vec << " clocks" << std::endl;
+	std::clog << "CLOCKS_PER_SEC: " << CLOCKS_PER_SEC << std::endl;
 	// try {
 	// 	while (it != ite) {
 	// 		pme.tokenize(it);
