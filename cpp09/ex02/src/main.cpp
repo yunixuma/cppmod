@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/20 04:48:52 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/21 07:02:50 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@
 # ifndef DEBUG_MODE
 #  define DEBUG_MODE	0
 # endif
+# define SIZE_PRINT		16
 
-static void	printList(std::list<int> lst) {
-	std::list<int>::iterator	it = lst.begin();
-	size_t						size = lst.size();
-	size_t						i = 1;
+template <typename T>
+void	printList(T& lst) {
+	typename T::iterator	it = lst.begin();
+	size_t					size = lst.size();
+	size_t					i = 1;
 
 	std::clog << "size: " << size << std::endl;
-	if (size > 5)
-		size = 5;
+	if (size > SIZE_PRINT)
+		size = SIZE_PRINT;
 	while (i++ < size) {
 		std::cout << *it << " ";
 		it++;
@@ -70,6 +72,8 @@ int	main(int argc, char *argv[]) {
 
 	std::cout << "Before: ";
 	printList(lst);
+	std::cout << "Before: ";
+	printList(vec);
 
 	time_lst = pme.sort(lst);
 
@@ -81,6 +85,8 @@ int	main(int argc, char *argv[]) {
 
 	time_vec = pme.sort(vec);
 
+	std::cout << "After: ";
+	printList(vec);
 	std::cout << "Time to process a range of " \
 		<< vec.size() << " elements with std::vector : " \
 		<< time_vec << " clocks" << std::endl;
