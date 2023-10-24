@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/21 09:46:24 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/21 16:05:29 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ clock_t	PmergeMe::sort(std::list<int>& lst) {
 	std::clog << "it1: " << *it1 << std::endl;
 	std::clog << "it2: " << *it2 << std::endl;
 	std::clog << "it3: " << *it3 << std::endl;
-	lst.insert(it3, it2, it1);
+	// lst.insert(it3, it2, it1);
 	std::clog << "it1: " << *it1 << std::endl;
 	std::clog << "it2: " << *it2 << std::endl;
 	std::clog << "it3: " << *it3 << std::endl;
@@ -118,6 +118,7 @@ void	PmergeMe::move(std::vector<int>& vec, \
 	std::clog << "vec      \t[" << &vec << "]" <<std::endl;
 	std::clog << "first    \t[" << &first << "] : [" << &(*first) << "] " << *first <<std::endl;
 	std::clog << "last     \t[" << &last << "] : [" << &(*last) << "] " << *last <<std::endl;
+	std::clog << "pos     \t[" << &pos << "] : [" << &(*pos) << "] " << *pos <<std::endl;
 	std::clog << "tmp      \t[" << &tmp << "]" <<std::endl;
 	std::clog << "tmp_begin\t[" << &tmp_begin << "] : [" << &(*tmp_begin) << "]" << *tmp_begin <<std::endl;
 	std::clog << "tmp_end  \t[" << &tmp_end << "]" <<std::endl;
@@ -129,6 +130,7 @@ void	PmergeMe::move(std::vector<int>& vec, \
 	vec.insert(pos, tmp_begin, tmp_end);
 	std::clog << "after insert" << std::endl;
 	printList(vec);
+	(void)pos;
 	// pos = last;
 	vec.erase(copy_first, copy_last);
 	printList(vec);
@@ -143,11 +145,17 @@ clock_t	PmergeMe::sort(std::vector<int>& vec) {
 // https://cpprefjp.github.io/reference/vector/vector/insert.html
 // https://cpprefjp.github.io/reference/vector/vector/erase.html
 	t_vec_it	it1 = vec.begin();
-	t_vec_it	it2 = it1;
+	t_vec_it	it2 = vec.begin();
 	t_vec_it	it3 = vec.end();
-	std::advance(it1, 2);
-	it3--;
-	vec.insert(it3, it2, it1);
+	std::vector<int>	vec2;
+	vec2.push_back(1);
+	vec.push_back(1);
+	vec.push_back(1);
+
+	// std::advance(it1, 2);
+	// it3--;
+	vec.insert(vec2.end(), vec.begin(), vec.end());
+	exit(0);
 	std::iter_swap(it1, it2);
 	std::advance(it1, 2);
 	std::clog << "it1: " << *it1 << std::endl;
