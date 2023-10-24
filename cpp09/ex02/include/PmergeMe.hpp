@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/24 19:14:21 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/24 22:08:15 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,13 @@ class PmergeMe
 private:
 	// float	time_;
 	void				move(std::vector<int>& vec, \
-	t_vec_it& pos, t_vec_it& first, t_vec_it& last);
+		t_vec_it& pos, t_vec_it& first, t_vec_it& last);
+	void				sort(std::list<int>& lst);
+	void				sort(std::vector<int>& vec);
+	void				sortSub(std::vector<int>& vec, \
+		size_t i, size_t j);
+	void 				sortMerge(std::vector<int>& vec, \
+		size_t l, size_t m, size_t r);
 public:
 	PmergeMe(void);
 	~PmergeMe(void);
@@ -41,8 +47,6 @@ public:
 	PmergeMe&			operator=(const PmergeMe& rhs);
 	std::list<int>		split2List(const std::string& str);
 	std::vector<int>	list2Vector(const std::list<int>& lst);
-	void				sort(std::list<int>& lst);
-	void				sort(std::vector<int>& vec);
 	template <typename T>
 	clock_t				measureTime(T& container) {
 		std::clog << "\033[36;2;3m[" << this \

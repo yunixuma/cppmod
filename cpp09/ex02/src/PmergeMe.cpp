@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/24 19:15:19 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/24 22:08:56 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,14 +133,86 @@ void	PmergeMe::move(std::vector<int>& vec, \
 	printList(vec);
 }
 
+void PmergeMe::sortMerge(std::vector<int>& vec, size_t l, size_t m, size_t r)
+{
+	size_t	i, j, k;
+	size_t	n1 = m - l + 1;
+	size_t	n2 = r - m;
+
+	// Create temp arrays
+	int L[n1], R[n2];
+
+	// Copy data to temp arrays
+	// L[] and R[]
+	for (i = 0; i < n1; i++)
+		L[i] = vec[l + i];
+	for (j = 0; j < n2; j++)
+		R[j] = vec[m + 1 + j];
+
+	// Merge the temp arrays back
+	// into arr[l..r]
+	// Initial index of first subarray
+	i = 0;
+
+	// Initial index of second subarray
+	j = 0;
+
+	// Initial index of merged subarray
+	k = l;
+	while (i < n1 && j < n2) {
+		if (L[i] <= R[j]) {
+			vec[k] = L[i];
+			i++;
+		}
+		else {
+			vec[k] = R[j];
+			j++;
+		}
+		k++;
+	}
+
+	// Copy the remaining elements
+	// of L[], if there are any
+	while (i < n1) {
+		vec[k] = L[i];
+		i++;
+		k++;
+	}
+
+	// Copy the remaining elements of
+	// R[], if there are any
+	while (j < n2) {
+		vec[k] = R[j];
+		j++;
+		k++;
+	}
+}
+
+void	PmergeMe::sortSub(std::vector<int>& vec, size_t l, size_t r)
+{
+	if (l < r) {
+		// Same as (l+r)/2, but avoids
+		// overflow for large l and h
+		int m = l + (r - l) / 2;
+
+		// Sort first and second halves
+		sortSub(vec, l, m);
+		sortSub(vec, m + 1, r);
+
+		sortMerge(vec, l, m, r);
+	}
+}
+
 void	PmergeMe::sort(std::vector<int>& vec) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
 	std::clog << &vec << "\t<" << typeid(vec).name() \
 		<< ">\033[m" << std::endl;
+// https://www.geeksforgeeks.org/c-program-for-merge-sort/
+	sortSub(vec, 0, vec.size() - 1);
 // https://cpprefjp.github.io/reference/vector/vector/insert.html
 // https://cpprefjp.github.io/reference/vector/vector/erase.html
-	t_vec_it	it1 = vec.begin();
+/*	t_vec_it	it1 = vec.begin();
 	t_vec_it	it2 = vec.begin();
 	t_vec_it	it3 = vec.end();
 	std::vector<int>	vec2;
@@ -164,6 +236,7 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 	// int		tmp = 0;
 	// while (tmp >= 0)
 	// 	tmp += 13;
+*/
 }
 
 // When an exception thrown
