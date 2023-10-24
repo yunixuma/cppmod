@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/21 15:36:22 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/24 19:14:21 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,21 @@ public:
 	PmergeMe&			operator=(const PmergeMe& rhs);
 	std::list<int>		split2List(const std::string& str);
 	std::vector<int>	list2Vector(const std::list<int>& lst);
-	clock_t				sort(std::list<int>& lst);
-	clock_t				sort(std::vector<int>& vec);
+	void				sort(std::list<int>& lst);
+	void				sort(std::vector<int>& vec);
 	template <typename T>
-	void	printList(T& lst) {
+	clock_t				measureTime(T& container) {
+		std::clog << "\033[36;2;3m[" << this \
+			<< "]<PmergeMe> mesureTime called" << std::endl;
+		std::clog << &container << "\t<" << typeid(container).name() \
+			<< ">\033[m" << std::endl;
+		clock_t	start = clock();
+		sort(container);
+		clock_t	end = clock();
+		return (difftime(end, start));
+	};
+	template <typename T>
+	void				printList(T& lst) {
 		typename T::iterator	it = lst.begin();
 		size_t					size = lst.size();
 		size_t					i = 1;
@@ -60,7 +71,7 @@ public:
 		else
 			std::cout << *it;
 		std::cout << std::endl;
-	}
+	};
 };
 
 #endif

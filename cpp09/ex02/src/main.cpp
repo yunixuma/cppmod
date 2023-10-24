@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/21 07:02:50 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/24 19:17:05 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,27 @@ int	main(int argc, char *argv[]) {
 		return (ENOENT);
 	}
 
-	PmergeMe			pme;
+	PmergeMe			pmm;
 	std::list<int>		lst;
 	std::vector<int>	vec;
 	float	time_lst;
 	float	time_vec;
 
 	try {
-		lst = pme.split2List(argv[1]);
+		lst = pmm.split2List(argv[1]);
 	}
 	catch (const std::exception& e) {
 		std::cout << "\033[31mError: " << e.what() << "\033[m" << std::endl;
 		return (EINVAL);
 	}
-	vec = pme.list2Vector(lst);
+	vec = pmm.list2Vector(lst);
 
 	std::cout << "Before: ";
 	printList(lst);
 	std::cout << "Before: ";
 	printList(vec);
 
-	time_lst = pme.sort(lst);
+	time_lst = pmm.measureTime(lst);
 
 	std::cout << "After: ";
 	printList(lst);
@@ -83,7 +83,7 @@ int	main(int argc, char *argv[]) {
 		<< lst.size() << " elements with std::list : " \
 		<< time_lst << " clocks" << std::endl;
 
-	time_vec = pme.sort(vec);
+	time_vec = pmm.measureTime(vec);
 
 	std::cout << "After: ";
 	printList(vec);
@@ -93,10 +93,10 @@ int	main(int argc, char *argv[]) {
 	std::clog << "CLOCKS_PER_SEC: " << CLOCKS_PER_SEC << std::endl;
 	// try {
 	// 	while (it != ite) {
-	// 		pme.tokenize(it);
+	// 		pmm.tokenize(it);
 	// 		it++;
 	// 	}
-	// 	std::cout << pme.getResult() << std::endl;
+	// 	std::cout << pmm.getResult() << std::endl;
 	// }
 	// catch (const std::exception& e) {
 	// 	std::cout << "\033[31m" << e.what() << "\033[m" << std::endl;

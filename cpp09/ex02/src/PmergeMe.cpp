@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/21 16:05:29 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/24 19:15:19 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,11 @@ std::vector<int>	PmergeMe::list2Vector(const std::list<int>& lst) {
 	return (vec);
 }
 
-clock_t	PmergeMe::sort(std::list<int>& lst) {
+void	PmergeMe::sort(std::list<int>& lst) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
 	std::clog << &lst << "\t<" << typeid(lst).name() \
 		<< ">\033[m" << std::endl;
-	clock_t	start = clock();
 	t_lst_it	it1 = lst.begin();
 	t_lst_it	it2 = it1++;
 // https://cpprefjp.github.io/reference/algorithm/iter_swap.html
@@ -104,8 +103,6 @@ clock_t	PmergeMe::sort(std::list<int>& lst) {
 	// int		tmp = 0;
 	// while (tmp >= 0)
 	// 	tmp += 8;
-	clock_t	end = clock();
-	return (difftime(end, start));
 }
 
 void	PmergeMe::move(std::vector<int>& vec, \
@@ -136,12 +133,11 @@ void	PmergeMe::move(std::vector<int>& vec, \
 	printList(vec);
 }
 
-clock_t	PmergeMe::sort(std::vector<int>& vec) {
+void	PmergeMe::sort(std::vector<int>& vec) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
 	std::clog << &vec << "\t<" << typeid(vec).name() \
 		<< ">\033[m" << std::endl;
-	clock_t	start = clock();
 // https://cpprefjp.github.io/reference/vector/vector/insert.html
 // https://cpprefjp.github.io/reference/vector/vector/erase.html
 	t_vec_it	it1 = vec.begin();
@@ -155,7 +151,6 @@ clock_t	PmergeMe::sort(std::vector<int>& vec) {
 	// std::advance(it1, 2);
 	// it3--;
 	vec.insert(vec2.end(), vec.begin(), vec.end());
-	exit(0);
 	std::iter_swap(it1, it2);
 	std::advance(it1, 2);
 	std::clog << "it1: " << *it1 << std::endl;
@@ -169,8 +164,6 @@ clock_t	PmergeMe::sort(std::vector<int>& vec) {
 	// int		tmp = 0;
 	// while (tmp >= 0)
 	// 	tmp += 13;
-	clock_t	end = clock();
-	return (difftime(end, start));
 }
 
 // When an exception thrown
