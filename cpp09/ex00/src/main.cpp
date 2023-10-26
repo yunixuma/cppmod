@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/16 10:53:30 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/27 07:19:29 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,13 @@ int	main(int argc, char *argv[]) {
 	if (DEBUG_MODE)
 		std::clog.rdbuf(strbuf);
 
-	std::string	line = "2021-04-10,3.1415926 ";
-	t_pair		pair = Parser::split2Pair(line);
-	std::clog << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
+	// std::string	line = "2021-04-10,3.1415926 ";
+	// t_pair		pair = Parser::split2Pair(line);
+	// std::clog << "{" << pair.first << "}, {" << pair.second << "}" << std::endl;
+	std::string	line;
+	t_pair		pair;
+
+	clock_t	start = clock();
 
 	if (argc != 2) {
 		std::cout << "\033[33mUsage: ./btc <input file> \033[m" << std::endl;
@@ -83,5 +87,8 @@ int	main(int argc, char *argv[]) {
 	}
 
 	ifs.close();
+
+	clock_t	end = clock();
+	std::clog << difftime(end, start) << " clocks" << std::endl;
 	return (0);
 }
