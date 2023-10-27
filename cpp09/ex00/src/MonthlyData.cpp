@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 02:29:01 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/27 07:35:09 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ float	MonthlyData::getPrice(int day) const {
 		<< this->month_ << day << ")\033[m" << std::endl;
 	float	price = INVALID_AMOUNT;
 	while (day > 0 && price == INVALID_AMOUNT) {
-		if (this->daily_price_.find(day) != this->daily_price_.end())
-			price = this->daily_price_.find(day)->second;
+		std::map<int, float>::const_iterator	it = this->daily_price_.find(day);
+		if (it != this->daily_price_.end())
+			price = it->second;
 		std::clog << this->month_ << "-" << day \
 			<< " -> " << price << std::endl;
 		day--;
