@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 14:40:23 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/27 10:49:11 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ private:
 public:
 	static int			iso2yyyymmdd(std::string& s_date);
 	static bool			valid(int date);
-	static int			yyyymmdd2yyyymm(int date);
-	static int			yyyymmdd2dd(int date);
-	static int			getPrevMonth(int month);
+	// static int			yyyymmdd2yyyymm(int date);
+	// static int			yyyymmdd2dd(int date);
+	// static int			getPrevMonth(int month);
 	static std::string	yyyymmdd2iso(int date);
 	class InvalidDateException : public std::exception
 	{

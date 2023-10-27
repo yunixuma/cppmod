@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/13 15:22:33 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/27 10:49:46 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	DateConverter::iso2yyyymmdd(std::string& s_date) {
 	}
 	return (n_date);
 }
-
+/*
 int	DateConverter::yyyymmdd2yyyymm(int date) {
 	return (date / 100);
 }
@@ -43,7 +43,7 @@ int	DateConverter::yyyymmdd2yyyymm(int date) {
 int	DateConverter::yyyymmdd2dd(int date) {
 	return (date % 100);
 }
-
+*/
 bool	DateConverter::valid(int date) {
 	if (date < DATE_LOWER_LIMIT || DATE_HIGHER_LIMIT < date) {
 		return (false);
@@ -77,7 +77,7 @@ bool	DateConverter::valid(int date) {
 	}
 	return (true);
 }
-
+/*
 int	DateConverter::getPrevMonth(int month) {
 	if (month % 100 > 1)
 		return (month - 1);
@@ -85,7 +85,7 @@ int	DateConverter::getPrevMonth(int month) {
 		return (0);
 	return (month - 89);
 }
-
+*/
 std::string	DateConverter::yyyymmdd2iso(int date) {
 	std::string			s_date;
 	std::stringstream	ss;

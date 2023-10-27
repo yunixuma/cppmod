@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/16 17:03:06 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/27 10:46:31 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange(void) \
-	: monthly_data_() {
+	: prices_() {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<BitcoinExchange> Constructor called" \
 		<< "\033[m" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) \
-	: monthly_data_(src.monthly_data_) {
+	: prices_(src.prices_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<BitcoinExchange> Copy constructor called" \
 		<< "\033[m" << std::endl;
@@ -32,7 +32,7 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 		<< "\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		this->monthly_data_ = rhs.monthly_data_;
+		this->prices_ = rhs.prices_;
 	}
 	return (*this);
 }
@@ -82,7 +82,6 @@ void	BitcoinExchange::openData(const std::string& filepath) {
 }
 
 void	BitcoinExchange::addData(std::ifstream& ifs) {
-	int			month;
 	char		delim;
 	std::string	line;
 	t_pair		pair;
@@ -114,16 +113,11 @@ void	BitcoinExchange::addData(std::ifstream& ifs) {
 		// 	// std::cout << "\033[31m!!! Error: Bad date format !!!\033[m" << std::endl;
 		// 	// return (false);
 		// }
-		month = DateConverter::yyyymmdd2yyyymm(pair.first);
-		if (monthly_data_.find(month) == monthly_data_.end())
-			monthly_data_.insert(std::make_pair(month, MonthlyData(month)));
-		if (monthly_data_.find(month)->second.addData(pair) == false) {
+		if (prices_.insert(std::make_pair<int, float>(pair.first, pair.second)).second \
+			== false)
 			throw DuplicateDataException();
-			// std::cout << "\033[31m!!! Error: Bad data format !!!\033[m" << std::endl;
-			// return (false);
-		}
 	}
-	if (this->monthly_data_.empty())
+	if (this->prices_.empty())
 		throw EmptyDataException();
 	// return (true);
 }
@@ -138,9 +132,7 @@ void	BitcoinExchange::exchange(int date, float amount) const {
 		throw NotPositiveException();
 	else if (amount > HIGHER_LIMIT_AMOUNT)
 		throw TooLargeException();
-	int		month = DateConverter::yyyymmdd2yyyymm(date);
-	int		day = DateConverter::yyyymmdd2dd(date);
-	float	price = getPrice(month, day);
+	float	price = getPrice(date);
 	std::cout << DateConverter::yyyymmdd2iso(date) << " => ";
 	if (price == INVALID_AMOUNT)
 		std::cout << "No data" << std::endl;
@@ -165,18 +157,17 @@ void	BitcoinExchange::exchange(t_pair& pair) const {
 	}
 }
 
-float	BitcoinExchange::getPrice(int month, int day) const {
+float	BitcoinExchange::getPrice(int date) const {
 	std::clog << "\033[32;2;3m[" << this \
 		<< "]<BitcoinExchange> getPrice(" \
-		<< month << ", " << day << ") called\033[m" << std::endl;
-	float	price = INVALID_AMOUNT;
-	while (month > 0 && price == INVALID_AMOUNT) {
-		if (this->monthly_data_.find(month) != this->monthly_data_.end())
-			price = this->monthly_data_.find(month)->second.getPrice(day);
-		month = DateConverter::getPrevMonth(month);
-		day = 31;
+		<< date << ") called\033[m" << std::endl;
+	std::map<int, float>::const_iterator	it = this->prices_.lower_bound(date);
+	if (it->first != date) {
+		if (it == this->prices_.begin())
+			return (INVALID_AMOUNT);
+		it--;
 	}
-	return (price);
+	return (it->second);
 }
 
 // When an exception thrown

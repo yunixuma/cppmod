@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/16 03:37:55 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/10/27 10:50:20 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@
 NAME			= btc
 
 # Enumeration of files
-SRC				= main.cpp BitcoinExchange.cpp MonthlyData.cpp \
-				  Parser.cpp DateConverter.cpp
+SRC				= main.cpp BitcoinExchange.cpp Parser.cpp DateConverter.cpp
 
 # Check the platform
 OS				= $(shell uname)
