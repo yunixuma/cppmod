@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/24 22:08:56 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/29 10:50:19 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ std::vector<int>	PmergeMe::list2Vector(const std::list<int>& lst) {
 		<< "]<PmergeMe> split2List called" << std::endl;
 	std::clog << &lst << "\t<" << typeid(lst).name() \
 		<< ">\033[m" << std::endl;
-	std::vector<int>	vec;
+	std::vector<int>	vec(lst.size());
 	std::list<int>::const_iterator	it = lst.begin();
 	std::list<int>::const_iterator	ite = lst.end();
 	while (it != ite)

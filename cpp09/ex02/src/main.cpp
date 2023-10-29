@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/24 19:17:05 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/29 11:00:38 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	printList(T& lst) {
 	}
 	if (size < lst.size())
 		std::cout << "[...]";
-	else
+	else if (size)
 		std::cout << *it;
 	std::cout << std::endl;
 }

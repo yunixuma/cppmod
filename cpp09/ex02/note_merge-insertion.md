@@ -1,5 +1,5 @@
 ## Ford-Johnsonアルゴリズム Merge-insertionソートの説明
-blyuさんkayumiさんに教わった
+LさんKさんに教わった
 ランダムに並んだ数列に対して以下の操作を行う
 1. 隣同士ペアにする
 2. ペア内部で比較して値の大きい方を表面にする (他のペアと値を比較する際はこの大きい値を使用する)
@@ -11,7 +11,7 @@ blyuさんkayumiさんに教わった
 https://en.wikipedia.org/wiki/Jacobsthal_number
 
 ## iteratorを使うべきか
-kyodaさんに教えて貰った
+Yさんに教えて貰った
 どちらでも良い
 vectorでsortのメソッドを呼ぶと 中身はiteratorと同じくメモリ確保し直してずらしている
 vectorのメソッドでもiteratorでも良いが 実装しているうちに此処はiteratorだなと気付く箇所がある
@@ -33,3 +33,38 @@ geca j k  hfdb i
 hfdb geca j k  i
 ca db hf ge ji k
 k i e f b a c d h g j 
+
+9 2 6 8 3 1 4 5 7 0
+(9) (2) (6) (8) (3) (1) (4) (5) (7) (0)
+{(9)(2)} {(6)(8)} {(3)(1)} {(4)(5)} {(7)(0)}
+{(2)(9)} {(6)(8)} {(1)(3)} {(4)(5)} {(0)(7)}
+[{(2)(9)}{(6)(8)}] [{(1)(3)}{(4)(5)}] {(0)(7)}
+[{(2)(9)}{(6)(8)}] [{(1)(3)}{(4)(5)}] {(0)(7)}
+
+typedef std::vector<int>	t_vec
+typedef std::vector<t_vec>	t_vecvec
+9 2 6 8 3 1 4 5 7 0
+1[1] 1[4] 1[5] 1[3] 1[8] 1[6] 1[2] 1[9] 1[7] 1[0]
+2[4 1] 2[5 3] 2[8 6] 2[9 2] 2[7 0]
+4[5 3 4 1] 4[9 2 8 6] 2[7 0]
+8[9 2 8 6 5 3 4 1] 2[7 0]
+4[5 3 4 1] 4[9 2 8 6] 2[7 0]
+2[0 7] 4[1 4 3 5] 4[2 9 6 8]
+2[0 7] 2[1 4 3 5] 4[2 9 6 8]
+
+....ABCDEFGHIJKLmnopq......
+....FGHIJABCDEKLmnopq...... 5
+....mnopqABCDEKLFGHIJ...... 5
+....mnopqABCDEFGHIJKL...... 5
+
+....ABCDEFGHIJKLmnopq......
+....ABCDEFGHIopqmnJKL...... 3
+....ABCDEpqmnoFGHIJKL...... 4
+....pqmnoABCDEKLFGHIJ...... 5
+....mnopqABCDEFGHIJKL...... 3
+
+....mnopqABCDEFGHIJKL......
+....GHIJKLABCDEFmnopq...... 5
+....BCDEFAGHIJKLmnopq...... 5
+....ABCDEFGHIJKLmnopq...... 5
+
