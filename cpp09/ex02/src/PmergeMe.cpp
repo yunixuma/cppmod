@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/29 15:43:25 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/30 16:01:32 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,17 @@ PmergeMe::PmergeMe(const PmergeMe& src) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<PmergeMe> Copy constructor called" \
 		<< "\033[m" << std::endl;
+	*this = src;
 }
 
 PmergeMe&	PmergeMe::operator=(const PmergeMe& rhs) {
 	std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
 		<< "]<PmergeMe> Copy assignment operator called" \
 		<< "\033[m" << std::endl;
-	// if (this != &rhs)
-	// 	this->vals_ = rhs.vals_;
+	if (this != &rhs) {
+		this->sub_lst_ = rhs.sub_lst_;
+		this->sub_vec_ = rhs.sub_vec_;
+	}
 	return (*this);
 }
 
@@ -84,24 +87,21 @@ void	PmergeMe::sortSub(std::list<int>& lst, size_t left, size_t right)
 {
 	if (left + 1 >= right)
 		return; // Returns recursively
-	else {
-		// Same as (l+r)/2, but avoids
-		// overflow for large l and h
-		size_t mid = left + (right - left - 1) / 2;
+	// Same as (l+r)/2, but avoids
+	// overflow for large l and h
+	size_t	mid = left + (right - left - 1) / 2;
 
-		// Sort first and second halves
-		sortSub(lst, left, mid);
-		sortSub(lst, mid + 1, mid + 1 - left + mid);
-		std::list<int>::iterator	it1 = lst.begin(); advance(it1, left);
-		std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid + 1);
-		if (*it1 < *it2) {
-			for (size_t i = 0; i < mid - left + 1; i++) {
-				std::iter_swap(it1++, it2++);
-			}
-		}
+	// Sort first and second halves
+	sortSub(lst, left, mid);
+	sortSub(lst, mid + 1, mid + 1 - left + mid);
+	std::list<int>::iterator	it1 = lst.begin(); advance(it1, left);
+	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid + 1);
+	if (*it1 < *it2) {
+		for (size_t i = 0; i < mid - left + 1; i++)
+			std::iter_swap(it1++, it2++);
+	}
 
 //		sortMerge(vec, left, mid, right);
-	}
 }
 
 void	PmergeMe::sort(std::list<int>& lst) {
@@ -111,7 +111,16 @@ void	PmergeMe::sort(std::list<int>& lst) {
 		<< ">\033[m" << std::endl;
 	if (sortCheck(lst))
 		return ;
-	sortSub(lst, 0, lst.size() - 1);
+	size_t	mid = (lst.size() - 1) / 2;
+	sortSub(lst, 0, mid);
+	sortSub(lst, mid + 1, mid * 2 + 1);
+	std::list<int>::iterator	it1 = lst.begin();
+	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid + 1);
+	if (*it1 > *it2) {
+		for (size_t i = 0; i < mid + 1; i++) {
+			std::iter_swap(it1++, it2++);
+		}
+	}
 /*
 	t_lst_it	it1 = lst.begin();
 	t_lst_it	it2 = it1++;
@@ -134,6 +143,8 @@ void	PmergeMe::sort(std::list<int>& lst) {
 	// 	tmp += 8;
 */
 }
+
+
 
 /*
 void	PmergeMe::move(std::vector<int>& vec, \
@@ -245,7 +256,7 @@ void	PmergeMe::sortSub(std::vector<int>& vec, size_t left, size_t right)
 				std::iter_swap(it1++, it2++);
 			}
 		}
-
+		
 //		sortMerge(vec, left, mid, right);
 	}
 }
@@ -258,7 +269,19 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 // https://www.geeksforgeeks.org/c-program-for-merge-sort/
 	if (sortCheck(vec))
 		return ;
-	sortSub(vec, 0, vec.size() - 1);
+	size_t	mid = (vec.size() - 1) / 2;
+	this->sub_vec_.push_back(std::make_pair(vec[0], mid));
+	this->sub_vec_.push_back(std::make_pair(vec[mid + 1], mid));
+	sortSub(vec, 0, mid);
+	sortSub(vec, mid + 1, mid * 2 + 1);
+	if (vec[0] > vec[mid + 1]) {
+		std::vector<int>::iterator	it1 = vec.begin();
+		std::vector<int>::iterator	it2 = vec.begin() + mid + 1;
+		for (size_t i = 0; i < mid + 1; i++) {
+			std::iter_swap(it1++, it2++);
+		}
+	}
+
 // https://cpprefjp.github.io/reference/vector/vector/insert.html
 // https://cpprefjp.github.io/reference/vector/vector/erase.html
 /*	t_vec_it	it1 = vec.begin();

@@ -13,7 +13,7 @@ https://en.wikipedia.org/wiki/Jacobsthal_number
 ## iteratorを使うべきか
 Yさんに教えて貰った
 どちらでも良い
-vectorでsortのメソッドを呼ぶと 中身はiteratorと同じくメモリ確保し直してずらしている
+vectorでinsertのメソッドを呼ぶと 中身はiteratorと同じくメモリ確保し直してずらしている
 vectorのメソッドでもiteratorでも良いが 実装しているうちに此処はiteratorだなと気付く箇所がある
 
 a b c d e f g h i j k
