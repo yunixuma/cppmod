@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/30 15:50:58 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/30 18:51:34 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,24 @@ public:
 		else if (size)
 			std::cout << *it;
 		std::cout << std::endl;
+	};
+	template <typename T>
+	void				printSubList(T& sub_lst) {
+		typename T::iterator	it = sub_lst.begin();
+		size_t					size = sub_lst.size();
+		size_t					i = 1;
+		std::clog << size << "{" << std::endl;
+		if (size > SIZE_PRINT)
+			size = SIZE_PRINT;
+		while (i++ < size) {
+			std::cout << (*it).first << "(" << (*it).second << ") ";
+			it++;
+		}
+		if (size < sub_lst.size())
+			std::cout << "[...]";
+		else if (size)
+			std::cout << (*it).first << "(" << (*it).second << ")";
+		std::cout << "}" << std::endl;
 	};
 };
 
