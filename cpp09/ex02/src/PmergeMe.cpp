@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/30 19:32:38 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/31 06:40:59 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,17 @@ std::vector<int>	PmergeMe::list2Vector(const std::list<int>& lst) {
 
 void	PmergeMe::sortSub(std::list<int>& lst, size_t left, size_t right)
 {
+	std::clog << "(" << left << ", " << right << ")" << std::endl;
+	// if (left + 1 >= right || lst.size() <= right)
 	if (left + 1 >= right)
 		return; // Returns recursively
 	// Same as (l+r)/2, but avoids
 	// overflow for large l and h
-	size_t	mid = left + (right - left) / 2;
-
+	size_t	mid = left + (right - left + 1) / 2;
+	std::clog << "(" << left << ", " << mid << ", " << right << ")" << std::endl;
 	// Sort first and second halves
 	sortSub(lst, left, mid - 1);
-	sortSub(lst, mid, mid + (mid - left + 1) * 2 - 1);
+	sortSub(lst, mid, mid + (mid - left) - 1);
 	std::list<int>::iterator	it1 = lst.begin(); advance(it1, left);
 	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid + 1);
 	if (*it1 < *it2) {
