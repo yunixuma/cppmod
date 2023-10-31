@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/31 06:40:59 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/10/31 14:06:12 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,21 +87,23 @@ void	PmergeMe::sortSub(std::list<int>& lst, size_t left, size_t right)
 {
 	std::clog << "(" << left << ", " << right << ")" << std::endl;
 	// if (left + 1 >= right || lst.size() <= right)
-	if (left + 1 >= right)
+	if (left >= right)
 		return; // Returns recursively
 	// Same as (l+r)/2, but avoids
 	// overflow for large l and h
 	size_t	mid = left + (right - left + 1) / 2;
+	printList(lst);
 	std::clog << "(" << left << ", " << mid << ", " << right << ")" << std::endl;
 	// Sort first and second halves
 	sortSub(lst, left, mid - 1);
 	sortSub(lst, mid, mid + (mid - left) - 1);
 	std::list<int>::iterator	it1 = lst.begin(); advance(it1, left);
-	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid + 1);
+	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid);
 	if (*it1 < *it2) {
-		for (size_t i = 0; i < mid - left + 1; i++)
+		for (size_t i = 0; i < mid - left; i++)
 			std::iter_swap(it1++, it2++);
 	}
+	sortSub(lst, mid + (mid - left), right);
 
 //	sortMerge(vec, left, mid, right);
 }
@@ -115,15 +117,16 @@ void	PmergeMe::sort(std::list<int>& lst) {
 		return ;
 	size_t	mid = (lst.size() - 1) / 2;
 	std::list<int>::iterator	it1 = lst.begin();
-	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid + 1);
+	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid);
 	this->sub_lst_.push_back(std::make_pair(mid, *it1));
 	this->sub_lst_.push_back(std::make_pair(mid, *it2));
 	sortSub(lst, 0, mid - 1);
 	sortSub(lst, mid, mid * 2 - 1);
 	if (*it1 > *it2) {
-		for (size_t i = 0; i < mid + 1; i++)
+		for (size_t i = 0; i < mid; i++)
 			std::iter_swap(it1++, it2++);
 	}
+	sortSub(lst, mid * 2, lst.size() - 1);
 	printSubList(this->sub_lst_);
 /*
 	t_lst_it	it1 = lst.begin();
@@ -243,22 +246,23 @@ void PmergeMe::sortMerge(std::vector<int>& vec, size_t l, size_t m, size_t r)
 
 void	PmergeMe::sortSub(std::vector<int>& vec, size_t left, size_t right)
 {
-	if (left + 1 >= right)
+	if (left >= right)
 		return; // Returns recursively
 	// Same as (l+r)/2, but avoids
 	// overflow for large l and h
-	size_t mid = left + (right - left - 1) / 2;
+	size_t mid = left + (right - left + 1) / 2;
 
 	// Sort first and second halves
-	sortSub(vec, left, mid);
-	sortSub(vec, mid + 1, mid + 1 - left + mid);
-	if (vec[left] < vec[mid + 1]) {
+	sortSub(vec, left, mid - 1);
+	sortSub(vec, mid, mid + (mid - left) - 1);
+	if (vec[left] < vec[mid]) {
 		std::vector<int>::iterator	it1 = vec.begin() + left;
-		std::vector<int>::iterator	it2 = vec.begin() + mid + 1;
-		for (size_t i = 0; i < mid - left + 1; i++) {
+		std::vector<int>::iterator	it2 = vec.begin() + mid;
+		for (size_t i = 0; i < mid - left; i++) {
 			std::iter_swap(it1++, it2++);
 		}
 	}
+	sortSub(vec, mid + (mid - left), right);
 		
 //	sortMerge(vec, left, mid, right);
 }
@@ -273,15 +277,16 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 		return ;
 	size_t	mid = (vec.size() - 1) / 2;
 	this->sub_vec_.push_back(std::make_pair(mid, vec[0]));
-	this->sub_vec_.push_back(std::make_pair(mid, vec[mid + 1]));
-	sortSub(vec, 0, mid);
-	sortSub(vec, mid + 1, mid * 2 + 1);
-	if (vec[0] > vec[mid + 1]) {
+	this->sub_vec_.push_back(std::make_pair(mid, vec[mid]));
+	sortSub(vec, 0, mid - 1);
+	sortSub(vec, mid, mid * 2 - 1);
+	if (vec[0] > vec[mid]) {
 		std::vector<int>::iterator	it1 = vec.begin();
-		std::vector<int>::iterator	it2 = vec.begin() + mid + 1;
-		for (size_t i = 0; i < mid + 1; i++)
+		std::vector<int>::iterator	it2 = vec.begin() + mid;
+		for (size_t i = 0; i < mid; i++)
 			std::iter_swap(it1++, it2++);
 	}
+	sortSub(vec, mid * 2, vec.size() - 1);
 	printSubList(this->sub_vec_);
 
 // https://cpprefjp.github.io/reference/vector/vector/insert.html

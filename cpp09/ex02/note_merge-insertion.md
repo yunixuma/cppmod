@@ -43,7 +43,7 @@ k i e f b a c d h g j
 
 typedef std::vector<int>	t_vec
 typedef std::vector<t_vec>	t_vecvec
-1 4 5 3 8 6 2 9 7 0
+1 4 5 3 6 8 2 9 0 7
 1[1] 1[4] 1[5] 1[3] 1[8] 1[6] 1[2] 1[9] 1[7] 1[0]
 2[4 1] 2[5 3] 2[8 6] 2[9 2] 2[7 0]
 4[5 3 4 1] 4[9 2 8 6] 2[7 0]
