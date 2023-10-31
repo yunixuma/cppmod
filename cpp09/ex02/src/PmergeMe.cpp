@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/31 14:06:12 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/10/31 22:08:29 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ std::vector<int>	PmergeMe::list2Vector(const std::list<int>& lst) {
 
 void	PmergeMe::sortSub(std::list<int>& lst, size_t left, size_t right)
 {
-	std::clog << "(" << left << ", " << right << ")" << std::endl;
+	std::clog << "88 (" << left << ", " << right << ")" << std::endl;
 	// if (left + 1 >= right || lst.size() <= right)
 	if (left >= right)
 		return; // Returns recursively
@@ -93,7 +93,7 @@ void	PmergeMe::sortSub(std::list<int>& lst, size_t left, size_t right)
 	// overflow for large l and h
 	size_t	mid = left + (right - left + 1) / 2;
 	printList(lst);
-	std::clog << "(" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << "96 (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	// Sort first and second halves
 	sortSub(lst, left, mid - 1);
 	sortSub(lst, mid, mid + (mid - left) - 1);
@@ -118,8 +118,6 @@ void	PmergeMe::sort(std::list<int>& lst) {
 	size_t	mid = (lst.size() - 1) / 2;
 	std::list<int>::iterator	it1 = lst.begin();
 	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid);
-	this->sub_lst_.push_back(std::make_pair(mid, *it1));
-	this->sub_lst_.push_back(std::make_pair(mid, *it2));
 	sortSub(lst, 0, mid - 1);
 	sortSub(lst, mid, mid * 2 - 1);
 	if (*it1 > *it2) {
@@ -127,6 +125,10 @@ void	PmergeMe::sort(std::list<int>& lst) {
 			std::iter_swap(it1++, it2++);
 	}
 	sortSub(lst, mid * 2, lst.size() - 1);
+	this->sub_lst_.push_back(std::make_pair(mid, *it1));
+	this->sub_lst_.push_back(std::make_pair(mid, *it2));
+	std::advance(it2, mid);
+	this->sub_lst_.push_back(std::make_pair(mid, *it2));
 	printSubList(this->sub_lst_);
 /*
 	t_lst_it	it1 = lst.begin();
@@ -276,8 +278,6 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 	if (sortCheck(vec))
 		return ;
 	size_t	mid = (vec.size() - 1) / 2;
-	this->sub_vec_.push_back(std::make_pair(mid, vec[0]));
-	this->sub_vec_.push_back(std::make_pair(mid, vec[mid]));
 	sortSub(vec, 0, mid - 1);
 	sortSub(vec, mid, mid * 2 - 1);
 	if (vec[0] > vec[mid]) {
@@ -287,6 +287,9 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 			std::iter_swap(it1++, it2++);
 	}
 	sortSub(vec, mid * 2, vec.size() - 1);
+	this->sub_vec_.push_back(std::make_pair(mid, vec[0]));
+	this->sub_vec_.push_back(std::make_pair(mid, vec[mid]));
+	this->sub_vec_.push_back(std::make_pair(vec.size() - mid * 2, vec[mid * 2]));
 	printSubList(this->sub_vec_);
 
 // https://cpprefjp.github.io/reference/vector/vector/insert.html
