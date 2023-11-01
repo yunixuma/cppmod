@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/29 11:00:38 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/02 06:22:49 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 template <typename T>
 void	printList(T& lst) {
 	typename T::iterator	it = lst.begin();
-	size_t					size = lst.size();
-	size_t					i = 1;
+	unsigned int			size = lst.size();
+	unsigned int			i = 1;
 
 	std::clog << "size: " << size << std::endl;
 	if (size > SIZE_PRINT)

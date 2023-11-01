@@ -1,0 +1,8 @@
+exception.h:63:5:std::exception::exception()	32	static
+ios_base.h:129:3:std::_Ios_Openmode std::operator|(std::_Ios_Openmode, std::_Ios_Openmode)	16	static
+main.cpp:22:5:int main(int, char**)	1824	static
+stl_pair.h:229:26:std::pair<_T1, _T2>::pair() [with _T1 = int; _T2 = float]	32	static
+main.cpp:94:1:void __static_initialization_and_destruction_0(int, int)	32	static
+main.cpp:94:1:cpp)	16	static
+main.cpp:94:1:_sub_D_00099_0	16	static
+main.cpp:94:1:_sub_I_00099_1	16	static
