@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 17:40:47 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/02 18:39:35 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ PmergeMe::~PmergeMe(void) {
 	std::clog << "\033[31;2;3m[" << this \
 		<< "]<PmergeMe> Destructor called\033[m" << std::endl;
 }
-
+/*
 std::list<int>	PmergeMe::split2List(const std::string& str) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> split2List called" << std::endl;
@@ -60,6 +60,40 @@ std::list<int>	PmergeMe::split2List(const std::string& str) {
 		val = 0;
 	}
 	// std::clog << "val: " << val << std::endl;
+	if (val == INT_MAX || val == INT_MIN)
+		throw std::invalid_argument("overflow");
+	if (!ss.eof())
+		throw std::invalid_argument("not integer");
+	// if (ss.fail() && !ss.eof())
+	// 	throw std::invalid_argument("wrong argument");
+	return (lst);
+}
+*/
+std::list<int>	PmergeMe::args2List(size_t argc, char *argv[]) {
+	std::clog << "\033[36;2;3m[" << this \
+		<< "]<PmergeMe> args2List called" << std::endl;
+	std::clog << argv << "\t<" << typeid(argv).name() \
+		<< ">\033[m" << std::endl;
+	std::list<int>		lst;
+	int					val = 0;
+	std::stringstream	ss;
+	size_t				i = 1;
+
+	while (i < argc) {
+		ss.clear();
+		ss << argv[i++];
+		if (!(ss >> val))
+			break ;
+		if (val < 0)
+			throw std::invalid_argument("negative number");
+		if (ss.peek() == ' ')
+			throw std::invalid_argument("argument not separated");
+		lst.push_back(val);
+		val = 0;
+	}
+	// std::clog << "val: " << val << std::endl;
+	if (lst.size() != argc - 1)
+		throw std::invalid_argument("wrong argument");
 	if (val == INT_MAX || val == INT_MIN)
 		throw std::invalid_argument("overflow");
 	if (!ss.eof())

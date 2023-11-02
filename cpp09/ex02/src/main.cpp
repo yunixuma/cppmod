@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 06:22:49 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/02 18:26:19 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ template <typename T>
 void	printList(T& lst) {
 	typename T::iterator	it = lst.begin();
 	unsigned int			size = lst.size();
-	unsigned int			i = 1;
+	size_t					i = 1;
 
 	std::clog << "size: " << size << std::endl;
 	if (size > SIZE_PRINT)
@@ -50,8 +50,8 @@ int	main(int argc, char *argv[]) {
 	if (DEBUG_MODE)
 		std::clog.rdbuf(strbuf);
 
-	if (argc != 2) {
-		std::cout << "\033[33mUsage: ./PmergeMe \"<list of positive integers>\" \033[m" << std::endl;
+	if (argc < 2) {
+		std::cout << "\033[33mUsage: ./PmergeMe <arguments of positive integers> \033[m" << std::endl;
 		return (ENOENT);
 	}
 
@@ -62,7 +62,7 @@ int	main(int argc, char *argv[]) {
 	float	time_vec;
 
 	try {
-		lst = pmm.split2List(argv[1]);
+		lst = pmm.args2List(argc, argv);
 	}
 	catch (const std::exception& e) {
 		std::cout << "\033[31mError: " << e.what() << "\033[m" << std::endl;

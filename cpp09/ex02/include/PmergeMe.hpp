@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 13:27:14 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/02 18:25:30 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ public:
 	~PmergeMe(void);
 	PmergeMe(const PmergeMe& src);
 	PmergeMe&			operator=(const PmergeMe& rhs);
-	std::list<int>		split2List(const std::string& str);
+	std::list<int>		args2List(size_t argc, char *argv[]);
 	std::vector<int>	list2Vector(const std::list<int>& lst);
 	template <typename T>
 	clock_t				measureTime(T& container) {
