@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 07:15:46 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/02 13:27:14 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ private:
 		unsigned int left, unsigned int right);
 	void				sortMergeSub(std::list<int>& vec, \
 		unsigned int left, unsigned int right);
-	void				sortSub(std::vector<int>& vec, \
+	void				sortMerge(std::vector<int>& vec, \
 		unsigned int left, unsigned int right);
-/*	void 				sortMerge(std::vector<int>& vec, \
-		unsigned int l, unsigned int m, unsigned int r);*/
+	void 				sortMergeSub(std::vector<int>& vec, \
+		unsigned int left, unsigned int right);
 	unsigned int		calcMid(unsigned int half) const;
 public:
 	PmergeMe(void);

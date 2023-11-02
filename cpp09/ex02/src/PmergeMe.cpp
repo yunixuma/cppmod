@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 07:06:22 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/02 13:42:42 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	PmergeMe::sortMergeSub(std::list<int>& lst, unsigned int left, unsigned int
 	std::list<int>::iterator	it1 = lst.begin(); advance(it1, left);
 	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid);
 	if (*it1 < *it2) {
-		for (unsigned int i = 0; i < mid - left; i++)
+		for (unsigned int i = left; i < mid; i++)
 			std::iter_swap(it1++, it2++);
 	}
 
@@ -141,7 +141,7 @@ void	PmergeMe::sortMerge(std::list<int>& lst, unsigned int left, unsigned int ri
 	std::clog << "141 (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(lst, mid, mid + (mid - left) - 1);
 	if (*it1 > *it2) {
-		for (unsigned int i = 0; i < mid; i++)
+		for (unsigned int i = left; i < mid; i++)
 			std::iter_swap(it1++, it2++);
 	}
 	sortMerge(lst, mid * 2, right);
@@ -278,27 +278,57 @@ void PmergeMe::sortMerge(std::vector<int>& vec, unsigned int l, unsigned int m, 
 }
 */
 
-void	PmergeMe::sortSub(std::vector<int>& vec, unsigned int left, unsigned int right)
+void	PmergeMe::sortMergeSub(std::vector<int>& vec, unsigned int left, unsigned int right)
 {
 	if (left >= right)
 		return; // Returns recursively
 	// Same as (l+r)/2, but avoids
 	// overflow for large l and h
-	unsigned int mid = left + (right - left + 1) / 2;
+	unsigned int	mid = left + (right - left + 1) / 2;
 
 	// Sort first and second halves
-	sortSub(vec, left, mid - 1);
-	sortSub(vec, mid, mid + (mid - left) - 1);
+	std::clog << "290 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	sortMergeSub(vec, left, mid - 1);
+	std::clog << "292 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	sortMergeSub(vec, mid, mid + (mid - left) - 1);
 	if (vec[left] < vec[mid]) {
 		std::vector<int>::iterator	it1 = vec.begin() + left;
 		std::vector<int>::iterator	it2 = vec.begin() + mid;
-		for (unsigned int i = 0; i < mid - left; i++) {
+		for (unsigned int i = left; i < mid; i++) {
 			std::iter_swap(it1++, it2++);
 		}
 	}
-	sortSub(vec, mid + (mid - left), right);
-		
-//	sortMerge(vec, left, mid, right);
+	printSubList(this->sub_vec_);
+}
+
+void	PmergeMe::sortMerge(std::vector<int>& vec, unsigned int left, unsigned int right)
+{
+	if (left >= right)
+		return; // Returns recursively
+	// Same as (l+r)/2, but avoids
+	// overflow for large l and h
+	unsigned int	mid = left + calcMid((right - left + 1) / 2);
+
+	// Sort first and second halves
+	std::clog << "317 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	sortMergeSub(vec, left, mid - 1);
+	std::clog << "319 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	sortMergeSub(vec, mid, mid + (mid - left) - 1);
+	if (vec[left] < vec[mid]) {
+		std::vector<int>::iterator	it1 = vec.begin() + left;
+		std::vector<int>::iterator	it2 = vec.begin() + mid;
+		for (unsigned int i = left; i < mid; i++) {
+			std::iter_swap(it1++, it2++);
+		}
+	}
+	sortMerge(vec, mid * 2, right);
+	this->sub_vec_.push_back(std::make_pair(mid, vec[left]));
+	this->sub_vec_.push_back(std::make_pair(mid, vec[mid]));
+	if (mid * 2 < vec.size()) {
+		sortMerge(vec, mid * 2, right);
+		this->sub_vec_.push_back(std::make_pair(mid, vec[mid + mid - left]));
+	}
+	printSubList(this->sub_vec_);
 }
 
 void	PmergeMe::sort(std::vector<int>& vec) {
@@ -309,20 +339,7 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 // https://www.geeksforgeeks.org/c-program-for-merge-sort/
 	if (sortCheck(vec))
 		return ;
-	unsigned int	mid = (vec.size() - 1) / 2;
-	sortSub(vec, 0, mid - 1);
-	sortSub(vec, mid, mid * 2 - 1);
-	if (vec[0] > vec[mid]) {
-		std::vector<int>::iterator	it1 = vec.begin();
-		std::vector<int>::iterator	it2 = vec.begin() + mid;
-		for (unsigned int i = 0; i < mid; i++)
-			std::iter_swap(it1++, it2++);
-	}
-	sortSub(vec, mid * 2, vec.size() - 1);
-	this->sub_vec_.push_back(std::make_pair(mid, vec[0]));
-	this->sub_vec_.push_back(std::make_pair(mid, vec[mid]));
-	this->sub_vec_.push_back(std::make_pair(vec.size() - mid * 2, vec[mid * 2]));
-	printSubList(this->sub_vec_);
+	sortMerge(vec, 0, vec.size() - 1);
 
 // https://cpprefjp.github.io/reference/vector/vector/insert.html
 // https://cpprefjp.github.io/reference/vector/vector/erase.html
