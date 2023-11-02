@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 21:49:31 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/02 22:11:39 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,11 +187,6 @@ void	PmergeMe::sortMerge(std::list<int>& lst, unsigned int left, unsigned int ri
 	if (mid * 2 - left < right)
 		sortMerge(lst, mid * 2 - left, right);
 	std::clog << "@189m4 "; printSubList(this->sub_lst_);
-	// std::advance(it2, mid);
-	// this->sub_lst_.push_back(std::make_pair(mid * 2 - left, *it2));
-	std::clog << "@192m5 "; printSubList(this->sub_lst_);
-
-//	sortMerge(vec, left, mid, right);
 }
 
 void	PmergeMe::sort(std::list<int>& lst) {
@@ -277,11 +272,6 @@ void	PmergeMe::sortMerge(std::vector<int>& vec, unsigned int left, unsigned int 
 	if (mid * 2 - left < right)
 		sortMerge(vec, mid * 2 - left, right);
 	std::clog << "@279m4 "; printSubList(this->sub_vec_);
-	// if (mid * 2 - left < vec.size()) {
-	// 	sortMerge(vec, mid * 2 - left, right);
-	// 	this->sub_vec_.push_back(std::make_pair(mid, vec[mid + mid - left]));
-	// }
-	std::clog << "@284m5 "; printSubList(this->sub_vec_);
 }
 
 void	PmergeMe::sort(std::vector<int>& vec) {
