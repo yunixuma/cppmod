@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 18:25:30 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/02 21:38:00 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,18 @@ public:
 		typename T::iterator	it = lst.begin();
 		unsigned int			size = lst.size();
 		unsigned int			i = 1;
-		std::clog << "size: " << size << std::endl;
+		std::clog << size << "( ";
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
 		while (i++ < size) {
-			std::cout << *it << " ";
+			std::clog << *it << " ";
 			it++;
 		}
 		if (size < lst.size())
-			std::cout << "[...]";
+			std::clog << "[...]";
 		else if (size)
-			std::cout << *it;
-		std::cout << std::endl;
+			std::clog << *it;
+		std::clog << " )" << std::endl;
 	};
 	template <typename T>
 	void				printSubList(T& sub_lst) {
@@ -113,14 +113,14 @@ public:
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
 		while (i++ < size) {
-			std::cout << (*it).first << "(" << (*it).second << ") ";
+			std::clog << (*it).first << "(" << (*it).second << ") ";
 			it++;
 		}
 		if (size < sub_lst.size())
-			std::cout << "[...]";
+			std::clog << "[...]";
 		else if (size)
-			std::cout << (*it).first << "(" << (*it).second << ")";
-		std::cout << " }" << std::endl;
+			std::clog << (*it).first << "(" << (*it).second << ")";
+		std::clog << " }" << std::endl;
 	};
 };
 

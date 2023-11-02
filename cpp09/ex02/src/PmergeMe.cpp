@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 18:39:35 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/02 21:49:31 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ std::list<int>	PmergeMe::args2List(size_t argc, char *argv[]) {
 
 std::vector<int>	PmergeMe::list2Vector(const std::list<int>& lst) {
 	std::clog << "\033[36;2;3m[" << this \
-		<< "]<PmergeMe> split2List called" << std::endl;
+		<< "]<PmergeMe> list2Vector called" << std::endl;
 	std::clog << &lst << "\t<" << typeid(lst).name() \
 		<< ">\033[m" << std::endl;
 	std::vector<int>	vec(lst.size());
@@ -138,61 +138,58 @@ unsigned int	PmergeMe::calcMid(unsigned int half) const {
 
 void	PmergeMe::sortMergeSub(std::list<int>& lst, unsigned int left, unsigned int right)
 {
-	// std::clog << "88 (" << left << ", " << right << ")" << std::endl;
-	// if (left + 1 >= right || lst.size() <= right)
 	if (left >= right)
-		return; // Returns recursively
-	// Same as (l+r)/2, but avoids
-	// overflow for large l and h
+		return;
 	unsigned int	mid = left + (right - left + 1) / 2;
 	printList(lst);
-	std::clog << "115 (" << left << ", " << mid << ", " << right << ")" << std::endl;
-	// Sort first and second halves
+	std::clog << "145 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(lst);
 	sortMergeSub(lst, left, mid - 1);
-	std::clog << "118 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << "147 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(lst);
 	sortMergeSub(lst, mid, mid * 2 - left - 1);
-	std::list<int>::iterator	it1 = lst.begin(); advance(it1, left);
+	std::list<int>::iterator	it1 = lst.begin(); std::advance(it1, left);
 	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid);
 	if (*it1 < *it2) {
 		for (unsigned int i = left; i < mid; i++)
 			std::iter_swap(it1++, it2++);
 	}
-
-//	sortMerge(vec, left, mid, right);
+	std::clog << "@155ms "; printSubList(this->sub_lst_);
 }
 
 void	PmergeMe::sortMerge(std::list<int>& lst, unsigned int left, unsigned int right)
 {
-	// std::clog << "88 (" << left << ", " << right << ")" << std::endl;
-	// if (left + 1 >= right || lst.size() <= right)
 	if (left >= right)
-		return; // Returns recursively
-	// Same as (l+r)/2, but avoids
-	// overflow for large l and h
+		return;
 	unsigned int	mid = left + calcMid((right - left + 1) / 2);
-	// unsigned int	mid = (lst.size() - 1) / 2;
 
 	std::list<int>::iterator	it1 = lst.begin();
 	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid);
-	std::clog << "143 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << "166 (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(lst, left, mid - 1);
-	std::clog << "145 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << "168 (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(lst, mid, mid * 2 - left - 1);
 	if ((left == 0 && right == lst.size() - 1 && *it1 > *it2) \
 		|| ((left != 0 || right != lst.size()) && *it1 < *it2)) {
+
+
 		for (unsigned int i = left; i < mid; i++)
 			std::iter_swap(it1++, it2++);
 	}
-	if (mid * 2 - left < right)
-		sortMerge(lst, mid * 2 - left, right);
+	std::clog << "@177m0 "; printSubList(this->sub_lst_);
 	if (left == 0 && right == lst.size() - 1) {
+		std::clog << "#179m1" << std::endl;
 		this->sub_lst_.push_back(std::make_pair(mid - left, *it1));
 		this->sub_lst_.push_back(std::make_pair(mid - left, *it2));
-	} else
+	} else {
+		std::clog << "#183m2" << std::endl;
 		this->sub_lst_.push_back(std::make_pair(right - left + 1, *it1));
+	}
+	std::clog << "@186m3 "; printSubList(this->sub_lst_);
+	if (mid * 2 - left < right)
+		sortMerge(lst, mid * 2 - left, right);
+	std::clog << "@189m4 "; printSubList(this->sub_lst_);
 	// std::advance(it2, mid);
 	// this->sub_lst_.push_back(std::make_pair(mid * 2 - left, *it2));
-	printSubList(this->sub_lst_);
+	std::clog << "@192m5 "; printSubList(this->sub_lst_);
 
 //	sortMerge(vec, left, mid, right);
 }
@@ -231,15 +228,12 @@ void	PmergeMe::sort(std::list<int>& lst) {
 void	PmergeMe::sortMergeSub(std::vector<int>& vec, unsigned int left, unsigned int right)
 {
 	if (left >= right)
-		return; // Returns recursively
-	// Same as (l+r)/2, but avoids
-	// overflow for large l and h
+		return;
 	unsigned int	mid = left + (right - left + 1) / 2;
-
-	// Sort first and second halves
-	std::clog << "203 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	printList(vec);
+	std::clog << "234 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(vec);
 	sortMergeSub(vec, left, mid - 1);
-	std::clog << "205 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << "236 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(vec);
 	sortMergeSub(vec, mid, mid * 2 - left - 1);
 	if (vec[left] < vec[mid]) {
 		std::vector<int>::iterator	it1 = vec.begin() + left;
@@ -248,42 +242,46 @@ void	PmergeMe::sortMergeSub(std::vector<int>& vec, unsigned int left, unsigned i
 			std::iter_swap(it1++, it2++);
 		}
 	}
-	printSubList(this->sub_vec_);
+	std::clog << "@245ms "; printSubList(this->sub_vec_);
 }
 
 void	PmergeMe::sortMerge(std::vector<int>& vec, unsigned int left, unsigned int right)
 {
 	if (left >= right)
-		return; // Returns recursively
-	// Same as (l+r)/2, but avoids
-	// overflow for large l and h
+		return;
 	unsigned int	mid = left + calcMid((right - left + 1) / 2);
 
-	// Sort first and second halves
-	std::clog << "313 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+
+
+	std::clog << "256 (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(vec, left, mid - 1);
-	std::clog << "315 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << "258 (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(vec, mid, mid * 2 - left - 1);
 	if ((left == 0 && right == vec.size() - 1 && vec[left] > vec[mid]) \
 		|| ((left != 0 || right != vec.size()) && vec[left] < vec[mid])) {
 		std::vector<int>::iterator	it1 = vec.begin() + left;
 		std::vector<int>::iterator	it2 = vec.begin() + mid;
-		for (unsigned int i = left; i < mid; i++) {
+		for (unsigned int i = left; i < mid; i++)
 			std::iter_swap(it1++, it2++);
-		}
 	}
-	if (mid * 2 - left < right)
-		sortMerge(vec, mid * 2 - left, right);
+	std::clog << "@267m0 "; printSubList(this->sub_vec_);
 	if (left == 0 && right == vec.size() - 1) {
+		std::clog << "#269m1" << std::endl;
 		this->sub_vec_.push_back(std::make_pair(mid - left, vec[left]));
 		this->sub_vec_.push_back(std::make_pair(mid - left, vec[mid]));
-	} else
+	} else {
+		std::clog << "#273m2" << std::endl;
 		this->sub_vec_.push_back(std::make_pair(right - left + 1, vec[left]));
+	}
+	std::clog << "@276m3 "; printSubList(this->sub_vec_);
+	if (mid * 2 - left < right)
+		sortMerge(vec, mid * 2 - left, right);
+	std::clog << "@279m4 "; printSubList(this->sub_vec_);
 	// if (mid * 2 - left < vec.size()) {
 	// 	sortMerge(vec, mid * 2 - left, right);
 	// 	this->sub_vec_.push_back(std::make_pair(mid, vec[mid + mid - left]));
 	// }
-	printSubList(this->sub_vec_);
+	std::clog << "@284m5 "; printSubList(this->sub_vec_);
 }
 
 void	PmergeMe::sort(std::vector<int>& vec) {
