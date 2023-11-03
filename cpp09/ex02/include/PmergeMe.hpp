@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 21:38:00 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/03 11:24:35 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ class PmergeMe
 {
 private:
 	// float	time_;
-	std::list<std::pair<unsigned int, int> >		sub_lst_;
-	std::vector<std::pair<unsigned int, int> >	sub_vec_;
+	std::list<std::pair<size_t, int> >		sub_lst_;
+	std::vector<std::pair<size_t, int> >	sub_vec_;
 	void				move(std::vector<int>& vec, \
 		t_vec_it& pos, t_vec_it& first, t_vec_it& last);
 	void				sort(std::list<int>& lst);
 	void				sort(std::vector<int>& vec);
 	void				sortMerge(std::list<int>& vec, \
-		unsigned int left, unsigned int right);
+		size_t left, size_t right);
 	void				sortMergeSub(std::list<int>& vec, \
-		unsigned int left, unsigned int right);
+		size_t left, size_t right);
 	void				sortMerge(std::vector<int>& vec, \
-		unsigned int left, unsigned int right);
+		size_t left, size_t right);
 	void 				sortMergeSub(std::vector<int>& vec, \
-		unsigned int left, unsigned int right);
-	unsigned int		calcMid(unsigned int half) const;
+		size_t left, size_t right);
+	size_t				calcMid(size_t half) const;
 public:
 	PmergeMe(void);
 	~PmergeMe(void);
@@ -89,8 +89,8 @@ public:
 	template <typename T>
 	void				printList(T& lst) {
 		typename T::iterator	it = lst.begin();
-		unsigned int			size = lst.size();
-		unsigned int			i = 1;
+		size_t					size = lst.size();
+		size_t					i = 1;
 		std::clog << size << "( ";
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
@@ -107,8 +107,8 @@ public:
 	template <typename T>
 	void				printSubList(T& sub_lst) {
 		typename T::iterator	it = sub_lst.begin();
-		unsigned int			size = sub_lst.size();
-		unsigned int			i = 1;
+		size_t					size = sub_lst.size();
+		size_t					i = 1;
 		std::clog << size << "{ ";
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;

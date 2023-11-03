@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/02 18:26:19 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/03 11:23:28 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 template <typename T>
 void	printList(T& lst) {
 	typename T::iterator	it = lst.begin();
-	unsigned int			size = lst.size();
+	size_t					size = lst.size();
 	size_t					i = 1;
 
 	std::clog << "size: " << size << std::endl;
