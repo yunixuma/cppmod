@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/03 14:35:36 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/03 18:32:30 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ class PmergeMe
 {
 private:
 	// float	time_;
-	std::list<std::pair<size_t, int> >		sub_lst_;
-	std::vector<std::pair<size_t, int> >	sub_vec_;
+	std::list<std::pair<size_t, int> >		grp_lst_;
+	std::vector<std::pair<size_t, int> >	grp_vec_;
 	void				move(std::vector<int>& vec, \
 		t_vec_it& pos, t_vec_it& first, t_vec_it& last);
 	void				sort(std::list<int>& lst);
@@ -48,8 +48,8 @@ private:
 		size_t left, size_t right);
 	void 				sortMergeSub(std::vector<int>& vec, \
 		size_t left, size_t right);
-	void 				sortInitSubList(std::list<int>& lst);
-	void 				sortInitSubList(std::vector<int>& vec);
+	void 				sortInitGroup(std::list<int>& lst);
+	void 				sortInitGroup(std::vector<int>& vec);
 	size_t				calcMid(size_t half) const;
 public:
 	PmergeMe(void);
