@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/03 11:30:39 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/03 14:57:31 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,22 +117,22 @@ std::vector<int>	PmergeMe::list2Vector(const std::list<int>& lst) {
 	return (vec);
 }
 
-size_t	PmergeMe::calcMid(size_t half) const {
+size_t	PmergeMe::calcMid(size_t size) const {
 	size_t	mid = (sizeof(size_t) * (BITS_BYTE >> 1));
-	size_t	pivot = mid >> 1;
-	while (pivot) {
+	size_t	delta = mid >> 1;
+	while (delta) {
 		// std::clog << "pivot: " << pivot << "\tmid: " << mid << std::endl;
-		if ((1U << mid) < half)
-			mid += pivot;
-		else if ((1U << mid) > half)
-			mid -= pivot;
+		if ((1U << mid) < size)
+			mid += delta;
+		else if ((1U << mid) > size)
+			mid -= delta;
 		else
 			break;
-		pivot >>= 1;
+		delta >>= 1;
 	}
-	if ((1U << mid) > half)
+	if ((1U << mid) > size)
 		mid--;
-	// std::clog << "half: " << half << "    mid: " << mid << std::endl;
+	// std::clog << "size: " << size << "    mid: " << mid << std::endl;
 	return (1 << mid);
 }
 
@@ -170,25 +170,48 @@ void	PmergeMe::sortMerge(std::list<int>& lst, size_t left, size_t right)
 	std::clog << "@170m0 "; printSubList(this->sub_lst_);
 	if ((left == 0 && right == lst.size() - 1 && *it1 > *it2) \
 		|| ((left != 0 || right != lst.size()) && *it1 < *it2)) {
+		std::list<int>::iterator	it1_copy = it1;
+		std::list<int>::iterator	it2_copy = it2;
 		for (size_t i = left; i < mid; i++)
-			std::iter_swap(it1++, it2++);
-		it2 = it1;
-		std::advance(it1, static_cast<int>(left - mid));
+			std::iter_swap(it1_copy++, it2_copy++);
 	}
 	std::clog << "@177m2 "; printList(lst);
-	std::clog << "@178m2 "; printSubList(this->sub_lst_);
-	if (left == 0 && right == lst.size() - 1) {
-		std::clog << "#180m3" << std::endl;
-		this->sub_lst_.push_back(std::make_pair(mid - left, *it1));
-		this->sub_lst_.push_back(std::make_pair(mid - left, *it2));
-	} else {
-		std::clog << "#184m5" << std::endl;
-		this->sub_lst_.push_back(std::make_pair(right - left + 1, *it1));
-	}
-	std::clog << "@187m6 "; printSubList(this->sub_lst_);
+	// std::clog << "@178m2 "; printSubList(this->sub_lst_);
+	// if (left == 0 && right == lst.size() - 1) {
+	// 	std::clog << "#180m3" << std::endl;
+	// 	this->sub_lst_.push_back(std::make_pair(mid - left, *it1));
+	// 	this->sub_lst_.push_back(std::make_pair(mid - left, *it2));
+	// } else if (right - left + 1 == mid - left) {
+	// 	std::clog << "#184m5" << std::endl;
+	// 	this->sub_lst_.push_back(std::make_pair(right - left + 1, *it1));
+	// }
+	// std::clog << "@187m6 "; printSubList(this->sub_lst_);
 	if (mid * 2 - left < right)
 		sortMerge(lst, mid * 2 - left, right);
-	std::clog << "@190m7 "; printSubList(this->sub_lst_);
+	// std::clog << "@190m7 "; printSubList(this->sub_lst_);
+}
+
+void	PmergeMe::sortInitSubList(std::list<int>& lst)
+{
+	size_t	size = lst.size();
+	size_t	sub_size = calcMid(size / 2);
+
+	std::list<int>::iterator	it = lst.begin();
+	this->sub_lst_.push_back(std::make_pair(sub_size, *it));
+	std::advance(it, sub_size);
+	this->sub_lst_.push_back(std::make_pair(sub_size, *it));
+	std::advance(it, sub_size);
+	size_t	i = sub_size * 2;
+	std::clog << "@205\ti: " << i << "\tsub_size" << sub_size << "\tsize" << size << std::endl;
+	printSubList(this->sub_lst_);
+	while (i < size) {
+		sub_size = calcMid(size - i);
+		std::clog << "@209\ti: " << i << "\tsub_size" << sub_size << std::endl;
+		this->sub_lst_.push_back(std::make_pair(sub_size, *it));
+		i += sub_size;
+		std::advance(it, sub_size);
+		printSubList(this->sub_lst_);
+	}
 }
 
 void	PmergeMe::sort(std::list<int>& lst) {
@@ -199,6 +222,7 @@ void	PmergeMe::sort(std::list<int>& lst) {
 	if (sortCheck(lst))
 		return ;
 	sortMerge(lst, 0, lst.size() - 1);
+	sortInitSubList(lst);
 /*
 	t_lst_it	it1 = lst.begin();
 	t_lst_it	it2 = it1++;
@@ -239,7 +263,7 @@ void	PmergeMe::sortMergeSub(std::vector<int>& vec, size_t left, size_t right)
 			std::iter_swap(it1++, it2++);
 		}
 	}
-	std::clog << "@245ms "; printSubList(this->sub_vec_);
+	// std::clog << "@245ms "; printSubList(this->sub_vec_);
 }
 
 void	PmergeMe::sortMerge(std::vector<int>& vec, size_t left, size_t right)
@@ -262,19 +286,38 @@ void	PmergeMe::sortMerge(std::vector<int>& vec, size_t left, size_t right)
 			std::iter_swap(it1++, it2++);
 	}
 	std::clog << "@264m0 "; printList(vec);
-	std::clog << "@265m0 "; printSubList(this->sub_vec_);
-	if (left == 0 && right == vec.size() - 1) {
-		std::clog << "#269m1" << std::endl;
-		this->sub_vec_.push_back(std::make_pair(mid - left, vec[left]));
-		this->sub_vec_.push_back(std::make_pair(mid - left, vec[mid]));
-	} else {
-		std::clog << "#273m2" << std::endl;
-		this->sub_vec_.push_back(std::make_pair(right - left + 1, vec[left]));
-	}
-	std::clog << "@276m3 "; printSubList(this->sub_vec_);
+	// std::clog << "@265m0 "; printSubList(this->sub_vec_);
+	// if (left == 0 && right == vec.size() - 1) {
+	// 	std::clog << "#269m1" << std::endl;
+	// 	this->sub_vec_.push_back(std::make_pair(mid - left, vec[left]));
+	// 	this->sub_vec_.push_back(std::make_pair(mid - left, vec[mid]));
+	// } else if (right - left + 1 == mid - left) {
+	// 	std::clog << "#273m2" << std::endl;
+	// 	this->sub_vec_.push_back(std::make_pair(mid - left, vec[left]));
+	// }
+	// std::clog << "@276m3 "; printSubList(this->sub_vec_);
 	if (mid * 2 - left < right)
 		sortMerge(vec, mid * 2 - left, right);
-	std::clog << "@279m4 "; printSubList(this->sub_vec_);
+	// std::clog << "@279m4 "; printSubList(this->sub_vec_);
+}
+
+void	PmergeMe::sortInitSubList(std::vector<int>& vec)
+{
+	size_t	size = vec.size();
+	size_t	sub_size = calcMid(size / 2);
+
+	this->sub_vec_.push_back(std::make_pair(sub_size, vec[0]));
+	this->sub_vec_.push_back(std::make_pair(sub_size, vec[sub_size]));
+	size_t	i = sub_size * 2;
+	std::clog << "@288\ti: " << i << "\tsub_size" << sub_size << "\tsize" << size << std::endl;
+	printSubList(this->sub_vec_);
+	while (i < size) {
+		sub_size = calcMid(size - i);
+		std::clog << "@294\ti: " << i << "\tsub_size" << sub_size << std::endl;
+		this->sub_vec_.push_back(std::make_pair(sub_size, vec[i]));
+		i += sub_size;
+		printSubList(this->sub_vec_);
+	}
 }
 
 void	PmergeMe::sort(std::vector<int>& vec) {
@@ -286,6 +329,8 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 	if (sortCheck(vec))
 		return ;
 	sortMerge(vec, 0, vec.size() - 1);
+	sortInitSubList(vec);
+	// sortInsert();
 
 // https://cpprefjp.github.io/reference/vector/vector/insert.html
 // https://cpprefjp.github.io/reference/vector/vector/erase.html

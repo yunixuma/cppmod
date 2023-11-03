@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/03 11:24:35 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/03 14:35:36 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,16 @@ private:
 		t_vec_it& pos, t_vec_it& first, t_vec_it& last);
 	void				sort(std::list<int>& lst);
 	void				sort(std::vector<int>& vec);
-	void				sortMerge(std::list<int>& vec, \
+	void				sortMerge(std::list<int>& lst, \
 		size_t left, size_t right);
-	void				sortMergeSub(std::list<int>& vec, \
+	void				sortMergeSub(std::list<int>& lst, \
 		size_t left, size_t right);
 	void				sortMerge(std::vector<int>& vec, \
 		size_t left, size_t right);
 	void 				sortMergeSub(std::vector<int>& vec, \
 		size_t left, size_t right);
+	void 				sortInitSubList(std::list<int>& lst);
+	void 				sortInitSubList(std::vector<int>& vec);
 	size_t				calcMid(size_t half) const;
 public:
 	PmergeMe(void);
