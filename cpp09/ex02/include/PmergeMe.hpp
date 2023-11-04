@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/03 18:32:30 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/03 21:14:47 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define BITS_BYTE		8
 # define ORDER_OF_LIST	11
 
+typedef std::list<int>				t_lst;
+typedef std::vector<int>			t_vec;
 typedef std::list<int>::iterator	t_lst_it;
 typedef std::vector<int>::iterator	t_vec_it;
 
@@ -34,8 +36,8 @@ class PmergeMe
 {
 private:
 	// float	time_;
-	std::list<std::pair<size_t, int> >		grp_lst_;
-	std::vector<std::pair<size_t, int> >	grp_vec_;
+	// std::list<std::pair<size_t, int> >		grp_lst_;
+	// std::vector<std::pair<size_t, int> >	grp_vec_;
 	void				move(std::vector<int>& vec, \
 		t_vec_it& pos, t_vec_it& first, t_vec_it& last);
 	void				sort(std::list<int>& lst);
@@ -48,8 +50,14 @@ private:
 		size_t left, size_t right);
 	void 				sortMergeSub(std::vector<int>& vec, \
 		size_t left, size_t right);
-	void 				sortInitGroup(std::list<int>& lst);
-	void 				sortInitGroup(std::vector<int>& vec);
+	std::list<std::pair<size_t, int> >	\
+ 		sortInitGroup(std::list<int>& lst);
+	std::vector<std::pair<size_t, int> >	\
+ 		sortInitGroup(std::vector<int>& vec);
+	void				sortInsert(std::list<int>& lst, \
+		std::list<std::pair<size_t, int> >& groups);
+	void				sortInsert(std::vector<int>& vec, \
+		std::vector<std::pair<size_t, int> >& groups);
 	size_t				calcMid(size_t half) const;
 public:
 	PmergeMe(void);
@@ -107,9 +115,9 @@ public:
 		std::clog << " )" << std::endl;
 	};
 	template <typename T>
-	void				printSubList(T& sub_lst) {
-		typename T::iterator	it = sub_lst.begin();
-		size_t					size = sub_lst.size();
+	void				printGroups(T& groups) {
+		typename T::iterator	it = groups.begin();
+		size_t					size = groups.size();
 		size_t					i = 1;
 		std::clog << size << "{ ";
 		if (size > SIZE_PRINT)
@@ -118,7 +126,7 @@ public:
 			std::clog << (*it).first << "(" << (*it).second << ") ";
 			it++;
 		}
-		if (size < sub_lst.size())
+		if (size < groups.size())
 			std::clog << "[...]";
 		else if (size)
 			std::clog << (*it).first << "(" << (*it).second << ")";
