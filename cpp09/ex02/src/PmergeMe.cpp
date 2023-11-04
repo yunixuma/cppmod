@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/04 19:14:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/04 20:24:25 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void	PmergeMe::sortMerge(t_lst& lst, size_t left, size_t right)
 	// std::clog << "@190m7 "; printGroups(groups);
 }
 
-t_lst_grp	PmergeMe::sortInitGroup(t_lst& lst)
+t_lst_grp	PmergeMe::initGroup(t_lst& lst)
 {
 	t_lst_grp	groups;
 	t_lst_it	it = lst.begin();
@@ -228,6 +228,19 @@ void	PmergeMe::sortInsert(t_lst& lst, t_lst_grp& groups) {
 	(void)lst;
 }
 
+t_lst	PmergeMe::cut(t_lst& lst, t_lst_it& it, size_t size) {
+	t_lst_it	it2 = it;
+	t_lst		lst2;
+	size_t		i = 0;
+
+	while (i++ < size) {
+		lst2.push_back(*it2);
+		it2++;
+	}
+	lst.erase(it, it2);
+	return (lst2);
+}
+
 void	PmergeMe::sort(t_lst& lst) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
@@ -236,8 +249,8 @@ void	PmergeMe::sort(t_lst& lst) {
 	if (sortCheck(lst))
 		return ;
 	sortMerge(lst, 0, lst.size() - 1);
-	t_lst_grp	groups = sortInitGroup(lst);
-	sortInitGroup(lst);
+	t_lst_grp	groups = initGroup(lst);
+	initGroup(lst);
 	sortInsert(lst, groups);
 /*
 	t_lst_it	it1 = lst.begin();
@@ -317,7 +330,7 @@ void	PmergeMe::sortMerge(t_vec& vec, size_t left, size_t right)
 	// std::clog << "@279m4 "; printGroups(groups);
 }
 
-t_vec_grp	PmergeMe::sortInitGroup(t_vec& vec)
+t_vec_grp	PmergeMe::initGroup(t_vec& vec)
 {
 	t_vec_grp	groups;
 	t_vec_it	it = vec.begin();
@@ -353,6 +366,19 @@ void	PmergeMe::sortInsert(t_vec& vec, t_vec_grp& groups) {
 	(void)vec;
 }
 
+t_vec	PmergeMe::cut(t_vec& vec, t_vec_it& it, size_t size) {
+	t_vec_it	it2 = it;
+	t_vec		vec2;
+	size_t		i = 0;
+
+	while (i++ < size) {
+		vec2.push_back(*it2);
+		it2++;
+	}
+	vec.erase(it, it2);
+	return (vec2);
+}
+
 void	PmergeMe::sort(t_vec& vec) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
@@ -362,7 +388,7 @@ void	PmergeMe::sort(t_vec& vec) {
 	if (sortCheck(vec))
 		return ;
 	sortMerge(vec, 0, vec.size() - 1);
-	t_vec_grp	groups = sortInitGroup(vec);
+	t_vec_grp	groups = initGroup(vec);
 	sortInsert(vec, groups);
 
 // https://cpprefjp.github.io/reference/vector/vector/insert.html

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/04 18:58:56 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/04 20:24:25 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ private:
 		size_t left, size_t right);
 	void 				sortMergeSub(t_vec& vec, \
 		size_t left, size_t right);
-	t_lst_grp	sortInitGroup(t_lst& lst);
-	t_vec_grp	sortInitGroup(t_vec& vec);
+	t_lst_grp	initGroup(t_lst& lst);
+	t_vec_grp	initGroup(t_vec& vec);
 	void				sortInsert(t_lst& lst, t_lst_grp& groups);
 	void				sortInsert(t_vec& vec, t_vec_grp& groups);
+	t_lst				cut(t_lst& lst, t_lst_it& it, size_t size);
+	t_vec				cut(t_vec& vec, t_vec_it& it, size_t size);
 	size_t				calcMid(size_t half) const;
 public:
 	PmergeMe(void);
