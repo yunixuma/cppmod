@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/04 20:24:25 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:28:47 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,12 +358,27 @@ t_vec_grp	PmergeMe::initGroup(t_vec& vec)
 void	PmergeMe::sortInsert(t_vec& vec, t_vec_grp& groups) {
 	t_vec_grp::iterator	it = groups.begin();
 	t_vec_grp::iterator	ite = groups.end();
+	t_vec				vec2;
 
 	while (it != ite) {
 		std::clog << "it->first: " << it->first << "\t" << "it->second: " << *(it->second) << std::endl;
+		vec2 = sortInsertCut(vec, groups, it);
+		vec.insert(groups.begin()->second, vec2.begin(), vec2.end());
 		it++;
 	}
 	(void)vec;
+}
+
+t_vec	PmergeMe::sortInsertCut(t_vec& vec, t_vec_grp& grp, t_vec_grp_it& grp_it) {
+	t_vec	vec2;
+	size_t	size = grp_it->first / 2;
+	if (size == 0) {
+		vec2.push_back(*(grp_it->second));
+		vec.erase(grp_it->second);
+		grp.erase(grp_it);
+		return (vec2);
+	}
+	return (vec2);
 }
 
 t_vec	PmergeMe::cut(t_vec& vec, t_vec_it& it, size_t size) {

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/04 20:24:25 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/04 21:24:25 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef t_lst::iterator		t_lst_it;
 typedef t_vec::iterator		t_vec_it;
 typedef std::list<std::pair<size_t, t_lst_it> >		t_lst_grp;
 typedef std::vector<std::pair<size_t, t_vec_it> >	t_vec_grp;
+typedef t_lst_grp::iterator	t_lst_grp_it;
+typedef t_vec_grp::iterator	t_vec_grp_it;
 
 class PmergeMe
 {
@@ -56,6 +58,7 @@ private:
 	t_vec_grp	initGroup(t_vec& vec);
 	void				sortInsert(t_lst& lst, t_lst_grp& groups);
 	void				sortInsert(t_vec& vec, t_vec_grp& groups);
+	t_vec				sortInsertCut(t_vec& vec, t_vec_grp& grp, t_vec_grp_it& grp_it);
 	t_lst				cut(t_lst& lst, t_lst_it& it, size_t size);
 	t_vec				cut(t_vec& vec, t_vec_it& it, size_t size);
 	size_t				calcMid(size_t half) const;
