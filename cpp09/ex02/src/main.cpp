@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/03 11:23:28 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/04 18:52:30 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	main(int argc, char *argv[]) {
 	}
 
 	PmergeMe			pmm;
-	std::list<int>		lst;
-	std::vector<int>	vec;
+	t_lst		lst;
+	t_vec	vec;
 	float	time_lst;
 	float	time_vec;
 

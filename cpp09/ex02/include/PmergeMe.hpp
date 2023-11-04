@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/03 21:14:47 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/04 18:58:56 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@
 # define BITS_BYTE		8
 # define ORDER_OF_LIST	11
 
-typedef std::list<int>				t_lst;
-typedef std::vector<int>			t_vec;
-typedef std::list<int>::iterator	t_lst_it;
-typedef std::vector<int>::iterator	t_vec_it;
+typedef std::list<int>		t_lst;
+typedef std::vector<int>	t_vec;
+typedef t_lst::iterator		t_lst_it;
+typedef t_vec::iterator		t_vec_it;
+typedef std::list<std::pair<size_t, t_lst_it> >		t_lst_grp;
+typedef std::vector<std::pair<size_t, t_vec_it> >	t_vec_grp;
 
 class PmergeMe
 {
@@ -38,34 +40,30 @@ private:
 	// float	time_;
 	// std::list<std::pair<size_t, int> >		grp_lst_;
 	// std::vector<std::pair<size_t, int> >	grp_vec_;
-	void				move(std::vector<int>& vec, \
+	void				move(t_vec& vec, \
 		t_vec_it& pos, t_vec_it& first, t_vec_it& last);
-	void				sort(std::list<int>& lst);
-	void				sort(std::vector<int>& vec);
-	void				sortMerge(std::list<int>& lst, \
+	void				sort(t_lst& lst);
+	void				sort(t_vec& vec);
+	void				sortMerge(t_lst& lst, \
 		size_t left, size_t right);
-	void				sortMergeSub(std::list<int>& lst, \
+	void				sortMergeSub(t_lst& lst, \
 		size_t left, size_t right);
-	void				sortMerge(std::vector<int>& vec, \
+	void				sortMerge(t_vec& vec, \
 		size_t left, size_t right);
-	void 				sortMergeSub(std::vector<int>& vec, \
+	void 				sortMergeSub(t_vec& vec, \
 		size_t left, size_t right);
-	std::list<std::pair<size_t, int> >	\
- 		sortInitGroup(std::list<int>& lst);
-	std::vector<std::pair<size_t, int> >	\
- 		sortInitGroup(std::vector<int>& vec);
-	void				sortInsert(std::list<int>& lst, \
-		std::list<std::pair<size_t, int> >& groups);
-	void				sortInsert(std::vector<int>& vec, \
-		std::vector<std::pair<size_t, int> >& groups);
+	t_lst_grp	sortInitGroup(t_lst& lst);
+	t_vec_grp	sortInitGroup(t_vec& vec);
+	void				sortInsert(t_lst& lst, t_lst_grp& groups);
+	void				sortInsert(t_vec& vec, t_vec_grp& groups);
 	size_t				calcMid(size_t half) const;
 public:
 	PmergeMe(void);
 	~PmergeMe(void);
 	PmergeMe(const PmergeMe& src);
 	PmergeMe&			operator=(const PmergeMe& rhs);
-	std::list<int>		args2List(size_t argc, char *argv[]);
-	std::vector<int>	list2Vector(const std::list<int>& lst);
+	t_lst		args2List(size_t argc, char *argv[]);
+	t_vec	list2Vector(const t_lst& lst);
 	template <typename T>
 	clock_t				measureTime(T& container) {
 		std::clog << "\033[36;2;3m[" << this \
@@ -123,13 +121,13 @@ public:
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
 		while (i++ < size) {
-			std::clog << (*it).first << "(" << (*it).second << ") ";
+			std::clog << (*it).first << "(" << *((*it).second) << ") ";
 			it++;
 		}
 		if (size < groups.size())
 			std::clog << "[...]";
 		else if (size)
-			std::clog << (*it).first << "(" << (*it).second << ")";
+			std::clog << (*it).first << "(" << *((*it).second) << ")";
 		std::clog << " }" << std::endl;
 	};
 };

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/03 21:20:28 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/04 19:14:36 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ PmergeMe::~PmergeMe(void) {
 		<< "]<PmergeMe> Destructor called\033[m" << std::endl;
 }
 /*
-std::list<int>	PmergeMe::split2List(const std::string& str) {
+t_lst	PmergeMe::split2List(const std::string& str) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> split2List called" << std::endl;
 	std::clog << str << "\t<" << typeid(str).name() \
 		<< ">\033[m" << std::endl;
-	std::list<int>		lst;
+	t_lst		lst;
 	int					val = 0;
 	std::stringstream	ss;
 
@@ -69,12 +69,12 @@ std::list<int>	PmergeMe::split2List(const std::string& str) {
 	return (lst);
 }
 */
-std::list<int>	PmergeMe::args2List(size_t argc, char *argv[]) {
+t_lst	PmergeMe::args2List(size_t argc, char *argv[]) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> args2List called" << std::endl;
 	std::clog << argv << "\t<" << typeid(argv).name() \
 		<< ">\033[m" << std::endl;
-	std::list<int>		lst;
+	t_lst		lst;
 	int					val = 0;
 	std::stringstream	ss;
 	size_t				i = 1;
@@ -103,14 +103,14 @@ std::list<int>	PmergeMe::args2List(size_t argc, char *argv[]) {
 	return (lst);
 }
 
-std::vector<int>	PmergeMe::list2Vector(const std::list<int>& lst) {
+t_vec	PmergeMe::list2Vector(const t_lst& lst) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> list2Vector called" << std::endl;
 	std::clog << &lst << "\t<" << typeid(lst).name() \
 		<< ">\033[m" << std::endl;
-	std::vector<int>	vec(lst.size());
-	std::list<int>::const_iterator	it = lst.begin();
-	std::list<int>::const_iterator	ite = lst.end();
+	t_vec	vec(lst.size());
+	t_lst::const_iterator	it = lst.begin();
+	t_lst::const_iterator	ite = lst.end();
 	size_t					i = 0;
 	while (it != ite)
 		vec[i++] = *(it++);
@@ -136,7 +136,7 @@ size_t	PmergeMe::calcMid(size_t size) const {
 	return (1 << mid);
 }
 
-void	PmergeMe::sortMergeSub(std::list<int>& lst, size_t left, size_t right)
+void	PmergeMe::sortMergeSub(t_lst& lst, size_t left, size_t right)
 {
 	if (left >= right)
 		return;
@@ -146,8 +146,8 @@ void	PmergeMe::sortMergeSub(std::list<int>& lst, size_t left, size_t right)
 	sortMergeSub(lst, left, mid - 1);
 	std::clog << "147 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(lst);
 	sortMergeSub(lst, mid, mid * 2 - left - 1);
-	std::list<int>::iterator	it1 = lst.begin(); std::advance(it1, left);
-	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid);
+	t_lst_it	it1 = lst.begin(); std::advance(it1, left);
+	t_lst_it	it2 = lst.begin(); std::advance(it2, mid);
 	if (*it1 < *it2) {
 		for (size_t i = left; i < mid; i++)
 			std::iter_swap(it1++, it2++);
@@ -155,15 +155,15 @@ void	PmergeMe::sortMergeSub(std::list<int>& lst, size_t left, size_t right)
 	// std::clog << "@155ms "; printGroups(groups);
 }
 
-void	PmergeMe::sortMerge(std::list<int>& lst, size_t left, size_t right)
+void	PmergeMe::sortMerge(t_lst& lst, size_t left, size_t right)
 {
 	if (left >= right)
 		return;
 	std::list<std::pair<size_t, int> >	groups;
 	size_t	mid = left + calcMid((right - left + 1) / 2);
 
-	std::list<int>::iterator	it1 = lst.begin(); std::advance(it1, left);
-	std::list<int>::iterator	it2 = lst.begin(); std::advance(it2, mid);
+	t_lst_it	it1 = lst.begin(); std::advance(it1, left);
+	t_lst_it	it2 = lst.begin(); std::advance(it2, mid);
 	std::clog << "166 (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(lst, left, mid - 1);
 	std::clog << "168 (" << left << ", " << mid << ", " << right << ")" << std::endl;
@@ -171,8 +171,8 @@ void	PmergeMe::sortMerge(std::list<int>& lst, size_t left, size_t right)
 	// std::clog << "@170m0 "; printGroups(groups);
 	if ((left == 0 && right == lst.size() - 1 && *it1 > *it2) \
 		|| ((left != 0 || right != lst.size()) && *it1 < *it2)) {
-		std::list<int>::iterator	it1_copy = it1;
-		std::list<int>::iterator	it2_copy = it2;
+		t_lst_it	it1_copy = it1;
+		t_lst_it	it2_copy = it2;
 		for (size_t i = left; i < mid; i++)
 			std::iter_swap(it1_copy++, it2_copy++);
 	}
@@ -192,16 +192,16 @@ void	PmergeMe::sortMerge(std::list<int>& lst, size_t left, size_t right)
 	// std::clog << "@190m7 "; printGroups(groups);
 }
 
-std::list<std::pair<size_t, int> >	PmergeMe::sortInitGroup(std::list<int>& lst)
+t_lst_grp	PmergeMe::sortInitGroup(t_lst& lst)
 {
-	std::list<std::pair<size_t, int> >	groups;
-	size_t	size = lst.size();
-	size_t	sub_size = calcMid(size / 2);
+	t_lst_grp	groups;
+	t_lst_it	it = lst.begin();
+	size_t		size = lst.size();
+	size_t		sub_size = calcMid(size / 2);
 
-	std::list<int>::iterator	it = lst.begin();
-	groups.push_back(std::make_pair(sub_size, *it));
+	groups.push_back(std::make_pair(sub_size, it));
 	std::advance(it, sub_size);
-	groups.push_back(std::make_pair(sub_size, *it));
+	groups.push_back(std::make_pair(sub_size, it));
 	std::advance(it, sub_size);
 	size_t	i = sub_size * 2;
 	std::clog << "@205\ti: " << i << "\tsub_size" << sub_size << "\tsize" << size << std::endl;
@@ -209,7 +209,7 @@ std::list<std::pair<size_t, int> >	PmergeMe::sortInitGroup(std::list<int>& lst)
 	while (i < size) {
 		sub_size = calcMid(size - i);
 		std::clog << "@209\ti: " << i << "\tsub_size" << sub_size << std::endl;
-		groups.push_back(std::make_pair(sub_size, *it));
+		groups.push_back(std::make_pair(sub_size, it));
 		i += sub_size;
 		std::advance(it, sub_size);
 		printGroups(groups);
@@ -217,18 +217,18 @@ std::list<std::pair<size_t, int> >	PmergeMe::sortInitGroup(std::list<int>& lst)
 	return (groups);
 }
 
-void	sortInsert(std::list<int>& lst, \
-	std::list<std::pair<size_t, int> >& groups) {
-	std::list<std::pair<size_t, int> >::iterator	it = groups.begin();
-	std::list<std::pair<size_t, int> >::iterator	ite = groups.end();
+void	PmergeMe::sortInsert(t_lst& lst, t_lst_grp& groups) {
+	t_lst_grp::iterator	it = groups.begin();
+	t_lst_grp::iterator	ite = groups.end();
 
 	while (it != ite) {
-		std::clog << "it->first: " << it->first << "\t" << "it->second: " << it->second << std::endl;
+		std::clog << "it->first: " << it->first << "\t" << "it->second: " << *(it->second) << std::endl;
 		it++;
 	}
+	(void)lst;
 }
 
-void	PmergeMe::sort(std::list<int>& lst) {
+void	PmergeMe::sort(t_lst& lst) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
 	std::clog << &lst << "\t<" << typeid(lst).name() \
@@ -236,7 +236,7 @@ void	PmergeMe::sort(std::list<int>& lst) {
 	if (sortCheck(lst))
 		return ;
 	sortMerge(lst, 0, lst.size() - 1);
-	std::list<std::pair<size_t, int> >	groups = sortInitGroup(lst);
+	t_lst_grp	groups = sortInitGroup(lst);
 	sortInitGroup(lst);
 	sortInsert(lst, groups);
 /*
@@ -262,7 +262,7 @@ void	PmergeMe::sort(std::list<int>& lst) {
 */
 }
 
-void	PmergeMe::sortMergeSub(std::vector<int>& vec, size_t left, size_t right)
+void	PmergeMe::sortMergeSub(t_vec& vec, size_t left, size_t right)
 {
 	if (left >= right)
 		return;
@@ -273,8 +273,8 @@ void	PmergeMe::sortMergeSub(std::vector<int>& vec, size_t left, size_t right)
 	std::clog << "236 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(vec);
 	sortMergeSub(vec, mid, mid * 2 - left - 1);
 	if (vec[left] < vec[mid]) {
-		std::vector<int>::iterator	it1 = vec.begin() + left;
-		std::vector<int>::iterator	it2 = vec.begin() + mid;
+		t_vec::iterator	it1 = vec.begin() + left;
+		t_vec::iterator	it2 = vec.begin() + mid;
 		for (size_t i = left; i < mid; i++) {
 			std::iter_swap(it1++, it2++);
 		}
@@ -282,7 +282,7 @@ void	PmergeMe::sortMergeSub(std::vector<int>& vec, size_t left, size_t right)
 	// std::clog << "@245ms "; printGroups(groups);
 }
 
-void	PmergeMe::sortMerge(std::vector<int>& vec, size_t left, size_t right)
+void	PmergeMe::sortMerge(t_vec& vec, size_t left, size_t right)
 {
 	if (left >= right)
 		return;
@@ -296,8 +296,8 @@ void	PmergeMe::sortMerge(std::vector<int>& vec, size_t left, size_t right)
 	sortMergeSub(vec, mid, mid * 2 - left - 1);
 	if ((left == 0 && right == vec.size() - 1 && vec[left] > vec[mid]) \
 		|| ((left != 0 || right != vec.size()) && vec[left] < vec[mid])) {
-		std::vector<int>::iterator	it1 = vec.begin() + left;
-		std::vector<int>::iterator	it2 = vec.begin() + mid;
+		t_vec::iterator	it1 = vec.begin() + left;
+		t_vec::iterator	it2 = vec.begin() + mid;
 		for (size_t i = left; i < mid; i++)
 			std::iter_swap(it1++, it2++);
 	}
@@ -317,39 +317,43 @@ void	PmergeMe::sortMerge(std::vector<int>& vec, size_t left, size_t right)
 	// std::clog << "@279m4 "; printGroups(groups);
 }
 
-std::vector<std::pair<size_t, int> >	PmergeMe::sortInitGroup(std::vector<int>& vec)
+t_vec_grp	PmergeMe::sortInitGroup(t_vec& vec)
 {
-	std::vector<std::pair<size_t, int> >	groups;
-	size_t	size = vec.size();
-	size_t	sub_size = calcMid(size / 2);
+	t_vec_grp	groups;
+	t_vec_it	it = vec.begin();
+	size_t		size = vec.size();
+	size_t		sub_size = calcMid(size / 2);
 
-	groups.push_back(std::make_pair(sub_size, vec[0]));
-	groups.push_back(std::make_pair(sub_size, vec[sub_size]));
+	groups.push_back(std::make_pair(sub_size, it));
+	std::advance(it, sub_size);
+	groups.push_back(std::make_pair(sub_size, it));
+	std::advance(it, sub_size);
 	size_t	i = sub_size * 2;
 	std::clog << "@288\ti: " << i << "\tsub_size" << sub_size << "\tsize" << size << std::endl;
 	printGroups(groups);
 	while (i < size) {
 		sub_size = calcMid(size - i);
 		std::clog << "@294\ti: " << i << "\tsub_size" << sub_size << std::endl;
-		groups.push_back(std::make_pair(sub_size, vec[i]));
+		groups.push_back(std::make_pair(sub_size, it));
 		i += sub_size;
+		std::advance(it, sub_size);
 		printGroups(groups);
 	}
 	return (groups);
 }
 
-void	sortInsert(std::vector<int>& lst, \
-	std::vector<std::pair<size_t, int> >& groups) {
-	std::vector<std::pair<size_t, int> >::iterator	it = groups.begin();
-	std::vector<std::pair<size_t, int> >::iterator	ite = groups.end();
+void	PmergeMe::sortInsert(t_vec& vec, t_vec_grp& groups) {
+	t_vec_grp::iterator	it = groups.begin();
+	t_vec_grp::iterator	ite = groups.end();
 
 	while (it != ite) {
-		std::clog << "it->first: " << it->first << "\t" << "it->second: " << it->second << std::endl;
+		std::clog << "it->first: " << it->first << "\t" << "it->second: " << *(it->second) << std::endl;
 		it++;
 	}
+	(void)vec;
 }
 
-void	PmergeMe::sort(std::vector<int>& vec) {
+void	PmergeMe::sort(t_vec& vec) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> sort called" << std::endl;
 	std::clog << &vec << "\t<" << typeid(vec).name() \
@@ -358,7 +362,7 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 	if (sortCheck(vec))
 		return ;
 	sortMerge(vec, 0, vec.size() - 1);
-	std::vector<std::pair<size_t, int> >	groups = sortInitGroup(vec);
+	t_vec_grp	groups = sortInitGroup(vec);
 	sortInsert(vec, groups);
 
 // https://cpprefjp.github.io/reference/vector/vector/insert.html
@@ -366,7 +370,7 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 /*	t_vec_it	it1 = vec.begin();
 	t_vec_it	it2 = vec.begin();
 	t_vec_it	it3 = vec.end();
-	std::vector<int>	vec2;
+	t_vec	vec2;
 	vec2.push_back(1);
 	vec.push_back(1);
 	vec.push_back(1);
@@ -391,15 +395,15 @@ void	PmergeMe::sort(std::vector<int>& vec) {
 }
 
 /*
-void	PmergeMe::move(std::vector<int>& vec, \
+void	PmergeMe::move(t_vec& vec, \
 	t_vec_it& pos, t_vec_it& first, t_vec_it& last) {
 
 }
 */
 /*
-void	PmergeMe::move(std::vector<int>& vec, \
+void	PmergeMe::move(t_vec& vec, \
 	t_vec_it& pos, t_vec_it& first, t_vec_it& last) {
-	std::vector<int>	tmp(first, ++last);
+	t_vec	tmp(first, ++last);
 	t_vec_it			tmp_begin = tmp.begin();
 	t_vec_it			tmp_end = tmp.end();
 	t_vec_it			copy_first = first;
@@ -425,7 +429,7 @@ void	PmergeMe::move(std::vector<int>& vec, \
 	printList(vec);
 }
 
-void PmergeMe::sortMerge(std::vector<int>& vec, size_t l, size_t m, size_t r)
+void PmergeMe::sortMerge(t_vec& vec, size_t l, size_t m, size_t r)
 {
 	size_t	i, j, k;
 	size_t	n1 = m - l + 1;
