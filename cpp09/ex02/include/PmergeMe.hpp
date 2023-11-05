@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/05 14:36:28 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/06 06:07:43 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ private:
 	// float	time_;
 	// std::list<std::pair<size_t, int> >		grp_lst_;
 	// std::vector<std::pair<size_t, int> >	grp_vec_;
+	size_t				n_sorted_;
 	void				move(t_vec& vec, \
 		t_vec_it& pos, t_vec_it& second, t_vec_it& last);
 	void				sort(t_lst& lst);

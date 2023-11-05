@@ -6,13 +6,13 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/05 14:39:07 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/06 07:46:10 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(void) {
+PmergeMe::PmergeMe(void) : n_sorted_(0) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<PmergeMe> Constructor called" \
 		<< "\033[m" << std::endl;
@@ -29,10 +29,11 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe& rhs) {
 	std::clog << "\033[35;2;3m[" << this << "<-" << &rhs \
 		<< "]<PmergeMe> Copy assignment operator called" \
 		<< "\033[m" << std::endl;
-	// if (this != &rhs) {
-	// 	groups = rhs.grp_lst_;
-	// 	groups = rhs.grp_vec_;
-	// }
+	if (this != &rhs) {
+		// this->grp_lst_ = rhs.grp_lst_;
+		// this->grp_vec_ = rhs.grp_vec_;
+		this->n_sorted_ = rhs.n_sorted_;
+	}
 	return (*this);
 }
 
@@ -351,6 +352,16 @@ t_vec_grp	PmergeMe::initGroup(t_vec& vec)
 		std::advance(it, sub_size);
 		printGroups(groups);
 	}
+	this->n_sorted_ = 0;
+	t_vec_grp_it	grp_it = groups.begin();
+	t_vec_grp_it	grp_ite = groups.end();
+	int	tmp = INT_MIN;
+	while (grp_it != grp_ite) {
+		if (tmp > *(grp_it->first))
+			break;
+		this->n_sorted_++;
+		grp_it++;
+	}
 	return (groups);
 }
 
@@ -411,17 +422,23 @@ void	PmergeMe::sortInsertBS(t_vec& vec, t_vec& vec2, t_vec_grp& groups) {
 	t_vec_it				pos;
 	t_vec::reverse_iterator	it2 = vec2.rbegin();
 	t_vec::reverse_iterator	ite2 = vec2.rend();
-	size_t					dist = groups.size() / 2;
+	size_t					dist = 0;
 
-	std::clog << "vec2: "; printList(vec2);
+	std::clog << "vec\t: "; printList(vec);
+	std::clog << "vec2\t: "; printList(vec2);
+	if (*grp_it->first < vec2[0]) {
+		dist = this->n_sorted_ / 2;
+		std::advance(grp_it, dist);
+		dist /= 2;
+	}
 	while (dist > 0) {
-		std::clog << "dist: " << dist << "\tgrp_it->first: " << *grp_it->first << std::endl;
+		std::clog << "n_sorted_: " << this->n_sorted_ << "\tdist: " << dist << "\tgrp_it->first: " << *grp_it->first << std::endl;
 		if (*grp_it->first == vec2[0])
 			break;
 		if (*grp_it->first < vec2[0])
 			std::advance(grp_it, static_cast<int>(-dist));
 		else
-			std::advance(grp_it, static_cast<int>(dist));
+			std::advance(grp_it, dist);
 		dist /= 2;
 	}
 	pos = grp_it->first;
@@ -430,7 +447,9 @@ void	PmergeMe::sortInsertBS(t_vec& vec, t_vec& vec2, t_vec_grp& groups) {
 		pos = vec.insert(pos, *it2);
 		it2++;
 	}
-	groups.insert(grp_it, std::make_pair(pos, vec2.size()));
+	grp_it = groups.insert(grp_it, std::make_pair(pos, vec2.size()));
+	this->n_sorted_++;
+	printList(vec); printGroups(groups);
 }
 
 void	PmergeMe::sort(t_vec& vec) {
