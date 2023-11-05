@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/04 21:28:47 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/05 13:59:58 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -356,15 +356,25 @@ t_vec_grp	PmergeMe::initGroup(t_vec& vec)
 }
 
 void	PmergeMe::sortInsert(t_vec& vec, t_vec_grp& groups) {
-	t_vec_grp::iterator	it = groups.begin();
-	t_vec_grp::iterator	ite = groups.end();
-	t_vec				vec2;
+	t_vec_grp_it	grp_it;
+	t_vec_grp_it	grp_ite;
+	t_vec			vec2;
+	size_t			size = groups.begin()->first;
 
-	while (it != ite) {
-		std::clog << "it->first: " << it->first << "\t" << "it->second: " << *(it->second) << std::endl;
-		vec2 = sortInsertCut(vec, groups, it);
-		vec.insert(groups.begin()->second, vec2.begin(), vec2.end());
-		it++;
+	while (size > 0) {
+		grp_it = groups.begin();
+		grp_ite = groups.end();
+		while (grp_it != grp_ite) {
+			std::clog << "it->first: " << grp_it->first << "\t" << "it->second: " << *(grp_it->second) << std::endl;
+			if (grp_it->first == size) {
+				vec2 = sortInsertCut(vec, groups, grp_it);
+				sortInsertBS(vec, vec2, groups);
+			}
+			grp_it++;
+		}
+		size >>= 1;
+		printList(vec);
+		printGroups(groups);
 	}
 	(void)vec;
 }
@@ -375,9 +385,12 @@ t_vec	PmergeMe::sortInsertCut(t_vec& vec, t_vec_grp& grp, t_vec_grp_it& grp_it) 
 	if (size == 0) {
 		vec2.push_back(*(grp_it->second));
 		vec.erase(grp_it->second);
-		grp.erase(grp_it);
+		grp_it = grp.erase(grp_it);
 		return (vec2);
 	}
+	t_vec_it	it = grp_it->second;
+	std::advance(it, size);
+	vec2 = cut(vec, it, size);
 	return (vec2);
 }
 
@@ -392,6 +405,33 @@ t_vec	PmergeMe::cut(t_vec& vec, t_vec_it& it, size_t size) {
 	}
 	vec.erase(it, it2);
 	return (vec2);
+}
+
+void	PmergeMe::sortInsertBS(t_vec& vec, t_vec& vec2, t_vec_grp& groups) {
+	t_vec_grp_it			grp_it = groups.begin();
+	t_vec_it				pos;
+	t_vec::reverse_iterator	it2 = vec2.rbegin();
+	t_vec::reverse_iterator	ite2 = vec2.rend();
+	size_t					dist = groups.size() / 2;
+
+	std::clog << "vec2: "; printList(vec2);
+	while (dist > 0) {
+		std::clog << "dist: " << dist << "\tgrp_it->second: " << *grp_it->second << std::endl;
+		if (*grp_it->second == vec2[0])
+			break;
+		if (*grp_it->second < vec2[0])
+			std::advance(grp_it, static_cast<int>(-dist));
+		else
+			std::advance(grp_it, static_cast<int>(dist));
+		dist /= 2;
+	}
+	pos = grp_it->second;
+	std::clog << "pos: " << *pos << std::endl;
+	while (it2 != ite2) {
+		pos = vec.insert(pos, *it2);
+		it2++;
+	}
+	groups.insert(grp_it, std::make_pair(vec2.size(), pos));
 }
 
 void	PmergeMe::sort(t_vec& vec) {
