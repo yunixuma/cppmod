@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/05 07:54:50 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/05 14:36:28 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef std::list<int>		t_lst;
 typedef std::vector<int>	t_vec;
 typedef t_lst::iterator		t_lst_it;
 typedef t_vec::iterator		t_vec_it;
-typedef std::list<std::pair<size_t, t_lst_it> >		t_lst_grp;
-typedef std::vector<std::pair<size_t, t_vec_it> >	t_vec_grp;
+typedef std::list<std::pair<t_lst_it, size_t> >		t_lst_grp;
+typedef std::vector<std::pair<t_vec_it, size_t> >	t_vec_grp;
 typedef t_lst_grp::iterator	t_lst_grp_it;
 typedef t_vec_grp::iterator	t_vec_grp_it;
 
@@ -43,7 +43,7 @@ private:
 	// std::list<std::pair<size_t, int> >		grp_lst_;
 	// std::vector<std::pair<size_t, int> >	grp_vec_;
 	void				move(t_vec& vec, \
-		t_vec_it& pos, t_vec_it& first, t_vec_it& last);
+		t_vec_it& pos, t_vec_it& second, t_vec_it& last);
 	void				sort(t_lst& lst);
 	void				sort(t_vec& vec);
 	void				sortMerge(t_lst& lst, \
@@ -129,13 +129,13 @@ public:
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
 		while (i++ < size) {
-			std::clog << (*it).first << "(" << *((*it).second) << ") ";
+			std::clog << (*it).second << "(" << *((*it).first) << ") ";
 			it++;
 		}
 		if (size < groups.size())
 			std::clog << "[...]";
 		else if (size)
-			std::clog << (*it).first << "(" << *((*it).second) << ")";
+			std::clog << (*it).second << "(" << *((*it).first) << ")";
 		std::clog << " }" << std::endl;
 	};
 };
