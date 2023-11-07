@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/08 22:00:00 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/08 03:57:25 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,9 +228,9 @@ void	PmergeMe::sortTriplet(t_lst& lst, t_lst_grp& groups) {
 	int				grp2 = *it->first;
 	if (it->second != size)        
 		return ;
-	std::clog << "grp0: " << grp0 << "\tg" \
-		 "grp0: " << grp0 << "\tg"
-
+	std::clog << "^" << __LINE__ << "\tgrp0: " << grp0 \
+		<< "\tgrp1: " << grp1 \
+		<< "\tgrp2: " << grp2 << std::endl;
 	if (grp0 > grp2)
 		swapGroup(lst, 0, size * 2, size);
 	if (grp0 > grp1)
