@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/04 18:52:30 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/06 17:14:41 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	main(int argc, char *argv[]) {
 		return (ENOENT);
 	}
 
-	PmergeMe			pmm;
+	PmergeMe	pmm;
 	t_lst		lst;
-	t_vec	vec;
-	float	time_lst;
-	float	time_vec;
+	t_vec		vec;
+	float		time_lst;
+	float		time_vec;
 
 	try {
 		lst = pmm.args2List(argc, argv);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/06 07:46:10 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/07 17:25:16 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,9 +143,9 @@ void	PmergeMe::sortMergeSub(t_lst& lst, size_t left, size_t right)
 		return;
 	size_t	mid = left + (right - left + 1) / 2;
 	printList(lst);
-	std::clog << "145 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(lst);
+	std::clog << __LINE__ << " (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(lst);
 	sortMergeSub(lst, left, mid - 1);
-	std::clog << "147 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(lst);
+	std::clog << __LINE__ << " (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(lst);
 	sortMergeSub(lst, mid, mid * 2 - left - 1);
 	t_lst_it	it1 = lst.begin(); std::advance(it1, left);
 	t_lst_it	it2 = lst.begin(); std::advance(it2, mid);
@@ -164,11 +164,11 @@ void	PmergeMe::sortMerge(t_lst& lst, size_t left, size_t right)
 
 	t_lst_it	it1 = lst.begin(); std::advance(it1, left);
 	t_lst_it	it2 = lst.begin(); std::advance(it2, mid);
-	std::clog << "166 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << __LINE__ << " (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(lst, left, mid - 1);
-	std::clog << "168 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << __LINE__ << " (" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(lst, mid, mid * 2 - left - 1);
-	// std::clog << "@170m0 "; printGroups(groups);
+	// std::clog << "@" << __LINE__ << "m0 "; printGroups(groups);
 	if ((left == 0 && right == lst.size() - 1 && *it1 > *it2) \
 		|| ((left != 0 || right != lst.size()) && *it1 < *it2)) {
 		t_lst_it	it1_copy = it1;
@@ -176,20 +176,20 @@ void	PmergeMe::sortMerge(t_lst& lst, size_t left, size_t right)
 		for (size_t i = left; i < mid; i++)
 			std::iter_swap(it1_copy++, it2_copy++);
 	}
-	std::clog << "@177m2 "; printList(lst);
-	// std::clog << "@178m2 "; printGroups(groups);
+	std::clog << "@" << __LINE__ << "m2 "; printList(lst);
+	// std::clog << "@" << __LINE__ << "m2 "; printGroups(groups);
 	// if (left == 0 && right == lst.size() - 1) {
-	// 	std::clog << "#180m3" << std::endl;
+	// 	std::clog << "#" << __LINE__ << "m3" << std::endl;
 	// 	groups.push_back(std::make_pair(mid - left, *it1));
 	// 	groups.push_back(std::make_pair(mid - left, *it2));
 	// } else if (right - left + 1 == mid - left) {
-	// 	std::clog << "#184m5" << std::endl;
+	// 	std::clog << "#" << __LINE__ << "m5" << std::endl;
 	// 	groups.push_back(std::make_pair(right - left + 1, *it1));
 	// }
-	// std::clog << "@187m6 "; printGroups(groups);
+	// std::clog << "@" << __LINE__ << "m6 "; printGroups(groups);
 	if (mid * 2 - left < right)
 		sortMerge(lst, mid * 2 - left, right);
-	// std::clog << "@190m7 "; printGroups(groups);
+	// std::clog << "@" << __LINE__ << "m7 "; printGroups(groups);
 }
 
 t_lst_grp	PmergeMe::initGroup(t_lst& lst)
@@ -204,11 +204,11 @@ t_lst_grp	PmergeMe::initGroup(t_lst& lst)
 	groups.push_back(std::make_pair(it, sub_size));
 	std::advance(it, sub_size);
 	size_t	i = sub_size * 2;
-	std::clog << "@205\ti: " << i << "\tsub_size" << sub_size << "\tsize" << size << std::endl;
+	std::clog << "@" << __LINE__ << "\ti: " << i << "\tsub_size" << sub_size << "\tsize" << size << std::endl;
 	printGroups(groups);
 	while (i < size) {
 		sub_size = calcMid(size - i);
-		std::clog << "@209\ti: " << i << "\tsub_size" << sub_size << std::endl;
+		std::clog << "@" << __LINE__ << "\ti: " << i << "\tsub_size" << sub_size << std::endl;
 		groups.push_back(std::make_pair(it, sub_size));
 		i += sub_size;
 		std::advance(it, sub_size);
@@ -281,17 +281,12 @@ void	PmergeMe::sortMergeSub(t_vec& vec, size_t left, size_t right)
 		return;
 	size_t	mid = left + (right - left + 1) / 2;
 	printList(vec);
-	std::clog << "234 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(vec);
+	std::clog << "!" << __LINE__ << " (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(vec);
 	sortMergeSub(vec, left, mid - 1);
-	std::clog << "236 (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(vec);
+	std::clog << "!" << __LINE__ << " (" << left << ", " << mid << ", " << right << ")" << std::endl; printList(vec);
 	sortMergeSub(vec, mid, mid * 2 - left - 1);
-	if (vec[left] < vec[mid]) {
-		t_vec::iterator	it1 = vec.begin() + left;
-		t_vec::iterator	it2 = vec.begin() + mid;
-		for (size_t i = left; i < mid; i++) {
-			std::iter_swap(it1++, it2++);
-		}
-	}
+	if (vec[left] < vec[mid])
+		swapGroup(vec, left, mid);
 	// std::clog << "@245ms "; printGroups(groups);
 }
 
@@ -303,31 +298,27 @@ void	PmergeMe::sortMerge(t_vec& vec, size_t left, size_t right)
 
 
 
-	std::clog << "256 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << "#" << __LINE__ << "\t(" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(vec, left, mid - 1);
-	std::clog << "258 (" << left << ", " << mid << ", " << right << ")" << std::endl;
+	std::clog << "#" << __LINE__ << "\t(" << left << ", " << mid << ", " << right << ")" << std::endl;
 	sortMergeSub(vec, mid, mid * 2 - left - 1);
-	if ((left == 0 && right == vec.size() - 1 && vec[left] > vec[mid]) \
-		|| ((left != 0 || right != vec.size()) && vec[left] < vec[mid])) {
-		t_vec::iterator	it1 = vec.begin() + left;
-		t_vec::iterator	it2 = vec.begin() + mid;
-		for (size_t i = left; i < mid; i++)
-			std::iter_swap(it1++, it2++);
-	}
-	std::clog << "@264m0 "; printList(vec);
-	// std::clog << "@265m0 "; printGroups(groups);
+	// if ((left == 0 && right == vec.size() - 1 && vec[left] > vec[mid]) || ((left != 0 || right != vec.size()) && vec[left] < vec[mid])) {
+	if ((left != 0 || right != vec.size()) && vec[left] < vec[mid])
+		swapGroup(vec, left, mid);
+	std::clog << "#" << __LINE__ << "m0 "; printList(vec);
+	// std::clog << "#" << __LINE__ << "m0 "; printGroups(groups);
 	// if (left == 0 && right == vec.size() - 1) {
-	// 	std::clog << "#269m1" << std::endl;
+	// 	std::clog << "#" << __LINE__ << "m1" << std::endl;
 	// 	groups.push_back(std::make_pair(mid - left, vec[left]));
 	// 	groups.push_back(std::make_pair(mid - left, vec[mid]));
 	// } else if (right - left + 1 == mid - left) {
-	// 	std::clog << "#273m2" << std::endl;
+	// 	std::clog << "#" << __LINE__ << "m2" << std::endl;
 	// 	groups.push_back(std::make_pair(mid - left, vec[left]));
 	// }
-	// std::clog << "@276m3 "; printGroups(groups);
+	// std::clog << "#" << __LINE__ << "m3 "; printGroups(groups);
 	if (mid * 2 - left < right)
 		sortMerge(vec, mid * 2 - left, right);
-	// std::clog << "@279m4 "; printGroups(groups);
+	// std::clog << "#" << __LINE__ << "m4 "; printGroups(groups);
 }
 
 t_vec_grp	PmergeMe::initGroup(t_vec& vec)
@@ -342,27 +333,30 @@ t_vec_grp	PmergeMe::initGroup(t_vec& vec)
 	groups.push_back(std::make_pair(it, sub_size));
 	std::advance(it, sub_size);
 	size_t	i = sub_size * 2;
-	std::clog << "@288\ti: " << i << "\tsub_size" << sub_size << "\tsize" << size << std::endl;
+	std::clog << "$" << __LINE__ << "\ti: " << i << "\tsub_size" << sub_size << "\tsize" << size << std::endl;
 	printGroups(groups);
 	while (i < size) {
 		sub_size = calcMid(size - i);
-		std::clog << "@294\ti: " << i << "\tsub_size" << sub_size << std::endl;
+		std::clog << "$" << __LINE__ << "\ti: " << i << "\tsub_size" << sub_size << std::endl;
 		groups.push_back(std::make_pair(it, sub_size));
 		i += sub_size;
 		std::advance(it, sub_size);
 		printGroups(groups);
 	}
-	this->n_sorted_ = 0;
-	t_vec_grp_it	grp_it = groups.begin();
-	t_vec_grp_it	grp_ite = groups.end();
-	int	tmp = INT_MIN;
-	while (grp_it != grp_ite) {
-		if (tmp > *(grp_it->first))
-			break;
-		this->n_sorted_++;
-		grp_it++;
-	}
 	return (groups);
+}
+
+void	PmergeMe::sortTriplet(t_vec& vec, t_vec_grp& groups) {
+	size_t	size = groups[0].second;
+
+	if (groups.size() < 3 || groups[2].second != size)
+		return ;
+	if (*groups[0].first > *groups[2].first)
+		swapGroup(vec, 0, size * 2, size);
+	if (*groups[0].first > *groups[1].first)
+		swapGroup(vec, 0, size, size);	
+	if (*groups[1].first> *groups[2].first)
+		swapGroup(vec, size, size * 2, size);	
 }
 
 void	PmergeMe::sortInsert(t_vec& vec, t_vec_grp& groups) {
@@ -375,10 +369,13 @@ void	PmergeMe::sortInsert(t_vec& vec, t_vec_grp& groups) {
 		grp_it = groups.begin();
 		grp_ite = groups.end();
 		while (grp_it != grp_ite) {
-			std::clog << "it->second: " << grp_it->second << "\t" << "it->first: " << *(grp_it->first) << std::endl;
+			std::clog << "%" << __LINE__ << "\tn_sorted: " << this->n_sorted_ << "\tit->second: " << grp_it->second << std::endl;
+			std::clog << "%" << __LINE__ << "\tn_sorted: " << this->n_sorted_ << "\tit->second: " << grp_it->second << "\t" << "it->first: " << *(grp_it->first) << std::endl;
+			std::clog << "%" << __LINE__ << "\t"; printGroups(groups);
 			if (grp_it->second == size) {
 				vec2 = sortInsertCut(vec, groups, grp_it);
-				sortInsertBS(vec, vec2, groups);
+				// std::clog << "%" << __LINE__ << "\t"; printGroups(groups);
+				sortInsertBS(vec, vec2, groups, grp_it);
 			}
 			grp_it++;
 		}
@@ -389,19 +386,43 @@ void	PmergeMe::sortInsert(t_vec& vec, t_vec_grp& groups) {
 	(void)vec;
 }
 
-t_vec	PmergeMe::sortInsertCut(t_vec& vec, t_vec_grp& grp, t_vec_grp_it& grp_it) {
+t_vec	PmergeMe::sortInsertCut(t_vec& vec, t_vec_grp& groups, t_vec_grp_it& grp_it) {
 	t_vec	vec2;
 	size_t	size = grp_it->second / 2;
+	std::clog << "&" << __LINE__ << "\t"; printGroups(groups);
 	if (size == 0) {
 		vec2.push_back(*(grp_it->first));
 		vec.erase(grp_it->first);
-		grp_it = grp.erase(grp_it);
+		grp_it = groups.erase(grp_it);
+		std::clog << "&" << __LINE__ << "\t"; printGroups(groups);
 		return (vec2);
 	}
 	t_vec_it	it = grp_it->first;
+	grp_it->second = size;
 	std::advance(it, size);
+	std::clog << "&" << __LINE__ << "\t"; printGroups(groups);
 	vec2 = cut(vec, it, size);
+	// slide
+	// std::clog << "&" << __LINE__ << "\t"; printGroups(groups);
 	return (vec2);
+}
+
+void	PmergeMe::swapGroup(t_vec& vec, size_t left, size_t mid) {
+	std::clog << "/" << __LINE__ << "\tleft: " << left << "\tmid: " << mid << std::endl;
+	std::clog << "/" << __LINE__ << "\t "; printList(vec);
+	t_vec_it	it1 = vec.begin() + left;
+	t_vec_it	it2 = vec.begin() + mid;
+	for (size_t i = left; i < mid; i++)
+		std::iter_swap(it1++, it2++);
+}
+
+void	PmergeMe::swapGroup(t_vec& vec, size_t left, size_t mid, size_t size) {
+	std::clog << "/" << __LINE__ << "\tleft: " << left << "\tmid: " << mid  << "\tsize: " << size << std::endl;
+	std::clog << "/" << __LINE__ << "\t "; printList(vec);
+	t_vec_it	it1 = vec.begin() + left;
+	t_vec_it	it2 = vec.begin() + mid;
+	for (size_t i = 0; i < size; i++)
+		std::iter_swap(it1++, it2++);
 }
 
 t_vec	PmergeMe::cut(t_vec& vec, t_vec_it& it, size_t size) {
@@ -417,39 +438,59 @@ t_vec	PmergeMe::cut(t_vec& vec, t_vec_it& it, size_t size) {
 	return (vec2);
 }
 
-void	PmergeMe::sortInsertBS(t_vec& vec, t_vec& vec2, t_vec_grp& groups) {
+void	PmergeMe::sortInsertBS(t_vec& vec, t_vec& vec2, t_vec_grp& groups, t_vec_grp_it& grp_ite) {
 	t_vec_grp_it			grp_it = groups.begin();
 	t_vec_it				pos;
 	t_vec::reverse_iterator	it2 = vec2.rbegin();
 	t_vec::reverse_iterator	ite2 = vec2.rend();
 	size_t					dist = 0;
 
-	std::clog << "vec\t: "; printList(vec);
-	std::clog << "vec2\t: "; printList(vec2);
+	std::clog << "@" << __LINE__ << "\tvec\t: "; printList(vec);
+	std::clog << "@" << __LINE__ << "\tvec2\t: "; printList(vec2);
+	// std::clog << "@" << __LINE__ << "\t"; printGroups(groups);
 	if (*grp_it->first < vec2[0]) {
 		dist = this->n_sorted_ / 2;
 		std::advance(grp_it, dist);
 		dist /= 2;
 	}
 	while (dist > 0) {
-		std::clog << "n_sorted_: " << this->n_sorted_ << "\tdist: " << dist << "\tgrp_it->first: " << *grp_it->first << std::endl;
+		std::clog << "@" << __LINE__ << "\tn_sorted_: " << this->n_sorted_ << "\tdist: " << dist << "\tgrp_it->first: " << *grp_it->first << std::endl;
 		if (*grp_it->first == vec2[0])
 			break;
 		if (*grp_it->first < vec2[0])
-			std::advance(grp_it, static_cast<int>(-dist));
-		else
 			std::advance(grp_it, dist);
+		else if (dist > 1)
+			std::advance(grp_it, static_cast<int>(-dist));
 		dist /= 2;
 	}
 	pos = grp_it->first;
-	std::clog << "pos: " << *pos << std::endl;
+	std::clog << "@" << __LINE__ << "\tpos: " << *pos << "\t" << *grp_ite->first << std::endl;
 	while (it2 != ite2) {
 		pos = vec.insert(pos, *it2);
 		it2++;
 	}
+	std::clog << "@" << __LINE__ << "\t"; printGroups(groups);
 	grp_it = groups.insert(grp_it, std::make_pair(pos, vec2.size()));
 	this->n_sorted_++;
-	printList(vec); printGroups(groups);
+	// std::clog << "@" << __LINE__ << "\tgrp_it: " << *grp_it->first << "\t grp_ite: " << *grp_ite->first << std::endl;
+	// size_t	n_slide = this->n_sorted_ - std::distance(groups.begin(), grp_it);
+	// while (n_slide--) {
+	if (vec2.size() == 1) {
+		grp_it++;
+		std::clog << "@" << __LINE__ << "\t"; printGroups(groups);
+		std::advance(grp_it->first, vec2.size());
+		std::clog << "@" << __LINE__ << "\t"; printGroups(groups);
+		return ;
+	}
+	grp_ite++;
+	while (grp_it != grp_ite) {
+		std::clog << "@" << __LINE__ << "\t"; printGroups(groups);
+		std::clog << "@" << __LINE__ << "\tgrp_it: " << *grp_it->first << "\t grp_ite: " << *grp_ite->first << std::endl;
+		std::advance(grp_ite->first, vec2.size());
+		std::clog << "@" << __LINE__ << "\t"; printGroups(groups);
+		grp_ite--;
+	}
+	// std::clog << "@" << __LINE__ << "\t"; printList(vec); printGroups(groups);
 }
 
 void	PmergeMe::sort(t_vec& vec) {
@@ -462,6 +503,20 @@ void	PmergeMe::sort(t_vec& vec) {
 		return ;
 	sortMerge(vec, 0, vec.size() - 1);
 	t_vec_grp	groups = initGroup(vec);
+	sortTriplet(vec, groups);
+
+	this->n_sorted_ = 0;
+	t_vec_grp_it	grp_it = groups.begin();
+	t_vec_grp_it	grp_ite = groups.end();
+	int	tmp = INT_MIN;
+	while (grp_it != grp_ite) {
+		if (tmp > *(grp_it->first))
+			break;
+		tmp = *(grp_it->first);
+		this->n_sorted_++;
+		grp_it++;
+	}
+
 	sortInsert(vec, groups);
 
 // https://cpprefjp.github.io/reference/vector/vector/insert.html

@@ -92,3 +92,14 @@ typedef std::vector<t_vec>	t_vecvec
 
 ./PmergeMe `jot -r 3000 1 100000 | tr '\n' ' '`
 ./PmergeMe  00 90 61 122 22 13 44 114 55 36 76 87 1 135 145
+
+012	-
+021	12
+102	01
+120	01,02
+201	01,12
+210	02
+
+HLx	01
+HxL	02
+xHL	12
