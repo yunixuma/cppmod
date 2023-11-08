@@ -6,7 +6,7 @@
 #    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/10/19 18:24:56 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/11/08 14:14:12 by Yoshihiro K      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 NAME			= PmergeMe
 
 # Enumeration of files
-SRC				= main.cpp PmergeMe.cpp
+SRC				= main.cpp PmergeMe.cpp PmergeMe_lst.cpp PmergeMe_vec.cpp
 
 # Check the platform
 OS				= $(shell uname)

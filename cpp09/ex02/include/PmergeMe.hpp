@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/08 09:53:05 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/08 12:08:24 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ private:
 	void				sortInsert(t_vec& vec, t_vec_grp& groups);
 	t_vec				sortInsertCut(t_vec& vec, t_vec_grp& grp, t_vec_grp_it& grp_it);
 	void				sortInsertBS(t_vec& vec, t_vec& vec2, t_vec_grp& groups, t_vec_grp_it& grp_ite);
+	t_vec_it			sortInsertBSGetPos(t_vec_grp_it& grp_it, int val_insert, size_t n_sought);
 	void				swapGroup(t_lst& lst, size_t left, size_t mid);
 	void				swapGroup(t_lst& lst, size_t left, size_t mid, size_t size);
 	t_lst				cut(t_lst& lst, t_lst_it& it, size_t size);
