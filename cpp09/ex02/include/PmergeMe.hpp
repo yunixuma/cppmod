@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/08 20:47:59 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/08 09:53:05 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ private:
 	void				sortInsert(t_lst& lst, t_lst_grp& groups);
 	t_lst				sortInsertCut(t_lst& lst, t_lst_grp& grp, t_lst_grp_it& grp_it);
 	void				sortInsertBS(t_lst& lst, t_lst& lst2, t_lst_grp& groups, t_lst_grp_it& grp_ite);
+	t_lst_it			sortInsertBSGetPos(t_lst_grp_it& grp_it, int val_insert, size_t n_sought);
 	void				sortInsert(t_vec& vec, t_vec_grp& groups);
 	t_vec				sortInsertCut(t_vec& vec, t_vec_grp& grp, t_vec_grp_it& grp_it);
 	void				sortInsertBS(t_vec& vec, t_vec& vec2, t_vec_grp& groups, t_vec_grp_it& grp_ite);
@@ -136,7 +137,8 @@ public:
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
 		while (i++ < size) {
-			std::clog << (*it).second << "(" << *((*it).first) << "[" << &*((*it).first) << "]) ";
+			std::clog << (*it).second << "(" << *((*it).first) << ") ";
+			// std::clog << (*it).second << "(" << *((*it).first) << "[" << &*((*it).first) << "]) ";
 			it++;
 		}
 		if (size < groups.size())
