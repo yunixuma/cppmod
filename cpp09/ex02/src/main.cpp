@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/08 23:27:17 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/09 00:36:10 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # ifndef DEBUG_MODE
 #  define DEBUG_MODE	0
 # endif
-# define SIZE_PRINT		16
 
 template <typename T>
 void	printList(T& lst) {

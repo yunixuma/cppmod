@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/08 12:08:24 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/09 01:02:45 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <exception>
 # include <climits>
 
-# define SIZE_PRINT		16
+# define SIZE_PRINT		3200
 # define BITS_BYTE		8
 # define ORDER_OF_LIST	11
 
@@ -90,6 +90,8 @@ public:
 		clock_t	start = clock();
 		sort(container);
 		clock_t	end = clock();
+		if (!sortCheck(container))
+			std::cout << "\033[31m" << typeid(container).name() << std::endl << "sorting was failed\033[m" << std::endl;
 		return (difftime(end, start));
 	};
 	template <typename T>
@@ -104,8 +106,12 @@ public:
 		typename T::iterator	ite = container.end();
 		int						tmp = *it;
 		while (it != ite) {
-			if (tmp > *it)
+			if (tmp > *it) {
+				std::cout << "\033[31m" << *it \
+					<< "[" << container.size() - std::distance(it, ite) \
+					<< "/" << container.size() << "]\033[m" << std::endl;
 				return (false);
+			}
 			tmp = *it;
 			it++;
 		}
