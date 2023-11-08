@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/07 18:17:27 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/08 20:47:59 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ public:
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
 		while (i++ < size) {
-			std::clog << (*it).second << "(" << *((*it).first) << ") ";
+			std::clog << (*it).second << "(" << *((*it).first) << "[" << &*((*it).first) << "]) ";
 			it++;
 		}
 		if (size < groups.size())

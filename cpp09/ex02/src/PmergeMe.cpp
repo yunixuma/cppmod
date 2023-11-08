@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/07 18:58:07 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/08 22:00:00 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,8 +226,11 @@ void	PmergeMe::sortTriplet(t_lst& lst, t_lst_grp& groups) {
 	int				grp0 = *(it++)->first;
 	int				grp1 = *(it++)->first;
 	int				grp2 = *it->first;
-	if (it->second != size)
+	if (it->second != size)        
 		return ;
+	std::clog << "grp0: " << grp0 << "\tg" \
+		 "grp0: " << grp0 << "\tg"
+
 	if (grp0 > grp2)
 		swapGroup(lst, 0, size * 2, size);
 	if (grp0 > grp1)
