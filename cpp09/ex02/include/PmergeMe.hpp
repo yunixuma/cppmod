@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/10 20:12:34 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/11 03:34:16 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@
 # define SIZE_PRINT		3200
 # define BITS_BYTE		8
 # define ORDER_OF_LIST	11
+# define LABEL_SMS		"sMS"
+# define LABEL_SM_		"sM "
+# define LABEL_IG_		"iG "
+# define LABEL_ST_		"sT "
+# define LABEL_SI_		"sI "
+# define LABEL_SIC		"sIC"
+# define LABEL_SG_		"sG "
+# define LABEL_C__		"c  "
+# define LABEL_BS_		"BS "
+# define LABEL_BSP		"BSP"
 
 typedef std::list<int>		t_lst;
 typedef std::vector<int>	t_vec;
@@ -43,7 +53,7 @@ private:
 	// std::list<std::pair<size_t, int> >		grp_lst_;
 	// std::vector<std::pair<size_t, int> >	grp_vec_;
 	size_t		n_sorted_;
-	void		move(t_vec& vec, t_vec_it& pos, t_vec_it& second, t_vec_it& last);
+	// void		move(t_vec& vec, t_vec_it& pos, t_vec_it& second, t_vec_it& last);
 	void		sort(t_lst& lst);
 	void		sort(t_vec& vec);
 	void		sortMerge(t_lst& lst, size_t left, size_t right);
@@ -64,9 +74,9 @@ private:
 	t_vec_it	sortInsertBSGetPos(t_vec_grp_it& grp_it, int val_insert, size_t n_sought);
 	void		swapGroup(t_lst& lst, size_t left, size_t mid);
 	void		swapGroup(t_lst& lst, size_t left, size_t mid, size_t size);
-	t_lst		cut(t_lst& lst, t_lst_it& it, size_t size);
 	void		swapGroup(t_vec& vec, size_t left, size_t mid);
 	void		swapGroup(t_vec& vec, size_t left, size_t mid, size_t size);
+	t_lst		cut(t_lst& lst, t_lst_it& it, size_t size);
 	t_vec		cut(t_vec& vec, t_vec_it& it, size_t size);
 	size_t		calcMid(size_t half) const;
 public:
@@ -117,18 +127,20 @@ public:
 		typename T::iterator	it = lst.begin();
 		size_t					size = lst.size();
 		size_t					i = 1;
-		std::clog << size << "( ";
+		std::clog << size << "( \033[32m";
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
 		while (i++ < size) {
 			std::clog << *it << " ";
+			if (i & 1)
+				std::clog << " ";
 			it++;
 		}
 		if (size < lst.size())
-			std::clog << "[...]";
+			std::clog << "\033[m[...]";
 		else if (size)
 			std::clog << *it;
-		std::clog << " )" << std::endl;
+		std::clog << "\033[m )" << std::endl;
 	};
 	template <typename T>
 	void		printGroups(T& groups) {
@@ -138,15 +150,15 @@ public:
 		std::clog << size << "{ ";
 		if (size > SIZE_PRINT)
 			size = SIZE_PRINT;
-		while (i++ < size) {
-			std::clog << (*it).second << "(" << *((*it).first) << ") ";
+		while (i < size) {
+			std::clog << "\033[35m[" << i++ << "]\033[36m" << (*it).second << "\033[m(\033[32m" << *((*it).first) << "\033[m) ";
 			// std::clog << (*it).second << "(" << *((*it).first) << "[" << &*((*it).first) << "]) ";
 			it++;
 		}
 		if (size < groups.size())
 			std::clog << "[...]";
 		else if (size)
-			std::clog << (*it).second << "(" << *((*it).first) << ")";
+			std::clog << "\033[35m[" << i++ << "]\033[36m" << (*it).second << "\033[m(\033[32m" << *((*it).first) << "\033[m)";
 		std::clog << " }" << std::endl;
 	};
 };
