@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/08 14:15:07 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/11 04:47:28 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,26 @@ size_t	PmergeMe::calcMid(size_t size) const {
 	// std::clog << "size: " << size << "    mid: " << mid << std::endl;
 	return (1 << mid);
 }
+
+void	PmergeMe::printGroups(t_vec_grp& groups) {
+	t_vec_grp_it	it = groups.begin();
+	size_t			size = groups.size();
+	size_t			i = 1;
+	std::clog << size << "{ ";
+	if (size > SIZE_PRINT)
+		size = SIZE_PRINT;
+	while (i < size) {
+		std::clog << "\033[35m[" << i++ << "]\033[36m" << (*it).second << "\033[m(\033[32m" << (*it).first << "\033[m) ";
+		// std::clog << (*it).second << "(" << *((*it).first) << "[" << &*((*it).first) << "]) ";
+		it++;
+	}
+	if (size < groups.size())
+		std::clog << "[...]";
+	else if (size)
+		std::clog << "\033[35m[" << i++ << "]\033[36m" << (*it).second << "\033[m(\033[32m" << (*it).first << "\033[m)";
+	std::clog << " }" << std::endl;
+}
+
 /*
 void	PmergeMe::sortMergeSub(t_lst& lst, size_t left, size_t right)
 {
