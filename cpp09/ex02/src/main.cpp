@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/11 03:59:36 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/11 15:41:11 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char *argv[]) {
 	t_lst		lst;
 	t_vec		vec;
 	float		time_lst;
-	float		time_vec;
+	// float		time_vec;
 
 	try {
 		lst = pmm.args2List(argc, argv);

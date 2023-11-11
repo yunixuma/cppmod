@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/11 04:47:28 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/11 13:47:50 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ size_t	PmergeMe::calcMid(size_t size) const {
 	// std::clog << "size: " << size << "    mid: " << mid << std::endl;
 	return (1 << mid);
 }
-
+/*
 void	PmergeMe::printGroups(t_vec_grp& groups) {
 	t_vec_grp_it	it = groups.begin();
 	size_t			size = groups.size();
@@ -155,7 +155,7 @@ void	PmergeMe::printGroups(t_vec_grp& groups) {
 		std::clog << "\033[35m[" << i++ << "]\033[36m" << (*it).second << "\033[m(\033[32m" << (*it).first << "\033[m)";
 	std::clog << " }" << std::endl;
 }
-
+*/
 /*
 void	PmergeMe::sortMergeSub(t_lst& lst, size_t left, size_t right)
 {

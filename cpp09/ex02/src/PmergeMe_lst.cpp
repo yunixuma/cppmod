@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe_lst.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/11 04:09:28 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/11 15:37:26 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,10 +180,13 @@ t_lst	PmergeMe::sortInsertCut(t_lst& lst, t_lst_grp& groups, t_lst_grp_it& grp_i
 	grp_it->second = size;
 	std::advance(it, size);
 	std::clog << LABEL_SIC << __LINE__ << "\t"; printGroups(groups);
-	std::clog << LABEL_SIC << __LINE__ << "\tgrp_it: " << *grp_it->first << std::endl;
+	std::clog << LABEL_SIC << __LINE__ << "\tgrp_it: " << *grp_it->first << "\tdist: " << std::distance(groups.begin(), grp_it) << std::endl;
+	std::clog << LABEL_SIC << __LINE__ << "\tit: " << *it << "\tdist: " << std::distance(lst.begin(), it) << std::endl;
 	lst2 = cut(lst, it, size);
+	std::clog << LABEL_SIC << __LINE__ << "\tseq : "; printList(lst);
+	std::clog << LABEL_SIC << __LINE__ << "\tseq2: "; printList(lst2);
 	std::clog << LABEL_SIC << __LINE__ << "\t"; printGroups(groups);
-	std::clog << LABEL_SIC << __LINE__ << "\tgrp_it: " << *grp_it->first << std::endl;
+	std::clog << LABEL_SIC << __LINE__ << "\tgrp_it: " << *grp_it->first << "\tdist: " << std::distance(groups.begin(), grp_it) << std::endl;
 	return (lst2);
 }
 
@@ -210,7 +213,7 @@ void	PmergeMe::sortInsertBS(t_lst& lst, t_lst& lst2, t_lst_grp& groups, t_lst_gr
 		it2++;
 	}
 	dist = std::distance(grp_it, grp_ite);
-	std::clog << LABEL_BS_ << __LINE__ << "\t"; printGroups(groups);
+	// std::clog << LABEL_BS_ << __LINE__ << "\t"; printGroups(groups);
 	std::clog << LABEL_BS_ << __LINE__ << "\tdist: " << std::distance(grp_it, grp_ite) << "\tgrp_it: " << *grp_it->first << "\tgrp_ite: " << *grp_ite->first << std::endl;
 	grp_it = groups.insert(grp_it, std::make_pair(pos, lst2.size()));
 	grp_ite = grp_it; std::advance(grp_ite, dist + 1);
@@ -234,7 +237,7 @@ t_lst_it	PmergeMe::sortInsertBSGetPos(t_lst_grp_it& grp_it, int val_insert, size
 		return (grp_it->first);
 	std::advance(grp_it, n_sought);
 	std::clog << LABEL_BSP << __LINE__ << "\tdist: " << std::distance(grp_itb, grp_it) << std::endl;
-	if (val_insert >= *grp_it->first) {
+	if (val_insert > *grp_it->first) {
 		t_lst_it	it = grp_it->first;
 		std::advance(it, grp_it->second);
 			return (it);

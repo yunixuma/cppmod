@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/11 04:46:43 by ykosaka          ###   ########.fr       */
+/*   Updated: 2023/11/11 13:48:27 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef std::vector<int>	t_vec;
 typedef t_lst::iterator		t_lst_it;
 typedef t_vec::iterator		t_vec_it;
 typedef std::list<std::pair<t_lst_it, size_t> >		t_lst_grp;
-typedef std::vector<std::pair<size_t, size_t> >	t_vec_grp;
+typedef std::vector<std::pair<t_vec_it, size_t> >	t_vec_grp;
+// typedef std::vector<std::pair<size_t, size_t> >	t_vec_grp;
 typedef t_lst_grp::iterator	t_lst_grp_it;
 typedef t_vec_grp::iterator	t_vec_grp_it;
 
@@ -79,7 +80,7 @@ private:
 	t_lst		cut(t_lst& lst, t_lst_it& it, size_t size);
 	t_vec		cut(t_vec& vec, t_vec_it& it, size_t size);
 	size_t		calcMid(size_t half) const;
-	void		printGroups(t_vec_grp& groups);
+	// void		printGroups(t_vec_grp& groups);
 	template <typename T>
 	void		printGroups(T& groups) {
 		typename T::iterator	it = groups.begin();
