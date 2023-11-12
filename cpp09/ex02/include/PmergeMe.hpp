@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/11 13:48:27 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/12 10:17:47 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ private:
 	void 		sortMergeSub(t_vec& vec, size_t left, size_t right);
 	t_lst_grp	initGroup(t_lst& lst);
 	t_vec_grp	initGroup(t_vec& vec);
-	void		sortTriplet(t_lst& lst, t_lst_grp& groups);
+	void		sortTriplet(t_lst& seq, t_lst_grp& groups);
 	void		sortTriplet(t_vec& vec, t_vec_grp& groups);
 	void		sortInsert(t_lst& lst, t_lst_grp& groups);
 	t_lst		sortInsertCut(t_lst& lst, t_lst_grp& grp, t_lst_grp_it& grp_it);
@@ -73,8 +73,8 @@ private:
 	t_vec		sortInsertCut(t_vec& vec, t_vec_grp& grp, t_vec_grp_it& grp_it);
 	void		sortInsertBS(t_vec& vec, t_vec& vec2, t_vec_grp& groups, t_vec_grp_it& grp_ite);
 	t_vec_it	sortInsertBSGetPos(t_vec_grp_it& grp_it, int val_insert, size_t n_sought);
-	void		swapGroup(t_lst& lst, size_t left, size_t mid);
-	void		swapGroup(t_lst& lst, size_t left, size_t mid, size_t size);
+	// void		swapGroup(t_lst& lst, size_t left, size_t mid);
+	void		swapGroup(t_lst_it it1, t_lst_it it2, size_t size);
 	void		swapGroup(t_vec& vec, size_t left, size_t mid);
 	void		swapGroup(t_vec& vec, size_t left, size_t mid, size_t size);
 	t_lst		cut(t_lst& lst, t_lst_it& it, size_t size);
