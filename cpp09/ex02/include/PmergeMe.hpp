@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/13 17:23:05 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/14 01:14:05 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@
 # include <exception>
 # include <climits>
 
-# define SIZE_PRINT		3200
 # define BITS_BYTE		8
+# define SIZE_PRINT		6
 # define ORDER_OF_LIST	11
+# define ORDER_TIME		1000.f / CLOCKS_PER_SEC
+# define UNIT_TIME		" ms"
 # define LABEL_SMS		"sMS"
 # define LABEL_SM_		"sM "
 # define LABEL_IG_		"iG "
@@ -108,7 +110,7 @@ public:
 	t_lst		args2List(size_t argc, char *argv[]);
 	t_vec		list2Vector(const t_lst& lst);
 	template <typename T>
-	clock_t		measureTime(T& container) {
+	clock_t		measureClocks(T& container) {
 		std::clog << "\033[36;2;3m[" << this \
 			<< "]<PmergeMe> mesureTime called" << std::endl;
 		std::clog << &container << "\t<" << typeid(container).name() \
@@ -133,7 +135,7 @@ public:
 		int						tmp = *it;
 		while (it != ite) {
 			if (tmp > *it) {
-				std::cout << "\033[31m" << *it \
+				std::clog << "\033[31m" << *it \
 					<< "[" << container.size() - std::distance(it, ite) \
 					<< "/" << container.size() << "]\033[m" << std::endl;
 				return (false);

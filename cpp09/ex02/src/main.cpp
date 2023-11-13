@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/13 17:24:07 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/14 01:15:04 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ int	main(int argc, char *argv[]) {
 	PmergeMe	pmm;
 	t_lst		lst;
 	t_vec		vec;
-	float		time_lst;
-	float		time_vec;
+	float		time_sort;
 
 	try {
 		lst = pmm.args2List(argc, argv);
@@ -74,22 +73,21 @@ int	main(int argc, char *argv[]) {
 	std::cout << "Before: ";
 	// printList(vec);
 
-	time_lst = pmm.measureTime(lst);
+	time_sort = pmm.measureClocks(lst) * ORDER_TIME;
 
 	std::cout << "After: ";
-	// printList(lst);
+	printList(lst);
 	std::cout << "Time to process a range of " \
 		<< lst.size() << " elements with std::list : " \
-		<< time_lst << " clocks" << std::endl;
+		<< time_sort << UNIT_TIME << std::endl;
 
-	time_vec = pmm.measureTime(vec);
+	time_sort = pmm.measureClocks(vec) * ORDER_TIME;
 
-	std::cout << "After: ";
+	// std::cout << "After: ";
 	// printList(vec);
 	std::cout << "Time to process a range of " \
 		<< vec.size() << " elements with std::vector : " \
-		<< time_vec << " clocks" << std::endl;
-	std::clog << "CLOCKS_PER_SEC: " << CLOCKS_PER_SEC << std::endl;
+		<< time_sort << UNIT_TIME << std::endl;
 	// try {
 	// 	while (it != ite) {
 	// 		pmm.tokenize(it);
