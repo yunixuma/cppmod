@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/12 01:45:10 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/13 17:24:07 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int	main(int argc, char *argv[]) {
 	std::cout << "Before: ";
 	printList(lst);
 	std::cout << "Before: ";
-	printList(vec);
+	// printList(vec);
 
 	time_lst = pmm.measureTime(lst);
 
 	std::cout << "After: ";
-	printList(lst);
+	// printList(lst);
 	std::cout << "Time to process a range of " \
 		<< lst.size() << " elements with std::list : " \
 		<< time_lst << " clocks" << std::endl;
@@ -85,7 +85,7 @@ int	main(int argc, char *argv[]) {
 	time_vec = pmm.measureTime(vec);
 
 	std::cout << "After: ";
-	printList(vec);
+	// printList(vec);
 	std::cout << "Time to process a range of " \
 		<< vec.size() << " elements with std::vector : " \
 		<< time_vec << " clocks" << std::endl;
