@@ -6,7 +6,7 @@
 /*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/12 10:17:31 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/13 15:37:06 by Yoshihiro K      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,12 +158,16 @@ void	PmergeMe::sortInsert(t_lst& seq, t_lst_grp& groups) {
 	std::advance(grp_it, this->n_sorted_);
 	while (grp_it != grp_ite) {
 	// while (grp_it != grp_ite && this->n_sorted_ <= groups.size()) {
-		std::clog << LABEL_SI_ << __LINE__ << "\tn_sorted: " << this->n_sorted_ << "\tgrp_it: " << *(grp_it->first) << "\tdist: " << std::distance(grp_it, grp_ite) << std::endl;
+		std::clog << LABEL_SI_ << __LINE__ << "\tn_sorted: " << this->n_sorted_ << "\tdist: " << std::distance(grp_it, grp_ite) << std::endl;
+		// std::clog << LABEL_SI_ << __LINE__ << "\tgrp_it: " << *(grp_it->first) << std::endl;
 		seq2 = sortInsertCut(seq, groups, grp_it);
 		std::clog << LABEL_SI_ << __LINE__ << "\tn_sorted: " << this->n_sorted_ << "\tgrp_it: " << *(grp_it->first) << "\tdist: " << std::distance(grp_it, grp_ite) << std::endl;
-
 		sortInsertBS(seq, seq2, groups, grp_it);
 		grp_it++;
+		std::clog << LABEL_SI_ << __LINE__ << "\tn_sorted: " << this->n_sorted_ << "\tdist: " << std::distance(grp_it, grp_ite) << std::endl;
+		// std::clog << LABEL_SI_ << __LINE__ << "\tgrp_it: " << *(grp_it->first) << std::endl;
+		std::clog << LABEL_SI_ << __LINE__ << "\t"; printList(seq);
+		std::clog << LABEL_SI_ << __LINE__ << "\t"; printGroups(groups);
 	}
 }
 
@@ -179,8 +183,9 @@ t_lst	PmergeMe::sortInsertCut(t_lst& seq, t_lst_grp& groups, t_lst_grp_it& grp_i
 		seq.erase(grp_it->first);
 		grp_it = groups.erase(grp_it);
 		grp_it = groups.begin(); std::advance(grp_it, dist - 1);
+		std::clog << LABEL_SIC << __LINE__ << "\tdist: " << std::distance(groups.begin(), grp_it) << std::endl;
 		std::clog << LABEL_SIC << __LINE__ << "\t"; printGroups(groups);
-		std::clog << LABEL_SIC << __LINE__ << "\tgrp_it: " << *grp_it->first << std::endl;
+		std::clog << LABEL_SIC << __LINE__ << "\tdist: " << std::distance(groups.begin(), grp_it) << std::endl;
 		return (seq2);
 	}
 	t_lst_it	it = grp_it->first;
@@ -211,12 +216,12 @@ void	PmergeMe::sortInsertBS(t_lst& seq, t_lst& seq2, t_lst_grp& groups, t_lst_gr
 	// std::clog << LABEL_BS_ << __LINE__ << "\tpos: " << *pos << std::endl;
 	// std::clog << LABEL_BS_ << __LINE__ << "\tgrp_ite: " << *grp_ite->first << std::endl;
 	while (it2 != ite2) {
-		std::clog << LABEL_BS_ << __LINE__ << "\tite2: " << *ite2 << "\tdist: " << std::distance(pos, seq.end()) << std::endl;
+		std::clog << LABEL_BS_ << __LINE__ << "\tdist pos: " << std::distance(seq.begin(), pos) << "\tit2: " << std::distance(it2, ite2) << std::endl;
 		if (pos == seq.end())
 			seq.push_back(*it2);
 		else
 			pos = seq.insert(pos, *it2);
-		std::clog << LABEL_BS_ << __LINE__ << "\tit2: " << *it2 << "\tpos: " << *pos << std::endl;
+		std::clog << LABEL_BS_ << __LINE__ << "\tdist pos: " << std::distance(seq.begin(), pos) << "\tit2: " << std::distance(it2, ite2) << std::endl;
 		it2++;
 	}
 	dist = std::distance(grp_it, grp_ite);
@@ -233,6 +238,7 @@ void	PmergeMe::sortInsertBS(t_lst& seq, t_lst& seq2, t_lst_grp& groups, t_lst_gr
 		// std::advance(grp_ite->first, seq2.size());
 	// 	grp_ite--;
 	// }
+
 }
 
 t_lst_it	PmergeMe::sortInsertBSGetPos(t_lst_grp_it& grp_it, int val_insert, size_t n_sought) {
@@ -244,7 +250,8 @@ t_lst_it	PmergeMe::sortInsertBSGetPos(t_lst_grp_it& grp_it, int val_insert, size
 		return (grp_it->first);
 	std::advance(grp_it, n_sought);
 	std::clog << LABEL_BSP << __LINE__ << "\tdist: " << std::distance(grp_itb, grp_it) << std::endl;
-	// if (static_cast<size_t>(std::distance(grp_itb, grp_it)) >= n_sought || val_insert > *grp_it->first) {
+	std::clog << LABEL_BSP << __LINE__ << "\tval_insert: " << val_insert << "\tgrp_it: " << *grp_it->first << std::endl;
+	// if (static_cast<size_t>(std::distance(grp_itb, grp_it)) > n_sought || val_insert > *grp_it->first) {
 	if (val_insert > *grp_it->first) {
 		t_lst_it	it = grp_it->first;
 		std::advance(it, grp_it->second);
