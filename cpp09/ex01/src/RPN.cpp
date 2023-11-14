@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/16 03:08:27 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/14 19:29:23 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,36 @@ int	RPN::calc(int val1, int val2, char oper) {
 	std::clog << "\033[36;2;3m[" << this \
 		<< "]<RPN> calc(" << val1 << ", " << val2 \
 		<< ", '" << oper << "') called\033[m" << std::endl;
+	int	ret;
+
 	switch (oper) {
 		case '+':
-			return (val1 + val2);
+			ret = val1 + val2;
+			if (val1 > 0 && val2 > 0) {
+				if (ret < val1)
+					throw OverflowException();
+			} else if (val1 < 0 && val2 < 0) {
+				if (ret > val1)
+					throw OverflowException();
+			}
+			return (ret);
 		case '-':
-			return (val1 - val2);
+			ret = val1 - val2;
+			if (val1 > 0 && val2 < 0) {
+				if (ret < val1)
+					throw OverflowException();
+			} else if (val1 < 0 && val2 > 0) {
+				if (ret > val1)
+					throw OverflowException();
+			}
+			return (ret);
 		case '*':
-			return (val1 * val2);
+			if (val1 == 0 || val2 == 0)
+				return (0);
+			ret = val1 * val2;
+			if (ret / val2 != val1)
+				throw OverflowException();
+			return (ret);
 		case '/':
 			if (val2 == 0)
 				throw DivideByZeroException();
@@ -119,13 +142,6 @@ const char*	RPN::InvalidTokenError::what(void) const throw() {
 	return ("Error: Invalid token detected");
 }
 
-const char*	RPN::DivideByZeroException::what(void) const throw() {
-/*	std::clog << "\033[35;3m[" << this \
-		<< "]<RPN::DivideByZeroException> what() called\033[m" \
-		<< std::endl;*/
-	return ("Error: Divide by zero");
-}
-
 const char*	RPN::NoStacksException::what(void) const throw() {
 /*	std::clog << "\033[35;3m[" << this \
 		<< "]<RPN::NoStacksException> what() called\033[m" \
@@ -139,3 +155,18 @@ const char*	RPN::NotConcludedException::what(void) const throw() {
 		<< std::endl;*/
 	return ("Error: The expression is not concluded");
 }
+
+const char*	RPN::DivideByZeroException::what(void) const throw() {
+/*	std::clog << "\033[35;3m[" << this \
+		<< "]<RPN::DivideByZeroException> what() called\033[m" \
+		<< std::endl;*/
+	return ("Error: Divide by zero");
+}
+
+const char*	RPN::OverflowException::what(void) const throw() {
+/*	std::clog << "\033[35;3m[" << this \
+		<< "]<RPN::OverflowException> what() called\033[m" \
+		<< std::endl;*/
+	return ("Error: Overflow occurred");
+}
+

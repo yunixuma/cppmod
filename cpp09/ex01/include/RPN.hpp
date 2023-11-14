@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/10/15 20:00:05 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/14 19:25:58 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,22 @@ public:
 	public:
 		virtual const char*	what() const throw();
 	};
-	class DivideByZeroException : public std::exception
-	{
-	public:
-		virtual const char*	what() const throw();
-	};
 	class NoStacksException : public std::exception
 	{
 	public:
 		virtual const char*	what() const throw();
 	};
 	class NotConcludedException : public std::exception
+	{
+	public:
+		virtual const char*	what() const throw();
+	};
+	class DivideByZeroException : public std::exception
+	{
+	public:
+		virtual const char*	what() const throw();
+	};
+	class OverflowException : public std::exception
 	{
 	public:
 		virtual const char*	what() const throw();
