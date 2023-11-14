@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/14 01:14:05 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/14 20:03:00 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <climits>
 
 # define BITS_BYTE		8
-# define SIZE_PRINT		6
+# define SIZE_PRINT		16
 # define ORDER_OF_LIST	11
 # define ORDER_TIME		1000.f / CLOCKS_PER_SEC
 # define UNIT_TIME		" ms"

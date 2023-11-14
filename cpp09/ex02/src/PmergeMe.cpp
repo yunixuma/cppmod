@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/11 13:47:50 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2023/11/14 19:57:27 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_lst	PmergeMe::args2List(size_t argc, char *argv[]) {
 	}
 	// std::clog << "val: " << val << std::endl;
 	if (lst.size() != argc - 1)
-		throw std::invalid_argument("wrong argument");
+		throw std::invalid_argument("invalid argument");
 	if (val == INT_MAX || val == INT_MIN)
 		throw std::invalid_argument("overflow");
 	if (!ss.eof())

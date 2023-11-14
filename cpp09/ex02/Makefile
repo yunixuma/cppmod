@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+         #
+#    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/11/08 14:14:12 by Yoshihiro K      ###   ########.fr        #
+#    Updated: 2023/11/14 20:08:24 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,52 +68,58 @@ re: fclean all
 
 # Additional targets
 debug: fclean all
-test: debug test_sample test_regular test_error
-test_sample:
-	@echo "\n\033[32;1;3mSample tests: \033[m"
-	-./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
-	-./$(NAME) "7 7 * 7 -"
-	-./$(NAME) "1 2 * 2 / 2 * 2 4 - +"
-	-./$(NAME) "(1 + 1)"
-	@echo "\033[2;3mSample tests finished\033[m"
-test_regular:
-	@echo "\n\033[32;1;3mRegular tests: \033[m"
-	@echo "To continue, hit the [Enter] key"
-	-@read _
-	@echo "\033[33;42mTest case: Stack 3 vals (=> 24)\033[m"
-	-./$(NAME) "3 6 2 + *"
-	@echo "\033[33;42mTest case: Stack 1 vals (=> 3)\033[m"
-	-./$(NAME) "3"
-	@echo "\033[33;42mTest case: Cotain consecutive white spaces (=> 3)\033[m"
-	-./$(NAME) "   1 2    +  "
-	@echo "\033[33;42mTest case: No delimiters (=> 24)\033[m"
-	-./$(NAME) "362+*"
-	@echo "\033[2;3mRegular tests finished\033[m"
+test: debug test_error test_small test_large
 test_error:
-	@echo "\n\033[31;1;3mError handling tests\033[m"
+	@echo "\n\033[31;1;3mIrregular tests\033[m"
 	@echo "To continue, hit the [Enter] key"
 	-@read _
 	@echo "\033[41mTest case: No arguments\033[m"
 	-./$(NAME)
-	@echo "\033[41mTest case: Too many arguments\033[m"
-	-./$(NAME) 4 2
+	@echo "\033[43mTest case: Only one arguments\033[m"
+	-./$(NAME) 9
 	@echo "\033[41mTest case: Empty string\033[m"
-	-./$(NAME) ""
-	@echo "\033[41mTest case: Only white spaces\033[m"
-	-./$(NAME) " "
-	@echo "\033[41mTest case: No operators\033[m"
-	-./$(NAME) "1 2"
-	@echo "\033[41mTest case: Too few operators\033[m"
-	-./$(NAME) "1 2 3 -"
-	@echo "\033[41mTest case: End w/ too many operators\033[m"
-	-./$(NAME) "1 2 ++"
-	@echo "\033[41mTest case: End w/ multiple operators\033[m"
-	-./$(NAME) "1 + 2 -"
-	@echo "\033[41mTest case: End w/ a invalid token\033[m"
-	-./$(NAME) "1 2 + x"
-	@echo "\033[41mTest case: Divide by zero\033[m"
-	-./$(NAME) "4 2 + 0 /"
-	@echo "\033[2;3mError handling tests finished\033[m"
+	-./$(NAME) 9 3 5 ""
+	@echo "\033[41mTest case: Non-numerical argument\033[m"
+	-./$(NAME) 9 3 5 8 6 x
+	@echo "\033[2;3mIrregular tests finished\033[m"
+test_small:
+	@echo "\n\033[32;1;3mSmall tests: \033[m"
+	@echo "\033[43mTest case:  5 elements\033[m"
+	-./$(NAME) `jot -r 5 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case:  6 elements\033[m"
+	-./$(NAME) `jot -r 6 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case:  7 elements\033[m"
+	-./$(NAME) `jot -r 7 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case:  8 elements\033[m"
+	-./$(NAME) `jot -r 8 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case:  9 elements\033[m"
+	-./$(NAME) `jot -r 9 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case: 10 elements\033[m"
+	-./$(NAME) `jot -r 10 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case: 11 elements\033[m"
+	-./$(NAME) `jot -r 11 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case: 12 elements\033[m"
+	-./$(NAME) `jot -r 12 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case: 13 elements\033[m"
+	-./$(NAME) `jot -r 13 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case: 14 elements\033[m"
+	-./$(NAME) `jot -r 14 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case: 15 elements\033[m"
+	-./$(NAME) `jot -r 15 0 9 | tr '\n' ' '`
+	@echo "\033[43mTest case: 16 elements\033[m"
+	-./$(NAME) `jot -r 16 0 9 | tr '\n' ' '`
+	@echo "\033[2;3mSmall tests finished\033[m"
+test_large:
+	@echo "\n\033[32;1;3mLarge tests: \033[m"
+	@echo "To continue, hit the [Enter] key"
+	-@read _
+	@echo "\033[43mTest case: 3000 elements (trial 1)\033[m"
+	-./$(NAME) `jot -r 3000 1 100000 | tr '\n' ' '`
+	@echo "\033[43mTest case: 3000 elements (trial 2)\033[m"
+	-./$(NAME) `jot -r 3000 1 100000 | tr '\n' ' '`
+	@echo "\033[43mTest case: 3000 elements (trial 3)\033[m"
+	-./$(NAME) `jot -r 3000 1 100000 | tr '\n' ' '`
+	@echo "\033[2;3mLarge tests finished\033[m"
 
 # Recipes
 $(NAME): $(OBJS)
