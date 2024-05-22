@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/11/14 01:15:04 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2024/05/22 01:46:46 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,13 @@ int	main(int argc, char *argv[]) {
 	std::streambuf* strbuf;
 	std::ofstream ofstr("/dev/null");
 	strbuf = std::clog.rdbuf(ofstr.rdbuf());
-	// Restore destination of clog when debugging
+	strbuf = std::cerr.rdbuf(ofstr.rdbuf());
+	// Restore destination of clog/cerr when debugging
 	if (DEBUG_MODE)
+	{
 		std::clog.rdbuf(strbuf);
+		std::cerr.rdbuf(strbuf);
+	}
 
 	if (argc < 2) {
 		std::cout << "\033[33mUsage: ./PmergeMe <arguments of positive integers> \033[m" << std::endl;
