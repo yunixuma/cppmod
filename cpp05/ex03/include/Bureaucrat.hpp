@@ -37,7 +37,7 @@ private:
 	const std::string	name_;
 	int					grade_;
 public:
-	Bureaucrat(const std::string& name, int grade = 100);
+	Bureaucrat(const std::string& name = "Pharaoh", int grade = 100);
 	Bureaucrat(const Bureaucrat& src);
 	Bureaucrat&	operator=(const Bureaucrat& rhs);
 	~Bureaucrat(void);

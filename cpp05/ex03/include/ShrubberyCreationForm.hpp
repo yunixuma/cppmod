@@ -44,7 +44,7 @@ public:
 // 	public:
 // 		virtual const char*	what() const throw();
 // 	};
-	ShrubberyCreationForm(const std::string& target);
+	ShrubberyCreationForm(const std::string& target = "home");
 	ShrubberyCreationForm(const AForm& src);
 	ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& rhs);
 	~ShrubberyCreationForm(void);

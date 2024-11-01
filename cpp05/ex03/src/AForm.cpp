@@ -26,7 +26,7 @@ AForm::AForm(const std::string& name, const std::string& target, \
 }
 
 AForm::AForm(const AForm& src) \
-	: name_(src.name_), signed_(src.signed_), \
+	: name_(src.name_), target_(src.target_), signed_(src.signed_), \
 	grade_to_sign_(src.grade_to_sign_) , grade_to_exec_(src.grade_to_exec_) {
 	std::clog << "\033[36;2;3m[" << this << "<-" << &src \
 		<< "]<AForm> Copy constructor called (" \
@@ -44,6 +44,7 @@ AForm&	AForm::operator=(const AForm& rhs) {
 	if (this != &rhs)
 	{
 		const_cast<std::string&>(this->name_) = rhs.name_;
+		const_cast<std::string&>(this->target_) = rhs.target_;
 		this->signed_ = rhs.signed_;
 		const_cast<int&>(this->grade_to_sign_) = rhs.grade_to_sign_;
 		const_cast<int&>(this->grade_to_exec_) = rhs.grade_to_exec_;

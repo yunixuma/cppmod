@@ -44,7 +44,7 @@ public:
 // 	public:
 // 		virtual const char*	what() const throw();
 // 	};
-	RobotomyRequestForm(const std::string& target);
+	RobotomyRequestForm(const std::string& target = "Bender");
 	RobotomyRequestForm(const RobotomyRequestForm& src);
 	RobotomyRequestForm&	operator=(const RobotomyRequestForm& rhs);
 	~RobotomyRequestForm(void);

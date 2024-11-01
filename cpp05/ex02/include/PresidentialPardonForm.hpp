@@ -42,7 +42,7 @@ public:
 // 	public:
 // 		virtual const char*	what() const throw();
 // 	};
-	PresidentialPardonForm(const std::string& target);
+	PresidentialPardonForm(const std::string& target = "???");
 	PresidentialPardonForm(const PresidentialPardonForm& src);
 	PresidentialPardonForm&	operator=(const PresidentialPardonForm& rhs);
 	~PresidentialPardonForm(void);

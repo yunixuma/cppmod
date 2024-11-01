@@ -53,7 +53,8 @@ protected:
 	void				setSigned(bool issigned);
 	void				copy(const AForm& src);
 public:
-	AForm(const std::string& name, const std::string& target, \
+	AForm(const std::string& name = "sample", \
+		const std::string& target = "something", \
 		int grade_to_sign = 50, int grade_to_exec = 25);
 	AForm(const AForm& src);
 	virtual AForm&		operator=(const AForm& rhs);

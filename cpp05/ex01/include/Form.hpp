@@ -44,7 +44,8 @@ private:
 	const int			grade_to_sign_;
 	const int			grade_to_exec_;
 public:
-	Form(const std::string& name, int grade_to_sign = 50, int grade_to_exec = 25);
+	Form(const std::string& name = "sample", \
+		int grade_to_sign = 50, int grade_to_exec = 25);
 	Form(const Form& src);
 	Form&	operator=(const Form& rhs);
 	~Form(void);
