@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2024/11/02 21:36:02 by ykosaka          ###   ########.fr        #
+#    Updated: 2024/11/02 23:41:35 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ RM				= rm
 
 # Command options (flags)
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
-INCLUDES		= -I./$(INCDIR)
+INCLUDES		= -I$(INCDIR)
 RMFLAGS			= -r
 DEBUGCFLAGS		= -g -ggdb -fsanitize=address -fno-omit-frame-pointer
 ifneq ($(OS), Darwin)
@@ -67,6 +67,8 @@ re: fclean all
 
 # Additional targets
 debug: fclean all
+run: 
+	./$(NAME) >> ./recreation >> `date +"%Y%m%d_%H%M%S"`.log
 
 # Recipes
 $(NAME): $(OBJS)
