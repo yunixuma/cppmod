@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 07:14:04 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 07:58:17 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	showStatus(const DiamondTrap& dt) {
 	std::cerr << "\033[33;2m" << &dt << ": " << dt.getName() << " (" \
-		<< dt.getHitPoint() << ", " << dt.getEnergyPoint() << ", " \
+		<< dt.getHitPoint() << "/" << dt.getHitPointMax() << ", " \
+		<< dt.getEnergyPoint() << ", " \
 		<< dt.getAttackDamage() << ")\033[m" << std::endl;
 }
 

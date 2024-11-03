@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 20:16:58 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 07:58:43 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	showStatus(const FragTrap& ft) {
 	std::cerr << "\033[33;2m" << &ft << ": " << ft.getName() << " (" \
-		<< ft.getHitPoint() << ", " << ft.getEnergyPoint() << ", " \
+		<< ft.getHitPoint() << "/" << ft.getHitPointMax() << ", " \
+		<< ft.getEnergyPoint() << ", " \
 		<< ft.getAttackDamage() << ")\033[m" << std::endl;
 }
 

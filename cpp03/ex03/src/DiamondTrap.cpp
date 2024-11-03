@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 07:33:41 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 08:16:40 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ DiamondTrap::DiamondTrap(const DiamondTrap& src) \
 		<< &src << " -> " << this << ")\033[m" << std::endl;
 	// this->name_ = src.name_;
 	// this->hitPoint_ = src.hitPoint_;
+	this->hitPointMax_ = src.hitPointMax_;
 	// this->energyPoint_ = src.energyPoint_;
-	// this->attackDamage_ = src.attackDamage_;
 }
 
 DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& rhs) {

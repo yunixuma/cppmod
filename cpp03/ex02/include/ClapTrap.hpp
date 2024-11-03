@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 06:47:20 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 07:52:32 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ public:
 	void	beRepaired(unsigned int amount = 1);
 	const std::string&	getName(void) const;
 	unsigned int	getHitPoint(void) const;
+	unsigned int	getHitPointMax(void) const;
 	unsigned int	getEnergyPoint(void) const;
 	unsigned int	getAttackDamage(void) const;
 };

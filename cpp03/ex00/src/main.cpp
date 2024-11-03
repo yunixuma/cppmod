@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 14:14:29 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2024/11/04 07:58:56 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	showStatus(const ClapTrap& ct) {
 	std::cerr << "\033[33;2m" << &ct << ": " << ct.getName() << " (" \
-		<< ct.getHitPoint() << ", " << ct.getEnergyPoint() << ", " \
+		<< ct.getHitPoint() << "/" << ct.getHitPointMax() << ", " \
+		<< ct.getEnergyPoint() << ", " \
 		<< ct.getAttackDamage() << ")\033[m" << std::endl;
 }
 

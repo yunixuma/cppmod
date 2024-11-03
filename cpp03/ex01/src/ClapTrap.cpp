@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 06:48:01 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 08:20:17 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,9 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 			<< " because no energy points left\033[m" << std::endl;
 		return ;
 	}
-	if (this->hitPoint_ > this->hitPointMax_ + amount)
-		this->hitPoint_ = this->hitPointMax_;
-	else
-		this->hitPoint_ += amount;
+	if (amount > this->hitPointMax_ - this->hitPoint_)
+		amount = this->hitPointMax_ - this->hitPoint_;
+	this->hitPoint_ += amount;
 	this->energyPoint_ -= 1;
 	std::cout << "\033[32mClapTrap " << this->name_ \
 		<< " is repaired and gets " << amount \
@@ -121,6 +120,11 @@ const std::string&	ClapTrap::getName(void) const {
 unsigned int	ClapTrap::getHitPoint(void) const {
 //	std::cerr << "\033[2;3mgetHitPoint member function called\033[m" << std::endl;
 	return (this->hitPoint_);
+}
+
+unsigned int	ClapTrap::getHitPointMax(void) const {
+//	std::cerr << "\033[2;3mgetHitPointMax member function called\033[m" << std::endl;
+	return (this->hitPointMax_);
 }
 
 unsigned int	ClapTrap::getEnergyPoint(void) const {

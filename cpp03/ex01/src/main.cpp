@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Yoshihiro Kosaka <ykosaka@student.42tok    +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 14:25:25 by Yoshihiro K      ###   ########.fr       */
+/*   Updated: 2024/11/04 07:58:50 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	showStatus(const ScavTrap& st) {
 	std::cerr << "\033[33;2m" << &st << ": " << st.getName() << " (" \
-		<< st.getHitPoint() << ", " << st.getEnergyPoint() << ", " \
+		<< st.getHitPoint() << "/" << st.getHitPointMax() << ", " \
+		<< st.getEnergyPoint() << ", " \
 		<< st.getAttackDamage() << ")\033[m" << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 02:11:22 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 08:20:17 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap(std::string name) \
 	: name_(name), \
-		hitPoint_(10), \
+		hitPoint_(10), hitPointMax_(hitPoint_), \
 		energyPoint_(10), \
 		attackDamage_(0) {
 	std::cout << "\033[36;2;3mCreating a ClapTrap (" \
@@ -41,6 +41,7 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& rhs) {
 	{
 		this->name_ = rhs.name_;
 		this->hitPoint_ = rhs.hitPoint_;
+		this->hitPointMax_ = rhs.hitPointMax_;
 		this->energyPoint_ = rhs.energyPoint_;
 		this->attackDamage_ = rhs.attackDamage_;
 	}
@@ -102,6 +103,8 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 			<< " because no energy points left\033[m" << std::endl;
 		return ;
 	}
+	if (amount > this->hitPointMax_ - this->hitPoint_)
+		amount = this->hitPointMax_ - this->hitPoint_;
 	this->hitPoint_ += amount;
 	this->energyPoint_ -= 1;
 	std::cout << "\033[32mClapTrap " << this->name_ \
@@ -117,6 +120,11 @@ const std::string&	ClapTrap::getName(void) const {
 unsigned int	ClapTrap::getHitPoint(void) const {
 //	std::cerr << "\033[2;3mgetHitPoint member function called\033[m" << std::endl;
 	return (this->hitPoint_);
+}
+
+unsigned int	ClapTrap::getHitPointMax(void) const {
+//	std::cerr << "\033[2;3mgetHitPointMax member function called\033[m" << std::endl;
+	return (this->hitPointMax_);
 }
 
 unsigned int	ClapTrap::getEnergyPoint(void) const {
