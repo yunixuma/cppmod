@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 19:49:10 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 06:47:20 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class ClapTrap
 protected:
 	std::string	name_;
 	unsigned int	hitPoint_;
+	unsigned int	hitPointMax_;
 	unsigned int	energyPoint_;
 	unsigned int	attackDamage_;
 	void	attack_common(const std::string& target);

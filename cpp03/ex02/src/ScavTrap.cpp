@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 19:47:54 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 05:48:07 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name) {
-	this->name_ = name;
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
+	// this->name_ = name;
 	this->hitPoint_ = 100;
 	this->energyPoint_ = 50;
 	this->attackDamage_ = 20;
@@ -24,10 +24,10 @@ ScavTrap::ScavTrap(std::string name) {
 ScavTrap::ScavTrap(const ScavTrap& src) : ClapTrap(src) {
 	std::cout << "\033[36;2mCopy constructor of ScavTrap called (" \
 		<< &src << " -> " << this << ")\033[m" << std::endl;
-	this->name_ = src.name_;
-	this->hitPoint_ = src.hitPoint_;
-	this->energyPoint_ = src.energyPoint_;
-	this->attackDamage_ = src.attackDamage_;
+	// this->name_ = src.name_;
+	// this->hitPoint_ = src.hitPoint_;
+	// this->energyPoint_ = src.energyPoint_;
+	// this->attackDamage_ = src.attackDamage_;
 }
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& rhs) {
