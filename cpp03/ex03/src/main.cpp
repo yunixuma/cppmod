@@ -6,18 +6,18 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 07:58:17 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 08:31:02 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "DiamondTrap.hpp"
 
-void	showStatus(const DiamondTrap& dt) {
-	std::cerr << "\033[33;2m" << &dt << ": " << dt.getName() << " (" \
-		<< dt.getHitPoint() << "/" << dt.getHitPointMax() << ", " \
-		<< dt.getEnergyPoint() << ", " \
-		<< dt.getAttackDamage() << ")\033[m" << std::endl;
+void	showStatus(const ClapTrap& ct) {
+	std::cerr << "\033[33;2m" << &ct << ": " << ct.getName() << " (" \
+		<< ct.getHitPoint() << "/" << ct.getHitPointMax() << ", " \
+		<< ct.getEnergyPoint() << ", " \
+		<< ct.getAttackDamage() << ")\033[m" << std::endl;
 }
 
 int	main()

@@ -6,18 +6,18 @@
 /*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 07:58:50 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 08:30:37 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "ScavTrap.hpp"
 
-void	showStatus(const ScavTrap& st) {
-	std::cerr << "\033[33;2m" << &st << ": " << st.getName() << " (" \
-		<< st.getHitPoint() << "/" << st.getHitPointMax() << ", " \
-		<< st.getEnergyPoint() << ", " \
-		<< st.getAttackDamage() << ")\033[m" << std::endl;
+void	showStatus(const ClapTrap& ct) {
+	std::cerr << "\033[33;2m" << &ct << ": " << ct.getName() << " (" \
+		<< ct.getHitPoint() << "/" << ct.getHitPointMax() << ", " \
+		<< ct.getEnergyPoint() << ", " \
+		<< ct.getAttackDamage() << ")\033[m" << std::endl;
 }
 
 int	main()
