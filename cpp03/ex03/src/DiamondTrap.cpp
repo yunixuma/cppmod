@@ -50,8 +50,9 @@ DiamondTrap::~DiamondTrap(void) {
 }
 
 void	DiamondTrap::attack(const std::string& target) {
-	std::cout << "\033[32mDiamondTrap ";
-	ClapTrap::attack_common(target);
+	// std::cout << "\033[32mDiamondTrap ";
+	// ClapTrap::attack_common(target);
+	ScavTrap::attack(target);
 }
 
 void	DiamondTrap::whoAmI(void) const {
