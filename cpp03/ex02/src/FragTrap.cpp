@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 08:00:40 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 23:23:25 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 	// this->name_ = name;
-	this->hitPoint_ = 100;
-	this->hitPointMax_ = this->hitPoint_;
-	this->energyPoint_ = 100;
-	this->attackDamage_ = 30;
+	this->hitPoint_ = this->hitPointDefault_;
+	this->hitPointMax_ = this->hitPointDefault_;
+	this->energyPoint_ = this->energyPointDefault_;
+	this->attackDamage_ = this->attackDamageDefault_;
 	std::cout << "\033[36;2;3mCreating a FragTrap (" \
 		<< this << ": " << name << ")\033[m" << std::endl;
 }
@@ -27,6 +27,7 @@ FragTrap::FragTrap(const FragTrap& src) : ClapTrap(src) {
 		<< &src << " -> " << this << ")\033[m" << std::endl;
 	// this->name_ = src.name_;
 	// this->hitPoint_ = src.hitPoint_;
+	// this->hitPointMax_ = this->hitPointMax_;
 	// this->energyPoint_ = src.energyPoint_;
 	// this->attackDamage_ = src.attackDamage_;
 }
@@ -36,10 +37,12 @@ FragTrap&	FragTrap::operator=(const FragTrap& rhs) {
 		<< &rhs << " -> " << this << ")\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		this->name_ = rhs.name_;
-		this->hitPoint_ = rhs.hitPoint_;
-		this->energyPoint_ = rhs.energyPoint_;
-		this->attackDamage_ = rhs.attackDamage_;
+		ClapTrap::operator=(rhs);
+		// this->name_ = rhs.name_;
+		// this->hitPoint_ = rhs.hitPoint_;
+		// this->hitPoint_ = rhs.hitPointMax_;
+		// this->energyPoint_ = rhs.energyPoint_;
+		// this->attackDamage_ = rhs.attackDamage_;
 	}
 	return (*this);
 }

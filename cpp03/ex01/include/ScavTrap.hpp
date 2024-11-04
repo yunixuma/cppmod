@@ -6,7 +6,7 @@
 /*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2023/06/03 19:43:41 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 23:05:37 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 class ScavTrap : public ClapTrap
 {
 private:
+	static const unsigned int	hitPointDefault_ = 100;
+	static const unsigned int	energyPointDefault_ = 50;
+	static const unsigned int	attackDamageDefault_ = 20;
 public:
 	ScavTrap(std::string name = "SC4V-TRP");
 	ScavTrap(const ScavTrap& src);

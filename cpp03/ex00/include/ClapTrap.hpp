@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 07:51:09 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 23:10:44 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,14 @@
 class ClapTrap
 {
 private:
-	std::string	name_;
-	unsigned int	hitPoint_;
-	unsigned int	hitPointMax_;
-	unsigned int	energyPoint_;
-	unsigned int	attackDamage_;
+	static const unsigned int	hitPointDefault_ = 10;
+	static const unsigned int	energyPointDefault_ = 10;
+	static const unsigned int	attackDamageDefault_ = 0;
+	std::string					name_;
+	unsigned int				hitPoint_;
+	unsigned int				hitPointMax_;
+	unsigned int				energyPoint_;
+	unsigned int				attackDamage_;
 public:
 	ClapTrap(std::string name = "CL4P-TP");
 	ClapTrap(const ClapTrap& src);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 08:20:02 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 23:16:32 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 ClapTrap::ClapTrap(std::string name) \
 	: name_(name), \
-		hitPoint_(10), hitPointMax_(hitPoint_), \
-		energyPoint_(10), \
-		attackDamage_(0) {
+		hitPoint_(this->hitPointDefault_), \
+		hitPointMax_(this->hitPointDefault_), \
+		energyPoint_(this->energyPointDefault_), \
+		attackDamage_(this->attackDamageDefault_) {
 	std::cout << "\033[36;2;3mCreating a ClapTrap (" \
 		<< this << ": " << this->name_ << ")\033[m" << std::endl;
 }
@@ -24,8 +25,7 @@ ClapTrap::ClapTrap(std::string name) \
 ClapTrap::ClapTrap(const ClapTrap& src) \
 	: name_(src.name_), \
 		hitPoint_(src.hitPoint_), hitPointMax_(src.hitPointMax_), \
-		energyPoint_(src.energyPoint_), \
-		attackDamage_(src.attackDamage_) {
+		energyPoint_(src.energyPoint_), attackDamage_(src.attackDamage_) {
 	std::cout << "\033[36;2mCopy constructor of ClapTrap called (" \
 		<< &src << " -> " << this << ")\033[m" << std::endl;
 	// this->name_ = src.name_;

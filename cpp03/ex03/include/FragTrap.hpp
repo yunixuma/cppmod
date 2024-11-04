@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 07:32:50 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 23:36:17 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 class FragTrap : public virtual ClapTrap
 {
 private:
+	static const unsigned int	energyPointDefault_ = 100;
+protected:
+	static const unsigned int	hitPointDefault_ = 100;
+	static const unsigned int	attackDamageDefault_ = 30;
 public:
 	FragTrap(std::string name = "FL4K");
 	FragTrap(const FragTrap& src);

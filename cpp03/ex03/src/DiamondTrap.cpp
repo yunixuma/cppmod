@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykosaka <ykosaka@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#             */
-/*   Updated: 2024/11/04 08:16:40 by ykosaka          ###   ########.fr       */
+/*   Updated: 2024/11/04 23:35:06 by ykosaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap(std::string name) :
-	FragTrap(), name_(name) {
+	ClapTrap(), ScavTrap(), FragTrap(), name_(name) {
 	ClapTrap::name_ = name + "_clap_name";
-	this->energyPoint_ = ScavTrap().getEnergyPoint();
+	this->hitPoint_ = FragTrap::hitPointDefault_;
+	this->hitPointMax_ = FragTrap::hitPointDefault_;
+	this->energyPoint_ = ScavTrap::energyPointDefault_;
+	this->attackDamage_ = FragTrap::attackDamageDefault_;
 	std::cout << "\033[36;2;3mCreating a DiamondTrap (" \
 		<< this << ": " << name << ")\033[m" << std::endl;
 }
@@ -26,8 +29,9 @@ DiamondTrap::DiamondTrap(const DiamondTrap& src) \
 		<< &src << " -> " << this << ")\033[m" << std::endl;
 	// this->name_ = src.name_;
 	// this->hitPoint_ = src.hitPoint_;
-	this->hitPointMax_ = src.hitPointMax_;
+	// this->hitPointMax_ = src.hitPointMax_;
 	// this->energyPoint_ = src.energyPoint_;
+	// this->attackDamage_ = src.attackDamage_;
 }
 
 DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& rhs) {
@@ -35,11 +39,12 @@ DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& rhs) {
 		<< &rhs << " -> " << this << ")\033[m" << std::endl;
 	if (this != &rhs)
 	{
-		this->name_ = rhs.name_;
-		this->hitPoint_ = rhs.hitPoint_;
-		this->hitPointMax_ = rhs.hitPointMax_;
-		this->energyPoint_ = rhs.energyPoint_;
-		this->attackDamage_ = rhs.attackDamage_;
+		ClapTrap::operator=(rhs);
+		// this->name_ = rhs.name_;
+		// this->hitPoint_ = rhs.hitPoint_;
+		// this->hitPoint_ = rhs.hitPointMax_;
+		// this->energyPoint_ = rhs.energyPoint_;
+		// this->attackDamage_ = rhs.attackDamage_;
 	}
 	return (*this);
 }

@@ -34,7 +34,7 @@ CXX				= c++
 RM				= rm
 
 # Command options (flags)
-CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS		= -Wall -Wextra -Werror -Wshadow -std=c++98
 INCLUDES		= -I$(INCDIR)
 RMFLAGS			= -r
 DEBUGCFLAGS		= -g -ggdb -fsanitize=address -fno-omit-frame-pointer

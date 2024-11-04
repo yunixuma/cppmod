@@ -6,7 +6,7 @@
 #    By: ykosaka <ykosaka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 15:04:04 by ykosaka           #+#    #+#              #
-#    Updated: 2023/09/07 16:27:57 by ykosaka          ###   ########.fr        #
+#    Updated: 2024/11/04 21:31:09 by ykosaka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,9 +37,9 @@ CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 INCLUDES		= -I$(INCDIR)
 RMFLAGS			= -r
 DEBUGCFLAGS		= -g -ggdb -fsanitize=address -fno-omit-frame-pointer
-ifneq ($(OS), Darwin)
-	DEBUGCFLAGS	+= -fstack-usage
-endif
+# ifneq ($(OS), Darwin)
+# 	DEBUGCFLAGS	+= -fstack-usage
+# endif
 DEBUGLDFLAGS	= -fsanitize=address
 
 # Redefination when the specific target
